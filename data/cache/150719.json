@@ -1,0 +1,238 @@
+{
+  "id": 150719,
+  "accession_number": "1982.143",
+  "share_license_status": "CC0",
+  "tombstone": "Abduction of the Sabine Women, c. 1640. Johann Heinrich Schönfeld (German, 1609–1684). Oil on canvas; framed: 129 x 178 x 7.5 cm (50 13/16 x 70 1/16 x 2 15/16 in.); unframed: 110 x 160 cm (43 5/16 x 63 in.). The Cleveland Museum of Art, Leonard C. Hanna Jr. Fund, 1982.143",
+  "current_location": null,
+  "title": "Abduction of the Sabine Women",
+  "creation_date": "c. 1640",
+  "creation_date_earliest": 1635,
+  "creation_date_latest": 1645,
+  "artists_tags": [
+    "male"
+  ],
+  "culture": [
+    "Germany"
+  ],
+  "technique": "oil on canvas",
+  "support_materials": [],
+  "department": "European Painting and Sculpture",
+  "collection": "P - German before 1800",
+  "type": "Painting",
+  "measurements": "Framed: 129 x 178 x 7.5 cm (50 13/16 x 70 1/16 x 2 15/16 in.); Unframed: 110 x 160 cm (43 5/16 x 63 in.)",
+  "dimensions": {
+    "framed": {
+      "height": 1.29,
+      "height_inch": 50,
+      "height_inch_fraction": 0.8125,
+      "width": 1.78,
+      "width_inch": 70,
+      "width_inch_fraction": 0.0625,
+      "depth": 0.075,
+      "depth_inch": 2,
+      "depth_inch_fraction": 0.9375
+    },
+    "unframed": {
+      "height": 1.1,
+      "height_inch": 43,
+      "height_inch_fraction": 0.3125,
+      "width": 1.6,
+      "width_inch": 63,
+      "width_inch_fraction": 0.0
+    }
+  },
+  "state_of_the_work": null,
+  "edition_of_the_work": null,
+  "copyright": null,
+  "inscriptions": [],
+  "exhibitions": {
+    "current": [
+      {
+        "id": 309644,
+        "title": "The Year in Review for 1982",
+        "description": "<i>The Year in Review for 1982</i>. The Cleveland Museum of Art, Cleveland, OH (organizer) (January 5-February 6, 1983).",
+        "opening_date": "1983-01-05T05:00:00"
+      }
+    ],
+    "legacy": [
+      {
+        "description": "CMA 1983: \"Year in Review 1982,\" Bull., LXX (Jan. 1983), p. 50, cat. # 16, repr. p. 12.",
+        "opening_date": "1983-01-01T00:00:00"
+      }
+    ]
+  },
+  "provenance": [
+    {
+      "description": "Anne Lise Thomasen, Copenhagen (1930).",
+      "citations": [],
+      "footnotes": null,
+      "date": null,
+      "sortorder": null
+    },
+    {
+      "description": "(Galerie Grünwald; Galerie Arnoldi-Livie, Munich), sold to the Cleveland Museum of Art, 1982.",
+      "citations": [],
+      "footnotes": null,
+      "date": null,
+      "sortorder": null
+    }
+  ],
+  "find_spot": null,
+  "related_works": [],
+  "former_accession_numbers": [],
+  "did_you_know": null,
+  "early_education_description": null,
+  "artlens_description": null,
+  "description": "Shortly after Rome was founded, the Romans abducted the women of the neighboring Sabines to be their wives. During the ensuing war, the Sabine women intervened, making peace between the two sides. Painted in Naples, this canvas seems to be the last of four versions of the subject painted by Johann Schönfeld (two in the Hermitage, St. Petersburg, another in a private collection).",
+  "external_resources": {
+    "wikidata": [
+      "https://www.wikidata.org/wiki/Q60474868"
+    ],
+    "internet_archive": [
+      "https://archive.org/details/clevelandart-1982.143-abduction-of-the-sab"
+    ]
+  },
+  "citations": [
+    {
+      "citation": "Lee, Sherman E. “Year in Review for 1982.” <em>The Bulletin of the Cleveland Museum of Art</em> 70, no. 1 (January 1983): 3–55.",
+      "page_number": "Mentioned: p. 50, no. 16; Reproduced: p. 12",
+      "url": "http://www.jstor.org/stable/25159799"
+    },
+    {
+      "citation": "Pée, Herbert. “The Rape of the Sabines by Johann Heinrich Schönfeld.” <em>The Bulletin of the Cleveland Museum of Art</em> 74, no. 9 (November 1987): 358–371.",
+      "page_number": "Mentioned and reproduced: p. 358-371",
+      "url": "http://www.jstor.org/stable/25160004"
+    }
+  ],
+  "url": "https://clevelandart.org/art/1982.143",
+  "images": {
+    "annotation": null,
+    "web": {
+      "url": "https://openaccess-cdn.clevelandart.org/1982.143/1982.143_web.jpg",
+      "width": "1263",
+      "height": "867",
+      "filesize": "716516",
+      "filename": "1982.143_web.jpg"
+    },
+    "print": {
+      "url": "https://openaccess-cdn.clevelandart.org/1982.143/1982.143_print.jpg",
+      "width": "3400",
+      "height": "2333",
+      "filesize": "5268104",
+      "filename": "1982.143_print.jpg"
+    },
+    "full": {
+      "url": "https://openaccess-cdn.clevelandart.org/1982.143/1982.143_full.tif",
+      "width": "6194",
+      "height": "4250",
+      "filesize": "79007392",
+      "filename": "1982.143_full.tif"
+    }
+  },
+  "alternate_images": [
+    {
+      "web": {
+        "url": "https://openaccess-cdn.clevelandart.org/1982.143/1982.143_alt0_web.jpg",
+        "width": "1263",
+        "height": "873",
+        "filesize": "785604"
+      },
+      "print": {
+        "url": "https://openaccess-cdn.clevelandart.org/1982.143/1982.143_alt0_print.jpg",
+        "width": "3400",
+        "height": "2349",
+        "filesize": "6151263"
+      },
+      "full": {
+        "url": "https://openaccess-cdn.clevelandart.org/1982.143/1982.143_alt0_full.tif",
+        "width": "6442",
+        "height": "4451",
+        "filesize": "86052880"
+      },
+      "date_created": "2009-06-26T19:10:35",
+      "annotation": ""
+    },
+    {
+      "web": {
+        "url": "https://openaccess-cdn.clevelandart.org/1982.143/1982.143_alt1_web.jpg",
+        "width": "1232",
+        "height": "893",
+        "filesize": "783079"
+      },
+      "print": {
+        "url": "https://openaccess-cdn.clevelandart.org/1982.143/1982.143_alt1_print.jpg",
+        "width": "3400",
+        "height": "2464",
+        "filesize": "5651915"
+      },
+      "full": {
+        "url": "https://openaccess-cdn.clevelandart.org/1982.143/1982.143_alt1_full.tif",
+        "width": "6426",
+        "height": "4657",
+        "filesize": "89812400"
+      },
+      "date_created": "2009-06-26T19:23:36",
+      "annotation": ""
+    },
+    {
+      "web": {
+        "url": "https://openaccess-cdn.clevelandart.org/1982.143/1982.143_alt2_web.jpg",
+        "width": "1263",
+        "height": "857",
+        "filesize": "919557"
+      },
+      "print": {
+        "url": "https://openaccess-cdn.clevelandart.org/1982.143/1982.143_alt2_print.jpg",
+        "width": "2048",
+        "height": "1389",
+        "filesize": "2493080"
+      },
+      "full": {
+        "url": "https://openaccess-cdn.clevelandart.org/1982.143/1982.143_alt2_full.tif",
+        "width": "2048",
+        "height": "1389",
+        "filesize": "8536980"
+      },
+      "annotation": ""
+    }
+  ],
+  "creditline": "Leonard C. Hanna Jr. Fund",
+  "image_credit": null,
+  "sketchfab_id": null,
+  "sketchfab_url": null,
+  "gallery_donor_text": null,
+  "athena_id": 150719,
+  "creators": [
+    {
+      "id": 2804,
+      "description": "Johann Heinrich Schönfeld (German, 1609–1684)",
+      "extent": null,
+      "qualifier": null,
+      "role": "artist",
+      "biography": null,
+      "name_in_original_language": null,
+      "birth_year": "1609",
+      "death_year": "1684",
+      "use_in_caption": true,
+      "include_extent": false,
+      "weight": 1
+    }
+  ],
+  "legal_status": "accessioned",
+  "accession_date": "1982-11-16T00:00:00",
+  "sortable_date": 1635,
+  "date_added_to_oa": null,
+  "date_text": "c. 1640",
+  "collapse_artists": false,
+  "on_loan": false,
+  "recently_acquired": false,
+  "record_type": "object",
+  "conservation_statement": null,
+  "has_conservation_images": false,
+  "cover_accession_number": null,
+  "is_nazi_era_provenance": true,
+  "impression": null,
+  "alternate_titles": [],
+  "is_highlight": false,
+  "updated_at": "2026-05-29 07:46:42.068000"
+}

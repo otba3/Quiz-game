@@ -1,0 +1,163 @@
+{
+  "id": 155916,
+  "accession_number": "1991.210",
+  "share_license_status": "CC0",
+  "tombstone": "A Shepherd with His Flock, 1800s. Charles-Émile Jacque (French, 1813–1894). Black chalk heightened with white chalk and stumping; sheet: 26.8 x 46.4 cm (10 9/16 x 18 1/4 in.). The Cleveland Museum of Art, Gift in memory of Adele Chisolm Eells from her daughters, 1991.210",
+  "current_location": null,
+  "title": "A Shepherd with His Flock",
+  "creation_date": "1800s",
+  "creation_date_earliest": 1813,
+  "creation_date_latest": 1894,
+  "artists_tags": [
+    "male"
+  ],
+  "culture": [
+    "France, 19th century"
+  ],
+  "technique": "black chalk heightened with white chalk and stumping",
+  "support_materials": [
+    {
+      "description": "light purple wove paper, discolored to light brown",
+      "watermarks": []
+    }
+  ],
+  "department": "Drawings",
+  "collection": "DR - French",
+  "type": "Drawing",
+  "measurements": "Sheet: 26.8 x 46.4 cm (10 9/16 x 18 1/4 in.)",
+  "dimensions": {
+    "sheet": {
+      "height": 0.268,
+      "height_inch": 10,
+      "height_inch_fraction": 0.5625,
+      "width": 0.464,
+      "width_inch": 18,
+      "width_inch_fraction": 0.25
+    }
+  },
+  "state_of_the_work": null,
+  "edition_of_the_work": null,
+  "copyright": null,
+  "inscriptions": [
+    {
+      "inscription": "signed, lower left, in black chalk: Ch. Jacque",
+      "inscription_translation": null,
+      "inscription_remark": null,
+      "sortorder": null
+    }
+  ],
+  "exhibitions": {
+    "current": [
+      {
+        "id": 311486,
+        "title": "Signs of Affection: Gifts Honoring the Museum's 75th Anniversary",
+        "description": "<i>Signs of Affection: Gifts Honoring the Museum's 75th Anniversary</i>. The Cleveland Museum of Art, Cleveland, OH (organizer) (October 27, 1992-January 3, 1993).",
+        "opening_date": "1992-10-27T05:00:00"
+      },
+      {
+        "id": 178036,
+        "title": "Nature Sublime: Landscapes from the 19th Century",
+        "description": "<i>Nature Sublime: Landscapes from the 19th Century</i>. The Cleveland Museum of Art, Cleveland, OH (organizer) (August 15-November 14, 2004).",
+        "opening_date": "2004-08-15T00:00:00"
+      }
+    ],
+    "legacy": [
+      {
+        "description": "CMA, French Drawings from the Collection (Dec. 13, 1994-Mar. 12, 1995).",
+        "opening_date": "1994-12-13T00:00:00"
+      },
+      {
+        "description": "CMA, Signs of Affection: Gifts Honoring the Museum's Seventy-Fifth Anniversary (Oct. 27, 1992-Jan. 17, 1993).",
+        "opening_date": "1992-10-27T00:00:00"
+      },
+      {
+        "description": "Cleveland, Ohio: The Cleveland Museum of Art; 8/15/04-11/14/04. \"Nature Sublime: Landscapes from the 19th Century\".  No exhibition catalogue.",
+        "opening_date": "2004-08-15T00:00:00"
+      }
+    ]
+  },
+  "provenance": [],
+  "find_spot": null,
+  "related_works": [],
+  "former_accession_numbers": [],
+  "did_you_know": null,
+  "early_education_description": null,
+  "artlens_description": null,
+  "description": "The notion of the pastoral ideal is made explicit in the work of Jacque. In 1849, along with Jean-François Millet, Jacque moved to the village of Barbizon, which by then was an established artist’s colony. There he painted, drew, and etched rustic landscapes in which man and nature\r\ncoexist in perfect harmony.",
+  "external_resources": {
+    "wikidata": [
+      "https://www.wikidata.org/wiki/Q79944549"
+    ],
+    "internet_archive": [
+      "https://archive.org/details/clevelandart-1991.210-a-shepherd-with-his"
+    ]
+  },
+  "citations": [],
+  "url": "https://clevelandart.org/art/1991.210",
+  "images": {
+    "annotation": null,
+    "web": {
+      "url": "https://openaccess-cdn.clevelandart.org/1991.210/1991.210_web.jpg",
+      "width": "1263",
+      "height": "741",
+      "filesize": "161163",
+      "filename": "1991.210_web.jpg"
+    },
+    "print": {
+      "url": "https://openaccess-cdn.clevelandart.org/1991.210/1991.210_print.jpg",
+      "width": "3400",
+      "height": "1995",
+      "filesize": "1430139",
+      "filename": "1991.210_print.jpg"
+    },
+    "full": {
+      "url": "https://openaccess-cdn.clevelandart.org/1991.210/1991.210_full.tif",
+      "width": "7703",
+      "height": "4521",
+      "filesize": "104498768",
+      "filename": "1991.210_full.tif"
+    }
+  },
+  "alternate_images": [],
+  "creditline": "Gift in memory of Adele Chisolm Eells from her daughters",
+  "image_credit": null,
+  "sketchfab_id": null,
+  "sketchfab_url": null,
+  "gallery_donor_text": null,
+  "athena_id": 155916,
+  "creators": [
+    {
+      "id": 1868,
+      "description": "Charles-Émile Jacque (French, 1813–1894)",
+      "extent": null,
+      "qualifier": null,
+      "role": "artist",
+      "biography": "After his schooling, Charles-Émile Jacque began work in a notary's office, but he quickly departed to pursue printmaking. Apprenticed at seventeen to a map engraver, he made his first etching the same year, a female head after Rembrandt. Dissatisfied with cartography, Jacque joined the army, where he served seven years. During this time he prepared the lithographic album Militairiana (1840), praised by poet and critic Charles Baudelaire for the frankness of its caricatures of military life. Jacque worked in London in 1836-38 producing woodcuts to illustrate Shakespeare and a history of Greece. Back in France he established his reputation as an illustrator and contributed caricatures to Charivari in 1843 and 1844. Married in 1843, he made his debut at the Salon as an etcher two years later, his prints prompting Baudelaire's admiration once again. Jacque played a key role in the revival of etching in France during the 1840s, but he also began to paint in this period. He depicted windmills at Montmartre in emulation of Michel (q.v.), whose dramatic landscapes would remain a source of inspiration. Jacque's realist paintings of animals in the country, especially pigs, chickens, and sheep, soon became his hallmark, and in 1848 the state bought his picture Herd of Cattle at the Drinking Hole (Musée des Beaux-Arts, Angers). In the spring of 1849, to avoid cholera in Paris, Jacque and his friend of three years Millet (q.v.) moved their families to adjoining properties in the artists' colony of Barbizon. Jacque introduced Millet to rustic themes, while Millet's work prompted Jacque to imbue his peasant subjects with more vigor. Besides making art, Jacque bred poultry, cultivated asparagus, and invested in real estate in Barbizon. He also wrote and illustrated the book Le poulailler: Monographie des poules indigènes et exotiques (The Henhouse: Monograph on Native and Exotic Poultry, 1858). These business interests distinguished him from his Barbizon colleagues and contributed to the cooling of his friendship with Millet and others. In the 1850s and 1860s Jacque experimented with larger print formats, and he exhibited animal paintings at the Salon for the first time in 1861, winning a third-class medal. After 1860 he spent more time in Paris than Barbizon and in the 1870s established a factory for the production of \"artistic furniture\" based on Gothic and Renaissance pieces. Between 1870 and 1888 Jacque did not show at the Salon, but he continued to produce and sell works through dealers. Repeating the same themes, he began to use the palette knife and painted more thickly and freely. Combining art and business, he helped establish and became president of the Société des Animaliers Français in 1881. Outliving the other Barbizon artists, the elderly Jacque called himself \"the last of the romantics.\" He profited from the Anglo-American taste for landscape in the late nineteenth century. At the 1889 Exposition Universelle Jacque obtained a gold medal as painter and a grand prix as printmaker.",
+      "name_in_original_language": null,
+      "birth_year": "1813",
+      "death_year": "1894",
+      "use_in_caption": true,
+      "include_extent": false,
+      "weight": 1
+    }
+  ],
+  "legal_status": "accessioned",
+  "accession_date": "1991-12-16T00:00:00",
+  "sortable_date": 1813,
+  "date_added_to_oa": null,
+  "date_text": "1800s",
+  "collapse_artists": false,
+  "on_loan": false,
+  "recently_acquired": false,
+  "record_type": "object",
+  "conservation_statement": null,
+  "has_conservation_images": false,
+  "cover_accession_number": null,
+  "is_nazi_era_provenance": false,
+  "impression": null,
+  "alternate_titles": [
+    "Untitled"
+  ],
+  "is_highlight": false,
+  "updated_at": "2026-05-29 08:06:12.342000"
+}

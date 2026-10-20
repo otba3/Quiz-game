@@ -1,0 +1,135 @@
+{
+  "id": 107212,
+  "accession_number": "1925.1204.10",
+  "share_license_status": "CC0",
+  "tombstone": "Elles: Elles: Woman In a Corset, 1896. Henri de Toulouse-Lautrec (French, 1864–1901). Color lithograph. The Cleveland Museum of Art, Gift of Ralph King, 1925.1204.10",
+  "current_location": null,
+  "title": "Elles: Woman In a Corset",
+  "series": "Elles",
+  "creation_date": "1896",
+  "creation_date_earliest": 1896,
+  "creation_date_latest": 1896,
+  "artists_tags": [
+    "male"
+  ],
+  "culture": [
+    "France, 19th century"
+  ],
+  "technique": "color lithograph",
+  "support_materials": [],
+  "department": "Prints",
+  "collection": "PR - Lithograph",
+  "type": "Print",
+  "dimensions": {},
+  "state_of_the_work": "W. I/I",
+  "edition_of_the_work": null,
+  "copyright": null,
+  "inscriptions": [],
+  "exhibitions": {
+    "current": [
+      {
+        "id": 309882,
+        "title": "Prints by Toulouse-Lautrec and Bonnard",
+        "description": "<i>Prints by Toulouse-Lautrec and Bonnard</i>. The Cleveland Museum of Art, Cleveland, OH (organizer) (December 3, 1985-March 2, 1986).",
+        "opening_date": "1985-12-03T05:00:00"
+      },
+      {
+        "id": 200460,
+        "title": "Mary Cassatt and the Feminine Ideal in 19th-Century Paris",
+        "description": "<i>Mary Cassatt and the Feminine Ideal in 19th-Century Paris</i>. The Cleveland Museum of Art (organizer) (October 14, 2012-January 20, 2013).",
+        "opening_date": "2012-10-04T00:00:00"
+      }
+    ],
+    "legacy": [
+      {
+        "description": "CMA 1996: Sets and Series: Five Centuries of Master Prints, February 20-May 5, 1996, no cat.",
+        "opening_date": "1996-02-20T00:00:00"
+      }
+    ]
+  },
+  "provenance": [],
+  "find_spot": null,
+  "related_works": [],
+  "former_accession_numbers": [
+    "1925.1208"
+  ],
+  "did_you_know": "This print belongs to a portfolio published by the dealer Gustave Pellet, who created a special luxury paper that featured a watermark of his initials.",
+  "early_education_description": null,
+  "artlens_description": null,
+  "description": "Like Cassatt, Toulouse-Lautrec also made a series of color prints depicting the daily lives of women, but instead of portraying bourgeois wives and mothers, his subjects were prostitutes. His series of twelve lithographs entitled Elles boldly confronted the reality of late 19th-century Parisian brothels on the rue de Moulins and the rue de Richelieu, in which rich men's pursuit of pleasure with the daughters of the poor was legal and accepted. Although not portraits of classic beauty, his depictions of Parisian prostitutes embrace the poignancy of human experience. Here, a prostitute unhooks her corset in the presence of a client, her face sympathetically averted from the viewer's gaze.",
+  "external_resources": {
+    "wikidata": [
+      "https://www.wikidata.org/wiki/Q79894748"
+    ],
+    "internet_archive": [
+      "https://archive.org/details/clevelandart-1925.1204.10-elles-woman-in-a-cor"
+    ]
+  },
+  "citations": [],
+  "catalogue_raisonne": "Wittrock Vol.I.164 ; Delteil 188",
+  "url": "https://clevelandart.org/art/1925.1204.10",
+  "images": {
+    "annotation": null,
+    "web": {
+      "url": "https://openaccess-cdn.clevelandart.org/1925.1204.10/1925.1204.10_web.jpg",
+      "width": "702",
+      "height": "900",
+      "filesize": "201109",
+      "filename": "1925.1204.10_web.jpg"
+    },
+    "print": {
+      "url": "https://openaccess-cdn.clevelandart.org/1925.1204.10/1925.1204.10_print.jpg",
+      "width": "2653",
+      "height": "3400",
+      "filesize": "2292683",
+      "filename": "1925.1204.10_print.jpg"
+    },
+    "full": {
+      "url": "https://openaccess-cdn.clevelandart.org/1925.1204.10/1925.1204.10_full.tif",
+      "width": "4550",
+      "height": "5832",
+      "filesize": "79637760",
+      "filename": "1925.1204.10_full.tif"
+    }
+  },
+  "alternate_images": [],
+  "creditline": "Gift of Ralph King",
+  "image_credit": null,
+  "sketchfab_id": null,
+  "sketchfab_url": null,
+  "gallery_donor_text": null,
+  "athena_id": 107212,
+  "creators": [
+    {
+      "id": 1856,
+      "description": "Henri de Toulouse-Lautrec (French, 1864–1901)",
+      "extent": null,
+      "qualifier": null,
+      "role": "artist",
+      "biography": null,
+      "name_in_original_language": null,
+      "birth_year": "1864",
+      "death_year": "1901",
+      "use_in_caption": true,
+      "include_extent": false,
+      "weight": 1
+    }
+  ],
+  "legal_status": "accessioned",
+  "accession_date": "1925-12-08T00:00:00",
+  "sortable_date": 1896,
+  "date_added_to_oa": null,
+  "date_text": "1896",
+  "collapse_artists": false,
+  "on_loan": false,
+  "recently_acquired": false,
+  "record_type": "component",
+  "conservation_statement": null,
+  "has_conservation_images": false,
+  "cover_accession_number": "1925.1204",
+  "is_nazi_era_provenance": false,
+  "impression": null,
+  "alternate_titles": [],
+  "is_highlight": false,
+  "updated_at": "2026-05-29 05:45:56.213000"
+}
