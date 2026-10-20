@@ -2,17 +2,30 @@
 
 Saves images to output/images/<accession number>.jpg, sized to fit 1024x600.
 Images already in output/images/ are not downloaded again.
+
+Usage:  py scripts/prepare_images.py title
+        py scripts/prepare_images.py year
 """
 import csv
 import io
 import re
+import sys
 from pathlib import Path
 
 from PIL import Image  # Pillow: the standard Python image library
 
 from cma_api import download_file, fetch_artwork
 
-CSV_PATH = "data/title_questions.csv"
+# What differs between categories: the CSV file and the name of its API column.
+CATEGORIES = {
+    "title": ("data/title_questions.csv", "TITLE API"),
+    "year": ("data/year_questions.csv", "YEAR API"),
+}
+
+if len(sys.argv) != 2 or sys.argv[1] not in CATEGORIES:
+    raise SystemExit(f"Usage: py scripts/prepare_images.py <{' | '.join(CATEGORIES)}>")
+CSV_PATH, API_COLUMN = CATEGORIES[sys.argv[1]]
+
 IMAGES_DIR = Path("output/images")
 MAX_SIZE = (1024, 600)  # the touchscreen's resolution
 
@@ -23,8 +36,8 @@ with open(CSV_PATH, encoding="utf-8-sig", newline="") as f:
 
 ok = 0
 for line_no, row in enumerate(rows, start=2):
-    artwork_id = re.search(r"/artworks/(\d+)", row["TITLE API"]).group(1)
-    artwork = fetch_artwork(artwork_id)  # from the cache, filled in Step 3
+    artwork_id = re.search(r"/artworks/(\d+)", row[API_COLUMN]).group(1)
+    artwork = fetch_artwork(artwork_id)  # from the cache, filled by the verify scripts
     accession = artwork["accession_number"]
     print(f"line {line_no} (id {artwork_id}, {accession}):")
 

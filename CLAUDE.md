@@ -55,6 +55,7 @@ without repeats, so a replay shows new questions.
   - The front-end must shuffle the options each time a question is shown
     (the JSON keeps the CSV order; the answer is stored as text, not position).
 
+
 ---
 
 ## Phase 1: Artwork Title

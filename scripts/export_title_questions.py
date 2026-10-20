@@ -54,11 +54,15 @@ for line_no, row in enumerate(rows, start=2):
         "culture": ", ".join(artwork["culture"]),    # the API gives a list, we join it
     })
 
-(OUTPUT_DIR / "i18n").mkdir(parents=True, exist_ok=True)
+# Merge our text into en.json, so other categories' texts are kept.
+en_path = OUTPUT_DIR / "i18n" / "en.json"
+en_path.parent.mkdir(parents=True, exist_ok=True)
+english = json.loads(en_path.read_text(encoding="utf-8")) if en_path.exists() else {}
+english.update(ENGLISH_TEXT)
+
 bank = {"category": "title", "questions": questions}
 (OUTPUT_DIR / "questions_title.json").write_text(
     json.dumps(bank, indent=2, ensure_ascii=False), encoding="utf-8")
-(OUTPUT_DIR / "i18n" / "en.json").write_text(
-    json.dumps(ENGLISH_TEXT, indent=2, ensure_ascii=False), encoding="utf-8")
+en_path.write_text(json.dumps(english, indent=2, ensure_ascii=False), encoding="utf-8")
 
 print(f"Exported {len(questions)} questions to output/questions_title.json")

@@ -1,0 +1,155 @@
+{
+  "category": "year",
+  "questions": [
+    {
+      "id": "year-79187",
+      "question_key": "question.year",
+      "image": "images/2016.199.jpg",
+      "options": [
+        "17th century",
+        "19th century",
+        "18th century",
+        "20th century"
+      ],
+      "answer": "19th century",
+      "artwork_title": "The Herd Exits",
+      "culture": "France",
+      "context": "Charles-Émile Jacque (French, 1813–1894), 1876"
+    },
+    {
+      "id": "year-79574",
+      "question_key": "question.year",
+      "image": "images/2015.465.jpg",
+      "options": [
+        "12th century",
+        "15th century",
+        "14th century",
+        "16th century"
+      ],
+      "answer": "15th century",
+      "artwork_title": "Fish Basket Kannon (Gyoran Kannon)",
+      "culture": "Japan, Muromachi period (1392–1573)",
+      "context": "Bokkei Saiyo (Japanese, 1415–1473), 1400s"
+    },
+    {
+      "id": "year-86119",
+      "question_key": "question.year",
+      "image": "images/2015.481.2.jpg",
+      "options": [
+        "16th century",
+        "17th century",
+        "18th century",
+        "15th century"
+      ],
+      "answer": "17th century",
+      "artwork_title": "Summer and Winter Landscapes (one of a pair)",
+      "culture": "Japan, Edo period (1615–1868)",
+      "context": "Kano Naonobu (Japanese, 1607–1650), 1600s"
+    },
+    {
+      "id": "year-86532",
+      "question_key": "question.year",
+      "image": "images/2016.6.jpg",
+      "options": [
+        "17th century",
+        "18th century",
+        "20th century",
+        "19th century"
+      ],
+      "answer": "19th century",
+      "artwork_title": "Mountain View",
+      "culture": "America",
+      "context": "Robert J. Pattison (American, 1838–1903), 1862–67"
+    },
+    {
+      "id": "year-91231",
+      "question_key": "question.year",
+      "image": "images/2020.105.jpg",
+      "options": [
+        "19th century",
+        "17th century",
+        "20th century",
+        "18th century"
+      ],
+      "answer": "19th century",
+      "artwork_title": "Villas at Trouville",
+      "culture": "France, 19th century",
+      "context": "Gustave Caillebotte (French, 1848–1894), 1884"
+    },
+    {
+      "id": "year-95059",
+      "question_key": "question.year",
+      "image": "images/1915.597.jpg",
+      "options": [
+        "15th century",
+        "17th century",
+        "16th century",
+        "18th century"
+      ],
+      "answer": "16th century",
+      "artwork_title": "Bahram Gur and Azada, from a Shahnama (Book of Kings) of Firdausi (940–1019 or 1025)",
+      "culture": "Iran, Tabriz or Qazvin, Safavid period (1501-1722)",
+      "context": "Iran, Tabriz or Qazvin, Safavid period (1501-1722), 1500s"
+    },
+    {
+      "id": "year-95802",
+      "question_key": "question.year",
+      "image": "images/1916.1490.jpg",
+      "options": [
+        "17th century",
+        "15th century",
+        "16th century",
+        "18th century"
+      ],
+      "answer": "18th century",
+      "artwork_title": "Banner Head in the Form of a Fleur-de-lys",
+      "culture": "France",
+      "context": "France, 1700s"
+    },
+    {
+      "id": "year-98373",
+      "question_key": "question.year",
+      "image": "images/1918.109.jpg",
+      "options": [
+        "19th century",
+        "18th century",
+        "15th century",
+        "20th century"
+      ],
+      "answer": "20th century",
+      "artwork_title": "The Great Chimney, Bradford",
+      "culture": "America, late 19th-early 20th Century",
+      "context": "Joseph Pennell (American, 1857–1926), 1909"
+    },
+    {
+      "id": "year-98736",
+      "question_key": "question.year",
+      "image": "images/1918.423.jpg",
+      "options": [
+        "12th century",
+        "15th century",
+        "14th century",
+        "13th century"
+      ],
+      "answer": "13th century",
+      "artwork_title": "Box and Cover with Inlaid Chrysanthemum Design",
+      "culture": "Korea, Goryeo dynasty (918–1392)",
+      "context": "Korea, Goryeo dynasty (918–1392), 1200s"
+    },
+    {
+      "id": "year-100396",
+      "question_key": "question.year",
+      "image": "images/1919.876.jpg",
+      "options": [
+        "17th century",
+        "18th century",
+        "20th century",
+        "19th century"
+      ],
+      "answer": "20th century",
+      "artwork_title": "The Ford",
+      "culture": "America, Ohio, Cleveland",
+      "context": "Henry Keller (American, born Germany, 1869–1949), 1919"
+    }
+  ]
+}
