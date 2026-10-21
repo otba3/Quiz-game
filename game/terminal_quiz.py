@@ -9,7 +9,7 @@ from pathlib import Path
 
 # Find output/ relative to this file, so the game works from any folder.
 OUTPUT_DIR = Path(__file__).parent.parent / "output"
-QUESTIONS_PER_GAME = 4  # small number for testing; the real game uses 12
+QUESTIONS_PER_GAME = 6  # same as the web game
 
 # The topics the player can choose: menu name -> question bank file.
 TOPICS = {
