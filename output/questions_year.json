@@ -5,166 +5,386 @@
       "id": "year-79187",
       "question_key": "question.year",
       "image": "images/2016.199.jpg",
-      "options": [
-        "17th century",
-        "19th century",
-        "18th century",
-        "20th century"
-      ],
-      "answer": "19th century",
-      "artwork_title": "The Herd Exits",
-      "culture": "France",
-      "context": "Charles-Émile Jacque (French, 1813–1894), 1876"
+      "options": {
+        "en": [
+          "17th century",
+          "19th century",
+          "18th century",
+          "20th century"
+        ],
+        "ar": [
+          "القرن السابع عشر",
+          "القرن التاسع عشر",
+          "القرن الثامن عشر",
+          "القرن العشرين"
+        ]
+      },
+      "answer": {
+        "en": "19th century",
+        "ar": "القرن التاسع عشر"
+      },
+      "artwork_title": {
+        "en": "The Herd Exits",
+        "ar": "خروج القطيع"
+      },
+      "culture": {
+        "en": "France",
+        "ar": "فرنسا"
+      },
+      "context": {
+        "en": "Charles-Émile Jacque (French, 1813–1894), 1876",
+        "ar": "شارل إميل جاك (فرنسي، 1813–1894)، 1876"
+      }
     },
     {
       "id": "year-79574",
       "question_key": "question.year",
       "image": "images/2015.465.jpg",
-      "options": [
-        "12th century",
-        "15th century",
-        "14th century",
-        "16th century"
-      ],
-      "answer": "15th century",
-      "artwork_title": "Fish Basket Kannon (Gyoran Kannon)",
-      "culture": "Japan, Muromachi period (1392–1573)",
-      "context": "Bokkei Saiyo (Japanese, 1415–1473), 1400s"
+      "options": {
+        "en": [
+          "12th century",
+          "15th century",
+          "14th century",
+          "16th century"
+        ],
+        "ar": [
+          "القرن الثاني عشر",
+          "القرن الخامس عشر",
+          "القرن الرابع عشر",
+          "القرن السادس عشر"
+        ]
+      },
+      "answer": {
+        "en": "15th century",
+        "ar": "القرن الخامس عشر"
+      },
+      "artwork_title": {
+        "en": "Fish Basket Kannon (Gyoran Kannon)",
+        "ar": "كانون سلة السمك (غيوران كانون)"
+      },
+      "culture": {
+        "en": "Japan, Muromachi period (1392–1573)",
+        "ar": "اليابان، فترة موروماتشي (1392–1573)"
+      },
+      "context": {
+        "en": "Bokkei Saiyo (Japanese, 1415–1473), 1400s",
+        "ar": "بوكي سايو (ياباني، 1415–1473)، القرن الخامس عشر"
+      }
     },
     {
       "id": "year-86119",
       "question_key": "question.year",
       "image": "images/2015.481.2.jpg",
-      "options": [
-        "16th century",
-        "17th century",
-        "18th century",
-        "15th century"
-      ],
-      "answer": "17th century",
-      "artwork_title": "Summer and Winter Landscapes (one of a pair)",
-      "culture": "Japan, Edo period (1615–1868)",
-      "context": "Kano Naonobu (Japanese, 1607–1650), 1600s"
+      "options": {
+        "en": [
+          "16th century",
+          "17th century",
+          "18th century",
+          "15th century"
+        ],
+        "ar": [
+          "القرن السادس عشر",
+          "القرن السابع عشر",
+          "القرن الثامن عشر",
+          "القرن الخامس عشر"
+        ]
+      },
+      "answer": {
+        "en": "17th century",
+        "ar": "القرن السابع عشر"
+      },
+      "artwork_title": {
+        "en": "Summer and Winter Landscapes (one of a pair)",
+        "ar": "مناظر طبيعية للصيف والشتاء (واحدة من زوج)"
+      },
+      "culture": {
+        "en": "Japan, Edo period (1615–1868)",
+        "ar": "اليابان، فترة إيدو (1615–1868)"
+      },
+      "context": {
+        "en": "Kano Naonobu (Japanese, 1607–1650), 1600s",
+        "ar": "كانو ناونوبو (ياباني، 1607–1650)، القرن السابع عشر"
+      }
     },
     {
       "id": "year-94605",
       "question_key": "question.year",
       "image": "images/1915.110.jpg",
-      "options": [
-        "15th century",
-        "17th century",
-        "18th century",
-        "16th century"
-      ],
-      "answer": "16th century",
-      "artwork_title": "Children at Play",
-      "culture": "China, Ming dynasty (1368–1644)",
-      "context": "Xia Kui (Chinese, active c. 1405–1445), 1508"
+      "options": {
+        "en": [
+          "15th century",
+          "17th century",
+          "18th century",
+          "16th century"
+        ],
+        "ar": [
+          "القرن الخامس عشر",
+          "القرن السابع عشر",
+          "القرن الثامن عشر",
+          "القرن السادس عشر"
+        ]
+      },
+      "answer": {
+        "en": "16th century",
+        "ar": "القرن السادس عشر"
+      },
+      "artwork_title": {
+        "en": "Children at Play",
+        "ar": "أطفال يلعبون"
+      },
+      "culture": {
+        "en": "China, Ming dynasty (1368–1644)",
+        "ar": "الصين، أسرة مينغ (1368–1644)"
+      },
+      "context": {
+        "en": "Xia Kui (Chinese, active c. 1405–1445), 1508",
+        "ar": "شيا كوي (صيني، نشط حوالي 1405–1445)، 1508"
+      }
     },
     {
       "id": "year-91231",
       "question_key": "question.year",
       "image": "images/2020.105.jpg",
-      "options": [
-        "19th century",
-        "17th century",
-        "20th century",
-        "18th century"
-      ],
-      "answer": "19th century",
-      "artwork_title": "Villas at Trouville",
-      "culture": "France, 19th century",
-      "context": "Gustave Caillebotte (French, 1848–1894), 1884"
+      "options": {
+        "en": [
+          "19th century",
+          "17th century",
+          "20th century",
+          "18th century"
+        ],
+        "ar": [
+          "القرن التاسع عشر",
+          "القرن السابع عشر",
+          "القرن العشرين",
+          "القرن الثامن عشر"
+        ]
+      },
+      "answer": {
+        "en": "19th century",
+        "ar": "القرن التاسع عشر"
+      },
+      "artwork_title": {
+        "en": "Villas at Trouville",
+        "ar": "فيلات في تروفيل"
+      },
+      "culture": {
+        "en": "France, 19th century",
+        "ar": "فرنسا، القرن التاسع عشر"
+      },
+      "context": {
+        "en": "Gustave Caillebotte (French, 1848–1894), 1884",
+        "ar": "غوستاف كايبوت (فرنسي، 1848–1894)، 1884"
+      }
     },
     {
       "id": "year-95059",
       "question_key": "question.year",
       "image": "images/1915.597.jpg",
-      "options": [
-        "15th century",
-        "17th century",
-        "16th century",
-        "18th century"
-      ],
-      "answer": "16th century",
-      "artwork_title": "Bahram Gur and Azada, from a Shahnama (Book of Kings) of Firdausi (940–1019 or 1025)",
-      "culture": "Iran, Tabriz or Qazvin, Safavid period (1501-1722)",
-      "context": "Iran, Tabriz or Qazvin, Safavid period (1501-1722), 1500s"
+      "options": {
+        "en": [
+          "15th century",
+          "17th century",
+          "16th century",
+          "18th century"
+        ],
+        "ar": [
+          "القرن الخامس عشر",
+          "القرن السابع عشر",
+          "القرن السادس عشر",
+          "القرن الثامن عشر"
+        ]
+      },
+      "answer": {
+        "en": "16th century",
+        "ar": "القرن السادس عشر"
+      },
+      "artwork_title": {
+        "en": "Bahram Gur and Azada, from a Shahnama (Book of Kings) of Firdausi (940–1019 or 1025)",
+        "ar": "بهرام غور وآزاده، من الشاهنامة (كتاب الملوك) للفردوسي"
+      },
+      "culture": {
+        "en": "Iran, Tabriz or Qazvin, Safavid period (1501-1722)",
+        "ar": "إيران، تبريز أو قزوين، العصر الصفوي (1501–1722)"
+      },
+      "context": {
+        "en": "Iran, Tabriz or Qazvin, Safavid period (1501-1722), 1500s",
+        "ar": "إيران، تبريز أو قزوين، العصر الصفوي (1501–1722)، القرن السادس عشر"
+      }
     },
     {
       "id": "year-95802",
       "question_key": "question.year",
       "image": "images/1916.1490.jpg",
-      "options": [
-        "17th century",
-        "15th century",
-        "16th century",
-        "18th century"
-      ],
-      "answer": "18th century",
-      "artwork_title": "Banner Head in the Form of a Fleur-de-lys",
-      "culture": "France",
-      "context": "France, 1700s"
+      "options": {
+        "en": [
+          "17th century",
+          "15th century",
+          "16th century",
+          "18th century"
+        ],
+        "ar": [
+          "القرن السابع عشر",
+          "القرن الخامس عشر",
+          "القرن السادس عشر",
+          "القرن الثامن عشر"
+        ]
+      },
+      "answer": {
+        "en": "18th century",
+        "ar": "القرن الثامن عشر"
+      },
+      "artwork_title": {
+        "en": "Banner Head in the Form of a Fleur-de-lys",
+        "ar": "رأس راية على شكل زهرة الزنبق"
+      },
+      "culture": {
+        "en": "France",
+        "ar": "فرنسا"
+      },
+      "context": {
+        "en": "France, 1700s",
+        "ar": "فرنسا، القرن الثامن عشر"
+      }
     },
     {
       "id": "year-98373",
       "question_key": "question.year",
       "image": "images/1918.109.jpg",
-      "options": [
-        "19th century",
-        "18th century",
-        "15th century",
-        "20th century"
-      ],
-      "answer": "20th century",
-      "artwork_title": "The Great Chimney, Bradford",
-      "culture": "America, late 19th-early 20th Century",
-      "context": "Joseph Pennell (American, 1857–1926), 1909"
+      "options": {
+        "en": [
+          "19th century",
+          "18th century",
+          "15th century",
+          "20th century"
+        ],
+        "ar": [
+          "القرن التاسع عشر",
+          "القرن الثامن عشر",
+          "القرن الخامس عشر",
+          "القرن العشرين"
+        ]
+      },
+      "answer": {
+        "en": "20th century",
+        "ar": "القرن العشرين"
+      },
+      "artwork_title": {
+        "en": "The Great Chimney, Bradford",
+        "ar": "المدخنة الكبرى، برادفورد"
+      },
+      "culture": {
+        "en": "America, late 19th-early 20th Century",
+        "ar": "أمريكا، أواخر القرن التاسع عشر وأوائل القرن العشرين"
+      },
+      "context": {
+        "en": "Joseph Pennell (American, 1857–1926), 1909",
+        "ar": "جوزيف بينيل (أمريكي، 1857–1926)، 1909"
+      }
     },
     {
       "id": "year-98736",
       "question_key": "question.year",
       "image": "images/1918.423.jpg",
-      "options": [
-        "12th century",
-        "15th century",
-        "14th century",
-        "13th century"
-      ],
-      "answer": "13th century",
-      "artwork_title": "Box and Cover with Inlaid Chrysanthemum Design",
-      "culture": "Korea, Goryeo dynasty (918–1392)",
-      "context": "Korea, Goryeo dynasty (918–1392), 1200s"
+      "options": {
+        "en": [
+          "12th century",
+          "15th century",
+          "14th century",
+          "13th century"
+        ],
+        "ar": [
+          "القرن الثاني عشر",
+          "القرن الخامس عشر",
+          "القرن الرابع عشر",
+          "القرن الثالث عشر"
+        ]
+      },
+      "answer": {
+        "en": "13th century",
+        "ar": "القرن الثالث عشر"
+      },
+      "artwork_title": {
+        "en": "Box and Cover with Inlaid Chrysanthemum Design",
+        "ar": "علبة وغطاء بزخرفة أقحوان مطعمة"
+      },
+      "culture": {
+        "en": "Korea, Goryeo dynasty (918–1392)",
+        "ar": "كوريا، سلالة غوريو (918–1392)"
+      },
+      "context": {
+        "en": "Korea, Goryeo dynasty (918–1392), 1200s",
+        "ar": "كوريا، سلالة غوريو (918–1392)، القرن الثالث عشر"
+      }
     },
     {
       "id": "year-100396",
       "question_key": "question.year",
       "image": "images/1919.876.jpg",
-      "options": [
-        "17th century",
-        "18th century",
-        "20th century",
-        "19th century"
-      ],
-      "answer": "20th century",
-      "artwork_title": "The Ford",
-      "culture": "America, Ohio, Cleveland",
-      "context": "Henry Keller (American, born Germany, 1869–1949), 1919"
+      "options": {
+        "en": [
+          "17th century",
+          "18th century",
+          "20th century",
+          "19th century"
+        ],
+        "ar": [
+          "القرن السابع عشر",
+          "القرن الثامن عشر",
+          "القرن العشرين",
+          "القرن التاسع عشر"
+        ]
+      },
+      "answer": {
+        "en": "20th century",
+        "ar": "القرن العشرين"
+      },
+      "artwork_title": {
+        "en": "The Ford",
+        "ar": "المعبر"
+      },
+      "culture": {
+        "en": "America, Ohio, Cleveland",
+        "ar": "أمريكا، أوهايو، كليفلاند"
+      },
+      "context": {
+        "en": "Henry Keller (American, born Germany, 1869–1949), 1919",
+        "ar": "هنري كيلر (أمريكي، ولد في ألمانيا، 1869–1949)، 1919"
+      }
     },
     {
       "id": "year-93393",
       "question_key": "question.year",
       "image": "images/1928.1856.jpg",
-      "options": [
-        "18th century",
-        "17th century",
-        "20th century",
-        "19th century"
-      ],
-      "answer": "20th century",
-      "artwork_title": "Francesca",
-      "culture": "United States, Ohio, Cleveland",
-      "context": "Louise B. Maloney (American, 1887–1973), 1927"
+      "options": {
+        "en": [
+          "18th century",
+          "17th century",
+          "20th century",
+          "19th century"
+        ],
+        "ar": [
+          "القرن الثامن عشر",
+          "القرن السابع عشر",
+          "القرن العشرين",
+          "القرن التاسع عشر"
+        ]
+      },
+      "answer": {
+        "en": "20th century",
+        "ar": "القرن العشرين"
+      },
+      "artwork_title": {
+        "en": "Francesca",
+        "ar": "فرانشيسكا"
+      },
+      "culture": {
+        "en": "United States, Ohio, Cleveland",
+        "ar": "الولايات المتحدة، أوهايو، كليفلاند"
+      },
+      "context": {
+        "en": "Louise B. Maloney (American, 1887–1973), 1927",
+        "ar": "لويز ب. مالوني (أمريكية، 1887–1973)، 1927"
+      }
     }
   ]
 }

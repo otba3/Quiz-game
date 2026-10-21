@@ -5,181 +5,421 @@
       "id": "medium-74600",
       "question_key": "question.medium",
       "image": "images/2019.61.jpg",
-      "options": [
-        "Graphite and ink on paper",
-        "Oil on canvas",
-        "watercolor on wove paper",
-        "Pastel on laid paper"
-      ],
-      "answer": "watercolor on wove paper",
-      "context": "Narcisse Berchère (French, 1819–1891), c. 1860s",
-      "creation_date": "c. 1860s",
-      "culture": "France, 19th century"
+      "options": {
+        "en": [
+          "Graphite and ink on paper",
+          "Oil on canvas",
+          "Watercolor on wove paper",
+          "Pastel on laid paper"
+        ],
+        "ar": [
+          "جرافيت وحبر على ورق",
+          "زيت على قماش",
+          "ألوان مائية على ورق منسوج",
+          "باستيل على ورق مسطر"
+        ]
+      },
+      "answer": {
+        "en": "Watercolor on wove paper",
+        "ar": "ألوان مائية على ورق منسوج"
+      },
+      "context": {
+        "en": "Narcisse Berchère (French, 1819–1891), c. 1860s",
+        "ar": "نارسيس بيرشير (فرنسي، 1819–1891)، حوالي ستينيات القرن التاسع عشر"
+      },
+      "creation_date": {
+        "en": "c. 1860s",
+        "ar": "حوالي ستينيات القرن التاسع عشر"
+      },
+      "culture": {
+        "en": "France, 19th century",
+        "ar": "فرنسا، القرن التاسع عشر"
+      }
     },
     {
       "id": "medium-78766",
       "question_key": "question.medium",
       "image": "images/2015.155.jpg",
-      "options": [
-        "Carved wood and brass",
-        "Wood, leather, iron, and fiber",
-        "Bronze, wood, and cotton",
-        "Wood, copper alloy, upholstery studs, iron alloy, and cotton"
-      ],
-      "answer": "Wood, copper alloy, upholstery studs, iron alloy, and cotton",
-      "context": "Africa, Central Africa, Angola, Ovimbundu-style maker, late 1800s or early 1900s",
-      "creation_date": "late 1800s or early 1900s",
-      "culture": "Africa, Central Africa, Angola, Ovimbundu-style maker"
+      "options": {
+        "en": [
+          "Carved wood and brass",
+          "Wood, leather, iron, and fiber",
+          "Bronze, wood, and cotton",
+          "Wood, copper alloy, upholstery studs, iron alloy, and cotton"
+        ],
+        "ar": [
+          "خشب منحوت ونحاس أصفر",
+          "خشب وجلد وحديد وألياف",
+          "برونز وخشب وقطن",
+          "خشب وسبيكة نحاسية ومسامير تنجيد وسبيكة حديدية وقطن"
+        ]
+      },
+      "answer": {
+        "en": "Wood, copper alloy, upholstery studs, iron alloy, and cotton",
+        "ar": "خشب وسبيكة نحاسية ومسامير تنجيد وسبيكة حديدية وقطن"
+      },
+      "context": {
+        "en": "Africa, Central Africa, Angola, Ovimbundu-style maker, late 1800s or early 1900s",
+        "ar": "أفريقيا، وسط أفريقيا، أنغولا، صانع بأسلوب أوفيمبوندو، أواخر القرن التاسع عشر أو أوائل القرن العشرين"
+      },
+      "creation_date": {
+        "en": "late 1800s or early 1900s",
+        "ar": "أواخر القرن التاسع عشر أو أوائل القرن العشرين"
+      },
+      "culture": {
+        "en": "Africa, Central Africa, Angola, Ovimbundu-style maker",
+        "ar": "أفريقيا، وسط أفريقيا، أنغولا، صانع بأسلوب أوفيمبوندو"
+      }
     },
     {
       "id": "medium-79017",
       "question_key": "question.medium",
       "image": "images/2016.106.jpg",
-      "options": [
-        "Drypoint and engraving",
-        "Lithograph",
-        "Woodcut and ink",
-        "Etching and aquatint"
-      ],
-      "answer": "Etching and aquatint",
-      "context": "Albert Besnard (French, 1849–1934), 1888",
-      "creation_date": "1888",
-      "culture": "France"
+      "options": {
+        "en": [
+          "Drypoint and engraving",
+          "Lithograph",
+          "Woodcut and ink",
+          "Etching and aquatint"
+        ],
+        "ar": [
+          "الحفر بالإبرة الجافة والنقش",
+          "طباعة حجرية",
+          "حفر خشبي وحبر",
+          "الحفر الحمضي والأكواتنت"
+        ]
+      },
+      "answer": {
+        "en": "Etching and aquatint",
+        "ar": "الحفر الحمضي والأكواتنت"
+      },
+      "context": {
+        "en": "Albert Besnard (French, 1849–1934), 1888",
+        "ar": "ألبرت بيسنار (فرنسي، 1849–1934)، 1888"
+      },
+      "creation_date": {
+        "en": "1888",
+        "ar": "1888"
+      },
+      "culture": {
+        "en": "France",
+        "ar": "فرنسا"
+      }
     },
     {
       "id": "medium-79384",
       "question_key": "question.medium",
       "image": "images/2016.249.jpg",
-      "options": [
-        "Lithograph with hand coloring",
-        "Etching and roulette with hand coloring",
-        "Etching and aquatint",
-        "Drypoint with watercolor"
-      ],
-      "answer": "Etching and roulette with hand coloring",
-      "context": "Emile Jean Sulpis (French, 1856–1943), c. 1900",
-      "creation_date": "c. 1900",
-      "culture": "France"
+      "options": {
+        "en": [
+          "Lithograph with hand coloring",
+          "Etching and roulette with hand coloring",
+          "Etching and aquatint",
+          "Drypoint with watercolor"
+        ],
+        "ar": [
+          "طباعة حجرية مع تلوين يدوي",
+          "حفر حمضي وروليت مع تلوين يدوي",
+          "الحفر الحمضي والأكواتنت",
+          "حفر بالإبرة الجافة مع ألوان مائية"
+        ]
+      },
+      "answer": {
+        "en": "Etching and roulette with hand coloring",
+        "ar": "حفر حمضي وروليت مع تلوين يدوي"
+      },
+      "context": {
+        "en": "Emile Jean Sulpis (French, 1856–1943), c. 1900",
+        "ar": "إميل جان سولبيس (فرنسي، 1856–1943)، حوالي 1900"
+      },
+      "creation_date": {
+        "en": "c. 1900",
+        "ar": "حوالي 1900"
+      },
+      "culture": {
+        "en": "France",
+        "ar": "فرنسا"
+      }
     },
     {
       "id": "medium-83462",
       "question_key": "question.medium",
       "image": "images/2020.115.jpg",
-      "options": [
-        "Etching and aquatint",
-        "Watercolor on paper",
-        "oil on board",
-        "Oil on canvas"
-      ],
-      "answer": "oil on board",
-      "context": "Félix Vallotton (Swiss French, 1865–1925), 1900",
-      "creation_date": "1900",
-      "culture": "France, 19th century"
+      "options": {
+        "en": [
+          "Etching and aquatint",
+          "Watercolor on paper",
+          "Oil on board",
+          "Oil on canvas"
+        ],
+        "ar": [
+          "الحفر الحمضي والأكواتنت",
+          "ألوان مائية على ورق",
+          "زيت على لوح",
+          "زيت على قماش"
+        ]
+      },
+      "answer": {
+        "en": "Oil on board",
+        "ar": "زيت على لوح"
+      },
+      "context": {
+        "en": "Félix Vallotton (Swiss French, 1865–1925), 1900",
+        "ar": "فيليكس فالوتون (سويسري فرنسي، 1865–1925)، 1900"
+      },
+      "creation_date": {
+        "en": "1900",
+        "ar": "1900"
+      },
+      "culture": {
+        "en": "France, 19th century",
+        "ar": "فرنسا، القرن التاسع عشر"
+      }
     },
     {
       "id": "medium-85043",
       "question_key": "question.medium",
       "image": "images/2020.163.jpg",
-      "options": [
-        "Etching and aquatint, hand colored",
-        "Lithograph with watercolor",
-        "etching and engraving, hand colored",
-        "Engraving with watercolor"
-      ],
-      "answer": "etching and engraving, hand colored",
-      "context": "Johannes Kip (Dutch, 1653–1722), 1707–9",
-      "creation_date": "1707–9",
-      "culture": "Netherlands"
+      "options": {
+        "en": [
+          "Etching and aquatint, hand colored",
+          "Lithograph with watercolor",
+          "Etching and engraving, hand colored",
+          "Engraving with watercolor"
+        ],
+        "ar": [
+          "حفر حمضي وأكواتنت، ملون يدويًا",
+          "طباعة حجرية مع ألوان مائية",
+          "حفر حمضي ونقش، ملون يدويًا",
+          "نقش مع ألوان مائية"
+        ]
+      },
+      "answer": {
+        "en": "Etching and engraving, hand colored",
+        "ar": "حفر حمضي ونقش، ملون يدويًا"
+      },
+      "context": {
+        "en": "Johannes Kip (Dutch, 1653–1722), 1707–9",
+        "ar": "يوهانس كيب (هولندي، 1653–1722)، 1707–1709"
+      },
+      "creation_date": {
+        "en": "1707–9",
+        "ar": "1707–1709"
+      },
+      "culture": {
+        "en": "Netherlands",
+        "ar": "هولندا"
+      }
     },
     {
       "id": "medium-86501",
       "question_key": "question.medium",
       "image": "images/2016.1.jpg",
-      "options": [
-        "Color lithograph",
-        "Woodcut with watercolor",
-        "Linocut in colors",
-        "Color woodcut"
-      ],
-      "answer": "Color woodcut",
-      "context": "Arthur Wesley Dow (American, 1857–1922), c. 1898",
-      "creation_date": "c. 1898",
-      "culture": "America"
+      "options": {
+        "en": [
+          "Color lithograph",
+          "Woodcut with watercolor",
+          "Linocut in colors",
+          "Color woodcut"
+        ],
+        "ar": [
+          "طباعة حجرية ملونة",
+          "حفر خشبي مع ألوان مائية",
+          "حفر لينوليوم ملون",
+          "حفر خشبي ملون"
+        ]
+      },
+      "answer": {
+        "en": "Color woodcut",
+        "ar": "حفر خشبي ملون"
+      },
+      "context": {
+        "en": "Arthur Wesley Dow (American, 1857–1922), c. 1898",
+        "ar": "آرثر ويسلي داو (أمريكي، 1857–1922)، حوالي 1898"
+      },
+      "creation_date": {
+        "en": "c. 1898",
+        "ar": "حوالي 1898"
+      },
+      "culture": {
+        "en": "America",
+        "ar": "أمريكا"
+      }
     },
     {
       "id": "medium-90267",
       "question_key": "question.medium",
       "image": "images/2015.513.jpg",
-      "options": [
-        "Ink and color on silk",
-        "Handscroll, ink on paper",
-        "Hanging scroll, watercolor on silk",
-        "hanging scroll, ink and color on paper"
-      ],
-      "answer": "hanging scroll, ink and color on paper",
-      "context": "Japan, Muromachi period (1392–1573), mid-1500s",
-      "creation_date": "mid-1500s",
-      "culture": "Japan, Muromachi period (1392–1573)"
+      "options": {
+        "en": [
+          "Ink and color on silk",
+          "Handscroll, ink on paper",
+          "Hanging scroll, watercolor on silk",
+          "Hanging scroll, ink and color on paper"
+        ],
+        "ar": [
+          "حبر وألوان على حرير",
+          "لفافة يدوية، حبر على ورق",
+          "لفافة معلقة، ألوان مائية على حرير",
+          "لفافة معلقة، حبر وألوان على ورق"
+        ]
+      },
+      "answer": {
+        "en": "Hanging scroll, ink and color on paper",
+        "ar": "لفافة معلقة، حبر وألوان على ورق"
+      },
+      "context": {
+        "en": "Japan, Muromachi period (1392–1573), mid-1500s",
+        "ar": "اليابان، فترة موروماتشي (1392–1573)، منتصف القرن السادس عشر"
+      },
+      "creation_date": {
+        "en": "mid-1500s",
+        "ar": "منتصف القرن السادس عشر"
+      },
+      "culture": {
+        "en": "Japan, Muromachi period (1392–1573)",
+        "ar": "اليابان، فترة موروماتشي (1392–1573)"
+      }
     },
     {
       "id": "medium-92759",
       "question_key": "question.medium",
       "image": "images/2019.68.jpg",
-      "options": [
-        "Platinum print on paper",
-        "Albumen silver print",
-        "Gelatin silver print on photographic paper",
-        "Gelatin silver print, toned, on collodion printing-out paper"
-      ],
-      "answer": "Gelatin silver print, toned, on collodion printing-out paper",
-      "context": "Unidentified Photographer, c. 1900s",
-      "creation_date": "c. 1900s",
-      "culture": "early 20th century"
+      "options": {
+        "en": [
+          "Platinum print on paper",
+          "Albumen silver print",
+          "Gelatin silver print on photographic paper",
+          "Gelatin silver print, toned, on collodion printing-out paper"
+        ],
+        "ar": [
+          "طباعة بلاتينية على ورق",
+          "طباعة فضية بالألبومين",
+          "طباعة فضية جيلاتينية على ورق فوتوغرافي",
+          "طباعة فضية جيلاتينية ملونة على ورق طباعة كولوديوني"
+        ]
+      },
+      "answer": {
+        "en": "Gelatin silver print, toned, on collodion printing-out paper",
+        "ar": "طباعة فضية جيلاتينية ملونة على ورق طباعة كولوديوني"
+      },
+      "context": {
+        "en": "Unidentified Photographer, c. 1900s",
+        "ar": "مصور غير معروف، حوالي أوائل القرن العشرين"
+      },
+      "creation_date": {
+        "en": "c. 1900s",
+        "ar": "حوالي أوائل القرن العشرين"
+      },
+      "culture": {
+        "en": "early 20th century",
+        "ar": "أوائل القرن العشرين"
+      }
     },
     {
       "id": "medium-93189",
       "question_key": "question.medium",
       "image": "images/2018.280.jpg",
-      "options": [
-        "Porcelain with white glaze",
-        "Glazed stoneware",
-        "glazed white clay",
-        "Carved white marble"
-      ],
-      "answer": "glazed white clay",
-      "context": "Tiffany Studios (United States, New York, 1902–32), c. 1904–14",
-      "creation_date": "c. 1904–14",
-      "culture": "America, New York"
+      "options": {
+        "en": [
+          "Porcelain with white glaze",
+          "Glazed stoneware",
+          "Glazed white clay",
+          "Carved white marble"
+        ],
+        "ar": [
+          "خزف بورسلين بطلاء أبيض",
+          "خزف حجري مزجج",
+          "طين أبيض مزجج",
+          "رخام أبيض منحوت"
+        ]
+      },
+      "answer": {
+        "en": "Glazed white clay",
+        "ar": "طين أبيض مزجج"
+      },
+      "context": {
+        "en": "Tiffany Studios (United States, New York, 1902–32), c. 1904–14",
+        "ar": "استوديوهات تيفاني (الولايات المتحدة، نيويورك، 1902–1932)، حوالي 1904–1914"
+      },
+      "creation_date": {
+        "en": "c. 1904–14",
+        "ar": "حوالي 1904–1914"
+      },
+      "culture": {
+        "en": "America, New York",
+        "ar": "أمريكا، نيويورك"
+      }
     },
     {
       "id": "medium-95269",
       "question_key": "question.medium",
       "image": "images/1916.1041.jpg",
-      "options": [
-        "Oil on wood panel",
-        "Tempera on canvas",
-        "Watercolor on paper",
-        "oil on canvas"
-      ],
-      "answer": "oil on canvas",
-      "context": "George Romney (British, 1734–1802), c. 1778–1780",
-      "creation_date": "c. 1778–1780",
-      "culture": "England, 18th century"
+      "options": {
+        "en": [
+          "Oil on wood panel",
+          "Tempera on canvas",
+          "Watercolor on paper",
+          "Oil on canvas"
+        ],
+        "ar": [
+          "زيت على لوح خشبي",
+          "تمبرا على قماش",
+          "ألوان مائية على ورق",
+          "زيت على قماش"
+        ]
+      },
+      "answer": {
+        "en": "Oil on canvas",
+        "ar": "زيت على قماش"
+      },
+      "context": {
+        "en": "George Romney (British, 1734–1802), c. 1778–1780",
+        "ar": "جورج رومني (بريطاني، 1734–1802)، حوالي 1778–1780"
+      },
+      "creation_date": {
+        "en": "c. 1778–1780",
+        "ar": "حوالي 1778–1780"
+      },
+      "culture": {
+        "en": "England, 18th century",
+        "ar": "إنجلترا، القرن الثامن عشر"
+      }
     },
     {
       "id": "medium-96446",
       "question_key": "question.medium",
       "image": "images/1916.217.2.jpg",
-      "options": [
-        "Chased metal with enamel and glass",
-        "Gilded bronze with pearl embellishment",
-        "Silver, glass, and gemstones",
-        "chased metal, glass and pearl embellishment"
-      ],
-      "answer": "chased metal, glass and pearl embellishment",
-      "context": ", 1811–1916",
-      "creation_date": "1811–1916",
-      "culture": ""
+      "options": {
+        "en": [
+          "Chased metal with enamel and glass",
+          "Gilded bronze with pearl embellishment",
+          "Silver, glass, and gemstones",
+          "Chased metal, glass and pearl embellishment"
+        ],
+        "ar": [
+          "معدن محفور مع مينا وزجاج",
+          "برونز مذهب مع زخارف من اللؤلؤ",
+          "فضة وزجاج وأحجار كريمة",
+          "معدن محفور وزجاج وزخارف من اللؤلؤ"
+        ]
+      },
+      "answer": {
+        "en": "Chased metal, glass and pearl embellishment",
+        "ar": "معدن محفور وزجاج وزخارف من اللؤلؤ"
+      },
+      "context": {
+        "en": "1811–1916",
+        "ar": "1811–1916"
+      },
+      "creation_date": {
+        "en": "1811–1916",
+        "ar": "1811–1916"
+      },
+      "culture": {
+        "en": "",
+        "ar": ""
+      }
     }
   ]
 }
