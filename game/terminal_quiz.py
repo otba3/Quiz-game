@@ -15,16 +15,40 @@ QUESTIONS_PER_GAME = 4  # small number for testing; the real game uses 12
 TOPICS = {
     "Artwork Title": "questions_title.json",
     "Year of Creation": "questions_year.json",
+    "Medium": "questions_medium.json",
+    "Geographic Origin": "questions_origin.json",
 }
+ORIGIN_PER_TYPE = 3  # an Origin game = 3 continent + 3 country questions
+
+
+def pick_questions(bank):
+    """Choose this game's questions. random.sample never picks one twice."""
+    if bank["category"] == "origin":
+        continent = [q for q in bank["questions"] if q["type"] == "continent"]
+        country = [q for q in bank["questions"] if q["type"] == "country"]
+        chosen = random.sample(continent, ORIGIN_PER_TYPE) + random.sample(country, ORIGIN_PER_TYPE)
+        random.shuffle(chosen)  # mix the two types instead of 3 + 3 in a block
+        return chosen
+    return random.sample(bank["questions"], QUESTIONS_PER_GAME)
 
 
 def hint_before_answer(question, category):
     """Extra info shown WITH the question. Must never give the answer away."""
-    if category == "year":
-        # The date IS the answer, and titles/cultures often contain dates
-        # (e.g. "Safavid period (1501-1722)"), so show nothing extra.
+    if category in ("year", "origin"):
+        # Year: the date IS the answer, and titles/cultures often contain dates.
+        # Origin: the culture names the country (e.g. "Japan, Edo period").
         return None
     return f"Created: {question['creation_date']} | Culture: {question['culture']}"
+
+
+def display(text):
+    """Capitalise only the first letter, for showing on screen.
+
+    The data keeps the API's exact text (e.g. 'oil on canvas'); this only
+    changes how it looks, so all options look alike. We don't use
+    .capitalize(), because it also lowercases the rest ('Color' -> 'color').
+    """
+    return text[:1].upper() + text[1:]
 
 
 def ask_number(prompt, highest):
@@ -48,8 +72,7 @@ topic = topic_names[ask_number("Your choice: ", len(topic_names)) - 1]
 with open(OUTPUT_DIR / TOPICS[topic], encoding="utf-8") as f:
     bank = json.load(f)
 
-# random.sample picks N different questions in random order (no repeats).
-questions = random.sample(bank["questions"], QUESTIONS_PER_GAME)
+questions = pick_questions(bank)
 score = 0
 
 for number, question in enumerate(questions, start=1):
@@ -57,21 +80,22 @@ for number, question in enumerate(questions, start=1):
     random.shuffle(options)           # a new order every time
 
     print(f"\n{topic}: question {number} of {len(questions)}")
-    print(texts[question["question_key"]])
+    # .format() fills placeholders like {continent}; texts without one are unchanged.
+    print(texts[question["question_key"]].format(continent=question.get("continent", "")))
     print("Image:", (OUTPUT_DIR / question["image"]).resolve())
     hint = hint_before_answer(question, bank["category"])
     if hint:  # None means "no hint for this topic"
         print(hint)
     for i, option in enumerate(options, start=1):
-        print(f"  {i}. {option}")
+        print(f"  {i}. {display(option)}")
 
     choice = ask_number("Your answer (1-4): ", 4)
     if options[choice - 1] == question["answer"]:
         score += 1
         print("Correct!")
     else:
-        print("Wrong. The correct answer is:", question["answer"])
-    if bank["category"] == "year":
-        print("  ", question["context"])  # the date, now that the player has answered
+        print("Wrong. The correct answer is:", display(question["answer"]))
+    if bank["category"] in ("year", "origin"):
+        print("  ", question["context"])  # safe now that the player has answered
 
 print(f"\nFinal score: {score} of {len(questions)}")

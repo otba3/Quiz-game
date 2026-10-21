@@ -1,0 +1,13 @@
+﻿Question,Image,CONTINENT API,option 1,option 2,option 3,option 4,Correct
+Which continent does this artwork come from?,https://openaccess-cdn.clevelandart.org/2016.87/2016.87_web.jpg,"https://openaccess-api.clevelandart.org/api/artworks/78718?fields=id,culture",Asia,North America,Europe,Africa,Asia
+Which continent does this artwork come from?,https://openaccess-cdn.clevelandart.org/2016.139/2016.139_web.jpg,"https://openaccess-api.clevelandart.org/api/artworks/79081?fields=id,culture",Asia,North America,Europe,Africa,Europe
+Which continent does this artwork come from?,https://openaccess-cdn.clevelandart.org/2018.288/2018.288_web.jpg,"https://openaccess-api.clevelandart.org/api/artworks/93174?fields=id,culture",Asia,North America,Europe,Africa,North America
+Which continent does this artwork come from?,https://openaccess-cdn.clevelandart.org/1914.535/1914.535_web.jpg,"https://openaccess-api.clevelandart.org/api/artworks/93946?fields=id,culture",Asia,North America,Europe,Africa,Asia
+Which continent does this artwork come from?,https://openaccess-cdn.clevelandart.org/1915.431/1915.431_web.jpg,"https://openaccess-api.clevelandart.org/api/artworks/94871?fields=id,culture",Asia,North America,Europe,Africa,North America
+Which continent does this artwork come from?,https://openaccess-cdn.clevelandart.org/1915.442/1915.442_web.jpg,"https://openaccess-api.clevelandart.org/api/artworks/94882?fields=id,culture",Asia,North America,Europe,Africa,Africa
+Which continent does this artwork come from?,https://openaccess-cdn.clevelandart.org/1916.1247/1916.1247_web.jpg,"https://openaccess-api.clevelandart.org/api/artworks/95513?fields=id,culture",Asia,North America,Europe,Africa,Africa
+Which continent does this artwork come from?,https://openaccess-cdn.clevelandart.org/1916.1816/1916.1816_web.jpg,"https://openaccess-api.clevelandart.org/api/artworks/96076?fields=id,culture",Asia,North America,Europe,Africa,Europe
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,

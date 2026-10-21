@@ -20,11 +20,20 @@ from cma_api import download_file, fetch_artwork
 CATEGORIES = {
     "title": ("data/title_questions.csv", "TITLE API"),
     "year": ("data/year_questions.csv", "YEAR API"),
+    "medium": ("data/medium_questions.csv", "TECHNIQUE API"),
+    "origin": ("data/origin_questions.csv", "ORIGIN API"),
 }
 
 if len(sys.argv) != 2 or sys.argv[1] not in CATEGORIES:
     raise SystemExit(f"Usage: py scripts/prepare_images.py <{' | '.join(CATEGORIES)}>")
 CSV_PATH, API_COLUMN = CATEGORIES[sys.argv[1]]
+
+# Artworks allowed even though they are NOT CC0 (project owner's decision).
+# The API lists no image for these, so the CSV's image URL is used instead.
+# artwork id -> reason
+LICENSE_EXCEPTIONS = {
+    "93393": "Francesca (Louise B. Maloney), copyrighted; kept by owner's choice",
+}
 
 IMAGES_DIR = Path("output/images")
 MAX_SIZE = (1024, 600)  # the touchscreen's resolution
@@ -42,10 +51,14 @@ for line_no, row in enumerate(rows, start=2):
     print(f"line {line_no} (id {artwork_id}, {accession}):")
 
     # --- 1. Check the API's image data ---
-    if artwork["share_license_status"] != "CC0":
+    if artwork_id in LICENSE_EXCEPTIONS:
+        print(f"  ⚠️ not CC0, allowed by exception: {LICENSE_EXCEPTIONS[artwork_id]}")
+        web_image = {"url": row["Image"]}  # the API has no image, trust the CSV URL
+    elif artwork["share_license_status"] != "CC0":
         print(f"  ❌ license is {artwork['share_license_status']!r}, not CC0")
         continue
-    web_image = (artwork.get("images") or {}).get("web")
+    else:
+        web_image = (artwork.get("images") or {}).get("web")
     if not web_image:
         print("  ❌ the API has no web image for this artwork")
         continue

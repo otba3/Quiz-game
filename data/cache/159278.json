@@ -1,0 +1,154 @@
+{
+  "id": 159278,
+  "accession_number": "1995.72.a",
+  "share_license_status": "CC0",
+  "tombstone": "Bowl, c. 600–1100 (Thermoluminescence date, 995–1395). Costa Rica, Southern Nicoya region. Ceramic, slip; base: 15.1 x 35 cm (5 15/16 x 13 3/4 in.); lid: 29.9 x 38 cm (11 3/4 x 14 15/16 in.). The Cleveland Museum of Art, Norman O. Stone and Ella A. Stone Memorial Fund, 1995.72.a",
+  "current_location": "233 Mesoamerican and Intermediate Region",
+  "title": "Bowl",
+  "creation_date": "c. 600–1100 (Thermoluminescence date, 995–1395)",
+  "creation_date_earliest": 600,
+  "creation_date_latest": 1100,
+  "artists_tags": [],
+  "culture": [
+    "Costa Rica, Southern Nicoya region"
+  ],
+  "technique": "ceramic, slip",
+  "support_materials": [],
+  "department": "Art of the Americas",
+  "collection": "AA - Intermediate Region",
+  "type": "Ceramic",
+  "measurements": "Base: 15.1 x 35 cm (5 15/16 x 13 3/4 in.); Lid: 29.9 x 38 cm (11 3/4 x 14 15/16 in.)",
+  "dimensions": {
+    "base": {
+      "height": 0.151,
+      "height_inch": 5,
+      "height_inch_fraction": 0.9375,
+      "width": 0.35,
+      "width_inch": 13,
+      "width_inch_fraction": 0.75
+    },
+    "lid": {
+      "height": 0.299,
+      "height_inch": 11,
+      "height_inch_fraction": 0.75,
+      "width": 0.38,
+      "width_inch": 14,
+      "width_inch_fraction": 0.9375
+    }
+  },
+  "state_of_the_work": null,
+  "edition_of_the_work": null,
+  "copyright": null,
+  "inscriptions": [],
+  "exhibitions": {
+    "current": [],
+    "legacy": []
+  },
+  "provenance": [
+    {
+      "description": "Update on pre-acquisition history pending.",
+      "citations": [],
+      "footnotes": [],
+      "date": null,
+      "sortorder": 1
+    },
+    {
+      "description": "The Cleveland Museum of Art, Cleveland, OH",
+      "citations": [],
+      "footnotes": null,
+      "date": "1995-",
+      "sortorder": 3
+    }
+  ],
+  "find_spot": null,
+  "related_works": [],
+  "former_accession_numbers": [],
+  "did_you_know": "The lid of this bowl features an iguana.",
+  "early_education_description": null,
+  "artlens_description": null,
+  "description": "Fine ceramics like this were buried in the graves of the high-status dead, some of them certainly leaders of the several groups that competed in the area.",
+  "external_resources": {
+    "wikidata": [
+      "https://www.wikidata.org/wiki/Q60779190"
+    ],
+    "internet_archive": [
+      "https://archive.org/details/clevelandart-1995.72.a-bowl"
+    ]
+  },
+  "citations": [],
+  "url": "https://clevelandart.org/art/1995.72.a",
+  "images": {
+    "annotation": null,
+    "web": {
+      "url": "https://openaccess-cdn.clevelandart.org/1995.72.a/1995.72.a_web.jpg",
+      "width": "698",
+      "height": "900",
+      "filesize": "",
+      "filename": "1995.72.a_web.jpg"
+    },
+    "print": {
+      "url": "https://openaccess-cdn.clevelandart.org/1995.72.a/1995.72.a_print.jpg",
+      "width": "2638",
+      "height": "3400",
+      "filesize": "",
+      "filename": "1995.72.a_print.jpg"
+    },
+    "full": {
+      "url": "https://openaccess-cdn.clevelandart.org/1995.72.a/1995.72.a_full.tif",
+      "width": "2730",
+      "height": "3518",
+      "filesize": "",
+      "filename": "1995.72.a_full.tif"
+    }
+  },
+  "alternate_images": [
+    {
+      "web": {
+        "url": "https://openaccess-cdn.clevelandart.org/1995.72.a/1995.72.a_alt0_web.jpg",
+        "width": "766",
+        "height": "900",
+        "filesize": ""
+      },
+      "print": {
+        "url": "https://openaccess-cdn.clevelandart.org/1995.72.a/1995.72.a_alt0_print.jpg",
+        "width": "2842",
+        "height": "3337",
+        "filesize": ""
+      },
+      "full": {
+        "url": "https://openaccess-cdn.clevelandart.org/1995.72.a/1995.72.a_alt0_full.tif",
+        "width": "2842",
+        "height": "3337",
+        "filesize": ""
+      },
+      "date_created": "2011-07-13T12:43:39",
+      "annotation": ""
+    }
+  ],
+  "creditline": "Norman O. Stone and Ella A. Stone Memorial Fund",
+  "image_credit": null,
+  "sketchfab_id": null,
+  "sketchfab_url": null,
+  "gallery_donor_text": null,
+  "athena_id": 159278,
+  "creators": [],
+  "legal_status": "accessioned",
+  "accession_date": "1995-12-04T00:00:00",
+  "sortable_date": 600,
+  "date_added_to_oa": null,
+  "date_text": "c. 600–1100 (Thermoluminescence date, 995–1395)",
+  "collapse_artists": false,
+  "on_loan": false,
+  "recently_acquired": false,
+  "record_type": "part",
+  "conservation_statement": null,
+  "has_conservation_images": false,
+  "cover_accession_number": "1995.72",
+  "is_nazi_era_provenance": false,
+  "impression": null,
+  "alternate_titles": [
+    "Lidded Bowl with Modeled Iguana"
+  ],
+  "is_highlight": false,
+  "updated_at": "2026-05-29 08:15:30.927000"
+}

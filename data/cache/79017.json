@@ -1,0 +1,148 @@
+{
+  "id": 79017,
+  "accession_number": "2016.106",
+  "share_license_status": "CC0",
+  "tombstone": "Robert Besnard and His Donkey (Robert Besnard et son âne), 1888. Albert Besnard (French, 1849–1934). Etching and aquatint; image: 22.5 x 16.8 cm (8 7/8 x 6 5/8 in.); platemark: 23.6 x 18.1 cm (9 5/16 x 7 1/8 in.); sheet: 30.2 x 21.9 cm (11 7/8 x 8 5/8 in.); matted: 45.7 x 35.6 cm (18 x 14 in.). The Cleveland Museum of Art, Bequest of Elizabeth Carroll Shearer, 2016.106",
+  "current_location": null,
+  "title": "Robert Besnard and His Donkey (Robert Besnard et son âne)",
+  "creation_date": "1888",
+  "creation_date_earliest": 1888,
+  "creation_date_latest": 1888,
+  "artists_tags": [
+    "male"
+  ],
+  "culture": [
+    "France"
+  ],
+  "technique": "Etching and aquatint",
+  "support_materials": [],
+  "department": "Prints",
+  "collection": "PR - Etching",
+  "type": "Print",
+  "measurements": "Image: 22.5 x 16.8 cm (8 7/8 x 6 5/8 in.); Platemark: 23.6 x 18.1 cm (9 5/16 x 7 1/8 in.); Sheet: 30.2 x 21.9 cm (11 7/8 x 8 5/8 in.); Matted: 45.7 x 35.6 cm (18 x 14 in.)",
+  "dimensions": {
+    "platemark": {
+      "height": 0.236,
+      "height_inch": 9,
+      "height_inch_fraction": 0.3125,
+      "width": 0.181,
+      "width_inch": 7,
+      "width_inch_fraction": 0.125
+    },
+    "sheet": {
+      "height": 0.302,
+      "height_inch": 11,
+      "height_inch_fraction": 0.875,
+      "width": 0.219,
+      "width_inch": 8,
+      "width_inch_fraction": 0.625
+    },
+    "image": {
+      "height": 0.225,
+      "height_inch": 8,
+      "height_inch_fraction": 0.875,
+      "width": 0.168,
+      "width_inch": 6,
+      "width_inch_fraction": 0.625
+    },
+    "matted": {
+      "height": 0.457,
+      "height_inch": 18,
+      "height_inch_fraction": 0.0,
+      "width": 0.356,
+      "width_inch": 14,
+      "width_inch_fraction": 0.0
+    }
+  },
+  "state_of_the_work": null,
+  "edition_of_the_work": null,
+  "copyright": null,
+  "inscriptions": [],
+  "exhibitions": {
+    "current": [],
+    "legacy": []
+  },
+  "provenance": [],
+  "find_spot": null,
+  "related_works": [],
+  "former_accession_numbers": [],
+  "did_you_know": null,
+  "early_education_description": null,
+  "artlens_description": null,
+  "description": null,
+  "external_resources": {
+    "wikidata": [
+      "https://www.wikidata.org/wiki/Q79471229"
+    ],
+    "internet_archive": [
+      "https://archive.org/details/clevelandart-2016.106-robert-besnard-and-h"
+    ]
+  },
+  "citations": [],
+  "catalogue_raisonne": "Copier; Fonds Francais",
+  "url": "https://clevelandart.org/art/2016.106",
+  "images": {
+    "annotation": null,
+    "web": {
+      "url": "https://openaccess-cdn.clevelandart.org/2016.106/2016.106_web.jpg",
+      "width": "686",
+      "height": "900",
+      "filesize": "259186",
+      "filename": "2016.106_web.jpg"
+    },
+    "print": {
+      "url": "https://openaccess-cdn.clevelandart.org/2016.106/2016.106_print.jpg",
+      "width": "2592",
+      "height": "3400",
+      "filesize": "3090774",
+      "filename": "2016.106_print.jpg"
+    },
+    "full": {
+      "url": "https://openaccess-cdn.clevelandart.org/2016.106/2016.106_full.tif",
+      "width": "4635",
+      "height": "6080",
+      "filesize": "84575052",
+      "filename": "2016.106_full.tif"
+    }
+  },
+  "alternate_images": [],
+  "creditline": "Bequest of Elizabeth Carroll Shearer",
+  "image_credit": null,
+  "sketchfab_id": null,
+  "sketchfab_url": null,
+  "gallery_donor_text": null,
+  "athena_id": 79017,
+  "creators": [
+    {
+      "id": 1859,
+      "description": "Albert Besnard (French, 1849–1934)",
+      "extent": null,
+      "qualifier": null,
+      "role": "artist",
+      "biography": "Albert Besnard's parents-his father an amateur painter who studied with Ingres (q.v.) and his mother a miniaturist-influenced his early artistic career. In 1866 he entered the École des Beaux-Arts where he studied in the ateliers of Jean- François Brémond (1807-1868), who taught the young Besnard fresco painting, and Alexandre Cabanel (1823-1889), one of the foremost Second Empire academic painters. Besnard first exhibited at the Salon of 1868, which proved to be the beginning of his official success and in 1874 he won the Prix de Rome, an honor that gave him the opportunity to spend four years at the Villa Medici. Besnard's success as a portraitist began in London, where he stayed from 1879 until 1881. He studied seventeenth-century British portrait painters and emulated the British colorists, Turner (q.v.) in particular. Besnard's reputation as a portrait painter followed him back to Paris where he received numerous commissions from prominent figures of the Third Republic (1870-1940). In addition to portrait painting, Besnard was commissioned by the state to paint mural decorations for various public buildings in Paris. He also experimented with different media such as pastel and etching and designed decorations for stained glass. Besnard received numerous awards and was re-cognized by his contemporaries, including the symbolists. He held the directorships of the École de Rome in 1913 and of the École Supérieure Nationale des Beaux-Arts from 1923 to 1934.",
+      "name_in_original_language": null,
+      "birth_year": "1849",
+      "death_year": "1934",
+      "use_in_caption": true,
+      "include_extent": false,
+      "weight": 1
+    }
+  ],
+  "legal_status": "accessioned",
+  "accession_date": "2016-09-06T00:00:00-04:00",
+  "sortable_date": 1888,
+  "date_added_to_oa": null,
+  "date_text": "1888",
+  "collapse_artists": false,
+  "on_loan": false,
+  "recently_acquired": false,
+  "record_type": "object",
+  "conservation_statement": null,
+  "has_conservation_images": false,
+  "cover_accession_number": null,
+  "is_nazi_era_provenance": false,
+  "impression": null,
+  "alternate_titles": [],
+  "is_highlight": false,
+  "updated_at": "2026-05-29 04:57:14.954000"
+}

@@ -1,0 +1,161 @@
+{
+  "id": 136918,
+  "accession_number": "1961.399",
+  "share_license_status": "CC0",
+  "tombstone": "Gold Weight (abrammuo): Fish, 1800s. Africa, West Africa, Ghana, Asante goldsmith. Copper alloy; overall: 2.8 x 6.6 x 0.4 cm (1 1/8 x 2 5/8 x 3/16 in.). The Cleveland Museum of Art, Gift of William Ellery Greene, 1961.399",
+  "current_location": null,
+  "title": "Gold Weight (abrammuo): Fish",
+  "creation_date": "1800s",
+  "creation_date_earliest": 1800,
+  "creation_date_latest": 1899,
+  "artists_tags": [],
+  "culture": [
+    "Africa, West Africa, Ghana, Asante goldsmith"
+  ],
+  "technique": "Copper alloy",
+  "support_materials": [],
+  "department": "African Art",
+  "collection": "African Art",
+  "type": "Tools and Equipment",
+  "measurements": "Overall: 2.8 x 6.6 x 0.4 cm (1 1/8 x 2 5/8 x 3/16 in.)",
+  "dimensions": {
+    "overall": {
+      "height": 0.028,
+      "height_inch": 1,
+      "height_inch_fraction": 0.125,
+      "width": 0.066,
+      "width_inch": 2,
+      "width_inch_fraction": 0.625,
+      "depth": 0.004,
+      "depth_inch": 0,
+      "depth_inch_fraction": 0.1875
+    }
+  },
+  "state_of_the_work": null,
+  "edition_of_the_work": null,
+  "copyright": null,
+  "inscriptions": [],
+  "exhibitions": {
+    "current": [
+      {
+        "id": 302276,
+        "title": "Year in Review - 1962",
+        "description": "<i>Year in Review - 1962</i>. The Cleveland Museum of Art, Cleveland, OH (organizer) (October 24-November 25, 1962).",
+        "opening_date": "1962-10-24T04:00:00"
+      }
+    ],
+    "legacy": [
+      {
+        "description": "CMA 1962:  \"Year in Review,\" Bulletin XLIX (November 1962), p. 223, no. 27.",
+        "opening_date": "1962-11-01T00:00:00"
+      }
+    ]
+  },
+  "provenance": [
+    {
+      "description": "William Ellery Greene, New York, NY, given to the Cleveland Museum of Art",
+      "citations": [],
+      "footnotes": null,
+      "date": "?–1961",
+      "sortorder": null
+    },
+    {
+      "description": "The Cleveland Museum of Art, Cleveland, OH",
+      "citations": [],
+      "footnotes": null,
+      "date": "1961–",
+      "sortorder": 2
+    }
+  ],
+  "find_spot": null,
+  "related_works": [],
+  "former_accession_numbers": [],
+  "did_you_know": "The prominence of fish-shaped weights in Asante cultures may be linked to the highly held value of wisdom, as the word for fish and wisdom in the Asante language is the same: <em>adwene</em>.",
+  "early_education_description": null,
+  "artlens_description": null,
+  "description": "The wealth and power of the Asante kingdom was derived primarily from its massive gold resources. Since at least 1600, small weights in brass and bronze were used to weigh gold dust and nuggets. The royal court had the most elaborate store of weights, while commoners often had about a dozen. Their imagery falls into two broad cateogries: geometric and representational. The latter often refers to proverbs, which used judiciously, marked a wise person.",
+  "external_resources": {
+    "wikidata": [
+      "https://www.wikidata.org/wiki/Q80031230"
+    ],
+    "internet_archive": [
+      "https://archive.org/details/clevelandart-1961.399-gold-weight-abrammuo"
+    ]
+  },
+  "citations": [],
+  "url": "https://clevelandart.org/art/1961.399",
+  "images": {
+    "annotation": null,
+    "web": {
+      "url": "https://openaccess-cdn.clevelandart.org/1961.399/1961.399_web.jpg",
+      "width": "1263",
+      "height": "750",
+      "filesize": "433475",
+      "filename": "1961.399_web.jpg"
+    },
+    "print": {
+      "url": "https://openaccess-cdn.clevelandart.org/1961.399/1961.399_print.jpg",
+      "width": "3400",
+      "height": "2020",
+      "filesize": "748472",
+      "filename": "1961.399_print.jpg"
+    },
+    "full": {
+      "url": "https://openaccess-cdn.clevelandart.org/1961.399/1961.399_full.tif",
+      "width": "5636",
+      "height": "3348",
+      "filesize": "56629052",
+      "filename": "1961.399_full.tif"
+    }
+  },
+  "alternate_images": [
+    {
+      "web": {
+        "url": "https://openaccess-cdn.clevelandart.org/1961.399/1961.399_alt0_web.jpg",
+        "width": "900",
+        "height": "423",
+        "filesize": "157491"
+      },
+      "print": {
+        "url": "https://openaccess-cdn.clevelandart.org/1961.399/1961.399_alt0_print.jpg",
+        "width": "3400",
+        "height": "1599",
+        "filesize": "717440"
+      },
+      "full": {
+        "url": "https://openaccess-cdn.clevelandart.org/1961.399/1961.399_alt0_full.tif",
+        "width": "5884",
+        "height": "2768",
+        "filesize": "48892888"
+      },
+      "date_created": "2009-11-05T16:13:01",
+      "annotation": ""
+    }
+  ],
+  "creditline": "Gift of William Ellery Greene",
+  "image_credit": null,
+  "sketchfab_id": null,
+  "sketchfab_url": null,
+  "gallery_donor_text": null,
+  "athena_id": 136918,
+  "creators": [],
+  "legal_status": "accessioned",
+  "accession_date": "1961-12-02T00:00:00",
+  "sortable_date": 1800,
+  "date_added_to_oa": null,
+  "date_text": "1800s",
+  "collapse_artists": false,
+  "on_loan": false,
+  "recently_acquired": false,
+  "record_type": "object",
+  "conservation_statement": null,
+  "has_conservation_images": false,
+  "cover_accession_number": null,
+  "is_nazi_era_provenance": false,
+  "impression": null,
+  "alternate_titles": [
+    "Weight for Measuring Gold (mmramoo):  Fish"
+  ],
+  "is_highlight": false,
+  "updated_at": "2026-05-29 06:59:23.313000"
+}

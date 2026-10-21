@@ -1,0 +1,158 @@
+{
+  "id": 86491,
+  "accession_number": "2015.161",
+  "share_license_status": "Copyrighted",
+  "tombstone": "The Bread Line, 1926. Max Kalish (American, born Russia [now Belarus], 1891–1945). Bronze; overall: 37.2 x 50.2 x 23.5 cm (14 5/8 x 19 3/4 x 9 1/4 in.). The Cleveland Museum of Art, Gift of Lulie and Gordon Gund, 2015.161",
+  "current_location": null,
+  "title": "The Bread Line",
+  "creation_date": "1926",
+  "creation_date_earliest": 1926,
+  "creation_date_latest": 1926,
+  "artists_tags": [
+    "male",
+    "Jewish artists",
+    "May Show",
+    "Cleveland Institute of Art (alumni)"
+  ],
+  "culture": [
+    "United States, Ohio, Cleveland"
+  ],
+  "technique": "bronze",
+  "support_materials": [],
+  "department": "American Painting and Sculpture",
+  "collection": "American - Sculpture",
+  "type": "Sculpture",
+  "measurements": "Overall: 37.2 x 50.2 x 23.5 cm (14 5/8 x 19 3/4 x 9 1/4 in.)",
+  "dimensions": {
+    "overall": {
+      "height": 0.372,
+      "height_inch": 14,
+      "height_inch_fraction": 0.625,
+      "width": 0.502,
+      "width_inch": 19,
+      "width_inch_fraction": 0.75,
+      "depth": 0.235,
+      "depth_inch": 9,
+      "depth_inch_fraction": 0.25
+    }
+  },
+  "state_of_the_work": null,
+  "edition_of_the_work": null,
+  "copyright": null,
+  "inscriptions": [],
+  "exhibitions": {
+    "current": [],
+    "legacy": [
+      {
+        "description": "Paris, 1926 [unconfirmed].",
+        "opening_date": "1926-01-01T00:00:00"
+      },
+      {
+        "description": "Koerner &amp; Wood Galleries, Cleveland, March 1–15, 1926.",
+        "opening_date": "1926-03-01T05:00:00Z"
+      },
+      {
+        "description": "Detroit, 1926 [unconfirmed].",
+        "opening_date": "1926-01-01T00:00:00"
+      },
+      {
+        "description": "Chicago, 1926 [unconfirmed].",
+        "opening_date": "1926-01-01T00:00:00"
+      },
+      {
+        "description": "Pittsburgh, 1926 [unconfirmed].",
+        "opening_date": "1926-01-01T00:00:00"
+      },
+      {
+        "description": "Grand Central Art Galleries, New York, 1933.",
+        "opening_date": "1933-01-01T00:00:00"
+      }
+    ]
+  },
+  "provenance": [
+    {
+      "description": "Dr. Edward Peterka [1879–1953], Cleveland, OH",
+      "citations": [],
+      "footnotes": null,
+      "date": null,
+      "sortorder": 1
+    },
+    {
+      "description": "George Gund II [1888–1966], Beachwood, OH, to Gordon Gund",
+      "citations": [],
+      "footnotes": null,
+      "date": null,
+      "sortorder": 2
+    },
+    {
+      "description": "Gordon Gund [b. 1939], Princeton, NJ, given to the Cleveland Museum of Art",
+      "citations": [],
+      "footnotes": null,
+      "date": "?–2015",
+      "sortorder": 3
+    },
+    {
+      "description": "The Cleveland Museum of Art, Cleveland, OH",
+      "citations": [],
+      "footnotes": null,
+      "date": "2015–",
+      "sortorder": 4
+    }
+  ],
+  "find_spot": null,
+  "related_works": [],
+  "former_accession_numbers": [],
+  "did_you_know": "The artist is buried in Mayfield Cemetery, Cleveland.",
+  "early_education_description": null,
+  "artlens_description": null,
+  "description": "Sculptor Max Kalish described his motivation behind creating <em>The Bread Line</em>: \"My interest in making this group came to me gradually through years of concern with the question of unemployment and poverty.\" The sculpture's six figures were modeled separately, then arranged together to make the final composition.",
+  "external_resources": {
+    "wikidata": [
+      "https://www.wikidata.org/wiki/Q79473095"
+    ],
+    "internet_archive": []
+  },
+  "citations": [],
+  "url": "https://clevelandart.org/art/2015.161",
+  "images": {},
+  "alternate_images": [],
+  "creditline": "Gift of Lulie and Gordon Gund",
+  "image_credit": null,
+  "sketchfab_id": null,
+  "sketchfab_url": null,
+  "gallery_donor_text": null,
+  "athena_id": 86491,
+  "creators": [
+    {
+      "id": 19266,
+      "description": "Max Kalish (American, born Russia [now Belarus], 1891–1945)",
+      "extent": null,
+      "qualifier": null,
+      "role": "artist",
+      "biography": "Born in Valozin, Lithuania, Max Kalish immigrated with his family to Cleveland in 1898. Shortly after their arrival they changed the family name from Kalichik to Kalish. At the age of 15 he won a scholarship from the Cleveland School of Art and studied sculpture under Herman Matzen. In 1910 Kalish enrolled in the National Academy of Design in New York. After returning to Cleveland in early 1912, he briefly shared a studio with William Zorach. Kalish traveled to Europe in 1912–13, studying at the École des Beaux-Arts and the Académie Colarossi in Paris, and exhibiting in the Paris Salon (1913). He worked as a sculptor for the Panama-Specific Exposition in San Francisco, 1913–14, returning to Cleveland the following year. His first solo exhibition was at Korner &amp; Wood Galleries in Cleveland (1916). He served in the army during World War I. In 1921 he began creating bronze sculptures devoted to the theme of labor and completed the last in 1938. In 1923 Cleveland school children collected small change to fund the casting of Kalish’s large-scale monument to Abraham Lincoln, which was installed in front of the School Administration Building. During the 1920s his sculptures appeared in solo shows in Cleveland and New York. He participated in the annual May Shows at the Cleveland Museum of Art (1924–30) as well as the annuals of the Pennsylvania Academy of Fine Arts in Philadelphia and the Art Institute of Chicago. In the late 1920s he began a series of marble figures that were exhibited at the Grand Central Art Galleries in New York. By 1933 he had moved to New York, where he established a private school for teaching sculpture techniques. Kalish died in New York. <br>\"Transformations in Cleveland Art\" (CMA, 1996), p. 231",
+      "name_in_original_language": null,
+      "birth_year": "1891",
+      "death_year": "1945",
+      "use_in_caption": true,
+      "include_extent": false,
+      "weight": 1
+    }
+  ],
+  "legal_status": "accessioned",
+  "accession_date": "2015-12-07T00:00:00",
+  "sortable_date": 1926,
+  "date_added_to_oa": null,
+  "date_text": "1926",
+  "collapse_artists": false,
+  "on_loan": false,
+  "recently_acquired": false,
+  "record_type": "object",
+  "conservation_statement": null,
+  "has_conservation_images": false,
+  "cover_accession_number": null,
+  "is_nazi_era_provenance": false,
+  "impression": null,
+  "alternate_titles": [],
+  "is_highlight": false,
+  "updated_at": "2026-10-17 11:22:13.696000"
+}

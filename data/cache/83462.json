@@ -1,0 +1,268 @@
+{
+  "id": 83462,
+  "accession_number": "2020.115",
+  "share_license_status": "CC0",
+  "tombstone": "Corn Fields, 1900. Félix Vallotton (Swiss French, 1865–1925). Oil on board; unframed: 26.2 x 46.2 cm (10 5/16 x 18 3/16 in.). The Cleveland Museum of Art, Nancy F. and Joseph P. Keithley Collection Gift, 2020.115",
+  "current_location": null,
+  "title": "Corn Fields",
+  "creation_date": "1900",
+  "creation_date_earliest": 1900,
+  "creation_date_latest": 1900,
+  "artists_tags": [
+    "male",
+    "Nabis"
+  ],
+  "culture": [
+    "France, 19th century"
+  ],
+  "technique": "oil on board",
+  "support_materials": [],
+  "department": "Modern European Painting and Sculpture",
+  "collection": "Mod Euro - Painting 1800-1960",
+  "type": "Painting",
+  "measurements": "Unframed: 26.2 x 46.2 cm (10 5/16 x 18 3/16 in.)",
+  "dimensions": {
+    "unframed": {
+      "height": 0.262,
+      "height_inch": 10,
+      "height_inch_fraction": 0.3125,
+      "width": 0.462,
+      "width_inch": 18,
+      "width_inch_fraction": 0.1875
+    },
+    "framed": {
+      "height": 0.4,
+      "height_inch": 15,
+      "height_inch_fraction": 0.75,
+      "width": 0.594,
+      "width_inch": 23,
+      "width_inch_fraction": 0.375,
+      "depth": 0.038,
+      "depth_inch": 1,
+      "depth_inch_fraction": 0.5
+    }
+  },
+  "state_of_the_work": null,
+  "edition_of_the_work": null,
+  "copyright": null,
+  "inscriptions": [
+    {
+      "inscription": "Signed and dated lower right (twice): F. VALLOTTON. 00",
+      "inscription_translation": null,
+      "inscription_remark": null,
+      "sortorder": null
+    }
+  ],
+  "exhibitions": {
+    "current": [
+      {
+        "id": 396695,
+        "title": "Impressionism to Modernism: The Keithley Collection",
+        "description": "<i>Impressionism to Modernism: The Keithley Collection</i>. The Cleveland Museum of Art, Cleveland, OH (organizer) (September 11, 2022-January 8, 2023).",
+        "opening_date": "2022-09-11T04:00:00"
+      }
+    ],
+    "legacy": [
+      {
+        "description": "<em>Exposition Vallotton et Vuillar</em>d. Galerie Bernheim-Jeune, Paris, France (1903).",
+        "opening_date": "1903-01-01T00:00:00"
+      },
+      {
+        "description": "<em>Félix Vallotton, Paris</em>. Kunstlerhaus. Zurich, Switzerland (May 2–26, 1909).",
+        "opening_date": "1909-05-02T05:00:00Z"
+      },
+      {
+        "description": "<em>Exposition Félix Vallotton, Peintures 1886-1919</em>. Galerie Druet, Paris, France (1923).",
+        "opening_date": "1923-01-01T00:00:00"
+      },
+      {
+        "description": "<em>Exposition rétrospective d'oeuvres inédites de Félix Vallotton 1865-1925</em>. Galerie Jacques Rodrigues-Henriques, Paris, France (March 9–30, 1928).",
+        "opening_date": "1928-03-09T05:00:00Z"
+      },
+      {
+        "description": "<em>Felix Vallotton 1865-1925</em>. Kunsthaus, Zürich, Switzerland (November 11–December 14, 1938).",
+        "opening_date": "1938-12-14T00:00:00"
+      },
+      {
+        "description": "<em>Exposition anniversaire 1913-1988, Maîtres suisses et français de XIXe et XXe siécles</em>. Galerie Vallotton, Lausanne, Switzerland (1988).",
+        "opening_date": "1988-01-01T00:00:00"
+      }
+    ]
+  },
+  "provenance": [
+    {
+      "description": "(Galerie Jacques-Rodrigues-Henriques [1886-1968], Paris, France)",
+      "citations": [],
+      "footnotes": [
+        "<div><!--block-->This painting was included in the “Exposition Rétrospective d'Oeuvres Inédites de Félix Vallotton 1865-1925,” at Galerie Jacques Rodrigues-Henriques, Paris, March 9-30, 1928, cat. no. 15, as “Les prairies, Romanel, près Lausanne.”</div>"
+      ],
+      "date": "by 1928",
+      "sortorder": 1
+    },
+    {
+      "description": "Mme Debrise, Paris, France",
+      "citations": [],
+      "footnotes": [
+        "<div><!--block-->According to Sotheby’s 2008 sale catalogue, lot 38.&nbsp;</div>"
+      ],
+      "date": "1945–?",
+      "sortorder": 2
+    },
+    {
+      "description": "(Galerie Vallotton, no. 13179, Lausanne, Switzerland)",
+      "citations": [],
+      "footnotes": [
+        "<div><!--block-->Included in the “Exposition Anniversaire 1913-1988, Maîtres Suisses et Français de XIXe et XXe Siécles,” Galerie Vallotton, Lausanne, 1988, cat. no. 118.&nbsp;</div>"
+      ],
+      "date": "1988–?",
+      "sortorder": 3
+    },
+    {
+      "description": "(Sotheby's, Zurich, Switzerland, May 27, 2008, lot 38, sold to Samuel Josefovitz)",
+      "citations": [],
+      "footnotes": [
+        "<div><!--block-->According to handwritten annotation in the 2008 Sotheby’s sale catalogue.&nbsp;</div>"
+      ],
+      "date": "May 27, 2008",
+      "sortorder": 4
+    },
+    {
+      "description": "Samuel Josefovitz [1921-2015], Lausanne, Switzerland, sold to Nancy F. and Joseph P. Keithley",
+      "citations": [],
+      "footnotes": [],
+      "date": "2008–?",
+      "sortorder": 5
+    },
+    {
+      "description": "Nancy F. and Joseph P. Keithley, Cleveland, OH, given to the Cleveland Museum of Art",
+      "citations": [],
+      "footnotes": [],
+      "date": "2020",
+      "sortorder": 6
+    },
+    {
+      "description": "The Cleveland Museum of Art, Cleveland, OH",
+      "citations": [],
+      "footnotes": [],
+      "date": "2020–",
+      "sortorder": 7
+    }
+  ],
+  "find_spot": null,
+  "related_works": [],
+  "former_accession_numbers": [],
+  "did_you_know": "In 1892, Vallotton joined a circle of French artists known as The Nabis (Prophets) who emphasized decoration, abstraction, and discrete, intimate emotion in their paintings.",
+  "early_education_description": null,
+  "artlens_description": null,
+  "description": "With the change of the century, Vallotton shifted his focus from printmaking to oil painting. Before 1900, the artist concentrated on precisely reproducing the world around him, but as seen in this painting, Vallotton’s work shows hints of ambiguity. The greenery blends together, and the distant horizon is described in simple curves of hills or clouds that fade into the sky.",
+  "external_resources": {
+    "wikidata": [
+      "https://www.wikidata.org/wiki/Q87480854"
+    ],
+    "internet_archive": [
+      "https://archive.org/details/clevelandart-2020.115-corn-fields"
+    ]
+  },
+  "citations": [
+    {
+      "citation": "<em>Felix Vallotton, Paris V. Serie 1909, 2. Mai bis 28. Mai.</em> [Zürich]: [Künstlerhaus Zürich], 1909. <br>Published as: <em>Les Bles</em>",
+      "page_number": "Mentioned: cat. no. 12",
+      "url": ""
+    },
+    {
+      "citation": "<em>Exposition Rétrospective d'Oeuvres Inédites de Félix Vallotton, 1865-1925: 50 Petits Tableaux de 1889-à 1925, Chez Jacques Rodriques-Henriques ... Paris ... du vendredi 9 au vendredi 30 mars 1928.</em> [Paris]: La Galerie, 1928. <br>Published as: <em>Les Prairies, Romanel, près Lausanne </em>",
+      "page_number": "Mentioned: cat. no. 15",
+      "url": ""
+    },
+    {
+      "citation": "<em>Félix Vallotton, 1865 - 1925.</em> Zürich: Kunsthaus, 1938.<br>Published as: <em>Bles a Romanel</em>",
+      "page_number": "Mentioned: P. 20, no. 50",
+      "url": ""
+    },
+    {
+      "citation": "Ducrey, Marina, and Katia Poletti. <em>Félix Vallotton, 1865-1925: l'œuvre peint.</em> Lausanne: Fondation Félix Vallotton, 2005.",
+      "page_number": "Mentioned and Reproduced: Vol. II, P. 192, no. 314",
+      "url": null
+    },
+    {
+      "citation": "Amory, Dita. \"Felix Vallotton.\" In <em>The Keithley Collection at the Cleveland Museum of Art, </em>edited by Heather Lemonedes Brown, 128-131. Cleveland, OH: The Cleveland Museum of Art, 2022.",
+      "page_number": "Mentioned and reproduced: p. 130-131; Mentioned: p. 272-273",
+      "url": ""
+    },
+    {
+      "citation": "\"Exhibitions: Transformative Gift.\" <em>Art &amp; Antiques </em>XLV, no. 10 (November 2022): 48-53.",
+      "page_number": "Reproduced: p. 48",
+      "url": ""
+    },
+    {
+      "citation": "“Exhibitions through February 2023.” <em>Cleveland Art: Cleveland Museum of Art Members Magazine </em>vol. 62, no. 4 (December 2022): 10.",
+      "page_number": "Reproduced: P. 10.",
+      "url": ""
+    }
+  ],
+  "url": "https://clevelandart.org/art/2020.115",
+  "images": {
+    "annotation": null,
+    "web": {
+      "url": "https://openaccess-cdn.clevelandart.org/2020.115/2020.115_web.jpg",
+      "width": "900",
+      "height": "511",
+      "filesize": "218234",
+      "filename": "2020.115_web.jpg"
+    },
+    "print": {
+      "url": "https://openaccess-cdn.clevelandart.org/2020.115/2020.115_print.jpg",
+      "width": "3400",
+      "height": "1930",
+      "filesize": "2624491",
+      "filename": "2020.115_print.jpg"
+    },
+    "full": {
+      "url": "https://openaccess-cdn.clevelandart.org/2020.115/2020.115_full.tif",
+      "width": "13057",
+      "height": "7411",
+      "filesize": "290321672",
+      "filename": "2020.115_full.tif"
+    }
+  },
+  "alternate_images": [],
+  "creditline": "Nancy F. and Joseph P. Keithley Collection Gift",
+  "image_credit": null,
+  "sketchfab_id": null,
+  "sketchfab_url": null,
+  "gallery_donor_text": null,
+  "athena_id": 83462,
+  "creators": [
+    {
+      "id": 8972,
+      "description": "Félix Vallotton (Swiss French, 1865–1925)",
+      "extent": null,
+      "qualifier": null,
+      "role": "artist",
+      "biography": null,
+      "name_in_original_language": null,
+      "birth_year": "1865",
+      "death_year": "1925",
+      "use_in_caption": true,
+      "include_extent": false,
+      "weight": 1
+    }
+  ],
+  "legal_status": "accessioned",
+  "accession_date": "2020-03-02T00:00:00-05:00",
+  "sortable_date": 1900,
+  "date_added_to_oa": null,
+  "date_text": "1900",
+  "collapse_artists": false,
+  "on_loan": false,
+  "recently_acquired": false,
+  "record_type": "object",
+  "conservation_statement": null,
+  "has_conservation_images": false,
+  "cover_accession_number": null,
+  "is_nazi_era_provenance": false,
+  "impression": null,
+  "alternate_titles": [],
+  "is_highlight": false,
+  "updated_at": "2026-06-11 12:17:39.249000"
+}

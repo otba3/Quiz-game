@@ -1,0 +1,682 @@
+{
+  "id": 142560,
+  "accession_number": "1966.30",
+  "share_license_status": "CC0",
+  "tombstone": "Standing Buddha, c. 900. India, Kashmir. Brass with silver and copper inlay; overall: 98.1 cm (38 5/8 in.); base: 28.2 cm (11 1/8 in.). The Cleveland Museum of Art, John L. Severance Fund, 1966.30",
+  "current_location": "237 Himalayan",
+  "title": "Standing Buddha",
+  "creation_date": "c. 900",
+  "creation_date_earliest": 895,
+  "creation_date_latest": 905,
+  "artists_tags": [],
+  "culture": [
+    "India, Kashmir"
+  ],
+  "technique": "brass with silver and copper inlay",
+  "support_materials": [],
+  "department": "Indian and Southeast Asian Art",
+  "collection": "Indian Art",
+  "type": "Sculpture",
+  "measurements": "Overall: 98.1 cm (38 5/8 in.); Base: 28.2 cm (11 1/8 in.)",
+  "dimensions": {
+    "overall": {
+      "height": 0.981,
+      "height_inch": 38,
+      "height_inch_fraction": 0.625
+    },
+    "base": {
+      "width": 0.282,
+      "width_inch": 11,
+      "width_inch_fraction": 0.125
+    }
+  },
+  "state_of_the_work": null,
+  "edition_of_the_work": null,
+  "copyright": null,
+  "inscriptions": [
+    {
+      "inscription": "inscribed with the name of the monk who owned it:  Lhatsun Nagaraja (active from c. 998 to 1026)",
+      "inscription_translation": null,
+      "inscription_remark": null,
+      "sortorder": 1
+    }
+  ],
+  "exhibitions": {
+    "current": [
+      {
+        "id": 300917,
+        "title": "Golden Anniversary of Acquisitions",
+        "description": "<i>Golden Anniversary of Acquisitions</i>. The Cleveland Museum of Art, Cleveland, OH (organizer) (September 10-October 16, 1966).",
+        "opening_date": "1966-09-10T04:00:00"
+      },
+      {
+        "id": 518125,
+        "title": "The Art of Tibet",
+        "description": "<i>The Art of Tibet</i>. The Asia Society Museum, New York, NY (organizer) (April 10-June 8, 1969); Smithsonian American Art Museum, Washington, DC (July 1-August 30, 1969); Seattle Art Museum, Seattle, WA (October 1-November 15, 1969).",
+        "opening_date": "1969-04-10T05:00:00"
+      },
+      {
+        "id": 185521,
+        "title": "Object in Focus:  Toward a Definition of an Early \"Western Tibetan\" Style",
+        "description": "<i>Object in Focus:  Toward a Definition of an Early \"Western Tibetan\" Style</i>. The Cleveland Museum of Art, Cleveland, OH (organizer) (April 24-June 24, 2001).",
+        "opening_date": "2001-04-24T00:00:00"
+      },
+      {
+        "id": 213987,
+        "title": "Arts of Kashmir",
+        "description": "<i>Arts of Kashmir</i>. The Asia Society Museum, New York, NY (organizer) (October 3, 2007-January 6, 2008).",
+        "opening_date": "2007-10-21T00:00:00"
+      },
+      {
+        "id": 196054,
+        "title": "Streams and Mountains Without End: Asian Art and the Legacy of Sherman E. Lee at the Cleveland Museum of Art",
+        "description": "<i>Streams and Mountains Without End: Asian Art and the Legacy of Sherman E. Lee at the Cleveland Museum of Art</i>. The Cleveland Museum of Art, Cleveland, OH (organizer) (June 27-August 23, 2009).",
+        "opening_date": "2009-06-27T04:00:00"
+      },
+      {
+        "id": 674347,
+        "title": "Himalayan Gallery 237 Rotation",
+        "description": "<i>Himalayan Gallery 237 Rotation</i>. The Cleveland Museum of Art, Cleveland, OH (organizer) (September 14, 2024-March 20, 2025).",
+        "opening_date": "2024-09-14T04:00:00"
+      }
+    ],
+    "legacy": [
+      {
+        "description": "<em>Dieux et démons de l'Himâlaya : art du bouddhisme lamaïque</em>. Grand-Palais, Paris, France (March 25–June 27, 1977); Haus der Kunst, Munich, Germany (August 5–October 16, 1977).",
+        "opening_date": "1977-06-27T00:00:00"
+      },
+      {
+        "description": "<em>Light of Asia: Buddha Sakyamuni in Asian art. </em>Los Angeles County Museum of Art, Los Angeles, CA (March 4-May 20, 1984); Art Institute of Chicago, Chicago, IL (June 30–August 26, 1984); The Brooklyn Museum of Art, Brooklyn, NY (November 1, 1984–February 10, 1985).",
+        "opening_date": "1984-03-04T00:00:00"
+      },
+      {
+        "description": "<em>Wisdom and compassion : the sacred art of Tibet.</em> Asian Art Museum of San Francisco, San Francisco, CA (April 17–August 18, 1991); IBM Gallery of Science and Art, New York, NY (October 15–December 28, 91); Royal Academy of Arts, London, UK (September 18–December 13, 1992).",
+        "opening_date": "1991-08-18T00:00:00"
+      }
+    ]
+  },
+  "provenance": [
+    {
+      "description": "(J.J. Klejman [1906–1995], New York, NY, sold to the Cleveland Museum of Art)",
+      "citations": [],
+      "footnotes": null,
+      "date": "?–1966",
+      "sortorder": 1
+    },
+    {
+      "description": "The Cleveland Museum of Art, Cleveland, OH",
+      "citations": [],
+      "footnotes": null,
+      "date": "1966–",
+      "sortorder": 2
+    }
+  ],
+  "find_spot": null,
+  "related_works": [],
+  "former_accession_numbers": [],
+  "did_you_know": "The Buddha grasps the end of his robe in his left hand.",
+  "early_education_description": null,
+  "artlens_description": null,
+  "description": "The slender athletic Buddha extends one foot slightly off the lotus pedestal, suggesting his humanity enters our world from his transcendent state. With his right hand he signals that we should have no fear. The smooth signs of wear on the sculpture indicate that it was worshiped in Kashmir, where water and other ablutions were poured over sacred images during rituals. The Tibetan inscription on the pedestal states that it belonged to a royal monk named Nagaraja (Tibetan, active about 998–1026). Sculptures like this contributed to the transmission of Buddhism from India to Tibet and served as artistic models.",
+  "external_resources": {
+    "wikidata": [
+      "https://www.wikidata.org/wiki/Q60778279"
+    ],
+    "internet_archive": [
+      "https://archive.org/details/clevelandart-1966.30-standing-buddha"
+    ]
+  },
+  "citations": [
+    {
+      "citation": "The Cleveland Museum of Art. <em>Handbook of the Cleveland Museum of Art/1966</em>. Cleveland, OH: The Cleveland Museum of Art, 1966.",
+      "page_number": "Reproduced: p. 232",
+      "url": "https://archive.org/details/CMAHandbook1966/page/n256"
+    },
+    {
+      "citation": "Stechow, Wolfgang. \"Cleveland's Golden Anniversary Acquisitions.\" <em>Artnews</em> 65, no. 5 (September 1966): 30-64.",
+      "page_number": "Reproduced: p. 35; Mentioned: p. 63-64",
+      "url": null
+    },
+    {
+      "citation": "Lee, Sherman E. “Golden Anniversary Acquisitions: September 10 through October 16.” <em>The Bulletin of the Cleveland Museum of Art</em>, vol. 53, no. 7, 1966, pp. 181–284.",
+      "page_number": "Reproduced: no. 156, p. 251; Mentioned: no. 156, p. 284",
+      "url": "www.jstor.org/stable/25152110"
+    },
+    {
+      "citation": "“Art – The Cleveland Museum of Art’s Golden Show.” <em>Newsweek</em> (September 12, 1966).",
+      "page_number": "Reproduced: p. 102",
+      "url": ""
+    },
+    {
+      "citation": "\"Cleveland museum of art golden anniversary.\" <em>Archaeology</em>, October 1966, vol. 19, pp. 277-283.",
+      "page_number": "p. 279",
+      "url": ""
+    },
+    {
+      "citation": "Burton, Richard. “Fifty Years of the Cleveland Museum of Art: Some Golden Anniversary Acquisitions.” <em>The Connoisseur</em>, vol 163:656 (October 1966) pp. 128-135.",
+      "page_number": "Mentioned and Reproduced: p. 134",
+      "url": ""
+    },
+    {
+      "citation": "“'Golden Anniversary' Acquisitions by the Cleveland Museum of Art.” <em>The Burlington Magazine</em>, vol. 108, no. 764, 1966, pp. 574–579.",
+      "page_number": "Mentioned and Reproduced: fig. 48, p. 576",
+      "url": "www.jstor.org/stable/875138"
+    },
+    {
+      "citation": "<em>Selected Works: Cleveland Museum of Art</em>. Cleveland, OH: The Cleveland Museum of Art, 1967.",
+      "page_number": "Reproduced: pl. 34",
+      "url": ""
+    },
+    {
+      "citation": "“Art of Asia Recently Acquired by American Museums, 1966.” <em>Archives of Asian Art</em>, vol. 21, 1967, pp. 75–103.",
+      "page_number": "Mentioned and Reproduced: p. 79, fig. 15",
+      "url": "www.jstor.org/stable/20110997"
+    },
+    {
+      "citation": "Lee, Sherman E. “Clothed in the Sun: A Buddha and a Surya from Kashmir.” <em>The Bulletin of the Cleveland Museum of Art</em>, vol. 54, no. 2, 1967, pp. 42–63.",
+      "page_number": "Reproduced: pp. 42, 45, fig. 3",
+      "url": "https://www.jstor.org/stable/25152142"
+    },
+    {
+      "citation": "The Cleveland Museum of Art. <em>Handbook of the Cleveland Museum of Art/1969</em>. Cleveland, OH: The Cleveland Museum of Art, 1969.",
+      "page_number": "Reproduced: p. 232",
+      "url": "https://archive.org/details/CMAHandbook1969/page/n256"
+    },
+    {
+      "citation": "Fricke, Berthold. <em>The Cleveland Museum of Art</em>. Hannover: Knorr &amp; Hirth, 1970.",
+      "page_number": "Mentioned and Reproduced: p. 90",
+      "url": ""
+    },
+    {
+      "citation": "Pal, Pratapaditya. <em>Bronzes of Kashmir</em>. Graz: Akademische Druck- u. Verlagsanstalt, 1975.",
+      "page_number": "no. 26, pp. 39, 100",
+      "url": ""
+    },
+    {
+      "citation": "Galeries nationales du Grand Palais (France), Réunion des musées nationaux (France), and Haus der Kunst München. <em>Dieux et démons de l'Himâlaya: art du bouddhisme lamaïque : [exposition], Grand-Palais, 25 mars-27 juin 1977</em>. Paris: Secrétariat d'État à la culture, Éditions des musées nationaux, 1977.",
+      "page_number": "Mentioned and Reproduced: cat. no. 36, p. 90",
+      "url": ""
+    },
+    {
+      "citation": "<em>Archeologie</em>, no. 107 (June 1977), p. 40",
+      "page_number": "",
+      "url": ""
+    },
+    {
+      "citation": "The Cleveland Museum of Art. <em>Handbook of the Cleveland Museum of Art/1978</em>. Cleveland, OH: The Cleveland Museum of Art, 1978.",
+      "page_number": "Reproduced: p. 294",
+      "url": "https://archive.org/details/CMAHandbook1978/page/n314"
+    },
+    {
+      "citation": "Schroeder, Ulrich von. <em>Indo-Tibetan Bronzes</em>. 1st ed. Hong Kong, Glattbrugg, Switzerland: Visual Dharma Publications; Sole distributor, Nanda Distribution, 1981.",
+      "page_number": "Mentioned: p. 122, no. 18E; Reproduced: p. 123, no. 18E",
+      "url": ""
+    },
+    {
+      "citation": "Klimburg-Salter, Deborah E., and Maximilian Klimburg. <em>The Silk Route and the Diamond Path: Esoteric Buddhist Art on the Trans-Himalayan Trade Routes</em>. Los Angeles, CA: Published under the sponsorship of the UCLA Art Council, 1982.",
+      "page_number": "Reproduced: p. 103, pl. 27",
+      "url": null
+    },
+    {
+      "citation": "Pal, Pratapaditya, and Robert L. Brown. <em>Light of Asia: Buddha Sakyamuni in Asian Art</em>. Los Angeles, CA: Los Angeles County Museum of Art, 1984.",
+      "page_number": "Mentioned and Reproduced: cat. no. 114, pp. 230-231",
+      "url": ""
+    },
+    {
+      "citation": "Harle, J. C. <em>The Art and Architecture of the Indian Subcontinent</em>. Harmondsworth, Middlesex, England: Penguin Books, 1987.",
+      "page_number": "Reproduced: fig. 196, p. 194",
+      "url": ""
+    },
+    {
+      "citation": "Pal, Pratapaditya. <em>A Pot-Pourri of Indian Art</em>. Bombay: Marg Publications, 1988.",
+      "page_number": "Mentioned and Reproduced: p. 87, fig. 10",
+      "url": ""
+    },
+    {
+      "citation": "Czuma, Stanislaw. \"A Unique Addition to the School of Kashmiri Ivories.\" <em>The Bulletin of the Cleveland Museum of Art</em> 75, no. 8 (1988): 298-319.",
+      "page_number": "Mentioned and Reproduced: p. 310, fig. 19",
+      "url": "https://www.jstor.org/stable/25160044"
+    },
+    {
+      "citation": "Rhie, Marylin M., and Robert A. F. Thurman. <em>Wisdom and Compassion: The Sacred Art of Tibet</em>. London: Thames and Hudson, 1991.",
+      "page_number": "Mentioned and Reproduced: fig. 4, p. 42",
+      "url": ""
+    },
+    {
+      "citation": "Czuma, Stanislaw J. “Some Tibetan and Tibet-Related Acquisitions of the Cleveland Museum of Art”, <em>Oriental Art</em> (Winter 1992/93) vol 38:4.",
+      "page_number": "Reproduced: p. 240",
+      "url": ""
+    },
+    {
+      "citation": "Fussman, Gérard. “Chilas, Hatun et les Bronzes Buddhiques du Cachemere.” pp. 1–60. In <em>Antiquities of Northern Pakistan</em>, vol. 2. Mainz: Verlag von Zabern, 1993.",
+      "page_number": "pp. 50–51",
+      "url": ""
+    },
+    {
+      "citation": "Harle, J. C.<em> The Art and Architecture of the Indian Subcontinent</em>. New Haven: Yale University Press, 1994.",
+      "page_number": "Reproduced: pl. 146, p. 194",
+      "url": ""
+    },
+    {
+      "citation": "Lee, Sherman E., and Naomi Noble Richard.<em> A History of Far Eastern Art</em>. New York: Harry N. Abrams, 1994.",
+      "page_number": "Mentioned and Reproduced: fig. 161, p. 130",
+      "url": ""
+    },
+    {
+      "citation": "Rhie, Marylin M., Robert A. F. Thurman, and John Bigelow Taylor. <em>Weisheit und Liebe: 1000 Jahre Kunst des tibetischen Buddhismus</em>. Bonn: Kunst- und Ausstellungshalle der Bundesrepublik Deutschland, 1996.",
+      "page_number": "Represent: fig. 4, p. 42",
+      "url": ""
+    },
+    {
+      "citation": "Reedy, Chandra L. <em>Himalayan Bronzes: Technology, Style, and Choices</em>. Newark, DE: University of Delaware Press; London; Cranbury, NJ: Associated University Presses, 1997.",
+      "page_number": "Mentioned and Reproduced: p. 166, fig. K76",
+      "url": ""
+    },
+    {
+      "citation": "Cunningham, Michael R., Stanislaw J. Czuma, Anne E. Wardwell, and J. Keith Wilson. <em>Masterworks of Asian Art</em>. Cleveland, OH: The Cleveland Museum of Art, 1998.",
+      "page_number": "Mentioned and Reproduced: pp. 154-155",
+      "url": ""
+    },
+    {
+      "citation": "Sugimura, Tō 杉村棟. <em>Isurāmu </em>イスラーム. Tōkyō: Shōgakukan, 1999.",
+      "page_number": "no. 35, p. 59",
+      "url": ""
+    },
+    {
+      "citation": "Chuvin, Pierre, and Gilles Béguin. <em>Les arts de l'Asie Centrale</em>. Paris: Citadelles &amp; Mazenod, 1999.",
+      "page_number": "Reproduced: p. 246, no. 295",
+      "url": ""
+    },
+    {
+      "citation": "May, Sally Ruth, Jane Takac, and Barbara J. Bradley. <em>Knockouts: A Pocket Guide</em>. Cleveland, OH: The Cleveland Museum of Art, 2001.",
+      "page_number": "Reproduced: no. 100, p. 90; Mentioned: no. 100, p. 119",
+      "url": ""
+    },
+    {
+      "citation": "Pal, Pratapaditya, Amy Heller, Oskar von Hinüber, and Gautamavajra Vajrācārya. <em>Himalayas: An Aesthetic Adventur</em>e. Chicago, IL: Art Institute of Chicago in association with University of California Press and Mapin Pub, 2003.",
+      "page_number": "Mentioned and Reproduced: p. 93, fig. 3 and entry 75, p. 122",
+      "url": ""
+    },
+    {
+      "citation": "Czuma, Stanislaw, \"Great Acquisitions and Southeast Asian Art at the Cleveland Museum of Art,\" <em>Orientations, An Issue in Honour of Sherman E. Lee</em> (Jan/Feb 2005), vol. 36, no. 1.",
+      "page_number": "Mentioned and Reproduced: p. 86",
+      "url": ""
+    },
+    {
+      "citation": "Phillips, Kristy. \"An American Engagement with Kashmiri Art,\" Orientations 38, no. 7 (October 2007): pp. 63-68.",
+      "page_number": "Mentioned and Reproduced: fig. 5",
+      "url": ""
+    },
+    {
+      "citation": "Stoddard, Heather. <em>Early Sino-Tibetan Art</em>. Bangkok: Orchid Press, 2008.",
+      "page_number": "Mentioned and Reproduced: pp. 30-31, fig. 16a-16b.",
+      "url": ""
+    },
+    {
+      "citation": "Béguin, Gilles.<em> Buddhist Art: An Historical and Cultural Journe</em>y. Bangkok: River Books, 2009.",
+      "page_number": "Mentioned and Reproduced: p. 98, fig. 86",
+      "url": ""
+    },
+    {
+      "citation": "Weldon, David. \"Two Bronzes from the Western Himalayas Revisited\". <em>Orientations</em> 42, No. 5 (June 2011): pp. 65-69.",
+      "page_number": "Mentioned and Reproduced: p. 67, fig. 1",
+      "url": ""
+    },
+    {
+      "citation": "Franklin, David and C. Griffith Mann. <em>Treasures from the Cleveland Museum of Art</em>. Cleveland, OH: The Cleveland Museum of Art, 2012.",
+      "page_number": "Mentioned and Reproduced: pp. 82-83",
+      "url": ""
+    },
+    {
+      "citation": "Siudmak, John. <em>The Hindu-Buddhist Sculpture of Ancient Kashmir and Its Influences</em>. Boston: Brill, 2013.",
+      "page_number": "Mentioned and Reproduced: p. 476, pl. 226",
+      "url": ""
+    },
+    {
+      "citation": "Quintanilla, Sonya Rhie. \"Indic Art Returns.\" <em>Cleveland Art: Cleveland Museum of Art Members Magazine</em> 53, no. 5 (September/October 2013): 16–17.",
+      "page_number": "Mentioned and Reproduced: p. 16",
+      "url": "https://archive.org/details/CMAMM2013-05/page/16"
+    },
+    {
+      "citation": "Wang, Michelle C. <em>Maṇḍalas in the Making: The Visual Culture of Esoteric Buddhism at Dunhuang</em>. Leiden; Boston: Brill, 2018.",
+      "page_number": "Reproduced: p. 77, fig. 24",
+      "url": null
+    }
+  ],
+  "url": "https://clevelandart.org/art/1966.30",
+  "images": {
+    "annotation": null,
+    "web": {
+      "url": "https://openaccess-cdn.clevelandart.org/1966.30/1966.30_web.jpg",
+      "width": "685",
+      "height": "900",
+      "filesize": "106806",
+      "filename": "1966.30_web.jpg"
+    },
+    "print": {
+      "url": "https://openaccess-cdn.clevelandart.org/1966.30/1966.30_print.jpg",
+      "width": "2589",
+      "height": "3400",
+      "filesize": "1056938",
+      "filename": "1966.30_print.jpg"
+    },
+    "full": {
+      "url": "https://openaccess-cdn.clevelandart.org/1966.30/1966.30_full.tif",
+      "width": "10652",
+      "height": "13987",
+      "filesize": "446997328",
+      "filename": "1966.30_full.tif"
+    }
+  },
+  "alternate_images": [
+    {
+      "web": {
+        "url": "https://openaccess-cdn.clevelandart.org/1966.30/1966.30_alt0_web.jpg",
+        "width": "685",
+        "height": "900",
+        "filesize": "107103"
+      },
+      "print": {
+        "url": "https://openaccess-cdn.clevelandart.org/1966.30/1966.30_alt0_print.jpg",
+        "width": "2589",
+        "height": "3400",
+        "filesize": "1066171"
+      },
+      "full": {
+        "url": "https://openaccess-cdn.clevelandart.org/1966.30/1966.30_alt0_full.tif",
+        "width": "10652",
+        "height": "13991",
+        "filesize": "447123688"
+      },
+      "date_created": "2025-01-17T16:09:55",
+      "annotation": ""
+    },
+    {
+      "web": {
+        "url": "https://openaccess-cdn.clevelandart.org/1966.30/1966.30_alt1_web.jpg",
+        "width": "687",
+        "height": "900",
+        "filesize": "102031"
+      },
+      "print": {
+        "url": "https://openaccess-cdn.clevelandart.org/1966.30/1966.30_alt1_print.jpg",
+        "width": "2595",
+        "height": "3400",
+        "filesize": "978149"
+      },
+      "full": {
+        "url": "https://openaccess-cdn.clevelandart.org/1966.30/1966.30_alt1_full.tif",
+        "width": "10652",
+        "height": "13957",
+        "filesize": "446037148"
+      },
+      "date_created": "2025-01-17T16:16:19",
+      "annotation": ""
+    },
+    {
+      "web": {
+        "url": "https://openaccess-cdn.clevelandart.org/1966.30/1966.30_alt2_web.jpg",
+        "width": "687",
+        "height": "900",
+        "filesize": "73335"
+      },
+      "print": {
+        "url": "https://openaccess-cdn.clevelandart.org/1966.30/1966.30_alt2_print.jpg",
+        "width": "2596",
+        "height": "3400",
+        "filesize": "662557"
+      },
+      "full": {
+        "url": "https://openaccess-cdn.clevelandart.org/1966.30/1966.30_alt2_full.tif",
+        "width": "10652",
+        "height": "13953",
+        "filesize": "445908476"
+      },
+      "date_created": "2025-01-17T16:21:09",
+      "annotation": ""
+    },
+    {
+      "web": {
+        "url": "https://openaccess-cdn.clevelandart.org/1966.30/1966.30_alt3_web.jpg",
+        "width": "687",
+        "height": "900",
+        "filesize": "76658"
+      },
+      "print": {
+        "url": "https://openaccess-cdn.clevelandart.org/1966.30/1966.30_alt3_print.jpg",
+        "width": "2594",
+        "height": "3400",
+        "filesize": "708176"
+      },
+      "full": {
+        "url": "https://openaccess-cdn.clevelandart.org/1966.30/1966.30_alt3_full.tif",
+        "width": "10652",
+        "height": "13960",
+        "filesize": "446132264"
+      },
+      "date_created": "2025-01-17T16:29:46",
+      "annotation": ""
+    },
+    {
+      "web": {
+        "url": "https://openaccess-cdn.clevelandart.org/1966.30/1966.30_alt4_web.jpg",
+        "width": "687",
+        "height": "900",
+        "filesize": "108308"
+      },
+      "print": {
+        "url": "https://openaccess-cdn.clevelandart.org/1966.30/1966.30_alt4_print.jpg",
+        "width": "2594",
+        "height": "3400",
+        "filesize": "1183845"
+      },
+      "full": {
+        "url": "https://openaccess-cdn.clevelandart.org/1966.30/1966.30_alt4_full.tif",
+        "width": "10652",
+        "height": "13963",
+        "filesize": "446228784"
+      },
+      "date_created": "2025-01-17T16:38:54",
+      "annotation": ""
+    },
+    {
+      "web": {
+        "url": "https://openaccess-cdn.clevelandart.org/1966.30/1966.30_alt5_web.jpg",
+        "width": "900",
+        "height": "508",
+        "filesize": "101840"
+      },
+      "print": {
+        "url": "https://openaccess-cdn.clevelandart.org/1966.30/1966.30_alt5_print.jpg",
+        "width": "3400",
+        "height": "1919",
+        "filesize": "1015028"
+      },
+      "full": {
+        "url": "https://openaccess-cdn.clevelandart.org/1966.30/1966.30_alt5_full.tif",
+        "width": "13351",
+        "height": "7535",
+        "filesize": "301828324"
+      },
+      "date_created": "2025-01-17T14:36:19",
+      "annotation": ""
+    },
+    {
+      "web": {
+        "url": "https://openaccess-cdn.clevelandart.org/1966.30/1966.30_alt6_web.jpg",
+        "width": "900",
+        "height": "509",
+        "filesize": "121800"
+      },
+      "print": {
+        "url": "https://openaccess-cdn.clevelandart.org/1966.30/1966.30_alt6_print.jpg",
+        "width": "3400",
+        "height": "1924",
+        "filesize": "1458686"
+      },
+      "full": {
+        "url": "https://openaccess-cdn.clevelandart.org/1966.30/1966.30_alt6_full.tif",
+        "width": "13351",
+        "height": "7555",
+        "filesize": "302627576"
+      },
+      "date_created": "2025-01-17T14:43:28",
+      "annotation": ""
+    },
+    {
+      "web": {
+        "url": "https://openaccess-cdn.clevelandart.org/1966.30/1966.30_alt7_web.jpg",
+        "width": "560",
+        "height": "893",
+        "filesize": "251991"
+      },
+      "print": {
+        "url": "https://openaccess-cdn.clevelandart.org/1966.30/1966.30_alt7_print.jpg",
+        "width": "2132",
+        "height": "3400",
+        "filesize": "3772470"
+      },
+      "full": {
+        "url": "https://openaccess-cdn.clevelandart.org/1966.30/1966.30_alt7_full.tif",
+        "width": "3792",
+        "height": "6046",
+        "filesize": "68809432"
+      },
+      "date_created": "2009-04-08T12:58:42",
+      "annotation": ""
+    },
+    {
+      "web": {
+        "url": "https://openaccess-cdn.clevelandart.org/1966.30/1966.30_alt8_web.jpg",
+        "width": "587",
+        "height": "893",
+        "filesize": "272522"
+      },
+      "print": {
+        "url": "https://openaccess-cdn.clevelandart.org/1966.30/1966.30_alt8_print.jpg",
+        "width": "2236",
+        "height": "3400",
+        "filesize": "4149630"
+      },
+      "full": {
+        "url": "https://openaccess-cdn.clevelandart.org/1966.30/1966.30_alt8_full.tif",
+        "width": "4091",
+        "height": "6222",
+        "filesize": "76392720"
+      },
+      "date_created": "2009-04-08T12:48:39",
+      "annotation": ""
+    },
+    {
+      "web": {
+        "url": "https://openaccess-cdn.clevelandart.org/1966.30/1966.30_alt9_web.jpg",
+        "width": "441",
+        "height": "893",
+        "filesize": "163051"
+      },
+      "print": {
+        "url": "https://openaccess-cdn.clevelandart.org/1966.30/1966.30_alt9_print.jpg",
+        "width": "1678",
+        "height": "3400",
+        "filesize": "2531518"
+      },
+      "full": {
+        "url": "https://openaccess-cdn.clevelandart.org/1966.30/1966.30_alt9_full.tif",
+        "width": "3020",
+        "height": "6121",
+        "filesize": "55485020"
+      },
+      "date_created": "2009-04-08T13:19:06",
+      "annotation": ""
+    },
+    {
+      "web": {
+        "url": "https://openaccess-cdn.clevelandart.org/1966.30/1966.30_alt10_web.jpg",
+        "width": "455",
+        "height": "893",
+        "filesize": "167880"
+      },
+      "print": {
+        "url": "https://openaccess-cdn.clevelandart.org/1966.30/1966.30_alt10_print.jpg",
+        "width": "1732",
+        "height": "3400",
+        "filesize": "2512044"
+      },
+      "full": {
+        "url": "https://openaccess-cdn.clevelandart.org/1966.30/1966.30_alt10_full.tif",
+        "width": "3077",
+        "height": "6040",
+        "filesize": "55784096"
+      },
+      "date_created": "2009-04-08T13:14:34",
+      "annotation": ""
+    },
+    {
+      "web": {
+        "url": "https://openaccess-cdn.clevelandart.org/1966.30/1966.30_alt11_web.jpg",
+        "width": "1263",
+        "height": "683",
+        "filesize": "748585"
+      },
+      "print": {
+        "url": "https://openaccess-cdn.clevelandart.org/1966.30/1966.30_alt11_print.jpg",
+        "width": "3400",
+        "height": "1839",
+        "filesize": "5715687"
+      },
+      "full": {
+        "url": "https://openaccess-cdn.clevelandart.org/1966.30/1966.30_alt11_full.tif",
+        "width": "6668",
+        "height": "3606",
+        "filesize": "72164532"
+      },
+      "date_created": "2009-04-08T13:34:31",
+      "annotation": ""
+    },
+    {
+      "web": {
+        "url": "https://openaccess-cdn.clevelandart.org/1966.30/1966.30_alt12_web.jpg",
+        "width": "575",
+        "height": "893",
+        "filesize": "292655"
+      },
+      "print": {
+        "url": "https://openaccess-cdn.clevelandart.org/1966.30/1966.30_alt12_print.jpg",
+        "width": "989",
+        "height": "1536",
+        "filesize": "936102"
+      },
+      "full": {
+        "url": "https://openaccess-cdn.clevelandart.org/1966.30/1966.30_alt12_full.tif",
+        "width": "989",
+        "height": "1536",
+        "filesize": "4559028"
+      },
+      "annotation": ""
+    }
+  ],
+  "creditline": "John L. Severance Fund",
+  "image_credit": null,
+  "sketchfab_id": "dbdf5dff485f47e48ea89aa558e1f79b",
+  "sketchfab_url": "https://sketchfab.com/models/dbdf5dff485f47e48ea89aa558e1f79b",
+  "gallery_donor_text": null,
+  "athena_id": 142560,
+  "creators": [],
+  "legal_status": "accessioned",
+  "accession_date": "1966-01-03T00:00:00",
+  "sortable_date": 895,
+  "date_added_to_oa": null,
+  "date_text": "c. 900",
+  "collapse_artists": false,
+  "on_loan": false,
+  "recently_acquired": false,
+  "record_type": "object",
+  "conservation_statement": null,
+  "has_conservation_images": false,
+  "cover_accession_number": null,
+  "is_nazi_era_provenance": false,
+  "impression": null,
+  "alternate_titles": [],
+  "is_highlight": false,
+  "updated_at": "2026-10-20 07:03:49.395000"
+}

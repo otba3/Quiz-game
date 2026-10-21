@@ -1,0 +1,211 @@
+{
+  "id": 94000,
+  "accession_number": "1914.572",
+  "share_license_status": "CC0",
+  "tombstone": "Statuette of Khonsu, 664–525 BCE. Egypt, Late period (715–332 BCE), Dynasty 26 or later. Bronze, solid cast; overall: 5.4 x 3.7 cm (2 1/8 x 1 7/16 in.); with tang: 17.4 cm (6 7/8 in.). The Cleveland Museum of Art, Gift of the John Huntington Art and Polytechnic Trust, 1914.572",
+  "current_location": null,
+  "title": "Statuette of Khonsu",
+  "creation_date": "664–525 BCE",
+  "creation_date_earliest": -664,
+  "creation_date_latest": -525,
+  "artists_tags": [],
+  "culture": [
+    "Egypt, Late period (715–332 BCE), Dynasty 26 or later"
+  ],
+  "technique": "bronze, solid cast",
+  "support_materials": [],
+  "department": "Egyptian and Ancient Near Eastern Art",
+  "collection": "Egypt - Late Period",
+  "type": "Sculpture",
+  "measurements": "Overall: 5.4 x 3.7 cm (2 1/8 x 1 7/16 in.); with tang: 17.4 cm (6 7/8 in.)",
+  "dimensions": {
+    "overall": {
+      "width": 0.054,
+      "width_inch": 2,
+      "width_inch_fraction": 0.125,
+      "depth": 0.037,
+      "depth_inch": 1,
+      "depth_inch_fraction": 0.4375
+    },
+    "with tang": {
+      "height": 0.174,
+      "height_inch": 6,
+      "height_inch_fraction": 0.875
+    }
+  },
+  "state_of_the_work": null,
+  "edition_of_the_work": null,
+  "copyright": null,
+  "inscriptions": [],
+  "exhibitions": {
+    "current": [
+      {
+        "id": 361573,
+        "title": "Textures: The Art and History of Black Hair",
+        "description": "<i>Textures: The Art and History of Black Hair</i>. Kent State University Museum, Kent, OH (organizer) (September 10, 2021-August 14, 2022) https://www.kent.edu/museum/event/textures-history-and-art-black-hair.",
+        "opening_date": "2021-09-10T04:00:00"
+      }
+    ],
+    "legacy": [
+      {
+        "description": "CMA 1916, no. 16, p. 205, pl. 340",
+        "opening_date": "1916-01-01T00:00:00"
+      }
+    ]
+  },
+  "provenance": [
+    {
+      "description": "Purchased from Mohammed Mohasseb and Son, Luxor, by Lucy Olcott Perkins through Henry W. Kent",
+      "citations": [],
+      "footnotes": [],
+      "date": null,
+      "sortorder": null
+    }
+  ],
+  "find_spot": null,
+  "related_works": [],
+  "former_accession_numbers": [
+    "2.14"
+  ],
+  "did_you_know": null,
+  "early_education_description": null,
+  "artlens_description": null,
+  "description": null,
+  "external_resources": {
+    "wikidata": [
+      "https://www.wikidata.org/wiki/Q79473790"
+    ],
+    "internet_archive": [
+      "https://archive.org/details/clevelandart-1914.572-statuette-of-khonsu"
+    ]
+  },
+  "citations": [
+    {
+      "citation": "Berman, Lawrence M., and Kenneth J. Bohač.<em> Catalogue of Egyptian Art: The Cleveland Museum of Art.</em> Cleveland, OH: Cleveland Museum of Art, 1999",
+      "page_number": "Reproduced and Mentioned: p. 431",
+      "url": null
+    },
+    {
+      "citation": "Ellington, Tameka N., Joseph L. Underwood, and Sarah Rogers-Lafferty. <em>Textures: The History and Art of Black Hair</em>. 2020.",
+      "page_number": "p. 82",
+      "url": ""
+    }
+  ],
+  "url": "https://clevelandart.org/art/1914.572",
+  "images": {
+    "annotation": null,
+    "web": {
+      "url": "https://openaccess-cdn.clevelandart.org/1914.572/1914.572_web.jpg",
+      "width": "640",
+      "height": "893",
+      "filesize": "47034",
+      "filename": "1914.572_web.jpg"
+    },
+    "print": {
+      "url": "https://openaccess-cdn.clevelandart.org/1914.572/1914.572_print.jpg",
+      "width": "2435",
+      "height": "3400",
+      "filesize": "628705",
+      "filename": "1914.572_print.jpg"
+    },
+    "full": {
+      "url": "https://openaccess-cdn.clevelandart.org/1914.572/1914.572_full.tif",
+      "width": "4651",
+      "height": "6492",
+      "filesize": "90621816",
+      "filename": "1914.572_full.tif"
+    }
+  },
+  "alternate_images": [
+    {
+      "web": {
+        "url": "https://openaccess-cdn.clevelandart.org/1914.572/1914.572_alt0_web.jpg",
+        "width": "655",
+        "height": "893",
+        "filesize": "37018"
+      },
+      "print": {
+        "url": "https://openaccess-cdn.clevelandart.org/1914.572/1914.572_alt0_print.jpg",
+        "width": "2492",
+        "height": "3400",
+        "filesize": "501337"
+      },
+      "full": {
+        "url": "https://openaccess-cdn.clevelandart.org/1914.572/1914.572_alt0_full.tif",
+        "width": "4826",
+        "height": "6583",
+        "filesize": "95347140"
+      },
+      "date_created": "2013-04-05T12:52:29",
+      "annotation": ""
+    },
+    {
+      "web": {
+        "url": "https://openaccess-cdn.clevelandart.org/1914.572/1914.572_alt1_web.jpg",
+        "width": "605",
+        "height": "893",
+        "filesize": "39030"
+      },
+      "print": {
+        "url": "https://openaccess-cdn.clevelandart.org/1914.572/1914.572_alt1_print.jpg",
+        "width": "2305",
+        "height": "3400",
+        "filesize": "522918"
+      },
+      "full": {
+        "url": "https://openaccess-cdn.clevelandart.org/1914.572/1914.572_alt1_full.tif",
+        "width": "4202",
+        "height": "6198",
+        "filesize": "78168864"
+      },
+      "date_created": "2013-04-05T13:11:04",
+      "annotation": ""
+    },
+    {
+      "web": {
+        "url": "https://openaccess-cdn.clevelandart.org/1914.572/1914.572_alt2_web.jpg",
+        "width": "668",
+        "height": "893",
+        "filesize": "42276"
+      },
+      "print": {
+        "url": "https://openaccess-cdn.clevelandart.org/1914.572/1914.572_alt2_print.jpg",
+        "width": "2545",
+        "height": "3400",
+        "filesize": "628702"
+      },
+      "full": {
+        "url": "https://openaccess-cdn.clevelandart.org/1914.572/1914.572_alt2_full.tif",
+        "width": "4748",
+        "height": "6341",
+        "filesize": "90361172"
+      },
+      "date_created": "2013-04-05T13:28:20",
+      "annotation": ""
+    }
+  ],
+  "creditline": "Gift of the John Huntington Art and Polytechnic Trust",
+  "image_credit": null,
+  "sketchfab_id": null,
+  "sketchfab_url": null,
+  "gallery_donor_text": null,
+  "athena_id": 94000,
+  "creators": [],
+  "legal_status": "accessioned",
+  "accession_date": "1914-01-01T00:00:00",
+  "sortable_date": -664,
+  "date_added_to_oa": null,
+  "date_text": "664–525 BCE",
+  "collapse_artists": false,
+  "on_loan": false,
+  "recently_acquired": false,
+  "record_type": "object",
+  "conservation_statement": null,
+  "has_conservation_images": false,
+  "cover_accession_number": null,
+  "is_nazi_era_provenance": false,
+  "impression": null,
+  "alternate_titles": [],
+  "is_highlight": false,
+  "updated_at": "2026-05-29 04:59:29.811000"
+}

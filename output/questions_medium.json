@@ -1,0 +1,185 @@
+{
+  "category": "medium",
+  "questions": [
+    {
+      "id": "medium-74600",
+      "question_key": "question.medium",
+      "image": "images/2019.61.jpg",
+      "options": [
+        "Graphite and ink on paper",
+        "Oil on canvas",
+        "watercolor on wove paper",
+        "Pastel on laid paper"
+      ],
+      "answer": "watercolor on wove paper",
+      "context": "Narcisse Berchère (French, 1819–1891), c. 1860s",
+      "creation_date": "c. 1860s",
+      "culture": "France, 19th century"
+    },
+    {
+      "id": "medium-78766",
+      "question_key": "question.medium",
+      "image": "images/2015.155.jpg",
+      "options": [
+        "Carved wood and brass",
+        "Wood, leather, iron, and fiber",
+        "Bronze, wood, and cotton",
+        "Wood, copper alloy, upholstery studs, iron alloy, and cotton"
+      ],
+      "answer": "Wood, copper alloy, upholstery studs, iron alloy, and cotton",
+      "context": "Africa, Central Africa, Angola, Ovimbundu-style maker, late 1800s or early 1900s",
+      "creation_date": "late 1800s or early 1900s",
+      "culture": "Africa, Central Africa, Angola, Ovimbundu-style maker"
+    },
+    {
+      "id": "medium-79017",
+      "question_key": "question.medium",
+      "image": "images/2016.106.jpg",
+      "options": [
+        "Drypoint and engraving",
+        "Lithograph",
+        "Woodcut and ink",
+        "Etching and aquatint"
+      ],
+      "answer": "Etching and aquatint",
+      "context": "Albert Besnard (French, 1849–1934), 1888",
+      "creation_date": "1888",
+      "culture": "France"
+    },
+    {
+      "id": "medium-79384",
+      "question_key": "question.medium",
+      "image": "images/2016.249.jpg",
+      "options": [
+        "Lithograph with hand coloring",
+        "Etching and roulette with hand coloring",
+        "Etching and aquatint",
+        "Drypoint with watercolor"
+      ],
+      "answer": "Etching and roulette with hand coloring",
+      "context": "Emile Jean Sulpis (French, 1856–1943), c. 1900",
+      "creation_date": "c. 1900",
+      "culture": "France"
+    },
+    {
+      "id": "medium-83462",
+      "question_key": "question.medium",
+      "image": "images/2020.115.jpg",
+      "options": [
+        "Etching and aquatint",
+        "Watercolor on paper",
+        "oil on board",
+        "Oil on canvas"
+      ],
+      "answer": "oil on board",
+      "context": "Félix Vallotton (Swiss French, 1865–1925), 1900",
+      "creation_date": "1900",
+      "culture": "France, 19th century"
+    },
+    {
+      "id": "medium-85043",
+      "question_key": "question.medium",
+      "image": "images/2020.163.jpg",
+      "options": [
+        "Etching and aquatint, hand colored",
+        "Lithograph with watercolor",
+        "etching and engraving, hand colored",
+        "Engraving with watercolor"
+      ],
+      "answer": "etching and engraving, hand colored",
+      "context": "Johannes Kip (Dutch, 1653–1722), 1707–9",
+      "creation_date": "1707–9",
+      "culture": "Netherlands"
+    },
+    {
+      "id": "medium-86501",
+      "question_key": "question.medium",
+      "image": "images/2016.1.jpg",
+      "options": [
+        "Color lithograph",
+        "Woodcut with watercolor",
+        "Linocut in colors",
+        "Color woodcut"
+      ],
+      "answer": "Color woodcut",
+      "context": "Arthur Wesley Dow (American, 1857–1922), c. 1898",
+      "creation_date": "c. 1898",
+      "culture": "America"
+    },
+    {
+      "id": "medium-90267",
+      "question_key": "question.medium",
+      "image": "images/2015.513.jpg",
+      "options": [
+        "Ink and color on silk",
+        "Handscroll, ink on paper",
+        "Hanging scroll, watercolor on silk",
+        "hanging scroll, ink and color on paper"
+      ],
+      "answer": "hanging scroll, ink and color on paper",
+      "context": "Japan, Muromachi period (1392–1573), mid-1500s",
+      "creation_date": "mid-1500s",
+      "culture": "Japan, Muromachi period (1392–1573)"
+    },
+    {
+      "id": "medium-92759",
+      "question_key": "question.medium",
+      "image": "images/2019.68.jpg",
+      "options": [
+        "Platinum print on paper",
+        "Albumen silver print",
+        "Gelatin silver print on photographic paper",
+        "Gelatin silver print, toned, on collodion printing-out paper"
+      ],
+      "answer": "Gelatin silver print, toned, on collodion printing-out paper",
+      "context": "Unidentified Photographer, c. 1900s",
+      "creation_date": "c. 1900s",
+      "culture": "early 20th century"
+    },
+    {
+      "id": "medium-93189",
+      "question_key": "question.medium",
+      "image": "images/2018.280.jpg",
+      "options": [
+        "Porcelain with white glaze",
+        "Glazed stoneware",
+        "glazed white clay",
+        "Carved white marble"
+      ],
+      "answer": "glazed white clay",
+      "context": "Tiffany Studios (United States, New York, 1902–32), c. 1904–14",
+      "creation_date": "c. 1904–14",
+      "culture": "America, New York"
+    },
+    {
+      "id": "medium-95269",
+      "question_key": "question.medium",
+      "image": "images/1916.1041.jpg",
+      "options": [
+        "Oil on wood panel",
+        "Tempera on canvas",
+        "Watercolor on paper",
+        "oil on canvas"
+      ],
+      "answer": "oil on canvas",
+      "context": "George Romney (British, 1734–1802), c. 1778–1780",
+      "creation_date": "c. 1778–1780",
+      "culture": "England, 18th century"
+    },
+    {
+      "id": "medium-96446",
+      "question_key": "question.medium",
+      "image": "images/1916.217.2.jpg",
+      "options": [
+        "Chased metal with enamel and glass",
+        "Gilded bronze with pearl embellishment",
+        "Silver, glass, and gemstones",
+        "chased metal, glass and pearl embellishment"
+      ],
+      "answer": "chased metal, glass and pearl embellishment",
+      "context": ", 1811–1916",
+      "creation_date": "1811–1916",
+      "culture": ""
+    }
+  ]
+}

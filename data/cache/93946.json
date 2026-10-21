@@ -1,0 +1,169 @@
+{
+  "id": 93946,
+  "accession_number": "1914.535",
+  "share_license_status": "CC0",
+  "tombstone": "Vase, 1736–95. China, Qing dynasty (1644–1911), Qianlong reign (1736–95). Porcelain; overall: 75 cm (29 1/2 in.). The Cleveland Museum of Art, Gift of Mr. and Mrs. Ralph King, 1914.535",
+  "current_location": null,
+  "title": "Vase",
+  "creation_date": "1736–95",
+  "creation_date_earliest": 1736,
+  "creation_date_latest": 1795,
+  "artists_tags": [],
+  "culture": [
+    "China, Qing dynasty (1644–1911), Qianlong reign (1736–95)"
+  ],
+  "technique": "porcelain",
+  "support_materials": [],
+  "department": "Chinese Art",
+  "collection": "China - Qing Dynasty",
+  "type": "Ceramic",
+  "measurements": "Overall: 75 cm (29 1/2 in.)",
+  "dimensions": {
+    "overall": {
+      "height": 0.75,
+      "height_inch": 29,
+      "height_inch_fraction": 0.5
+    }
+  },
+  "state_of_the_work": null,
+  "edition_of_the_work": null,
+  "copyright": null,
+  "inscriptions": [],
+  "exhibitions": {
+    "current": [],
+    "legacy": []
+  },
+  "provenance": [
+    {
+      "description": "Ralph King [1855–1926] and Fanny Tewksbury King [1867–1949], Cleveland Heights, OH, given to the Cleveland Museum of Art",
+      "citations": [],
+      "footnotes": null,
+      "date": "?–1914",
+      "sortorder": 1
+    },
+    {
+      "description": "The Cleveland Museum of Art, Cleveland, OH",
+      "citations": [],
+      "footnotes": null,
+      "date": "1914–",
+      "sortorder": 2
+    }
+  ],
+  "find_spot": null,
+  "related_works": [],
+  "former_accession_numbers": [],
+  "did_you_know": null,
+  "early_education_description": null,
+  "artlens_description": null,
+  "description": null,
+  "external_resources": {
+    "wikidata": [
+      "https://www.wikidata.org/wiki/Q79473718"
+    ],
+    "internet_archive": [
+      "https://archive.org/details/clevelandart-1914.535-vase"
+    ]
+  },
+  "citations": [
+    {
+      "citation": "\"Recent Accessions.\" <em>The Bulletin of the Cleveland Museum of Art </em>1, no. 2 (July 1914): 3.",
+      "page_number": "Reproduced: p. 3; Mentioned: p. 5",
+      "url": "http://www.jstor.org/stable/25135978"
+    }
+  ],
+  "url": "https://clevelandart.org/art/1914.535",
+  "images": {
+    "annotation": null,
+    "web": {
+      "url": "https://openaccess-cdn.clevelandart.org/1914.535/1914.535_web.jpg",
+      "width": "673",
+      "height": "900",
+      "filesize": "73190",
+      "filename": "1914.535_web.jpg"
+    },
+    "print": {
+      "url": "https://openaccess-cdn.clevelandart.org/1914.535/1914.535_print.jpg",
+      "width": "2543",
+      "height": "3400",
+      "filesize": "737333",
+      "filename": "1914.535_print.jpg"
+    },
+    "full": {
+      "url": "https://openaccess-cdn.clevelandart.org/1914.535/1914.535_full.tif",
+      "width": "5880",
+      "height": "7862",
+      "filesize": "138712992",
+      "filename": "1914.535_full.tif"
+    }
+  },
+  "alternate_images": [
+    {
+      "web": {
+        "url": "https://openaccess-cdn.clevelandart.org/1914.535/1914.535_alt0_web.jpg",
+        "width": "680",
+        "height": "900",
+        "filesize": "70757"
+      },
+      "print": {
+        "url": "https://openaccess-cdn.clevelandart.org/1914.535/1914.535_alt0_print.jpg",
+        "width": "2567",
+        "height": "3400",
+        "filesize": "757583"
+      },
+      "full": {
+        "url": "https://openaccess-cdn.clevelandart.org/1914.535/1914.535_alt0_full.tif",
+        "width": "5925",
+        "height": "7847",
+        "filesize": "139507692"
+      },
+      "date_created": "2018-05-07T10:40:57",
+      "annotation": ""
+    },
+    {
+      "web": {
+        "url": "https://openaccess-cdn.clevelandart.org/1914.535/1914.535_alt1_web.jpg",
+        "width": "722",
+        "height": "900",
+        "filesize": "119371"
+      },
+      "print": {
+        "url": "https://openaccess-cdn.clevelandart.org/1914.535/1914.535_alt1_print.jpg",
+        "width": "2727",
+        "height": "3400",
+        "filesize": "1317034"
+      },
+      "full": {
+        "url": "https://openaccess-cdn.clevelandart.org/1914.535/1914.535_alt1_full.tif",
+        "width": "6000",
+        "height": "7482",
+        "filesize": "134704672"
+      },
+      "date_created": "2018-05-07T11:05:07",
+      "annotation": ""
+    }
+  ],
+  "creditline": "Gift of Mr. and Mrs. Ralph King",
+  "image_credit": null,
+  "sketchfab_id": null,
+  "sketchfab_url": null,
+  "gallery_donor_text": null,
+  "athena_id": 93946,
+  "creators": [],
+  "legal_status": "accessioned",
+  "accession_date": "1914-07-06T00:00:00",
+  "sortable_date": 1736,
+  "date_added_to_oa": null,
+  "date_text": "1736–95",
+  "collapse_artists": false,
+  "on_loan": false,
+  "recently_acquired": false,
+  "record_type": "object",
+  "conservation_statement": null,
+  "has_conservation_images": false,
+  "cover_accession_number": null,
+  "is_nazi_era_provenance": false,
+  "impression": null,
+  "alternate_titles": [],
+  "is_highlight": false,
+  "updated_at": "2026-05-29 04:59:17.553000"
+}

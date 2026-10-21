@@ -1,0 +1,277 @@
+{
+  "id": 95269,
+  "accession_number": "1916.1041",
+  "share_license_status": "CC0",
+  "tombstone": "Portrait of Jane Hoskyns, c. 1778–1780. George Romney (British, 1734–1802). Oil on canvas; framed: 102 x 89 x 10.5 cm (40 3/16 x 35 1/16 x 4 1/8 in.); unframed: 69.8 x 59 cm (27 1/2 x 23 1/4 in.). The Cleveland Museum of Art, Gift of Mr. and Mrs. J. H. Wade, 1916.1041",
+  "current_location": null,
+  "title": "Portrait of Jane Hoskyns",
+  "creation_date": "c. 1778–1780",
+  "creation_date_earliest": 1778,
+  "creation_date_latest": 1780,
+  "artists_tags": [
+    "male"
+  ],
+  "culture": [
+    "England, 18th century"
+  ],
+  "technique": "oil on canvas",
+  "support_materials": [],
+  "department": "European Painting and Sculpture",
+  "collection": "P - British before 1800",
+  "type": "Painting",
+  "measurements": "Framed: 102 x 89 x 10.5 cm (40 3/16 x 35 1/16 x 4 1/8 in.); Unframed: 69.8 x 59 cm (27 1/2 x 23 1/4 in.)",
+  "dimensions": {
+    "framed": {
+      "height": 1.02,
+      "height_inch": 40,
+      "height_inch_fraction": 0.1875,
+      "width": 0.89,
+      "width_inch": 35,
+      "width_inch_fraction": 0.0625,
+      "depth": 0.105,
+      "depth_inch": 4,
+      "depth_inch_fraction": 0.125
+    },
+    "unframed": {
+      "height": 0.698,
+      "height_inch": 27,
+      "height_inch_fraction": 0.5,
+      "width": 0.59,
+      "width_inch": 23,
+      "width_inch_fraction": 0.25
+    }
+  },
+  "state_of_the_work": null,
+  "edition_of_the_work": null,
+  "copyright": null,
+  "inscriptions": [],
+  "exhibitions": {
+    "current": [
+      {
+        "id": 312517,
+        "title": "The Twentieth Anniversary Exhibition: The Official Art Exhibit of the Great Lakes Exposition",
+        "description": "<i>The Twentieth Anniversary Exhibition: The Official Art Exhibit of the Great Lakes Exposition</i>. The Cleveland Museum of Art, Cleveland, OH (organizer) (June 26-October 4, 1936).",
+        "opening_date": "1936-06-26T04:00:00"
+      },
+      {
+        "id": 312341,
+        "title": "The Silver Jubilee Exhibition",
+        "description": "<i>The Silver Jubilee Exhibition</i>. The Cleveland Museum of Art, Cleveland, OH (organizer) (June 23-September 28, 1941).",
+        "opening_date": "1941-06-23T04:00:00"
+      },
+      {
+        "id": 306699,
+        "title": "British Gallery Reinstallation  (June 2020)",
+        "description": "<i>British Gallery Reinstallation  (June 2020)</i>. The Cleveland Museum of Art (organizer).",
+        "opening_date": "2020-06-30T04:00:00"
+      }
+    ],
+    "legacy": [
+      {
+        "description": "<em>Cleveland Art Loan Exposition</em>. Cleveland Museum of Art, Cleveland, OH (November 25-December 17, 1913).",
+        "opening_date": "1913-11-25T00:00:00"
+      }
+    ]
+  },
+  "provenance": [
+    {
+      "description": "Sir John Chandos Reade (the sitter's son)",
+      "citations": [],
+      "footnotes": [],
+      "date": null,
+      "sortorder": null
+    },
+    {
+      "description": "Shipton Court (sale: Christie's London, 13 July 1895, no. 14)",
+      "citations": [],
+      "footnotes": [],
+      "date": null,
+      "sortorder": null
+    },
+    {
+      "description": "(A. Tooth, London, 1895)",
+      "citations": [],
+      "footnotes": [],
+      "date": null,
+      "sortorder": null
+    },
+    {
+      "description": "Mr. and Mrs. J. H. Wade",
+      "citations": [],
+      "footnotes": [],
+      "date": null,
+      "sortorder": null
+    },
+    {
+      "description": "Sir John Chandos Reade, Seventh Bart. (1785-1868), Shipton Court, Axon, England (sold, Christie’s, London, July 13, 1895, no. 14, to Tooth and Sons, London);",
+      "citations": [],
+      "footnotes": [],
+      "date": null,
+      "sortorder": null
+    },
+    {
+      "description": "Tooth and Sons (London, England), sold to Mr. and Mrs. J.H. Wade, 1895",
+      "citations": [],
+      "footnotes": [],
+      "date": null,
+      "sortorder": null
+    },
+    {
+      "description": "1895-1916  Mr. and Mrs. J.H. Wade (Gates Mills, Ohio), by gift to the Cleveland Museum of Art, 1916.",
+      "citations": [],
+      "footnotes": [],
+      "date": null,
+      "sortorder": null
+    },
+    {
+      "description": "The Cleveland Museum of Art, Cleveland, OH",
+      "citations": [],
+      "footnotes": [],
+      "date": "1916-",
+      "sortorder": 8
+    }
+  ],
+  "find_spot": null,
+  "related_works": [],
+  "former_accession_numbers": [],
+  "did_you_know": null,
+  "early_education_description": null,
+  "artlens_description": null,
+  "description": "The sitter married Sir John Read in 1774, who also sat for a portrait by the artist in 1788. Born in Lancashire, Romney first apprenticed in his father’s cabinetmaker’s shop. He worked in the north of England until 1762, when he settled in London. There he became a successful portraitist, alongside Joshua Reynolds and Thomas Gainsborough. As with many successful portraitists, his heart lay elsewhere and he dreamed of making history paintings, but his plans for grandiose compositions rarely advanced beyond drawings.",
+  "external_resources": {
+    "wikidata": [
+      "https://www.wikidata.org/wiki/Q60502372"
+    ],
+    "internet_archive": [
+      "https://archive.org/details/clevelandart-1916.1041-portrait-of-jane-hos"
+    ]
+  },
+  "citations": [
+    {
+      "citation": "Ward, Thomas Humphry, and W. Roberts. <em>Romney; A Biographical and Critical Essay, with a Catalogue Raisonné of His Works</em>. London, United Kingdom: T. Agnew &amp; Sons, 1904.",
+      "page_number": "Mentioned: p. 1, 86-88, 90-91, 114, and 11, 81",
+      "url": null
+    },
+    {
+      "citation": "Underhill, Gertrude. \"Some Recent Acquisitions of The Cleveland Museum of Art.\" Art and Archeology, <em>The Bulletin of The Cleveland Museum of Art</em>, XVI (1923): 130.",
+      "page_number": "Reproduced: p. 130",
+      "url": null
+    },
+    {
+      "citation": "Milliken, William Mathewson. <em>The Twentieth Anniversary Exhibition of the Cleveland Museum of Art</em>. New York, NY: The Art news, 1936.",
+      "page_number": "Reproduced: no. 236",
+      "url": null
+    },
+    {
+      "citation": "Coe, Nancy. <em>The History of the Collecting of European Paintings and Drawings in the City of Cleveland</em>. Oberlin, OH: Oberlin College, 1955.",
+      "page_number": "Mentioned: p. 11; Reproduced: p.31254, no.",
+      "url": null
+    },
+    {
+      "citation": "The Cleveland Museum of Art. <em>The Cleveland Museum of Art Catalogue of Paintings, Part 3: European Paintings of the 16th, 17th, and 18th Centuries</em>. Cleveland, OH: The Cleveland Museum of Art, 1982.",
+      "page_number": "Reproduced: p. 214; Mentioned: p. 215",
+      "url": null
+    },
+    {
+      "citation": "Christie, Manson &amp; Woods, London. <em>Catalogue of Important Pictures by Old Masters and of the Early English School: Including Masterpieces of Murillo, Jacob Ruysdael and Weenix, from the Clewer Manor Collection, Also Choice Examples of Watteau, Hobbema &amp; W.V. De Velde the Property of a Nobleman, Also the Family Portraits of the Late Sir John Chandos Reade, Sixth Baronet, Fine Works of Canaletto &amp; Rembrandt, the Property of J. Carpenter Garnier, Esq., the Celebrated Engraved Portrait of Admiral Viscount Nelson, by J. Hoppner, R.A., the Property of the Rt. Hon. Viscount Bridport, and Other Fine Portraits by T. Gainsborough, R.A., Sir J. Reynolds, G. Romney, &amp;C</em>. July 13, 1895.",
+      "page_number": "p. 5, Lot 14",
+      "url": null
+    },
+    {
+      "citation": "\"The Wade Collection.\" <em>The Bulletin of the Cleveland Museum of Art</em> 4, no. 1 (1917): 3-12.",
+      "page_number": "Mentioned: p. 3; reproduced: p. 5",
+      "url": "http://www.jstor.org/stable/25136053"
+    }
+  ],
+  "url": "https://clevelandart.org/art/1916.1041",
+  "images": {
+    "annotation": null,
+    "web": {
+      "url": "https://openaccess-cdn.clevelandart.org/1916.1041/1916.1041_web.jpg",
+      "width": "743",
+      "height": "893",
+      "filesize": "424684",
+      "filename": "1916.1041_web.jpg"
+    },
+    "print": {
+      "url": "https://openaccess-cdn.clevelandart.org/1916.1041/1916.1041_print.jpg",
+      "width": "2830",
+      "height": "3400",
+      "filesize": "5661255",
+      "filename": "1916.1041_print.jpg"
+    },
+    "full": {
+      "url": "https://openaccess-cdn.clevelandart.org/1916.1041/1916.1041_full.tif",
+      "width": "3848",
+      "height": "4623",
+      "filesize": "53399536",
+      "filename": "1916.1041_full.tif"
+    }
+  },
+  "alternate_images": [
+    {
+      "web": {
+        "url": "https://openaccess-cdn.clevelandart.org/1916.1041/1916.1041_alt0_web.jpg",
+        "width": "795",
+        "height": "893",
+        "filesize": "649075"
+      },
+      "print": {
+        "url": "https://openaccess-cdn.clevelandart.org/1916.1041/1916.1041_alt0_print.jpg",
+        "width": "3026",
+        "height": "3400",
+        "filesize": "6918449"
+      },
+      "full": {
+        "url": "https://openaccess-cdn.clevelandart.org/1916.1041/1916.1041_alt0_full.tif",
+        "width": "1412",
+        "height": "1586",
+        "filesize": "6748896"
+      },
+      "date_created": "2001-08-27T15:32:10",
+      "annotation": ""
+    }
+  ],
+  "creditline": "Gift of Mr. and Mrs. J. H. Wade",
+  "image_credit": null,
+  "sketchfab_id": null,
+  "sketchfab_url": null,
+  "gallery_donor_text": null,
+  "athena_id": 95269,
+  "creators": [
+    {
+      "id": 1343,
+      "description": "George Romney (British, 1734–1802)",
+      "extent": null,
+      "qualifier": null,
+      "role": "artist",
+      "biography": null,
+      "name_in_original_language": null,
+      "birth_year": "1734",
+      "death_year": "1802",
+      "use_in_caption": true,
+      "include_extent": false,
+      "weight": 1
+    }
+  ],
+  "legal_status": "accessioned",
+  "accession_date": "1916-10-02T00:00:00",
+  "sortable_date": 1778,
+  "date_added_to_oa": null,
+  "date_text": "c. 1778–1780",
+  "collapse_artists": false,
+  "on_loan": false,
+  "recently_acquired": false,
+  "record_type": "object",
+  "conservation_statement": null,
+  "has_conservation_images": true,
+  "cover_accession_number": null,
+  "is_nazi_era_provenance": false,
+  "impression": null,
+  "alternate_titles": [
+    "Jane Hoskyns",
+    "Portrait of Lady Jane Reade"
+  ],
+  "is_highlight": false,
+  "updated_at": "2026-05-29 05:06:11.278000"
+}

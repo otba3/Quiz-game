@@ -1,0 +1,254 @@
+{
+  "id": 144610,
+  "accession_number": "1969.25",
+  "share_license_status": "CC0",
+  "tombstone": "Incense-burner Cover, c. 500. Guatemala, Escuintla Region, early 6th Century. Earthenware with slip and pigments; overall: 44.8 x 43 x 31.5 cm (17 5/8 x 16 15/16 x 12 3/8 in.). The Cleveland Museum of Art, Andrew R. and Martha Holden Jennings Fund, 1969.25",
+  "current_location": null,
+  "title": "Incense-burner Cover",
+  "creation_date": "c. 500",
+  "creation_date_earliest": 495,
+  "creation_date_latest": 505,
+  "artists_tags": [],
+  "culture": [
+    "Guatemala, Escuintla Region, early 6th Century"
+  ],
+  "technique": "earthenware with slip and pigments",
+  "support_materials": [],
+  "department": "Art of the Americas",
+  "collection": "AA - Mesoamerica",
+  "type": "Ceramic",
+  "measurements": "Overall: 44.8 x 43 x 31.5 cm (17 5/8 x 16 15/16 x 12 3/8 in.)",
+  "dimensions": {
+    "overall": {
+      "height": 0.448,
+      "height_inch": 17,
+      "height_inch_fraction": 0.625,
+      "width": 0.43,
+      "width_inch": 16,
+      "width_inch_fraction": 0.9375,
+      "depth": 0.315,
+      "depth_inch": 12,
+      "depth_inch_fraction": 0.375
+    }
+  },
+  "state_of_the_work": null,
+  "edition_of_the_work": null,
+  "copyright": null,
+  "inscriptions": [],
+  "exhibitions": {
+    "current": [
+      {
+        "id": 301313,
+        "title": "Year in Review: 1969",
+        "description": "<i>Year in Review: 1969</i>. The Cleveland Museum of Art, Cleveland, OH (organizer) (January 27-February 22, 1970).",
+        "opening_date": "1970-01-27T05:00:00"
+      }
+    ],
+    "legacy": []
+  },
+  "provenance": [],
+  "find_spot": null,
+  "related_works": [],
+  "former_accession_numbers": [],
+  "did_you_know": null,
+  "early_education_description": null,
+  "artlens_description": null,
+  "description": "This elaborate clay construction served as the cover and chimney of a basin used to burn copal incense. Although probably manufactured in what is now Guatemala, the form and fabrication are based on examples from Teotihuacan in central Mexico, hundreds of miles away. Intensive trade between the two regions, or even a Teotihuacan colony in Guatemala seems likely. The masked, dressed, and ornamented moundlike form probably represents a mortuary bundle or a cult image.",
+  "external_resources": {
+    "wikidata": [
+      "https://www.wikidata.org/wiki/Q79922023"
+    ],
+    "internet_archive": [
+      "https://archive.org/details/clevelandart-1969.25-incense-burner-cover"
+    ]
+  },
+  "citations": [
+    {
+      "citation": "Young-Sanchez, Margaret. \"Veneration of the Dead: Religious Ritual on a Pre-Columbian Mirror-Back\".<em> The Bulletin of the Cleveland Museum of Art</em>. Cleveland, Ohio: Cleveland Museum of Art, 77, no. 9 (November, 1990)",
+      "page_number": "333",
+      "url": "https://www.jstor.org/stable/25161301"
+    }
+  ],
+  "url": "https://clevelandart.org/art/1969.25",
+  "images": {
+    "annotation": null,
+    "web": {
+      "url": "https://openaccess-cdn.clevelandart.org/1969.25/1969.25_web.jpg",
+      "width": "946",
+      "height": "893",
+      "filesize": "127444",
+      "filename": "1969.25_web.jpg"
+    },
+    "print": {
+      "url": "https://openaccess-cdn.clevelandart.org/1969.25/1969.25_print.jpg",
+      "width": "3400",
+      "height": "3211",
+      "filesize": "1349419",
+      "filename": "1969.25_print.jpg"
+    },
+    "full": {
+      "url": "https://openaccess-cdn.clevelandart.org/1969.25/1969.25_full.tif",
+      "width": "4968",
+      "height": "4692",
+      "filesize": "69963020",
+      "filename": "1969.25_full.tif"
+    }
+  },
+  "alternate_images": [
+    {
+      "web": {
+        "url": "https://openaccess-cdn.clevelandart.org/1969.25/1969.25_alt0_web.jpg",
+        "width": "878",
+        "height": "893",
+        "filesize": "115450"
+      },
+      "print": {
+        "url": "https://openaccess-cdn.clevelandart.org/1969.25/1969.25_alt0_print.jpg",
+        "width": "3344",
+        "height": "3400",
+        "filesize": "1538476"
+      },
+      "full": {
+        "url": "https://openaccess-cdn.clevelandart.org/1969.25/1969.25_alt0_full.tif",
+        "width": "4341",
+        "height": "4413",
+        "filesize": "57503932"
+      },
+      "date_created": "2011-12-12T19:02:30",
+      "annotation": ""
+    },
+    {
+      "web": {
+        "url": "https://openaccess-cdn.clevelandart.org/1969.25/1969.25_alt1_web.jpg",
+        "width": "953",
+        "height": "893",
+        "filesize": "109673"
+      },
+      "print": {
+        "url": "https://openaccess-cdn.clevelandart.org/1969.25/1969.25_alt1_print.jpg",
+        "width": "3400",
+        "height": "3186",
+        "filesize": "1171039"
+      },
+      "full": {
+        "url": "https://openaccess-cdn.clevelandart.org/1969.25/1969.25_alt1_full.tif",
+        "width": "4739",
+        "height": "4442",
+        "filesize": "63181328"
+      },
+      "date_created": "2011-12-12T20:23:53",
+      "annotation": ""
+    },
+    {
+      "web": {
+        "url": "https://openaccess-cdn.clevelandart.org/1969.25/1969.25_alt2_web.jpg",
+        "width": "837",
+        "height": "893",
+        "filesize": "69722"
+      },
+      "print": {
+        "url": "https://openaccess-cdn.clevelandart.org/1969.25/1969.25_alt2_print.jpg",
+        "width": "3185",
+        "height": "3400",
+        "filesize": "824637"
+      },
+      "full": {
+        "url": "https://openaccess-cdn.clevelandart.org/1969.25/1969.25_alt2_full.tif",
+        "width": "4136",
+        "height": "4414",
+        "filesize": "54799440"
+      },
+      "date_created": "2011-12-12T19:26:33",
+      "annotation": ""
+    },
+    {
+      "web": {
+        "url": "https://openaccess-cdn.clevelandart.org/1969.25/1969.25_alt3_web.jpg",
+        "width": "784",
+        "height": "893",
+        "filesize": "66496"
+      },
+      "print": {
+        "url": "https://openaccess-cdn.clevelandart.org/1969.25/1969.25_alt3_print.jpg",
+        "width": "2984",
+        "height": "3400",
+        "filesize": "839089"
+      },
+      "full": {
+        "url": "https://openaccess-cdn.clevelandart.org/1969.25/1969.25_alt3_full.tif",
+        "width": "3972",
+        "height": "4525",
+        "filesize": "53950796"
+      },
+      "date_created": "2011-12-12T19:47:56",
+      "annotation": ""
+    },
+    {
+      "web": {
+        "url": "https://openaccess-cdn.clevelandart.org/1969.25/1969.25_alt4_web.jpg",
+        "width": "1006",
+        "height": "893",
+        "filesize": "143585"
+      },
+      "print": {
+        "url": "https://openaccess-cdn.clevelandart.org/1969.25/1969.25_alt4_print.jpg",
+        "width": "3400",
+        "height": "3018",
+        "filesize": "1589630"
+      },
+      "full": {
+        "url": "https://openaccess-cdn.clevelandart.org/1969.25/1969.25_alt4_full.tif",
+        "width": "4961",
+        "height": "4404",
+        "filesize": "65571924"
+      },
+      "date_created": "2011-12-12T19:39:39",
+      "annotation": ""
+    },
+    {
+      "web": {
+        "url": "https://openaccess-cdn.clevelandart.org/1969.25/1969.25_alt5_web.jpg",
+        "width": "733",
+        "height": "893",
+        "filesize": "453125"
+      },
+      "print": {
+        "url": "https://openaccess-cdn.clevelandart.org/1969.25/1969.25_alt5_print.jpg",
+        "width": "1536",
+        "height": "1871",
+        "filesize": "2117159"
+      },
+      "full": {
+        "url": "https://openaccess-cdn.clevelandart.org/1969.25/1969.25_alt5_full.tif",
+        "width": "1536",
+        "height": "1871",
+        "filesize": "8624748"
+      },
+      "annotation": ""
+    }
+  ],
+  "creditline": "Andrew R. and Martha Holden Jennings Fund",
+  "image_credit": null,
+  "sketchfab_id": null,
+  "sketchfab_url": null,
+  "gallery_donor_text": null,
+  "athena_id": 144610,
+  "creators": [],
+  "legal_status": "accessioned",
+  "accession_date": "1969-01-22T00:00:00",
+  "sortable_date": 495,
+  "date_added_to_oa": null,
+  "date_text": "c. 500",
+  "collapse_artists": false,
+  "on_loan": false,
+  "recently_acquired": false,
+  "record_type": "object",
+  "conservation_statement": null,
+  "has_conservation_images": false,
+  "cover_accession_number": null,
+  "is_nazi_era_provenance": false,
+  "impression": null,
+  "alternate_titles": [],
+  "is_highlight": false,
+  "updated_at": "2026-05-29 07:25:49.262000"
+}

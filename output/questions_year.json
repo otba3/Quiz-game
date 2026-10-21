@@ -47,19 +47,19 @@
       "context": "Kano Naonobu (Japanese, 1607–1650), 1600s"
     },
     {
-      "id": "year-86532",
+      "id": "year-94605",
       "question_key": "question.year",
-      "image": "images/2016.6.jpg",
+      "image": "images/1915.110.jpg",
       "options": [
+        "15th century",
         "17th century",
         "18th century",
-        "20th century",
-        "19th century"
+        "16th century"
       ],
-      "answer": "19th century",
-      "artwork_title": "Mountain View",
-      "culture": "America",
-      "context": "Robert J. Pattison (American, 1838–1903), 1862–67"
+      "answer": "16th century",
+      "artwork_title": "Children at Play",
+      "culture": "China, Ming dynasty (1368–1644)",
+      "context": "Xia Kui (Chinese, active c. 1405–1445), 1508"
     },
     {
       "id": "year-91231",
@@ -150,6 +150,21 @@
       "artwork_title": "The Ford",
       "culture": "America, Ohio, Cleveland",
       "context": "Henry Keller (American, born Germany, 1869–1949), 1919"
+    },
+    {
+      "id": "year-93393",
+      "question_key": "question.year",
+      "image": "images/1928.1856.jpg",
+      "options": [
+        "18th century",
+        "17th century",
+        "20th century",
+        "19th century"
+      ],
+      "answer": "20th century",
+      "artwork_title": "Francesca",
+      "culture": "United States, Ohio, Cleveland",
+      "context": "Louise B. Maloney (American, 1887–1973), 1927"
     }
   ]
 }

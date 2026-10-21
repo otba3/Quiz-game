@@ -1,4 +1,7 @@
 {
   "question.title": "What is the title of this artwork?",
-  "question.year": "Which century was this artwork created?"
+  "question.year": "Which century was this artwork created?",
+  "question.medium": "What medium was used to create this artwork?",
+  "question.continent": "Which continent does this artwork come from?",
+  "question.country": "Which country in {continent} is this artwork?"
 }

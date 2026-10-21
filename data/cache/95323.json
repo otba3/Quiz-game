@@ -1,0 +1,162 @@
+{
+  "id": 95323,
+  "accession_number": "1916.1091.a",
+  "share_license_status": "CC0",
+  "tombstone": "Breastplate, mid-1500s. Germany, Landshut, mid-16th century. Steel; overall: 39.4 x 35.8 x 17.5 cm (15 1/2 x 14 1/8 x 6 7/8 in.). The Cleveland Museum of Art, Gift of Mr. and Mrs. John L. Severance, 1916.1091.a",
+  "current_location": "210A Armor Court",
+  "title": "Breastplate",
+  "creation_date": "mid-1500s",
+  "creation_date_earliest": 1540,
+  "creation_date_latest": 1560,
+  "artists_tags": [],
+  "culture": [
+    "Germany, Landshut, mid-16th century"
+  ],
+  "technique": "steel",
+  "support_materials": [],
+  "department": "Medieval Art",
+  "collection": "MED - Arms & Armor",
+  "type": "Arms and Armor",
+  "measurements": "Overall: 39.4 x 35.8 x 17.5 cm (15 1/2 x 14 1/8 x 6 7/8 in.)",
+  "dimensions": {
+    "overall": {
+      "height": 0.394,
+      "height_inch": 15,
+      "height_inch_fraction": 0.5,
+      "width": 0.358,
+      "width_inch": 14,
+      "width_inch_fraction": 0.125,
+      "depth": 0.175,
+      "depth_inch": 6,
+      "depth_inch_fraction": 0.875
+    }
+  },
+  "state_of_the_work": null,
+  "edition_of_the_work": null,
+  "copyright": null,
+  "inscriptions": [],
+  "exhibitions": {
+    "current": [
+      {
+        "id": 190103,
+        "title": "Armor Court Reinstallation",
+        "description": "<i>Armor Court Reinstallation</i>. The Cleveland Museum of Art (organizer).",
+        "opening_date": "1998-09-10T00:00:00"
+      }
+    ],
+    "legacy": [
+      {
+        "description": "The Cleveland Museum of Art (09/10/1998); \"Armor Court Reinstallation\"",
+        "opening_date": "1998-09-10T00:00:00"
+      }
+    ]
+  },
+  "provenance": [
+    {
+      "description": "Zschille; Frank Gair Macomber, Boston, cat.# 159.",
+      "citations": [],
+      "footnotes": null,
+      "date": null,
+      "sortorder": null
+    }
+  ],
+  "find_spot": null,
+  "related_works": [],
+  "former_accession_numbers": [
+    "1916.1091"
+  ],
+  "did_you_know": null,
+  "early_education_description": null,
+  "artlens_description": null,
+  "description": null,
+  "external_resources": {
+    "wikidata": [
+      "https://www.wikidata.org/wiki/Q60779952"
+    ],
+    "internet_archive": []
+  },
+  "citations": [
+    {
+      "citation": "<em>Catalogue of Arms and Armour</em>. Vol. 3, <em>16th century</em>. [Boston, Massachusetts]: [Frank Gair Macomber], [1900-1915].",
+      "page_number": "Mentioned and Reproduced: No. (158) 161",
+      "url": "https://archive.org/details/CatArmsArmour3_201602/page/n300"
+    },
+    {
+      "citation": "Gilchrist, Helen Ives. <em>A Catalogue of the Collection of Arms &amp; Armor Presented to the Cleveland Museum of Art by Mr. and Mrs. John Long Severance; 1916-1923</em>. Cleveland: The Cleveland Museum of Art, 1924.",
+      "page_number": "Mentioned: p. 27-28, A6",
+      "url": "https://archive.org/details/SeveranceCollection1924/page/n34"
+    }
+  ],
+  "url": "https://clevelandart.org/art/1916.1091.a",
+  "images": {
+    "annotation": null,
+    "web": {
+      "url": "https://openaccess-cdn.clevelandart.org/1916.1091.a/1916.1091.a_web.jpg",
+      "width": "734",
+      "height": "900",
+      "filesize": "252685",
+      "filename": "1916.1091.a_web.jpg"
+    },
+    "print": {
+      "url": "https://openaccess-cdn.clevelandart.org/1916.1091.a/1916.1091.a_print.jpg",
+      "width": "2773",
+      "height": "3400",
+      "filesize": "2384613",
+      "filename": "1916.1091.a_print.jpg"
+    },
+    "full": {
+      "url": "https://openaccess-cdn.clevelandart.org/1916.1091.a/1916.1091.a_full.tif",
+      "width": "3622",
+      "height": "4441",
+      "filesize": "48281860",
+      "filename": "1916.1091.a_full.tif"
+    }
+  },
+  "alternate_images": [
+    {
+      "web": {
+        "url": "https://openaccess-cdn.clevelandart.org/1916.1091.a/1916.1091.a_alt0_web.jpg",
+        "width": "728",
+        "height": "893",
+        "filesize": "421642"
+      },
+      "print": {
+        "url": "https://openaccess-cdn.clevelandart.org/1916.1091.a/1916.1091.a_alt0_print.jpg",
+        "width": "1536",
+        "height": "1883",
+        "filesize": "2003848"
+      },
+      "full": {
+        "url": "https://openaccess-cdn.clevelandart.org/1916.1091.a/1916.1091.a_alt0_full.tif",
+        "width": "1536",
+        "height": "1883",
+        "filesize": "8680060"
+      },
+      "annotation": ""
+    }
+  ],
+  "creditline": "Gift of Mr. and Mrs. John L. Severance",
+  "image_credit": null,
+  "sketchfab_id": null,
+  "sketchfab_url": null,
+  "gallery_donor_text": null,
+  "athena_id": 95323,
+  "creators": [],
+  "legal_status": "accessioned",
+  "accession_date": "1916-04-10T00:00:00",
+  "sortable_date": 1540,
+  "date_added_to_oa": null,
+  "date_text": "mid-1500s",
+  "collapse_artists": false,
+  "on_loan": false,
+  "recently_acquired": false,
+  "record_type": "part",
+  "conservation_statement": null,
+  "has_conservation_images": false,
+  "cover_accession_number": "1916.1091",
+  "is_nazi_era_provenance": false,
+  "impression": null,
+  "alternate_titles": [],
+  "is_highlight": false,
+  "updated_at": "2026-05-29 05:06:34.645000"
+}

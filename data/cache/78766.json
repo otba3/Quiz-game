@@ -1,0 +1,255 @@
+{
+  "id": 78766,
+  "accession_number": "2015.155",
+  "share_license_status": "CC0",
+  "tombstone": "Scepter, late 1800s or early 1900s. Africa, Central Africa, Angola, Ovimbundu-style maker. Wood, copper alloy, upholstery studs, iron alloy, and cotton; overall: 57.5 x 4.5 x 5.5 cm (22 5/8 x 1 3/4 x 2 3/16 in.). The Cleveland Museum of Art, Gift of Dr. Anita J. Glaze, 2015.155",
+  "current_location": null,
+  "title": "Scepter",
+  "creation_date": "late 1800s or early 1900s",
+  "creation_date_earliest": 1850,
+  "creation_date_latest": 1949,
+  "artists_tags": [],
+  "culture": [
+    "Africa, Central Africa, Angola, Ovimbundu-style maker"
+  ],
+  "technique": "Wood, copper alloy, upholstery studs, iron alloy, and cotton",
+  "support_materials": [],
+  "department": "African Art",
+  "collection": "African Art",
+  "type": "Tools and Equipment",
+  "measurements": "Overall: 57.5 x 4.5 x 5.5 cm (22 5/8 x 1 3/4 x 2 3/16 in.)",
+  "dimensions": {
+    "overall": {
+      "height": 0.575,
+      "height_inch": 22,
+      "height_inch_fraction": 0.625,
+      "width": 0.045,
+      "width_inch": 1,
+      "width_inch_fraction": 0.75,
+      "depth": 0.055,
+      "depth_inch": 2,
+      "depth_inch_fraction": 0.1875
+    }
+  },
+  "state_of_the_work": null,
+  "edition_of_the_work": null,
+  "copyright": null,
+  "inscriptions": [],
+  "exhibitions": {
+    "current": [],
+    "legacy": []
+  },
+  "provenance": [
+    {
+      "description": "Anita Glaze",
+      "citations": [],
+      "footnotes": null,
+      "date": "1969 or 1970–2015",
+      "sortorder": 2
+    },
+    {
+      "description": "The Cleveland Museum of Art by gift",
+      "citations": [],
+      "footnotes": null,
+      "date": "2015–",
+      "sortorder": 3
+    }
+  ],
+  "find_spot": null,
+  "related_works": [],
+  "former_accession_numbers": [],
+  "did_you_know": null,
+  "early_education_description": null,
+  "artlens_description": null,
+  "description": "Staffs and scepters as well as tobacco pipes and mortars are among the most important sculptural creations to stem from the Ovimbundu peoples, a Central African culture. All of these object types have associations with ideas of class, status, and power. This scepter has a handle wrapped in thin copper wire that forms wide bands of alternating metal and wooden passages. Its finial is a human head whose carved headdress or hairstyle is ornamented with round-headed metal tacks.",
+  "external_resources": {
+    "wikidata": [
+      "https://www.wikidata.org/wiki/Q79469953"
+    ],
+    "internet_archive": []
+  },
+  "citations": [],
+  "url": "https://clevelandart.org/art/2015.155",
+  "images": {
+    "annotation": null,
+    "web": {
+      "url": "https://openaccess-cdn.clevelandart.org/2015.155/2015.155_web.jpg",
+      "width": "584",
+      "height": "900",
+      "filesize": "72720",
+      "filename": "2015.155_web.jpg"
+    },
+    "print": {
+      "url": "https://openaccess-cdn.clevelandart.org/2015.155/2015.155_print.jpg",
+      "width": "2208",
+      "height": "3400",
+      "filesize": "673883",
+      "filename": "2015.155_print.jpg"
+    },
+    "full": {
+      "url": "https://openaccess-cdn.clevelandart.org/2015.155/2015.155_full.tif",
+      "width": "5195",
+      "height": "8000",
+      "filesize": "124712356",
+      "filename": "2015.155_full.tif"
+    }
+  },
+  "alternate_images": [
+    {
+      "web": {
+        "url": "https://openaccess-cdn.clevelandart.org/2015.155/2015.155_alt0_web.jpg",
+        "width": "586",
+        "height": "900",
+        "filesize": "68627"
+      },
+      "print": {
+        "url": "https://openaccess-cdn.clevelandart.org/2015.155/2015.155_alt0_print.jpg",
+        "width": "2213",
+        "height": "3400",
+        "filesize": "694799"
+      },
+      "full": {
+        "url": "https://openaccess-cdn.clevelandart.org/2015.155/2015.155_alt0_full.tif",
+        "width": "5208",
+        "height": "8000",
+        "filesize": "125020644"
+      },
+      "date_created": "2015-10-15T08:26:46",
+      "annotation": ""
+    },
+    {
+      "web": {
+        "url": "https://openaccess-cdn.clevelandart.org/2015.155/2015.155_alt1_web.jpg",
+        "width": "599",
+        "height": "900",
+        "filesize": "69108"
+      },
+      "print": {
+        "url": "https://openaccess-cdn.clevelandart.org/2015.155/2015.155_alt1_print.jpg",
+        "width": "2262",
+        "height": "3400",
+        "filesize": "694419"
+      },
+      "full": {
+        "url": "https://openaccess-cdn.clevelandart.org/2015.155/2015.155_alt1_full.tif",
+        "width": "5322",
+        "height": "8000",
+        "filesize": "127757684"
+      },
+      "date_created": "2015-10-15T09:05:19",
+      "annotation": ""
+    },
+    {
+      "web": {
+        "url": "https://openaccess-cdn.clevelandart.org/2015.155/2015.155_alt2_web.jpg",
+        "width": "575",
+        "height": "900",
+        "filesize": "66888"
+      },
+      "print": {
+        "url": "https://openaccess-cdn.clevelandart.org/2015.155/2015.155_alt2_print.jpg",
+        "width": "2173",
+        "height": "3400",
+        "filesize": "663476"
+      },
+      "full": {
+        "url": "https://openaccess-cdn.clevelandart.org/2015.155/2015.155_alt2_full.tif",
+        "width": "5113",
+        "height": "8000",
+        "filesize": "122741872"
+      },
+      "date_created": "2015-10-15T08:46:12",
+      "annotation": ""
+    },
+    {
+      "web": {
+        "url": "https://openaccess-cdn.clevelandart.org/2015.155/2015.155_alt3_web.jpg",
+        "width": "615",
+        "height": "900",
+        "filesize": "66468"
+      },
+      "print": {
+        "url": "https://openaccess-cdn.clevelandart.org/2015.155/2015.155_alt3_print.jpg",
+        "width": "2325",
+        "height": "3400",
+        "filesize": "658143"
+      },
+      "full": {
+        "url": "https://openaccess-cdn.clevelandart.org/2015.155/2015.155_alt3_full.tif",
+        "width": "5471",
+        "height": "8000",
+        "filesize": "131333448"
+      },
+      "date_created": "2015-10-15T09:30:09",
+      "annotation": ""
+    },
+    {
+      "web": {
+        "url": "https://openaccess-cdn.clevelandart.org/2015.155/2015.155_alt4_web.jpg",
+        "width": "617",
+        "height": "900",
+        "filesize": "70934"
+      },
+      "print": {
+        "url": "https://openaccess-cdn.clevelandart.org/2015.155/2015.155_alt4_print.jpg",
+        "width": "2331",
+        "height": "3400",
+        "filesize": "735502"
+      },
+      "full": {
+        "url": "https://openaccess-cdn.clevelandart.org/2015.155/2015.155_alt4_full.tif",
+        "width": "5484",
+        "height": "8000",
+        "filesize": "131646820"
+      },
+      "date_created": "2015-10-15T10:01:45",
+      "annotation": ""
+    },
+    {
+      "web": {
+        "url": "https://openaccess-cdn.clevelandart.org/2015.155/2015.155_alt5_web.jpg",
+        "width": "675",
+        "height": "900",
+        "filesize": "186543"
+      },
+      "print": {
+        "url": "https://openaccess-cdn.clevelandart.org/2015.155/2015.155_alt5_print.jpg",
+        "width": "2550",
+        "height": "3400",
+        "filesize": "2184562"
+      },
+      "full": {
+        "url": "https://openaccess-cdn.clevelandart.org/2015.155/2015.155_alt5_full.tif",
+        "width": "6000",
+        "height": "8000",
+        "filesize": "144030992"
+      },
+      "date_created": "2015-10-15T10:39:48",
+      "annotation": ""
+    }
+  ],
+  "creditline": "Gift of Dr. Anita J. Glaze",
+  "image_credit": null,
+  "sketchfab_id": null,
+  "sketchfab_url": null,
+  "gallery_donor_text": null,
+  "athena_id": 78766,
+  "creators": [],
+  "legal_status": "accessioned",
+  "accession_date": "2015-12-07T00:00:00-05:00",
+  "sortable_date": 1850,
+  "date_added_to_oa": null,
+  "date_text": "late 1800s or early 1900s",
+  "collapse_artists": false,
+  "on_loan": false,
+  "recently_acquired": false,
+  "record_type": "object",
+  "conservation_statement": null,
+  "has_conservation_images": false,
+  "cover_accession_number": null,
+  "is_nazi_era_provenance": false,
+  "impression": null,
+  "alternate_titles": [],
+  "is_highlight": false,
+  "updated_at": "2026-05-29 04:57:16.984000"
+}

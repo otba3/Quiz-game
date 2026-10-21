@@ -1,0 +1,350 @@
+{
+  "id": 94605,
+  "accession_number": "1915.110",
+  "share_license_status": "CC0",
+  "tombstone": "Children at Play (嬰戲圖), 1508. Xia Kui (Chinese, active c. 1405–1445). Hanging scroll; ink and color on silk; painting: 62.5 x 113.7 cm (24 5/8 x 44 3/4 in.); overall with knobs: 214 x 137 cm (84 1/4 x 53 15/16 in.). The Cleveland Museum of Art, Gift of Charles L. Freer, 1915.110",
+  "current_location": null,
+  "title": "Children at Play",
+  "title_in_original_language": "嬰戲圖",
+  "creation_date": "1508",
+  "creation_date_earliest": 1508,
+  "creation_date_latest": 1508,
+  "artists_tags": [
+    "male"
+  ],
+  "culture": [
+    "China, Ming dynasty (1368–1644)"
+  ],
+  "technique": "hanging scroll; ink and color on silk",
+  "support_materials": [],
+  "department": "Chinese Art",
+  "collection": "ASIAN - Hanging scroll",
+  "type": "Painting",
+  "measurements": "Painting: 62.5 x 113.7 cm (24 5/8 x 44 3/4 in.); Overall with knobs: 214 x 137 cm (84 1/4 x 53 15/16 in.)",
+  "dimensions": {
+    "painting": {
+      "height": 0.625,
+      "height_inch": 24,
+      "height_inch_fraction": 0.625,
+      "width": 1.137,
+      "width_inch": 44,
+      "width_inch_fraction": 0.75
+    },
+    "overall": {
+      "height": 2.14,
+      "height_inch": 84,
+      "height_inch_fraction": 0.25,
+      "width": 1.268,
+      "width_inch": 49,
+      "width_inch_fraction": 0.9375
+    },
+    "overall with knobs": {
+      "height": 2.14,
+      "height_inch": 84,
+      "height_inch_fraction": 0.25,
+      "width": 1.37,
+      "width_inch": 53,
+      "width_inch_fraction": 0.9375
+    }
+  },
+  "state_of_the_work": null,
+  "edition_of_the_work": null,
+  "copyright": null,
+  "inscriptions": [
+    {
+      "inscription": "正德三年七月夏葵寫 \n[Zhengde san nian qi yue Xia Kui xie]",
+      "inscription_translation": "Painted by Xia Kui, in the third year, seventh month of Zheng De [1508].",
+      "inscription_remark": null,
+      "sortorder": 1
+    }
+  ],
+  "exhibitions": {
+    "current": [
+      {
+        "id": 312081,
+        "title": "A Study Exhibition of Chinese Textiles of the Ming and Ch'ing Periods",
+        "description": "<i>A Study Exhibition of Chinese Textiles of the Ming and Ch'ing Periods</i>. The Cleveland Museum of Art, Cleveland, OH (organizer) (December 12, 1947-October 9, 1948).",
+        "opening_date": "1947-12-12T05:00:00"
+      },
+      {
+        "id": 383281,
+        "title": "Stories from Storage",
+        "description": "<i>Stories from Storage</i>. The Cleveland Museum of Art, Cleveland, OH (organizer) (February 7-May 16, 2021).",
+        "opening_date": "2021-02-06T05:00:00"
+      }
+    ],
+    "legacy": []
+  },
+  "provenance": [
+    {
+      "description": "Charles L. Freer [1854–1919], Detroit, MI, given to the Cleveland Museum of Art",
+      "citations": [],
+      "footnotes": [],
+      "date": "?–1915",
+      "sortorder": 1
+    },
+    {
+      "description": "The Cleveland Museum of Art, Cleveland, OH",
+      "citations": [],
+      "footnotes": [],
+      "date": "1915–",
+      "sortorder": 2
+    }
+  ],
+  "find_spot": null,
+  "related_works": [],
+  "former_accession_numbers": [],
+  "did_you_know": "In the foreground on the right are three boys playing a kind of blind man’s bluff.",
+  "early_education_description": null,
+  "artlens_description": null,
+  "description": "Sixteen children engage in scholarly, religious, and military activities, representing the popular “one hundred boys” theme expressing the wish for abundant, successful male offspring. Such paintings conveying auspicious wishes were often displayed during the New Year festival season. <br><br>Two older boys wear small crowns with red tassels. Another child with a mask holds a brush in one hand, a rice measure in the other. He stands on a low table imitating Kuixing, the God of Examinations and servant to the God of Literature.",
+  "external_resources": {
+    "wikidata": [
+      "https://www.wikidata.org/wiki/Q60502174"
+    ],
+    "internet_archive": [
+      "https://archive.org/details/clevelandart-1915.110-children-at-play"
+    ]
+  },
+  "citations": [],
+  "url": "https://clevelandart.org/art/1915.110",
+  "images": {
+    "annotation": null,
+    "web": {
+      "url": "https://openaccess-cdn.clevelandart.org/1915.110/1915.110_web.jpg",
+      "width": "1263",
+      "height": "692",
+      "filesize": "594965",
+      "filename": "1915.110_web.jpg"
+    },
+    "print": {
+      "url": "https://openaccess-cdn.clevelandart.org/1915.110/1915.110_print.jpg",
+      "width": "3400",
+      "height": "1863",
+      "filesize": "3832413",
+      "filename": "1915.110_print.jpg"
+    },
+    "full": {
+      "url": "https://openaccess-cdn.clevelandart.org/1915.110/1915.110_full.tif",
+      "width": "5000",
+      "height": "2739",
+      "filesize": "41108920",
+      "filename": "1915.110_full.tif"
+    }
+  },
+  "alternate_images": [
+    {
+      "web": {
+        "url": "https://openaccess-cdn.clevelandart.org/1915.110/1915.110_alt0_web.jpg",
+        "width": "1263",
+        "height": "702",
+        "filesize": "137930"
+      },
+      "print": {
+        "url": "https://openaccess-cdn.clevelandart.org/1915.110/1915.110_alt0_print.jpg",
+        "width": "3400",
+        "height": "1891",
+        "filesize": "968385"
+      },
+      "full": {
+        "url": "https://openaccess-cdn.clevelandart.org/1915.110/1915.110_alt0_full.tif",
+        "width": "7848",
+        "height": "4367",
+        "filesize": "102838508"
+      },
+      "date_created": "2013-03-05T18:51:05",
+      "annotation": ""
+    },
+    {
+      "web": {
+        "url": "https://openaccess-cdn.clevelandart.org/1915.110/1915.110_alt1_web.jpg",
+        "width": "1263",
+        "height": "688",
+        "filesize": "141283"
+      },
+      "print": {
+        "url": "https://openaccess-cdn.clevelandart.org/1915.110/1915.110_alt1_print.jpg",
+        "width": "3400",
+        "height": "1853",
+        "filesize": "1029800"
+      },
+      "full": {
+        "url": "https://openaccess-cdn.clevelandart.org/1915.110/1915.110_alt1_full.tif",
+        "width": "10942",
+        "height": "5964",
+        "filesize": "195800844"
+      },
+      "date_created": "2013-03-05T19:20:17",
+      "annotation": ""
+    },
+    {
+      "web": {
+        "url": "https://openaccess-cdn.clevelandart.org/1915.110/1915.110_alt2_web.jpg",
+        "width": "580",
+        "height": "893",
+        "filesize": "59358"
+      },
+      "print": {
+        "url": "https://openaccess-cdn.clevelandart.org/1915.110/1915.110_alt2_print.jpg",
+        "width": "2209",
+        "height": "3400",
+        "filesize": "846574"
+      },
+      "full": {
+        "url": "https://openaccess-cdn.clevelandart.org/1915.110/1915.110_alt2_full.tif",
+        "width": "5157",
+        "height": "7936",
+        "filesize": "122829668"
+      },
+      "date_created": "2013-03-05T18:07:08",
+      "annotation": ""
+    },
+    {
+      "web": {
+        "url": "https://openaccess-cdn.clevelandart.org/1915.110/1915.110_alt3_web.jpg",
+        "width": "1091",
+        "height": "893",
+        "filesize": "165320"
+      },
+      "print": {
+        "url": "https://openaccess-cdn.clevelandart.org/1915.110/1915.110_alt3_print.jpg",
+        "width": "3400",
+        "height": "2782",
+        "filesize": "1747814"
+      },
+      "full": {
+        "url": "https://openaccess-cdn.clevelandart.org/1915.110/1915.110_alt3_full.tif",
+        "width": "7332",
+        "height": "6000",
+        "filesize": "132003424"
+      },
+      "date_created": "2013-03-05T19:20:17",
+      "annotation": ""
+    },
+    {
+      "web": {
+        "url": "https://openaccess-cdn.clevelandart.org/1915.110/1915.110_alt4_web.jpg",
+        "width": "1191",
+        "height": "893",
+        "filesize": "163995"
+      },
+      "print": {
+        "url": "https://openaccess-cdn.clevelandart.org/1915.110/1915.110_alt4_print.jpg",
+        "width": "3400",
+        "height": "2550",
+        "filesize": "1469595"
+      },
+      "full": {
+        "url": "https://openaccess-cdn.clevelandart.org/1915.110/1915.110_alt4_full.tif",
+        "width": "8000",
+        "height": "6000",
+        "filesize": "144021952"
+      },
+      "date_created": "2013-03-05T19:19:53",
+      "annotation": ""
+    },
+    {
+      "web": {
+        "url": "https://openaccess-cdn.clevelandart.org/1915.110/1915.110_alt5_web.jpg",
+        "width": "298",
+        "height": "893",
+        "filesize": "38448"
+      },
+      "print": {
+        "url": "https://openaccess-cdn.clevelandart.org/1915.110/1915.110_alt5_print.jpg",
+        "width": "1133",
+        "height": "3400",
+        "filesize": "892305"
+      },
+      "full": {
+        "url": "https://openaccess-cdn.clevelandart.org/1915.110/1915.110_alt5_full.tif",
+        "width": "2520",
+        "height": "7558",
+        "filesize": "57160452"
+      },
+      "date_created": "2013-03-05T20:05:03",
+      "annotation": ""
+    },
+    {
+      "web": {
+        "url": "https://openaccess-cdn.clevelandart.org/1915.110/1915.110_alt6_web.jpg",
+        "width": "1263",
+        "height": "689",
+        "filesize": "655450"
+      },
+      "print": {
+        "url": "https://openaccess-cdn.clevelandart.org/1915.110/1915.110_alt6_print.jpg",
+        "width": "3400",
+        "height": "1855",
+        "filesize": "4234595"
+      },
+      "full": {
+        "url": "https://openaccess-cdn.clevelandart.org/1915.110/1915.110_alt6_full.tif",
+        "width": "5000",
+        "height": "2728",
+        "filesize": "40942828"
+      },
+      "date_created": "2004-02-19T20:50:59",
+      "annotation": ""
+    },
+    {
+      "web": {
+        "url": "https://openaccess-cdn.clevelandart.org/1915.110/1915.110_alt7_web.jpg",
+        "width": "1263",
+        "height": "689",
+        "filesize": "655450"
+      },
+      "print": {
+        "url": "https://openaccess-cdn.clevelandart.org/1915.110/1915.110_alt7_print.jpg",
+        "width": "3400",
+        "height": "1855",
+        "filesize": "4234595"
+      },
+      "full": {
+        "url": "https://openaccess-cdn.clevelandart.org/1915.110/1915.110_alt7_full.tif",
+        "width": "5000",
+        "height": "2728",
+        "filesize": "40942828"
+      },
+      "date_created": "2004-02-19T20:50:59",
+      "annotation": ""
+    }
+  ],
+  "creditline": "Gift of Charles L. Freer",
+  "image_credit": null,
+  "sketchfab_id": null,
+  "sketchfab_url": null,
+  "gallery_donor_text": null,
+  "athena_id": 94605,
+  "creators": [
+    {
+      "id": 23739,
+      "description": "Xia Kui (Chinese, active c. 1405–1445)",
+      "extent": null,
+      "qualifier": null,
+      "role": "artist",
+      "biography": null,
+      "name_in_original_language": "夏葵",
+      "use_in_caption": true,
+      "include_extent": false,
+      "weight": 1
+    }
+  ],
+  "legal_status": "accessioned",
+  "accession_date": "1915-10-15T00:00:00",
+  "sortable_date": 1508,
+  "date_added_to_oa": null,
+  "date_text": "1508",
+  "collapse_artists": false,
+  "on_loan": false,
+  "recently_acquired": false,
+  "record_type": "object",
+  "conservation_statement": null,
+  "has_conservation_images": false,
+  "cover_accession_number": null,
+  "is_nazi_era_provenance": false,
+  "impression": null,
+  "alternate_titles": [],
+  "is_highlight": false,
+  "updated_at": "2026-08-05 12:03:12.054000"
+}

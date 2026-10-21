@@ -1,0 +1,374 @@
+{
+  "id": 95265,
+  "accession_number": "1916.1038",
+  "share_license_status": "CC0",
+  "tombstone": "Tannhäuser, 1886. Henri Fantin-Latour (French, 1836–1904). Oil on canvas; framed: 123.5 x 139.5 x 14 cm (48 5/8 x 54 15/16 x 5 1/2 in.); unframed: 86.4 x 103.3 cm (34 x 40 11/16 in.). The Cleveland Museum of Art, Gift of Mr. and Mrs. J. H. Wade, 1916.1038",
+  "current_location": null,
+  "title": "Tannhäuser",
+  "creation_date": "1886",
+  "creation_date_earliest": 1886,
+  "creation_date_latest": 1886,
+  "artists_tags": [
+    "male"
+  ],
+  "culture": [
+    "France, 19th century"
+  ],
+  "technique": "oil on canvas",
+  "support_materials": [],
+  "department": "Modern European Painting and Sculpture",
+  "collection": "Mod Euro - Painting 1800-1960",
+  "type": "Painting",
+  "measurements": "Framed: 123.5 x 139.5 x 14 cm (48 5/8 x 54 15/16 x 5 1/2 in.); Unframed: 86.4 x 103.3 cm (34 x 40 11/16 in.)",
+  "dimensions": {
+    "framed": {
+      "height": 1.235,
+      "height_inch": 48,
+      "height_inch_fraction": 0.625,
+      "width": 1.395,
+      "width_inch": 54,
+      "width_inch_fraction": 0.9375,
+      "depth": 0.14,
+      "depth_inch": 5,
+      "depth_inch_fraction": 0.5
+    },
+    "unframed": {
+      "height": 0.864,
+      "height_inch": 34,
+      "height_inch_fraction": 0.0,
+      "width": 1.033,
+      "width_inch": 40,
+      "width_inch_fraction": 0.6875
+    }
+  },
+  "state_of_the_work": null,
+  "edition_of_the_work": null,
+  "copyright": null,
+  "inscriptions": [
+    {
+      "inscription": "Signed lower right: Fantin 86\r\n",
+      "inscription_translation": null,
+      "inscription_remark": null,
+      "sortorder": null
+    }
+  ],
+  "exhibitions": {
+    "current": [
+      {
+        "id": 312517,
+        "title": "The Twentieth Anniversary Exhibition: The Official Art Exhibit of the Great Lakes Exposition",
+        "description": "<i>The Twentieth Anniversary Exhibition: The Official Art Exhibit of the Great Lakes Exposition</i>. The Cleveland Museum of Art, Cleveland, OH (organizer) (June 26-October 4, 1936).",
+        "opening_date": "1936-06-26T04:00:00"
+      },
+      {
+        "id": 312341,
+        "title": "The Silver Jubilee Exhibition",
+        "description": "<i>The Silver Jubilee Exhibition</i>. The Cleveland Museum of Art, Cleveland, OH (organizer) (June 23-September 28, 1941).",
+        "opening_date": "1941-06-23T04:00:00"
+      },
+      {
+        "id": 312333,
+        "title": "French Drawings and Watercolors from French Public and Private Collections",
+        "description": "<i>French Drawings and Watercolors from French Public and Private Collections</i>. The Cleveland Museum of Art, Cleveland, OH (January 6-February 15, 1942).",
+        "opening_date": "1942-01-06T05:00:00"
+      },
+      {
+        "id": 312176,
+        "title": "19th and 20th Century French Art and Leonard C. Hanna, Jr. Loans",
+        "description": "<i>19th and 20th Century French Art and Leonard C. Hanna, Jr. Loans</i>. The Cleveland Museum of Art, Cleveland, OH (organizer) (June 22-September 1, 1943).",
+        "opening_date": "1943-06-22T04:00:00"
+      },
+      {
+        "id": 300859,
+        "title": "The Venetian Tradition",
+        "description": "<i>The Venetian Tradition</i>. The Cleveland Museum of Art, Cleveland, OH (November 8, 1956-January 1, 1957).",
+        "opening_date": "1956-11-08T05:00:00"
+      },
+      {
+        "id": 515708,
+        "title": "Fifteenth Anniversary Exhibition",
+        "description": "<i>Fifteenth Anniversary Exhibition</i>. Minneapolis Institute of Art, Minneapolis, MN (organizer) (November 4, 1965-January 2, 1966).",
+        "opening_date": "1965-11-04T05:00:00"
+      },
+      {
+        "id": 515936,
+        "title": "Henri Fantin-Latour",
+        "description": "<i>Henri Fantin-Latour</i>. Smith College Museum of Art, Northampton, MA (organizer) (April 28-June 6, 1966).",
+        "opening_date": "1966-04-28T04:00:00"
+      },
+      {
+        "id": 229779,
+        "title": "Richard Wagner: Visions d'artistes. D'Auguste Renoir à Anselm Kiefer",
+        "description": "<i>Richard Wagner: Visions d'artistes. D'Auguste Renoir à Anselm Kiefer</i>. Musée Rath, Geneva, Switzerland (September 22, 2005-January 29, 2006).",
+        "opening_date": "2005-09-22T00:00:00"
+      },
+      {
+        "id": 195556,
+        "title": "Paul Gauguin: Paris, 1889",
+        "description": "<i>Paul Gauguin: Paris, 1889</i>. The Cleveland Museum of Art, Cleveland, OH (organizer) (October 4, 2009-January 18, 2010); Van Gogh Museum, 1070 AJ Amsterdam, Netherlands (February 18-June 6, 2010).",
+        "opening_date": "2009-10-04T00:00:00"
+      }
+    ],
+    "legacy": [
+      {
+        "description": "<em>Salon</em>. Palais des Champs-Élysées, Paris, France. (1886).",
+        "opening_date": null
+      },
+      {
+        "description": "<em>Liverpool Autumn Exhibition.</em> Walker Art Gallery Liverpool, United Kingdom (1888).",
+        "opening_date": null
+      },
+      {
+        "description": "<em>Exposition Universelle Internationale de 1889. </em>Paris, France (1889).",
+        "opening_date": null
+      },
+      {
+        "description": "<em>World's Columbian Exposition</em>. Chicago, IL. (1893).",
+        "opening_date": null
+      },
+      {
+        "description": "<em>The Cleveland Art Loan Exposition under the Auspices of the Cleveland School of Art.</em> Kinney and Levan Building, Cleveland, OH (1913).",
+        "opening_date": "1913-01-01T00:00:00"
+      }
+    ]
+  },
+  "provenance": [
+    {
+      "description": "Bought from the artist by Durand-Ruel, Paris, France, February 21, 1890 (stock number 2636),",
+      "citations": [],
+      "footnotes": null,
+      "date": "1890",
+      "sortorder": null
+    },
+    {
+      "description": "Sold to Durand-Ruel, New York, NY, March 6, 1890 (stock number 1000)",
+      "citations": [],
+      "footnotes": null,
+      "date": "1890",
+      "sortorder": 2
+    },
+    {
+      "description": "(Durand-Ruel, New York, NY, January 4, 1891, sold to J. H. Wade)",
+      "citations": [],
+      "footnotes": null,
+      "date": "1890-1891",
+      "sortorder": 3
+    },
+    {
+      "description": "Mr. and Mrs. J.H. Wade, Cleveland, OH, given to the Cleveland Museum of Art",
+      "citations": [],
+      "footnotes": null,
+      "date": "1891-1916",
+      "sortorder": 4
+    },
+    {
+      "description": "The Cleveland Museum of Art, Cleveland, OH",
+      "citations": [],
+      "footnotes": null,
+      "date": "1916-",
+      "sortorder": 5
+    }
+  ],
+  "find_spot": null,
+  "related_works": [],
+  "former_accession_numbers": [],
+  "did_you_know": "As he will eventually return to reality, Tannhäuser, the singer in the lower left, is painted in dark tones. In contrast, his vision into another realm is evoked by the soft muted hues of Venus and her court.",
+  "early_education_description": null,
+  "artlens_description": null,
+  "description": "Tannhäuser, the male figure seated on the left, does not seem fully engaged in this merry scene. Among pale bodies and pastel hues, he alone is cast in shadow. The Wagner opera that inspired the painting centers on a struggle between profane and sacred love, and the tension between them appears embodied in the brooding Tannhäuser.",
+  "external_resources": {
+    "wikidata": [
+      "https://www.wikidata.org/wiki/Q60502353"
+    ],
+    "internet_archive": [
+      "https://archive.org/details/clevelandart-1916.1038-tannhauser"
+    ]
+  },
+  "citations": [
+    {
+      "citation": "<em>Illustrated Catalogue of the Liverpool Corporation Autumn Exhibition of Pictures at the Walker Art Gallery, 1888</em>. Liverpool, United Kingdom: D. Marples, 1888.",
+      "page_number": "Mentioned: p. 36",
+      "url": null
+    },
+    {
+      "citation": "Jullien, Adolphe. <em>Fantin-Latour, sa vie et ses amitiés; lettres inédites et souvenirs personnels, avec cinquante-trois reproductions d'œuvres du maitre, tirées a part, six autographes et vingt-deux illustrations dans le texte</em>. Paris, France: L. Laveur, 1909.",
+      "page_number": "Reproduced: p. 54; Mentioned p. 205",
+      "url": null
+    },
+    {
+      "citation": "Fantin-Latour, Victoria. <em>Catalogue de l'œuvre complet (1849-1904) de Fantin-Latour, établi et rédigé.</em> Paris: H. Floury, 1911.",
+      "page_number": "Mentioned: P. 130, no. 1254",
+      "url": null
+    },
+    {
+      "citation": "Warner, Langdon. \"The Wade Collection.\" <em>The Bulletin of The Cleveland Museum of Art IV</em>, no. 1 (January, 1917): 3-8.",
+      "page_number": "Mentioned: p. 3; Reproduced: p. 11",
+      "url": null
+    },
+    {
+      "citation": "\"The Wade Collection.\" <em>The Bulletin of the Cleveland Museum of Art</em> 4, no. 1 (1917): 3-12.",
+      "page_number": "Mentioned: p. 3; reproduced: p. 7",
+      "url": "http://www.jstor.org/stable/25136053"
+    },
+    {
+      "citation": "McK., W. McC. \"Fantin-Latour Lithographs.\" <em>The Bulletin of the Cleveland Museum of Art</em> 7, no. 9 (1920): 135-38.",
+      "page_number": "Mentioned: p. 136",
+      "url": "http://www.jstor.org/stable/25136419"
+    },
+    {
+      "citation": "Gibson, Frank F. <em>The Art of Henri Fantin-Latour: His Life and Work</em>. London, United Kingdom: Drane's Ltd, 1924.",
+      "page_number": "Reproduced: p. 65; Mentioned: p. 212-213",
+      "url": null
+    },
+    {
+      "citation": "The Cleveland Museum of Art. <em>Handbook of the Cleveland Museum of Art</em>. Cleveland, OH: The Cleveland Museum of Art, 1925.",
+      "page_number": "Reproduced: p. 29",
+      "url": "https://archive.org/details/CMAHandbook_80839/page/n30"
+    },
+    {
+      "citation": "The Cleveland Museum of Art. <em>Handbook of the Cleveland Museum of Art</em>. Cleveland, OH: The Cleveland Museum of Art, 1928.",
+      "page_number": "Reproduced: p. 36",
+      "url": "https://archive.org/details/CMAHandbook1928/page/n40"
+    },
+    {
+      "citation": "Coe, Nancy. <em>The History of the Collecting of European Paintings and Drawings in the City of Cleveland. </em>Thesis M.A. Oberlin College,1955.",
+      "page_number": "Reproduced: V. 2, P. 251",
+      "url": null
+    },
+    {
+      "citation": "Francis, Henry Sayles. <em>Venetian Tradition: Catalogue of the Exhibition.</em> [Cleveland, Ohio]: The Cleveland Museum of Art, 1956.",
+      "page_number": "Mentioned: p. 24, no. 17; Reproduced: pl. LII",
+      "url": ""
+    },
+    {
+      "citation": "The Cleveland Museum of Art. <em>The Cleveland Museum of Art Handbook.</em> Cleveland, OH: The Cleveland Museum of Art, 1958.",
+      "page_number": "Mentioned and Reproduced: cat. no. 500",
+      "url": "https://archive.org/details/CMAHandbook1958/page/n92"
+    },
+    {
+      "citation": "Curry, Larry. \"Henri Fantin-Latour's Tannhauser on Venusberg.\" <em>Bulletin/Los Angeles County Museum of Art </em>XVI, no. 1 (1964): 3-19.",
+      "page_number": "Mentioned and reproduced: P.16-18",
+      "url": null
+    },
+    {
+      "citation": "The Cleveland Museum of Art. <em>Handbook of the Cleveland Museum of Art/1966</em>. Cleveland, OH: The Cleveland Museum of Art, 1966.",
+      "page_number": "Reproduced: p. 171",
+      "url": "https://archive.org/details/CMAHandbook1966/page/n194"
+    },
+    {
+      "citation": "<em>Fiftieth Anniversary Exhibition, 1915-1965. </em>Minneapolis, MN: Minneapolis Institute of Arts,1966.",
+      "page_number": "Reproduced: no. 23",
+      "url": null
+    },
+    {
+      "citation": "<em>Henri Fantin-Latour, 1836-1904; An Exhibition</em>. Northhampton, MA: Smith College, 1966.",
+      "page_number": "Reproduced: no. 21",
+      "url": null
+    },
+    {
+      "citation": "Trapp, Frank Anderson. \"Fantin-Latour at Smith College.\" <em>The Burlington Magazine</em> 108, no. 760 (July 1966): 393-94.",
+      "page_number": "Reproduced: P. 394, fig. 80",
+      "url": "http://www.jstor.org/stable/875039."
+    },
+    {
+      "citation": "The Cleveland Museum of Art. <em>Handbook of the Cleveland Museum of Art/1969</em>. Cleveland, OH: The Cleveland Museum of Art, 1969.",
+      "page_number": "Reproduced: p. 171",
+      "url": "https://archive.org/details/CMAHandbook1969/page/n194"
+    },
+    {
+      "citation": "Druick, Douglas W. and Michel Hoog. <em>Fantin-Latour: Exhibition</em>. Ottawa, Ontario: National Gallery of Canada, 1983.",
+      "page_number": "Reproduced: p. 278",
+      "url": null
+    },
+    {
+      "citation": "Wardius, Janine N. \"Fantin-Latour's Tannhauser Unveiled: The Previous State of the Painting as Revealed by Infrared Photography.\" <em>The Bulletin of The Cleveland Museum of Art LXXVI</em>, no.10 (October, 1989): 280-291.",
+      "page_number": "Reproduced: p. 208",
+      "url": null
+    },
+    {
+      "citation": "Chong, Alan. <em>European &amp; American Painting in the Cleveland Museum of Art: A Summary Catalogue.</em> Cleveland, Ohio: Cleveland Museum of Art, 1993.",
+      "page_number": "Reproduced: P.74",
+      "url": null
+    },
+    {
+      "citation": "D'Argencourt, Louise and Roger Diederen. <em>The Cleveland Museum of Art: Catalogue of Paintings, Part Four; European Paintings of the 19th Century.</em> Cleveland, OH: The Cleveland Museum of Art, 1999.",
+      "page_number": "Reproduced: p. 98",
+      "url": null
+    },
+    {
+      "citation": "Sérié, Pierre, Bruno Foucart, and Peter Cooke. La Peinture d'Histoire en France, 1860-1900: La Lyre Ou le Poignard. Paris, France: Arthena Editions, 2014.",
+      "page_number": "Mentioned and reproduced: P. 423-424",
+      "url": null
+    },
+    {
+      "citation": "Carr, Carolyn Kinder. <em>Sara Tyson Hallowell: Pioneer Curator and Art Advisor in the Gilded Age. </em>Washington, D.C.: Smithsonian Institution Scholarly Press, 2009.",
+      "page_number": "Mentioned: p. 144",
+      "url": ""
+    }
+  ],
+  "url": "https://clevelandart.org/art/1916.1038",
+  "images": {
+    "annotation": "",
+    "web": {
+      "url": "https://openaccess-cdn.clevelandart.org/1916.1038/1916.1038_web.jpg",
+      "width": "1078",
+      "height": "893",
+      "filesize": "726724",
+      "filename": "1916.1038_web.jpg"
+    },
+    "print": {
+      "url": "https://openaccess-cdn.clevelandart.org/1916.1038/1916.1038_print.jpg",
+      "width": "3400",
+      "height": "2817",
+      "filesize": "7170080",
+      "filename": "1916.1038_print.jpg"
+    },
+    "full": {
+      "url": "https://openaccess-cdn.clevelandart.org/1916.1038/1916.1038_full.tif",
+      "width": "4910",
+      "height": "4068",
+      "filesize": "59954500",
+      "filename": "1916.1038_full.tif"
+    }
+  },
+  "alternate_images": [],
+  "creditline": "Gift of Mr. and Mrs. J. H. Wade",
+  "image_credit": null,
+  "sketchfab_id": null,
+  "sketchfab_url": null,
+  "gallery_donor_text": null,
+  "athena_id": 95265,
+  "creators": [
+    {
+      "id": 1862,
+      "description": "Henri Fantin-Latour (French, 1836–1904)",
+      "extent": null,
+      "qualifier": null,
+      "role": "artist",
+      "biography": "At the age of ten, Henri Fantin-Latour began painting with his father, Théodore Fantin-Latour (1805-1875). In 1850 he left Grenoble and moved to Paris to study under Horace Lecoq de Boisbaudran (1802-1897), an innovative and nontraditional instructor who developed and published his own unique teaching method based on painting and drawing from memory. Fantin studied with him for six years and then attended the École des Beaux-Arts for less than a year in 1854. Encouraged by J. A. M. Whistler (1834-1903), whom he met in 1858 at the Louvre, Fantin-Latour made several trips to London from 1859 to 1881, where he exhibited at the Royal Academy. London collectors appreciated his still lifes, and he began accepting numerous portrait commissions from English patrons. It was in London, through Whistler's brother-in-law Francis Seymour Haden (1818-1910), that Fantin first learned to etch. After his first Salon submissions were rejected in 1859, Fantin, in an effort to become better known in France, began exhibiting with his friend Manet (q.v.) and future impressionists Renoir (q.v.) and Monet (q.v.). In 1865 Fantin wrote collector Edwin Edwards: \"We form a group and make noise because there are lots of painters about and one is easily overlooked. When we get together . . . we gain strength in numbers and grow more adventurous. I thought it could last. That was my mistake.\" Unlike the realists and the impressionists, Fantin did not paint out of doors; rather, he preferred literary subjects, still lifes, and portraits that could be painted in his studio. In addition to portraits and still lifes, he made numerous paintings and more than 150 prints that were fantasy works and dream visions, paving the way for symbolist artists. These works were inspired by allegorical and mythological subjects as well as motivated by contemporary German composers such as Schumann and Wagner. After Fantin's death in 1904, critic René-Marc Ferry wrote: \"when he found realism too limited and stifling, he lost himself in dreams, but his dreams went no further than the windows of his studio. Deep down, he was first and foremost a studio artist.\"1\r\n1. Druick and Hoog 1982, 28.",
+      "name_in_original_language": null,
+      "birth_year": "1836",
+      "death_year": "1904",
+      "use_in_caption": true,
+      "include_extent": false,
+      "weight": 1
+    }
+  ],
+  "legal_status": "accessioned",
+  "accession_date": "1916-10-02T00:00:00",
+  "sortable_date": 1886,
+  "date_added_to_oa": null,
+  "date_text": "1886",
+  "collapse_artists": false,
+  "on_loan": false,
+  "recently_acquired": false,
+  "record_type": "object",
+  "conservation_statement": null,
+  "has_conservation_images": false,
+  "cover_accession_number": null,
+  "is_nazi_era_provenance": false,
+  "impression": null,
+  "alternate_titles": [],
+  "is_highlight": false,
+  "updated_at": "2026-09-15 11:13:05.423000"
+}

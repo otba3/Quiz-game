@@ -1,0 +1,218 @@
+{
+  "id": 85043,
+  "accession_number": "2020.163",
+  "share_license_status": "CC0",
+  "tombstone": "Britannia Illustrata: Beaufort House, Chelsea, 1707–9. Johannes Kip (Dutch, 1653–1722), after Leendert Knijff (Dutch, 1650–1721). Etching and engraving, hand colored; platemark: 35.9 x 49.4 cm (14 1/8 x 19 7/16 in.); sheet: 54.3 x 64.8 cm (21 3/8 x 25 1/2 in.). The Cleveland Museum of Art, Nancy F. and Joseph P. Keithley Collection Gift, 2020.163",
+  "current_location": null,
+  "title": "Beaufort House, Chelsea",
+  "series": "Britannia Illustrata",
+  "creation_date": "1707–9",
+  "creation_date_earliest": 1707,
+  "creation_date_latest": 1709,
+  "artists_tags": [
+    "male"
+  ],
+  "culture": [
+    "Netherlands"
+  ],
+  "technique": "etching and engraving, hand colored",
+  "support_materials": [],
+  "department": "Prints",
+  "collection": "Prints",
+  "type": "Print",
+  "measurements": "Platemark: 35.9 x 49.4 cm (14 1/8 x 19 7/16 in.); Sheet: 54.3 x 64.8 cm (21 3/8 x 25 1/2 in.)",
+  "dimensions": {
+    "platemark": {
+      "height": 0.359,
+      "height_inch": 14,
+      "height_inch_fraction": 0.125,
+      "width": 0.494,
+      "width_inch": 19,
+      "width_inch_fraction": 0.4375
+    },
+    "sheet": {
+      "height": 0.543,
+      "height_inch": 21,
+      "height_inch_fraction": 0.375,
+      "width": 0.648,
+      "width_inch": 25,
+      "width_inch_fraction": 0.5
+    }
+  },
+  "state_of_the_work": null,
+  "edition_of_the_work": null,
+  "copyright": null,
+  "inscriptions": [
+    {
+      "inscription": "In pencil, recto, lower left: \"Double page illustration In/Old London [illegible] by Gladys Taylor\"",
+      "inscription_translation": null,
+      "inscription_remark": null,
+      "sortorder": null
+    }
+  ],
+  "exhibitions": {
+    "current": [],
+    "legacy": []
+  },
+  "provenance": [
+    {
+      "description": "(Vixseboxse Art Galleries, Inc., Cleveland Heights, OH)",
+      "citations": [],
+      "footnotes": [],
+      "date": "ca. 1988",
+      "sortorder": 1
+    },
+    {
+      "description": "Mr. and Mrs. Joseph P. Keithley, Cleveland, OH",
+      "citations": [],
+      "footnotes": [],
+      "date": null,
+      "sortorder": 2
+    },
+    {
+      "description": "The Cleveland Museum of Art, Cleveland, OH",
+      "citations": [],
+      "footnotes": [],
+      "date": "March 2, 2020",
+      "sortorder": 3
+    }
+  ],
+  "find_spot": null,
+  "related_works": [],
+  "former_accession_numbers": [],
+  "did_you_know": "The house and gardens portrayed in this hand-colored engraving were destroyed in 1740.",
+  "early_education_description": null,
+  "artlens_description": null,
+  "description": "This detailed view of Beaufort House in Chelsea portrays the gabled house, built in 1521, and its extensive formal gardens. Part of a large folio publication of the principal seats of the nobility in England, the <em>Britannia Illustrata</em>, it portrays a structure that was once the home of Sir Thomas More and that was demolished in 1740. The two Dutch artists who collaborated on this and the other topographical views in the volume, both resident in England, were exacting in their depictions of the architecture and gardens, providing valuable insight to the land and buildings of the time.",
+  "external_resources": {
+    "wikidata": [
+      "https://www.wikidata.org/wiki/Q87480881"
+    ],
+    "internet_archive": [
+      "https://archive.org/details/clevelandart-2020.163-beaufort-house-chels"
+    ]
+  },
+  "citations": [],
+  "url": "https://clevelandart.org/art/2020.163",
+  "images": {
+    "annotation": null,
+    "web": {
+      "url": "https://openaccess-cdn.clevelandart.org/2020.163/2020.163_web.jpg",
+      "width": "900",
+      "height": "650",
+      "filesize": "451637",
+      "filename": "2020.163_web.jpg"
+    },
+    "print": {
+      "url": "https://openaccess-cdn.clevelandart.org/2020.163/2020.163_print.jpg",
+      "width": "3400",
+      "height": "2455",
+      "filesize": "5437301",
+      "filename": "2020.163_print.jpg"
+    },
+    "full": {
+      "url": "https://openaccess-cdn.clevelandart.org/2020.163/2020.163_full.tif",
+      "width": "8020",
+      "height": "5791",
+      "filesize": "139364072",
+      "filename": "2020.163_full.tif"
+    }
+  },
+  "alternate_images": [
+    {
+      "web": {
+        "url": "https://openaccess-cdn.clevelandart.org/2020.163/2020.163_alt0_web.jpg",
+        "width": "900",
+        "height": "755",
+        "filesize": "358102"
+      },
+      "print": {
+        "url": "https://openaccess-cdn.clevelandart.org/2020.163/2020.163_alt0_print.jpg",
+        "width": "3400",
+        "height": "2854",
+        "filesize": "4637767"
+      },
+      "full": {
+        "url": "https://openaccess-cdn.clevelandart.org/2020.163/2020.163_alt0_full.tif",
+        "width": "10898",
+        "height": "9149",
+        "filesize": "299147644"
+      },
+      "date_created": "2020-02-21T12:06:19",
+      "annotation": ""
+    },
+    {
+      "web": {
+        "url": "https://openaccess-cdn.clevelandart.org/2020.163/2020.163_alt1_web.jpg",
+        "width": "900",
+        "height": "755",
+        "filesize": "419788"
+      },
+      "print": {
+        "url": "https://openaccess-cdn.clevelandart.org/2020.163/2020.163_alt1_print.jpg",
+        "width": "3400",
+        "height": "2854",
+        "filesize": "5831016"
+      },
+      "full": {
+        "url": "https://openaccess-cdn.clevelandart.org/2020.163/2020.163_alt1_full.tif",
+        "width": "10898",
+        "height": "9149",
+        "filesize": "299148912"
+      },
+      "date_created": "2020-02-21T12:06:43",
+      "annotation": ""
+    }
+  ],
+  "creditline": "Nancy F. and Joseph P. Keithley Collection Gift",
+  "image_credit": null,
+  "sketchfab_id": null,
+  "sketchfab_url": null,
+  "gallery_donor_text": null,
+  "athena_id": 85043,
+  "creators": [
+    {
+      "id": 380079,
+      "description": "Johannes Kip (Dutch, 1653–1722)",
+      "extent": null,
+      "qualifier": null,
+      "role": "artist",
+      "biography": null,
+      "name_in_original_language": null,
+      "use_in_caption": true,
+      "include_extent": false,
+      "weight": 0
+    },
+    {
+      "id": 380594,
+      "description": "Leendert Knijff (Dutch, 1650–1721)",
+      "extent": null,
+      "qualifier": "after",
+      "role": null,
+      "biography": "Dutch painter and draftsman, 1650-1721, active in England",
+      "name_in_original_language": null,
+      "birth_year": "1650",
+      "death_year": "1721",
+      "use_in_caption": true,
+      "include_extent": true,
+      "weight": 0
+    }
+  ],
+  "legal_status": "accessioned",
+  "accession_date": "2020-03-02T00:00:00-05:00",
+  "sortable_date": 1707,
+  "date_added_to_oa": null,
+  "date_text": "1707–9",
+  "collapse_artists": false,
+  "on_loan": false,
+  "recently_acquired": false,
+  "record_type": "object",
+  "conservation_statement": null,
+  "has_conservation_images": false,
+  "cover_accession_number": null,
+  "is_nazi_era_provenance": false,
+  "impression": null,
+  "alternate_titles": [],
+  "is_highlight": false,
+  "updated_at": "2026-06-11 12:17:39.340000"
+}

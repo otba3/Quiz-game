@@ -1,0 +1,151 @@
+{
+  "id": 93393,
+  "accession_number": "1928.1856",
+  "share_license_status": "Copyrighted",
+  "tombstone": "Francesca, 1927. Louise B. Maloney (American, 1887–1973). Oil on canvas; unframed: 95 x 77.5 cm (37 3/8 x 30 1/2 in.). The Cleveland Museum of Art, Hinman B. Hurlbut Collection, 1928.1856",
+  "current_location": null,
+  "title": "Francesca",
+  "creation_date": "1927",
+  "creation_date_earliest": 1927,
+  "creation_date_latest": 1927,
+  "artists_tags": [
+    "May Show",
+    "female"
+  ],
+  "culture": [
+    "United States, Ohio, Cleveland"
+  ],
+  "technique": "oil on canvas",
+  "support_materials": [],
+  "department": "American Painting and Sculpture",
+  "collection": "American - Cleveland School",
+  "type": "Painting",
+  "measurements": "Unframed: 95 x 77.5 cm (37 3/8 x 30 1/2 in.)",
+  "dimensions": {
+    "unframed": {
+      "height": 0.95,
+      "height_inch": 37,
+      "height_inch_fraction": 0.375,
+      "width": 0.775,
+      "width_inch": 30,
+      "width_inch_fraction": 0.5
+    }
+  },
+  "state_of_the_work": null,
+  "edition_of_the_work": null,
+  "copyright": null,
+  "inscriptions": [
+    {
+      "inscription": "signed lower right:  Louise B. Maloney.",
+      "inscription_translation": null,
+      "inscription_remark": null,
+      "sortorder": null
+    }
+  ],
+  "exhibitions": {
+    "current": [
+      {
+        "id": 379510,
+        "title": "The May Show: 10th Annual Exhibition of Works by Cleveland Artists and Craftsmen",
+        "description": "<i>The May Show: 10th Annual Exhibition of Works by Cleveland Artists and Craftsmen</i>. The Cleveland Museum of Art, Cleveland, OH (organizer) (April 25-June 3, 1928).",
+        "opening_date": "1928-04-25T05:00:00"
+      },
+      {
+        "id": 379971,
+        "title": "Eighth Exhibit of Contemporary American Painting",
+        "description": "<i>Eighth Exhibit of Contemporary American Painting</i>. The Cleveland Museum of Art, Cleveland, OH (organizer) (June 8-July 8, 1928).",
+        "opening_date": "1928-06-08T04:00:00"
+      },
+      {
+        "id": 379967,
+        "title": "Exhibition of Work by Louise Maloney",
+        "description": "<i>Exhibition of Work by Louise Maloney</i>. Frank K. M. Rehn (January 1-December 31, 1929).",
+        "opening_date": "1929-01-01T05:00:00"
+      },
+      {
+        "id": 312185,
+        "title": "Retrospective Twenty-fifth Anniversary May Show",
+        "description": "<i>Retrospective Twenty-fifth Anniversary May Show</i>. The Cleveland Museum of Art, Cleveland, OH (organizer) (January 13-February 14, 1943).",
+        "opening_date": "1943-01-13T05:00:00"
+      }
+    ],
+    "legacy": []
+  },
+  "provenance": [
+    {
+      "description": "purchased from the artist.",
+      "citations": [],
+      "footnotes": [],
+      "date": null,
+      "sortorder": null
+    }
+  ],
+  "find_spot": null,
+  "related_works": [],
+  "former_accession_numbers": [
+    "1559.1928",
+    "1856.1928"
+  ],
+  "did_you_know": null,
+  "early_education_description": null,
+  "artlens_description": null,
+  "description": null,
+  "external_resources": {
+    "wikidata": [
+      "https://www.wikidata.org/wiki/Q116695625",
+      "https://www.wikidata.org/wiki/Q60502155"
+    ],
+    "internet_archive": [
+      "https://archive.org/details/clevelandart-1928.1856-francesca"
+    ]
+  },
+  "citations": [
+    {
+      "citation": "Louise B. Maloney Entry Card to 1928 May Show. Cleveland Museum of Art May Show Records, Cleveland Museum of Art Archives.",
+      "page_number": null,
+      "url": "https://archive.org/details/CMAMS01545/"
+    }
+  ],
+  "url": "https://clevelandart.org/art/1928.1856",
+  "images": {},
+  "alternate_images": [],
+  "creditline": "Hinman B. Hurlbut Collection",
+  "image_credit": null,
+  "sketchfab_id": null,
+  "sketchfab_url": null,
+  "gallery_donor_text": null,
+  "athena_id": 93393,
+  "creators": [
+    {
+      "id": 9385,
+      "description": "Louise B. Maloney (American, 1887–1973)",
+      "extent": null,
+      "qualifier": null,
+      "role": "artist",
+      "biography": "Born in Cleveland on 14 February 1890 (other sources state 1887), she attended art classes at the Cleveland School of Art while in college at Wesern Reserve University. She graduated in 1909, and taught high-school math in Solon to help pay her tuition.She went to New York, where she joined the Art Student's League, and then to Rome where she studied under Maurice Stern. Before her marriage to architect Wieger Brun of Amserdam, she was a frequent exhibitor in New York and Cleveland. After her marrige in 1931, she moved to Amsterdam. Her husband spent two and a half years in a German concerntraion camp, during which time Maloney lived underground. She died in Naarden, Netherlands in 1973.<br><br>She used a painting technique that gave an antiquated appearance to her paintings. One critic noted her prime reason to paint was to accomplish beauty of surface. Prior to her marriage she spent a lot of time in Antocoli, Italy.",
+      "name_in_original_language": null,
+      "birth_year": "1887",
+      "death_year": "1973",
+      "use_in_caption": true,
+      "include_extent": false,
+      "weight": 1
+    }
+  ],
+  "legal_status": "accessioned",
+  "accession_date": "1928-05-31T00:00:00",
+  "sortable_date": 1927,
+  "date_added_to_oa": null,
+  "date_text": "1927",
+  "collapse_artists": false,
+  "on_loan": false,
+  "recently_acquired": false,
+  "record_type": "object",
+  "conservation_statement": null,
+  "has_conservation_images": false,
+  "cover_accession_number": null,
+  "is_nazi_era_provenance": false,
+  "impression": null,
+  "alternate_titles": [],
+  "is_highlight": false,
+  "updated_at": "2026-10-17 11:22:13.728000"
+}

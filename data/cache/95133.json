@@ -1,0 +1,130 @@
+{
+  "id": 95133,
+  "accession_number": "1915.651.d",
+  "share_license_status": "CC0",
+  "tombstone": "Wall Tile, 1600s. Turkey (Iznik), Ottoman Period. Fritware with underglaze-painted design; overall: 26.8 x 26.8 cm (10 9/16 x 10 9/16 in.). The Cleveland Museum of Art, Gift of the John Huntington Art and Polytechnic Trust, 1915.651.d",
+  "current_location": null,
+  "title": "Wall Tile",
+  "creation_date": "1600s",
+  "creation_date_earliest": 1600,
+  "creation_date_latest": 1699,
+  "artists_tags": [],
+  "culture": [
+    "Turkey (Iznik), Ottoman Period"
+  ],
+  "technique": "fritware with underglaze-painted design",
+  "support_materials": [],
+  "department": "Islamic Art",
+  "collection": "Islamic Art",
+  "type": "Ceramic",
+  "measurements": "Overall: 26.8 x 26.8 cm (10 9/16 x 10 9/16 in.)",
+  "dimensions": {
+    "overall": {
+      "height": 0.268,
+      "height_inch": 10,
+      "height_inch_fraction": 0.5625,
+      "width": 0.268,
+      "width_inch": 10,
+      "width_inch_fraction": 0.5625
+    }
+  },
+  "state_of_the_work": null,
+  "edition_of_the_work": null,
+  "copyright": null,
+  "inscriptions": [],
+  "exhibitions": {
+    "current": [],
+    "legacy": []
+  },
+  "provenance": [
+    {
+      "description": "(Dikran G. Kelekian [1867-1951], New York, NY, sold to the Cleveland Museum of Art)",
+      "citations": [],
+      "footnotes": [],
+      "date": "?-1915",
+      "sortorder": 1
+    },
+    {
+      "description": "The Cleveland Museum of Art, Cleveland, OH",
+      "citations": [],
+      "footnotes": [],
+      "date": "1915-",
+      "sortorder": 2
+    }
+  ],
+  "find_spot": null,
+  "related_works": [
+    {
+      "id": 95131,
+      "description": "Wall Tile, 1600s. Turkey (Iznik), Ottoman Period. Fritware with underglaze-painted design; overall: 26.8 x 26.8 cm (10 9/16 x 10 9/16 in.). The Cleveland Museum of Art, Gift of the John Huntington Art and Polytechnic Trust, 1915.651.b",
+      "relationship": null
+    },
+    {
+      "id": 95132,
+      "description": "Wall Tile, 1600s. Turkey (Iznik), Ottoman Period. Fritware with underglaze-painted design; overall: 26.8 x 26.8 cm (10 9/16 x 10 9/16 in.). The Cleveland Museum of Art, Gift of the John Huntington Art and Polytechnic Trust, 1915.651.c",
+      "relationship": null
+    }
+  ],
+  "former_accession_numbers": [],
+  "did_you_know": "When joined with the other three tiles, another complete medallion is formed.",
+  "early_education_description": null,
+  "artlens_description": null,
+  "description": null,
+  "external_resources": {
+    "wikidata": [
+      "https://www.wikidata.org/wiki/Q79476169"
+    ],
+    "internet_archive": []
+  },
+  "citations": [],
+  "url": "https://clevelandart.org/art/1915.651.d",
+  "images": {
+    "annotation": null,
+    "web": {
+      "url": "https://openaccess-cdn.clevelandart.org/1915.651.d/1915.651.d_web.jpg",
+      "width": "900",
+      "height": "893",
+      "filesize": "580831",
+      "filename": "1915.651.d_web.jpg"
+    },
+    "print": {
+      "url": "https://openaccess-cdn.clevelandart.org/1915.651.d/1915.651.d_print.jpg",
+      "width": "3400",
+      "height": "3374",
+      "filesize": "5680555",
+      "filename": "1915.651.d_print.jpg"
+    },
+    "full": {
+      "url": "https://openaccess-cdn.clevelandart.org/1915.651.d/1915.651.d_full.tif",
+      "width": "4797",
+      "height": "4761",
+      "filesize": "68553388",
+      "filename": "1915.651.d_full.tif"
+    }
+  },
+  "alternate_images": [],
+  "creditline": "Gift of the John Huntington Art and Polytechnic Trust",
+  "image_credit": null,
+  "sketchfab_id": null,
+  "sketchfab_url": null,
+  "gallery_donor_text": null,
+  "athena_id": 95133,
+  "creators": [],
+  "legal_status": "accessioned",
+  "accession_date": "1915-04-30T00:00:00",
+  "sortable_date": 1600,
+  "date_added_to_oa": null,
+  "date_text": "1600s",
+  "collapse_artists": false,
+  "on_loan": false,
+  "recently_acquired": false,
+  "record_type": "part",
+  "conservation_statement": null,
+  "has_conservation_images": false,
+  "cover_accession_number": "1915.651",
+  "is_nazi_era_provenance": false,
+  "impression": null,
+  "alternate_titles": [],
+  "is_highlight": false,
+  "updated_at": "2026-05-29 05:04:56.666000"
+}

@@ -1,0 +1,347 @@
+{
+  "id": 120633,
+  "accession_number": "1941.390",
+  "share_license_status": "CC0",
+  "tombstone": "Seated Figure, c. 900–300 BCE. Mesoamerica, Mexico, Olmec. Albitite; overall: 11 x 6.2 x 3.9 cm (4 5/16 x 2 7/16 x 1 9/16 in.). The Cleveland Museum of Art, Purchase from the J. H. Wade Fund, 1941.390",
+  "current_location": "233 Mesoamerican and Intermediate Region",
+  "title": "Seated Figure",
+  "creation_date": "c. 900–300 BCE",
+  "creation_date_earliest": -900,
+  "creation_date_latest": -300,
+  "artists_tags": [],
+  "culture": [
+    "Mesoamerica, Mexico, Olmec"
+  ],
+  "technique": "albitite",
+  "support_materials": [],
+  "department": "Art of the Americas",
+  "collection": "AA - Mesoamerica",
+  "type": "Jade",
+  "measurements": "Overall: 11 x 6.2 x 3.9 cm (4 5/16 x 2 7/16 x 1 9/16 in.)",
+  "dimensions": {
+    "overall": {
+      "height": 0.11,
+      "height_inch": 4,
+      "height_inch_fraction": 0.3125,
+      "width": 0.062,
+      "width_inch": 2,
+      "width_inch_fraction": 0.4375,
+      "depth": 0.039,
+      "depth_inch": 1,
+      "depth_inch_fraction": 0.5625
+    }
+  },
+  "state_of_the_work": null,
+  "edition_of_the_work": null,
+  "copyright": null,
+  "inscriptions": [],
+  "exhibitions": {
+    "current": [
+      {
+        "id": 312180,
+        "title": "Art of the Americas",
+        "description": "<i>Art of the Americas</i>. The Cleveland Museum of Art, Cleveland, OH (organizer) (March 19-April 11, 1943).",
+        "opening_date": "1943-03-19T04:00:00"
+      },
+      {
+        "id": 312131,
+        "title": "Art of the Americas",
+        "description": "<i>Art of the Americas</i>. The Cleveland Museum of Art, Cleveland, OH (organizer) (November 9, 1945-January 6, 1946).",
+        "opening_date": "1945-11-09T05:00:00"
+      },
+      {
+        "id": 444971,
+        "title": "Pre-Columbian Art of the Gulf States",
+        "description": "<i>Pre-Columbian Art of the Gulf States</i>. Lowe Art Museum, Miami, FL (organizer) (January 11-February 11, 1973).",
+        "opening_date": "1973-01-11T05:00:00"
+      },
+      {
+        "id": 380109,
+        "title": "The Olmec World: Ritual and Rulership",
+        "description": "<i>The Olmec World: Ritual and Rulership</i>. Princeton University Art Museum (organizer) (December 16, 1995-March 3, 1996); Museum of Fine Arts, Houston (April 7-June 9, 1996).",
+        "opening_date": "1995-12-16T05:00:00"
+      },
+      {
+        "id": 398482,
+        "title": "The Art of the Olmec Civilization",
+        "description": "<i>The Art of the Olmec Civilization</i>. National Gallery of Art (organizer) (June 30-October 20, 1996).",
+        "opening_date": "1996-06-30T04:00:00"
+      }
+    ],
+    "legacy": [
+      {
+        "description": "Toledo, OH: The Museum of Art; January 1944. \"The Ancient Art of the North American Continent.\"",
+        "opening_date": "1944-01-01T00:00:00"
+      },
+      {
+        "description": "Cleveland, OH: The Cleveland Museum of Art; November 9, 1945-January 6, 1946. \"Art of the Americas.\" repr. in catalogue, black and white, p. 29.",
+        "opening_date": "1945-11-09T00:00:00"
+      },
+      {
+        "description": "Cincinnati, OH: The Taft Museum; October 6-November 19, 1950. \"Ancient American Jade and Gold.\" exh. cat. no. 1.",
+        "opening_date": "1950-10-06T00:00:00"
+      },
+      {
+        "description": "Palm Beach, FL: The Society of the Four Arts; January 10 - February 1,1953. \"Pre-Columbian Art: The Native Art of America Before the Conquest.\" Cat. no. 2, no repr.",
+        "opening_date": "1953-01-10T05:00:00Z"
+      },
+      {
+        "description": "Munich, Germany: Haus der Kunst; October 17-December 12, 1958. exh. cat. no. 326, repr. black and white pl. 40a. Zurich, Switzerland; Kunsthaus; January 1- February 28, 1959. exh. cat. no. 31, repr. black and white pl. 8a.",
+        "opening_date": "1958-10-17T00:00:00"
+      },
+      {
+        "description": "Paris, France: Galerie Charpentier; March 15- May 15, 1959. exh. cat. no. 18. The Netherlands: The Hague; June1- July 31, 1959. Berlin, Germany: Academie der Kunst; October 3- November 22, 1959. Circulating exhibition of \"Pre- Columbian Art from Mexico and Central America.\"",
+        "opening_date": "1959-03-15T00:00:00"
+      },
+      {
+        "description": "Coral Gables, FL: Lowe Art Museum, University of Miami; January 11-February 11, 1973. \"Pre- Colombian Art of the Gulf States.\" exh. cat. no. 43, repr. p. 23.",
+        "opening_date": "1973-01-11T00:00:00"
+      },
+      {
+        "description": "New York, NY: The Museum of Modern Art. \"Twenty Centuries of Mexican Art.\" exh. cat. no. 2, p. 32, exh. cat. no. 3, p. 34.",
+        "opening_date": null
+      },
+      {
+        "description": "Los Angeles, CA: The Los Angeles County Museum of Art; September 26, 2010- January 9, 2011. San Francisco, CA: The Fine Arts Museums of San Francisco; February 19- May 30, 2011. \"Olmec: Collossal Masterworks of Ancient Mexico.\"",
+        "opening_date": "2011-02-19T00:00:00"
+      }
+    ]
+  },
+  "provenance": [],
+  "find_spot": null,
+  "related_works": [],
+  "former_accession_numbers": [],
+  "did_you_know": null,
+  "early_education_description": null,
+  "artlens_description": null,
+  "description": "Like their contemporaries, the Olmec made figurines but of greenstone rather than clay. This one, whose identity and use are mysterious, holds objects that may address nature's fertility: on the right, perhaps a cut conch shell that refers to water, and on the left, what may be a plant or a bundle of green feathers that symbolizes new vegetation.",
+  "external_resources": {
+    "wikidata": [
+      "https://www.wikidata.org/wiki/Q60758313"
+    ],
+    "internet_archive": [
+      "https://archive.org/details/clevelandart-1941.390-seated-figure"
+    ]
+  },
+  "citations": [
+    {
+      "citation": "Milliken, William. \"Jade Figurine in the Olmec Style.\" <em>The Bulletin of the Cleveland Museum of Art </em>29, no. 6 (June 1942): 100.",
+      "page_number": "Mentioned: p. 100",
+      "url": "jstor.org/stable/25140995"
+    },
+    {
+      "citation": "Milliken, William. \"Pre-Columbian Jade and Hard Stone.\" <em>The Bulletin of the Cleveland Museum of Art </em>36, no. 4 (April 1949): 53-55.",
+      "page_number": "Mentioned: p. 53",
+      "url": "https://www.jstor.org/stable/25141547"
+    },
+    {
+      "citation": "The Cleveland Museum of Art. <em>The Cleveland Museum of Art Handbook.</em> Cleveland, OH: The Cleveland Museum of Art, 1958.",
+      "page_number": "Mentioned and Reproduced: cat. no. 375",
+      "url": "https://archive.org/details/CMAHandbook1958/page/n70"
+    },
+    {
+      "citation": "The Cleveland Museum of Art. <em>Handbook of the Cleveland Museum of Art/1966</em>. Cleveland, OH: The Cleveland Museum of Art, 1966.",
+      "page_number": "Reproduced: p. 290",
+      "url": "https://archive.org/details/CMAHandbook1966/page/n314"
+    },
+    {
+      "citation": "The Cleveland Museum of Art. <em>Handbook of the Cleveland Museum of Art/1969</em>. Cleveland, OH: The Cleveland Museum of Art, 1969.",
+      "page_number": "Reproduced: p. 290",
+      "url": "https://archive.org/details/CMAHandbook1969/page/n314"
+    },
+    {
+      "citation": "The Cleveland Museum of Art. <em>Handbook of the Cleveland Museum of Art/1978</em>. Cleveland, OH: The Cleveland Museum of Art, 1978.",
+      "page_number": "Reproduced: p. 392",
+      "url": "https://archive.org/details/CMAHandbook1978/page/n412"
+    },
+    {
+      "citation": "The Cleveland Museum of Art. <em>Handbook of the Cleveland Museum of Art</em>. Cleveland, OH: The Cleveland Museum of Art, 1991.",
+      "page_number": "Reproduced: p. 6",
+      "url": "https://archive.org/details/CMAHandbook1991/page/n21"
+    }
+  ],
+  "url": "https://clevelandart.org/art/1941.390",
+  "images": {
+    "annotation": null,
+    "web": {
+      "url": "https://openaccess-cdn.clevelandart.org/1941.390/1941.390_web.jpg",
+      "width": "713",
+      "height": "893",
+      "filesize": "343004",
+      "filename": "1941.390_web.jpg"
+    },
+    "print": {
+      "url": "https://openaccess-cdn.clevelandart.org/1941.390/1941.390_print.jpg",
+      "width": "2716",
+      "height": "3400",
+      "filesize": "5537845",
+      "filename": "1941.390_print.jpg"
+    },
+    "full": {
+      "url": "https://openaccess-cdn.clevelandart.org/1941.390/1941.390_full.tif",
+      "width": "2783",
+      "height": "3483",
+      "filesize": "29111100",
+      "filename": "1941.390_full.tif"
+    }
+  },
+  "alternate_images": [
+    {
+      "web": {
+        "url": "https://openaccess-cdn.clevelandart.org/1941.390/1941.390_alt0_web.jpg",
+        "width": "780",
+        "height": "893",
+        "filesize": "361589"
+      },
+      "print": {
+        "url": "https://openaccess-cdn.clevelandart.org/1941.390/1941.390_alt0_print.jpg",
+        "width": "2968",
+        "height": "3400",
+        "filesize": "5848153"
+      },
+      "full": {
+        "url": "https://openaccess-cdn.clevelandart.org/1941.390/1941.390_alt0_full.tif",
+        "width": "3080",
+        "height": "3528",
+        "filesize": "32631020"
+      },
+      "date_created": "2011-10-05T17:33:16",
+      "annotation": ""
+    },
+    {
+      "web": {
+        "url": "https://openaccess-cdn.clevelandart.org/1941.390/1941.390_alt1_web.jpg",
+        "width": "756",
+        "height": "893",
+        "filesize": "338786"
+      },
+      "print": {
+        "url": "https://openaccess-cdn.clevelandart.org/1941.390/1941.390_alt1_print.jpg",
+        "width": "2879",
+        "height": "3400",
+        "filesize": "5573252"
+      },
+      "full": {
+        "url": "https://openaccess-cdn.clevelandart.org/1941.390/1941.390_alt1_full.tif",
+        "width": "3034",
+        "height": "3583",
+        "filesize": "32646712"
+      },
+      "date_created": "2011-10-05T17:52:55",
+      "annotation": ""
+    },
+    {
+      "web": {
+        "url": "https://openaccess-cdn.clevelandart.org/1941.390/1941.390_alt2_web.jpg",
+        "width": "718",
+        "height": "893",
+        "filesize": "315718"
+      },
+      "print": {
+        "url": "https://openaccess-cdn.clevelandart.org/1941.390/1941.390_alt2_print.jpg",
+        "width": "2734",
+        "height": "3400",
+        "filesize": "5320391"
+      },
+      "full": {
+        "url": "https://openaccess-cdn.clevelandart.org/1941.390/1941.390_alt2_full.tif",
+        "width": "2772",
+        "height": "3447",
+        "filesize": "28694572"
+      },
+      "date_created": "2011-10-05T18:01:10",
+      "annotation": ""
+    },
+    {
+      "web": {
+        "url": "https://openaccess-cdn.clevelandart.org/1941.390/1941.390_alt3_web.jpg",
+        "width": "724",
+        "height": "893",
+        "filesize": "313301"
+      },
+      "print": {
+        "url": "https://openaccess-cdn.clevelandart.org/1941.390/1941.390_alt3_print.jpg",
+        "width": "2758",
+        "height": "3400",
+        "filesize": "5387339"
+      },
+      "full": {
+        "url": "https://openaccess-cdn.clevelandart.org/1941.390/1941.390_alt3_full.tif",
+        "width": "2871",
+        "height": "3539",
+        "filesize": "30511712"
+      },
+      "date_created": "2011-10-05T18:08:28",
+      "annotation": ""
+    },
+    {
+      "web": {
+        "url": "https://openaccess-cdn.clevelandart.org/1941.390/1941.390_alt4_web.jpg",
+        "width": "814",
+        "height": "893",
+        "filesize": "365334"
+      },
+      "print": {
+        "url": "https://openaccess-cdn.clevelandart.org/1941.390/1941.390_alt4_print.jpg",
+        "width": "3100",
+        "height": "3400",
+        "filesize": "6151067"
+      },
+      "full": {
+        "url": "https://openaccess-cdn.clevelandart.org/1941.390/1941.390_alt4_full.tif",
+        "width": "3311",
+        "height": "3631",
+        "filesize": "36099656"
+      },
+      "date_created": "2011-10-05T18:28:01",
+      "annotation": ""
+    },
+    {
+      "web": {
+        "url": "https://openaccess-cdn.clevelandart.org/1941.390/1941.390_alt5_web.jpg",
+        "width": "696",
+        "height": "893",
+        "filesize": "272775"
+      },
+      "print": {
+        "url": "https://openaccess-cdn.clevelandart.org/1941.390/1941.390_alt5_print.jpg",
+        "width": "1536",
+        "height": "1972",
+        "filesize": "1424508"
+      },
+      "full": {
+        "url": "https://openaccess-cdn.clevelandart.org/1941.390/1941.390_alt5_full.tif",
+        "width": "1536",
+        "height": "1972",
+        "filesize": "9090316"
+      },
+      "annotation": ""
+    }
+  ],
+  "creditline": "Purchase from the J. H. Wade Fund",
+  "image_credit": null,
+  "sketchfab_id": null,
+  "sketchfab_url": null,
+  "gallery_donor_text": null,
+  "athena_id": 120633,
+  "creators": [],
+  "legal_status": "accessioned",
+  "accession_date": "1941-10-05T00:00:00",
+  "sortable_date": -900,
+  "date_added_to_oa": null,
+  "date_text": "c. 900–300 BCE",
+  "collapse_artists": false,
+  "on_loan": false,
+  "recently_acquired": false,
+  "record_type": "object",
+  "conservation_statement": null,
+  "has_conservation_images": false,
+  "cover_accession_number": null,
+  "is_nazi_era_provenance": false,
+  "impression": null,
+  "alternate_titles": [
+    "Jadeite Seated Figure"
+  ],
+  "is_highlight": false,
+  "updated_at": "2026-05-29 06:13:32.010000"
+}
