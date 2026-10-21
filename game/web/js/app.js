@@ -6,17 +6,24 @@
   const PER_GAME = 6;                   // questions per playthrough (fewer if the bank is smaller)
   const ORIGIN_PER_TYPE = 3;            // Origin: 3 continent + 3 country questions
 
-  // Category buttons: key in QUIZ_DATA.categories -> label on screen.
+  // Category buttons: key in QUIZ_DATA.categories -> label on screen, per language.
   const CATEGORIES = [
-    { key: 'title', name: 'Artwork Title' },
-    { key: 'year', name: 'Year of Creation' },
-    { key: 'origin', name: 'Geographic Origin' },
-    { key: 'medium', name: 'Medium' }
+    { key: 'title', name: { en: 'Artwork Title', ar: 'عنوان العمل الفني' } },
+    { key: 'year', name: { en: 'Year of Creation', ar: 'سنة الإنشاء' } },
+    { key: 'origin', name: { en: 'Geographic Origin', ar: 'الأصل الجغرافي' } },
+    { key: 'medium', name: { en: 'Medium', ar: 'الخامة' } }
   ];
-  const UI = { pick: 'Choose a category', score: 'Your score', again: 'Play again',
-               v: ['Try again.', 'Well played.', 'Perfect score.'] };
+  const UI = {
+    en: { pick: 'Choose a category', score: 'Your score', again: 'Play again',
+          v: ['Try again.', 'Well played.', 'Perfect score.'] },
+    ar: { pick: 'اختر فئة', score: 'نتيجتك', again: 'العب مرة أخرى',
+          v: ['حاول مرة أخرى.', 'أحسنت.', 'نتيجة كاملة.'] }
+  };
 
-  let questions, i, score;
+  let lang = 'en', questions, i, score;
+
+  // Pick the current language from an {en: ..., ar: ...} object; fall back to English.
+  const tr = obj => obj[lang] || obj.en;
 
   function fit() {
     const s = Math.min(innerWidth / 1024, innerHeight / 600);
@@ -68,22 +75,34 @@
     return draw(key, all, PER_GAME);
   }
 
-  // Capitalise only the first letter on screen; the data keeps the API's exact text.
+  // Capitalise only the first letter on screen (Arabic has no capitals, so it is unchanged).
   const display = text => text.charAt(0).toUpperCase() + text.slice(1);
 
-  // The question sentence, with {continent} filled in for Origin country questions.
-  const questionText = q => QUIZ_DATA.texts[q.question_key].replace('{continent}', q.continent || '');
+  // The question sentence in the current language, with {continent} filled in.
+  function questionText(q) {
+    const texts = QUIZ_DATA.texts[lang] || QUIZ_DATA.texts.en;
+    const sentence = texts[q.question_key] || QUIZ_DATA.texts.en[q.question_key];
+    return sentence.replace('{continent}', q.continent ? tr(q.continent) : '');
+  }
+
+  // Language button: switch texts and reading direction, then show the categories.
+  function setLang(code) {
+    lang = code;
+    document.documentElement.lang = code;
+    document.documentElement.dir = code === 'ar' ? 'rtl' : 'ltr';  // Arabic reads right to left
+    showCategories();
+  }
 
   function showCategories() {
-    $('cats-title').textContent = UI.pick;
-    $('end-label').textContent = UI.score;
-    $('again').textContent = UI.again;
+    $('cats-title').textContent = UI[lang].pick;
+    $('end-label').textContent = UI[lang].score;
+    $('again').textContent = UI[lang].again;
     const list = $('cat-list');
     list.innerHTML = '';
     CATEGORIES.forEach((c, n) => {
       const b = document.createElement('button');
       b.className = 'choice c' + n;
-      b.textContent = c.name;
+      b.textContent = tr(c.name);
       b.onclick = () => start(c.key);
       list.appendChild(b);
     });
@@ -108,11 +127,12 @@
     const box = $('answers');
     box.className = 'answers';
     box.innerHTML = '';
-    shuffle(q.options).forEach(text => {
+    // Shuffle the positions 0-3, so the English and Arabic option at each position stay together.
+    shuffle([0, 1, 2, 3]).forEach(n => {
       const b = document.createElement('button');
       b.className = 'ans';
-      b.textContent = display(text);
-      b.dataset.answer = text;  // the exact text, used to check the answer
+      b.textContent = display(tr({ en: q.options.en[n], ar: q.options.ar && q.options.ar[n] }));
+      b.dataset.answer = q.options.en[n];  // the exact English text, used to check the answer
       b.onclick = () => pick(b);
       box.appendChild(b);
     });
@@ -121,9 +141,9 @@
   function pick(btn) {
     const q = questions[i], box = $('answers');
     box.classList.add('locked');
-    if (btn.dataset.answer === q.answer) score++; else btn.classList.add('wrong');
+    if (btn.dataset.answer === q.answer.en) score++; else btn.classList.add('wrong');
     // Always highlight the correct answer, so a wrong guess still shows it.
-    [...box.children].find(b => b.dataset.answer === q.answer).classList.add('correct');
+    [...box.children].find(b => b.dataset.answer === q.answer.en).classList.add('correct');
     setProgress(i + 1);
     setTimeout(() => { if (++i < questions.length) render(); else finish(); }, 1200);
   }
@@ -131,10 +151,11 @@
   function finish() {
     const t = questions.length;
     $('score').innerHTML = score + '<small>/' + t + '</small>';
-    $('verdict').textContent = UI.v[score === t ? 2 : score >= t / 2 ? 1 : 0];
+    $('verdict').textContent = UI[lang].v[score === t ? 2 : score >= t / 2 ? 1 : 0];
     show('end');
   }
 
-  document.querySelectorAll('[data-lang]').forEach(b => b.onclick = showCategories);
-  $('again').onclick = () => show('lang');
+  document.querySelectorAll('[data-lang]').forEach(b => b.onclick = () => setLang(b.dataset.lang));
+  // Play again: back to the language screen, in the default left-to-right layout.
+  $('again').onclick = () => { document.documentElement.lang = 'en'; document.documentElement.dir = 'ltr'; show('lang'); };
 })();

@@ -13,8 +13,11 @@ OUTPUT_DIR = Path("output")
 WEB_DATA = Path("game/web/js/question_bank.js")
 CATEGORIES = ["title", "year", "origin", "medium"]
 
+LANGUAGES = ["en", "ar"]  # one output/i18n/<language>.json file each
+
 data = {
-    "texts": json.loads((OUTPUT_DIR / "i18n" / "en.json").read_text(encoding="utf-8")),
+    "texts": {lang: json.loads((OUTPUT_DIR / "i18n" / f"{lang}.json").read_text(encoding="utf-8"))
+              for lang in LANGUAGES},
     "categories": {},
 }
 for name in CATEGORIES:

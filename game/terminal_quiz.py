@@ -38,7 +38,12 @@ def hint_before_answer(question, category):
         # Year: the date IS the answer, and titles/cultures often contain dates.
         # Origin: the culture names the country (e.g. "Japan, Edo period").
         return None
-    return f"Created: {question['creation_date']} | Culture: {question['culture']}"
+    return f"Created: {en(question['creation_date'])} | Culture: {en(question['culture'])}"
+
+
+def en(value):
+    """The English part of a two-language field like {"en": ..., "ar": ...}."""
+    return value["en"] if isinstance(value, dict) else value
 
 
 def display(text):
@@ -76,12 +81,12 @@ questions = pick_questions(bank)
 score = 0
 
 for number, question in enumerate(questions, start=1):
-    options = question["options"][:]  # [:] makes a copy, so we don't change the original
+    options = en(question["options"])[:]  # [:] makes a copy, so we don't change the original
     random.shuffle(options)           # a new order every time
 
     print(f"\n{topic}: question {number} of {len(questions)}")
     # .format() fills placeholders like {continent}; texts without one are unchanged.
-    print(texts[question["question_key"]].format(continent=question.get("continent", "")))
+    print(texts[question["question_key"]].format(continent=en(question.get("continent", ""))))
     print("Image:", (OUTPUT_DIR / question["image"]).resolve())
     hint = hint_before_answer(question, bank["category"])
     if hint:  # None means "no hint for this topic"
@@ -90,12 +95,12 @@ for number, question in enumerate(questions, start=1):
         print(f"  {i}. {display(option)}")
 
     choice = ask_number("Your answer (1-4): ", 4)
-    if options[choice - 1] == question["answer"]:
+    if options[choice - 1] == en(question["answer"]):
         score += 1
         print("Correct!")
     else:
-        print("Wrong. The correct answer is:", display(question["answer"]))
+        print("Wrong. The correct answer is:", display(en(question["answer"])))
     if bank["category"] in ("year", "origin"):
-        print("  ", question["context"])  # safe now that the player has answered
+        print("  ", en(question["context"]))  # safe now that the player has answered
 
 print(f"\nFinal score: {score} of {len(questions)}")
