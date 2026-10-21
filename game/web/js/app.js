@@ -138,10 +138,19 @@
     });
   }
 
+  // Ask the Pi's server (game/app.py) to flash the green or red LED.
+  // Without the server (index.html opened by double-click) the request fails
+  // quietly and the game simply carries on.
+  function flashLed(result) {
+    fetch('/api/led/' + result, { method: 'POST' }).catch(() => {});
+  }
+
   function pick(btn) {
     const q = questions[i], box = $('answers');
     box.classList.add('locked');
-    if (btn.dataset.answer === q.answer.en) score++; else btn.classList.add('wrong');
+    const correct = btn.dataset.answer === q.answer.en;
+    if (correct) score++; else btn.classList.add('wrong');
+    flashLed(correct ? 'correct' : 'wrong');
     // Always highlight the correct answer, so a wrong guess still shows it.
     [...box.children].find(b => b.dataset.answer === q.answer.en).classList.add('correct');
     setProgress(i + 1);
