@@ -16,7 +16,8 @@ DELAY_SECONDS = 1  # pause after each real API call, to be polite to the server
 
 def download_file(url):
     """Download any URL (e.g. an image) and return its raw bytes. Pauses after."""
-    request = urllib.request.Request(url, headers={"User-Agent": "museum-quiz-pipeline/0.1"})
+    request = urllib.request.Request(
+        url, headers={"User-Agent": "museum-quiz-pipeline/0.1"})
     with urllib.request.urlopen(request) as response:
         data = response.read()
     time.sleep(DELAY_SECONDS)

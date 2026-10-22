@@ -1,39 +1,53 @@
 (() => {
-  const $ = id => document.getElementById(id);
-  const stage = $('stage');
+  const $ = (id) => document.getElementById(id);
+  const stage = $("stage");
 
-  const OUTPUT_DIR = '../../output/';  // question images live in output/images/
-  const PER_GAME = 6;                   // questions per playthrough (fewer if the bank is smaller)
-  const ORIGIN_PER_TYPE = 3;            // Origin: 3 continent + 3 country questions
+  const OUTPUT_DIR = "../../output/"; // question images live in output/images/
+  const PER_GAME = 6; // questions per playthrough (fewer if the bank is smaller)
+  const ORIGIN_PER_TYPE = 3; // Origin: 3 continent + 3 country questions
 
   // Category buttons: key in QUIZ_DATA.categories -> label on screen, per language.
   const CATEGORIES = [
-    { key: 'title', name: { en: 'Artwork Title', ar: 'عنوان العمل الفني' } },
-    { key: 'year', name: { en: 'Year of Creation', ar: 'سنة الإنشاء' } },
-    { key: 'origin', name: { en: 'Geographic Origin', ar: 'الأصل الجغرافي' } },
-    { key: 'medium', name: { en: 'Medium', ar: 'الخامة' } }
+    { key: "title", name: { en: "Artwork Title", ar: "عنوان العمل الفني" } },
+    { key: "year", name: { en: "Year of Creation", ar: "سنة الإنشاء" } },
+    { key: "origin", name: { en: "Geographic Origin", ar: "الأصل الجغرافي" } },
+    { key: "medium", name: { en: "Medium", ar: "الخامة" } },
   ];
   const UI = {
-    en: { pick: 'Choose a category', score: 'Your score', again: 'Play again',
-          v: ['Try again.', 'Well played.', 'Perfect score.'] },
-    ar: { pick: 'اختر فئة', score: 'نتيجتك', again: 'العب مرة أخرى',
-          v: ['حاول مرة أخرى.', 'أحسنت.', 'نتيجة كاملة.'] }
+    en: {
+      pick: "Choose a category",
+      score: "Your score",
+      again: "Play again",
+      v: ["Try again.", "Well played.", "Perfect score."],
+    },
+    ar: {
+      pick: "اختر فئة",
+      score: "نتيجتك",
+      again: "العب مرة أخرى",
+      v: ["حاول مرة أخرى.", "أحسنت.", "نتيجة كاملة."],
+    },
   };
 
-  let lang = 'en', questions, i, score;
+  let lang = "en",
+    questions,
+    i,
+    score;
 
   // Pick the current language from an {en: ..., ar: ...} object; fall back to English.
-  const tr = obj => obj[lang] || obj.en;
+  const tr = (obj) => obj[lang] || obj.en;
 
   function fit() {
     const s = Math.min(innerWidth / 1024, innerHeight / 600);
-    stage.style.transform = 'translate(-50%, -50%) scale(' + s + ')';
+    stage.style.transform = "translate(-50%, -50%) scale(" + s + ")";
   }
-  addEventListener('resize', fit); fit();
+  addEventListener("resize", fit);
+  fit();
 
   function show(id) {
     stage.dataset.screen = id;
-    document.querySelectorAll('.screen').forEach(s => s.classList.toggle('active', s.id === id));
+    document
+      .querySelectorAll(".screen")
+      .forEach((s) => s.classList.toggle("active", s.id === id));
   }
 
   // Returns a shuffled COPY of a list (Fisher-Yates shuffle), so the data is never changed.
@@ -57,7 +71,7 @@
     const chosen = deck.slice(0, n);
     decks[deckName] = deck.slice(n);
     if (chosen.length < n) {
-      const newDeck = shuffle(all.filter(q => !chosen.includes(q)));
+      const newDeck = shuffle(all.filter((q) => !chosen.includes(q)));
       const missing = n - chosen.length;
       chosen.push(...newDeck.slice(0, missing));
       decks[deckName] = newDeck.slice(missing);
@@ -68,103 +82,140 @@
   // Choose this game's questions.
   function pickQuestions(key) {
     const all = QUIZ_DATA.categories[key];
-    if (key === 'origin') {
-      const ofType = type => draw('origin-' + type, all.filter(q => q.type === type), ORIGIN_PER_TYPE);
-      return shuffle(ofType('continent').concat(ofType('country')));
+    if (key === "origin") {
+      const ofType = (type) =>
+        draw(
+          "origin-" + type,
+          all.filter((q) => q.type === type),
+          ORIGIN_PER_TYPE,
+        );
+      return shuffle(ofType("continent").concat(ofType("country")));
     }
     return draw(key, all, PER_GAME);
   }
 
   // Capitalise only the first letter on screen (Arabic has no capitals, so it is unchanged).
-  const display = text => text.charAt(0).toUpperCase() + text.slice(1);
+  const display = (text) => text.charAt(0).toUpperCase() + text.slice(1);
 
   // The question sentence in the current language, with {continent} filled in.
   function questionText(q) {
     const texts = QUIZ_DATA.texts[lang] || QUIZ_DATA.texts.en;
-    const sentence = texts[q.question_key] || QUIZ_DATA.texts.en[q.question_key];
-    return sentence.replace('{continent}', q.continent ? tr(q.continent) : '');
+    const sentence =
+      texts[q.question_key] || QUIZ_DATA.texts.en[q.question_key];
+    return sentence.replace("{continent}", q.continent ? tr(q.continent) : "");
   }
 
   // Language button: switch texts and reading direction, then show the categories.
   function setLang(code) {
     lang = code;
     document.documentElement.lang = code;
-    document.documentElement.dir = code === 'ar' ? 'rtl' : 'ltr';  // Arabic reads right to left
+    document.documentElement.dir = code === "ar" ? "rtl" : "ltr"; // Arabic reads right to left
     showCategories();
   }
 
   function showCategories() {
-    $('cats-title').textContent = UI[lang].pick;
-    $('end-label').textContent = UI[lang].score;
-    $('again').textContent = UI[lang].again;
-    const list = $('cat-list');
-    list.innerHTML = '';
+    $("cats-title").textContent = UI[lang].pick;
+    $("end-label").textContent = UI[lang].score;
+    $("again").textContent = UI[lang].again;
+    const list = $("cat-list");
+    list.innerHTML = "";
     CATEGORIES.forEach((c, n) => {
-      const b = document.createElement('button');
-      b.className = 'choice c' + n;
+      const b = document.createElement("button");
+      b.className = "choice c" + n;
       b.textContent = tr(c.name);
       b.onclick = () => start(c.key);
       list.appendChild(b);
     });
-    show('cats');
+    show("cats");
   }
 
-  function start(key) { questions = pickQuestions(key); i = 0; score = 0; render(); show('play'); }
+  function start(key) {
+    clearLeds(); // a new visitor starts with all LEDs off
+    questions = pickQuestions(key);
+    i = 0;
+    score = 0;
+    render();
+    show("play");
+  }
 
-  function setProgress(n) { $('fill').style.transform = 'scaleX(' + n / questions.length + ')'; }
+  function setProgress(n) {
+    $("fill").style.transform = "scaleX(" + n / questions.length + ")";
+  }
 
   function render() {
     const q = questions[i];
-    $('count').textContent = (i + 1) + ' / ' + questions.length;
+    // Questions 4, 7, 10... start a new group of 3: switch the LEDs off first.
+    if (i > 0 && i % LED_COUNT === 0) clearLeds();
+    $("count").textContent = i + 1 + " / " + questions.length;
     setProgress(i);
-    $('q-text').textContent = questionText(q);
-    const pic = $('pic'), img = new Image();
+    $("q-text").textContent = questionText(q);
+    const pic = $("pic"),
+      img = new Image();
     img.src = OUTPUT_DIR + q.image;
-    img.alt = '';
+    img.alt = "";
     img.onerror = () => img.remove();
-    pic.innerHTML = '';
+    pic.innerHTML = "";
     pic.appendChild(img);
-    const box = $('answers');
-    box.className = 'answers';
-    box.innerHTML = '';
+    const box = $("answers");
+    box.className = "answers";
+    box.innerHTML = "";
     // Shuffle the positions 0-3, so the English and Arabic option at each position stay together.
-    shuffle([0, 1, 2, 3]).forEach(n => {
-      const b = document.createElement('button');
-      b.className = 'ans';
-      b.textContent = display(tr({ en: q.options.en[n], ar: q.options.ar && q.options.ar[n] }));
-      b.dataset.answer = q.options.en[n];  // the exact English text, used to check the answer
+    shuffle([0, 1, 2, 3]).forEach((n) => {
+      const b = document.createElement("button");
+      b.className = "ans";
+      b.textContent = display(
+        tr({ en: q.options.en[n], ar: q.options.ar && q.options.ar[n] }),
+      );
+      b.dataset.answer = q.options.en[n]; // the exact English text, used to check the answer
       b.onclick = () => pick(b);
       box.appendChild(b);
     });
   }
 
-  // Ask the Pi's server (game/app.py) to flash the green or red LED.
+  // Ask the Pi's server (game/app.py) to switch the LEDs.
   // Without the server (index.html opened by double-click) the request fails
   // quietly and the game simply carries on.
-  function flashLed(result) {
-    fetch('/api/led/' + result, { method: 'POST' }).catch(() => {});
-  }
+  const LED_COUNT = 3;
+  const ledRequest = (path) => fetch("/api/led/" + path, { method: "POST" }).catch(() => {});
+  // Answer 1 -> LED 0, answer 2 -> LED 1, answer 3 -> LED 2, answer 4 -> LED 0 again...
+  const setLed = (questionIndex, result) => ledRequest((questionIndex % LED_COUNT) + "/" + result);
+  const clearLeds = () => ledRequest("clear");
 
   function pick(btn) {
-    const q = questions[i], box = $('answers');
-    box.classList.add('locked');
+    const q = questions[i],
+      box = $("answers");
+    box.classList.add("locked");
     const correct = btn.dataset.answer === q.answer.en;
-    if (correct) score++; else btn.classList.add('wrong');
-    flashLed(correct ? 'correct' : 'wrong');
+    if (correct) score++;
+    else btn.classList.add("wrong");
+    setLed(i, correct ? "correct" : "wrong");
     // Always highlight the correct answer, so a wrong guess still shows it.
-    [...box.children].find(b => b.dataset.answer === q.answer.en).classList.add('correct');
+    [...box.children]
+      .find((b) => b.dataset.answer === q.answer.en)
+      .classList.add("correct");
     setProgress(i + 1);
-    setTimeout(() => { if (++i < questions.length) render(); else finish(); }, 1200);
+    setTimeout(() => {
+      if (++i < questions.length) render();
+      else finish();
+    }, 1200);
   }
 
   function finish() {
+    clearLeds(); // the score screen has no LEDs on
     const t = questions.length;
-    $('score').innerHTML = score + '<small>/' + t + '</small>';
-    $('verdict').textContent = UI[lang].v[score === t ? 2 : score >= t / 2 ? 1 : 0];
-    show('end');
+    $("score").innerHTML = score + "<small>/" + t + "</small>";
+    $("verdict").textContent =
+      UI[lang].v[score === t ? 2 : score >= t / 2 ? 1 : 0];
+    show("end");
   }
 
-  document.querySelectorAll('[data-lang]').forEach(b => b.onclick = () => setLang(b.dataset.lang));
+  document
+    .querySelectorAll("[data-lang]")
+    .forEach((b) => (b.onclick = () => setLang(b.dataset.lang)));
   // Play again: back to the language screen, in the default left-to-right layout.
-  $('again').onclick = () => { document.documentElement.lang = 'en'; document.documentElement.dir = 'ltr'; show('lang'); };
+  $("again").onclick = () => {
+    document.documentElement.lang = "en";
+    document.documentElement.dir = "ltr";
+    show("lang");
+  };
 })();

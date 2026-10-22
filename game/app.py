@@ -1,15 +1,13 @@
 """Small web server for the Raspberry Pi kiosk.
 
 It serves the touchscreen game (game/web/) and the artwork images (output/),
-and switches the green/red LEDs when the game reports an answer.
+and lights 3 RGB LEDs green/red, one per answer in turn.
 A web page can't control the Pi's GPIO pins itself; this server does it for it.
 
 Start:  py game/app.py   then open http://localhost:5000
 """
 from flask import Flask, jsonify, send_from_directory
 from pathlib import Path
-import threading
-import time
 
 try:
     import RPi.GPIO as GPIO
@@ -23,8 +21,14 @@ PROJECT_DIR = GAME_DIR.parent
 WEB_DIR = GAME_DIR / "web"          # the touchscreen game (your design)
 OUTPUT_DIR = PROJECT_DIR / "output"  # question bank + images
 
-GREEN_LED = 17
-RED_LED = 27
+# One (red, green) pair of GPIO pins per RGB LED.
+# Answer 1 lights LED 1, answer 2 LED 2, answer 3 LED 3, answer 4 LED 1 again...
+LEDS = [
+    (27, 17),  # LED 1: red = GPIO 27 (pin 13), green = GPIO 17 (pin 11)
+    (22, 23),  # LED 2: red = GPIO 22 (pin 15), green = GPIO 23 (pin 16)
+    (24, 25),  # LED 3: red = GPIO 24 (pin 18), green = GPIO 25 (pin 22)
+]
+ALL_PINS = [pin for pair in LEDS for pin in pair]
 
 # static_folder + static_url_path="" means: game/web/css/style.css is served at /css/style.css
 app = Flask(__name__, static_folder=str(WEB_DIR), static_url_path="")
@@ -34,33 +38,25 @@ app = Flask(__name__, static_folder=str(WEB_DIR), static_url_path="")
 if GPIO_AVAILABLE:
     GPIO.setwarnings(False)
     GPIO.setmode(GPIO.BCM)
-
-    GPIO.setup(GREEN_LED, GPIO.OUT)
-    GPIO.setup(RED_LED, GPIO.OUT)
-
-    GPIO.output(GREEN_LED, GPIO.LOW)
-    GPIO.output(RED_LED, GPIO.LOW)
+    for pin in ALL_PINS:
+        GPIO.setup(pin, GPIO.OUT, initial=GPIO.LOW)
 
 
-def turn_off_leds():
+def set_led(slot, result):
+    """Light LED number `slot` (0, 1 or 2) green or red. It stays on."""
     if not GPIO_AVAILABLE:
         return
+    red_pin, green_pin = LEDS[slot]
+    GPIO.output(red_pin, GPIO.HIGH if result == "wrong" else GPIO.LOW)
+    GPIO.output(green_pin, GPIO.HIGH if result == "correct" else GPIO.LOW)
 
-    GPIO.output(GREEN_LED, GPIO.LOW)
-    GPIO.output(RED_LED, GPIO.LOW)
 
-
-def flash_led(pin):
+def clear_leds():
+    """Switch all LEDs off, e.g. when a new game starts."""
     if not GPIO_AVAILABLE:
         return
-
-    turn_off_leds()
-
-    GPIO.output(pin, GPIO.HIGH)
-
-    time.sleep(1)
-
-    GPIO.output(pin, GPIO.LOW)
+    for pin in ALL_PINS:
+        GPIO.output(pin, GPIO.LOW)
 
 
 # --------------------------
@@ -87,38 +83,19 @@ def output_file(filename):
 # LED CONTROL
 # --------------------------
 
-@app.route(
-    "/api/led/<result>",
-    methods=["POST"]
-)
-def control_led(result):
+@app.route("/api/led/<int:slot>/<result>", methods=["POST"])
+def control_led(slot, result):
+    if result not in ("correct", "wrong") or not 0 <= slot < len(LEDS):
+        return jsonify({"error": "Invalid LED or result"}), 400
+    set_led(slot, result)
+    return jsonify({"success": True, "slot": slot, "result": result,
+                    "gpio_available": GPIO_AVAILABLE})
 
-    if result == "correct":
-        pin = GREEN_LED
 
-    elif result == "wrong":
-        pin = RED_LED
-
-    else:
-        return jsonify({
-            "error": "Invalid result"
-        }), 400
-
-    # Run LED separately so the page
-    # doesn't wait for the sleep().
-    thread = threading.Thread(
-        target=flash_led,
-        args=(pin,),
-        daemon=True
-    )
-
-    thread.start()
-
-    return jsonify({
-        "success": True,
-        "result": result,
-        "gpio_available": GPIO_AVAILABLE
-    })
+@app.route("/api/led/clear", methods=["POST"])
+def clear_led_route():
+    clear_leds()
+    return jsonify({"success": True, "gpio_available": GPIO_AVAILABLE})
 
 
 # --------------------------

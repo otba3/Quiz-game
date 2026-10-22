@@ -39,30 +39,35 @@ for line_no, row in enumerate(rows, start=2):
 
     # Safety checks: refuse to export anything broken.
     if artwork["title"] not in options:
-        raise SystemExit(f"line {line_no}: real title {artwork['title']!r} is not an option")
+        raise SystemExit(
+            f"line {line_no}: real title {artwork['title']!r} is not an option")
     if not (OUTPUT_DIR / image_path).exists():
-        raise SystemExit(f"line {line_no}: missing {image_path}, run prepare_images.py first")
+        raise SystemExit(
+            f"line {line_no}: missing {image_path}, run prepare_images.py first")
 
     questions.append({
         "id": f"title-{artwork_id}",
         "question_key": QUESTION_KEY,
         "image": image_path,
-        "options": options,           # kept in CSV order; the front-end shuffles
+        "options": options,
         "answer": artwork["title"],
         "context": make_context(artwork),
         "creation_date": artwork["creation_date"],   # e.g. "c. 1800s"
-        "culture": ", ".join(artwork["culture"]),    # the API gives a list, we join it
+        # the API gives a list, we join it
+        "culture": ", ".join(artwork["culture"]),
     })
 
 # Merge our text into en.json, so other categories' texts are kept.
 en_path = OUTPUT_DIR / "i18n" / "en.json"
 en_path.parent.mkdir(parents=True, exist_ok=True)
-english = json.loads(en_path.read_text(encoding="utf-8")) if en_path.exists() else {}
+english = json.loads(en_path.read_text(encoding="utf-8")
+                     ) if en_path.exists() else {}
 english.update(ENGLISH_TEXT)
 
 bank = {"category": "title", "questions": questions}
 (OUTPUT_DIR / "questions_title.json").write_text(
     json.dumps(bank, indent=2, ensure_ascii=False), encoding="utf-8")
-en_path.write_text(json.dumps(english, indent=2, ensure_ascii=False), encoding="utf-8")
+en_path.write_text(json.dumps(english, indent=2,
+                   ensure_ascii=False), encoding="utf-8")
 
 print(f"Exported {len(questions)} questions to output/questions_title.json")
