@@ -114,16 +114,31 @@ button {
   overflow: hidden;
   transform: translate(-50%, -50%);
 }
-#stage[data-screen="play"] .logo {
-  display: none;
-}
-.logo {
+/* Mathaf logo area */
+.logo-clearspace {
   position: absolute;
-  right: var(--space-6);
-  top: var(--space-4);
-  height: 56px;
-  width: auto;
+
+  top: 24px;
+  right: 24px;
+
+  /* Clearspace around the actual logo */
+  padding: 16px;
+
   z-index: 2;
+}
+
+.logo {
+  display: block;
+
+  /* Standard digital logo */
+  width: 132px;
+  height: auto;
+}
+
+
+/* Hide logo while answering questions */
+#stage[data-screen="play"] .logo-clearspace {
+  display: none;
 }
 .screen {
   position: absolute;
