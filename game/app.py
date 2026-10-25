@@ -30,12 +30,11 @@ OUTPUT_DIR = PROJECT_DIR / "output"  # question bank + images
 LEDS = [
     (27, 17),  # LED 1: red = GPIO 27 (pin 13), green = GPIO 17 (pin 11)
     (22, 23),  # LED 2: red = GPIO 22 (pin 15), green = GPIO 23 (pin 16)
-    (24, 25),  # LED 3: red = GPIO 24 (pin 18), green = GPIO 25 (pin 22)
+    (24, 16),  # LED 3: red = GPIO 24 (pin 18), green = GPIO 16 (pin 36)
 ]
 ALL_PINS = [pin for pair in LEDS for pin in pair]
 
-# RC522 card reader RST wire: GPIO 25 (pin 22).
-# Warning: LED 3 green also uses GPIO 25; move one of them (e.g. RST to GPIO 5, pin 29).
+# RC522 card reader RST wire: GPIO 25 (pin 22). LED 3 green moved to GPIO 16 to free it.
 RFID_RST_PIN = 25
 CARD_WAIT_SECONDS = 20  # how long the end screen waits for a card tap
 FAKE_CARD_UID = 1234567890  # used on a laptop without a reader, so the screens can be tested
@@ -51,6 +50,8 @@ if GPIO_AVAILABLE:
     for pin in ALL_PINS:
         GPIO.setup(pin, GPIO.OUT, initial=GPIO.LOW)
     reader = MFRC522(pin_rst=RFID_RST_PIN)
+    # DEBUG (remove later): 0x91/0x92/0x12/0xb2 = reader answers, 0x0 = no contact
+    print("RFID reader version:", hex(reader.Read_MFRC522(0x37)))
 
 create_table()  # make sure data/visitor_scores.db has its table
 
@@ -119,6 +120,7 @@ def wait_for_card(seconds):
     if not GPIO_AVAILABLE:
         time.sleep(2)  # laptop: pretend a card was tapped
         return FAKE_CARD_UID
+    print("Waiting for card... reader version:", hex(reader.Read_MFRC522(0x37)))  # DEBUG
     end_time = time.time() + seconds
     while time.time() < end_time:
         status, _ = reader.MFRC522_Request(reader.PICC_REQIDL)  # is a card near?
