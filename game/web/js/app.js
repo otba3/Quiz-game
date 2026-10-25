@@ -19,24 +19,32 @@
       score: "Your score",
       again: "Play again",
       v: ["Try again.", "Well played.", "Perfect score."],
-      tap: "Tap your card on the reader to save your score",
+      tapTitle: "Save your score",
+      tap: "Tap your card on the reader",
       skip: "Skip",
-      saved: "Score saved! Come back after the exhibition and tap again.",
+      savedTitle: "Score saved!",
+      saved: "Come back after the exhibition and tap again.",
+      progressTitle: "Your progress",
       before: "Before",
       now: "Now",
-      noCard: "No card tapped, score not saved.",
+      noCardTitle: "Not saved",
+      noCard: "No card was tapped.",
     },
     ar: {
       pick: "اختر فئة",
       score: "نتيجتك",
       again: "العب مرة أخرى",
       v: ["حاول مرة أخرى.", "أحسنت.", "نتيجة كاملة."],
-      tap: "ضع بطاقتك على القارئ لحفظ نتيجتك",
+      tapTitle: "احفظ نتيجتك",
+      tap: "ضع بطاقتك على القارئ",
       skip: "تخطي",
-      saved: "تم حفظ نتيجتك! عد بعد زيارة المعرض وضع بطاقتك مرة أخرى.",
+      savedTitle: "تم حفظ نتيجتك!",
+      saved: "عد بعد زيارة المعرض وضع بطاقتك مرة أخرى.",
+      progressTitle: "تقدّمك",
       before: "قبل",
       now: "الآن",
-      noCard: "لم يتم وضع بطاقة، لم تُحفظ النتيجة.",
+      noCardTitle: "لم تُحفظ",
+      noCard: "لم يتم وضع بطاقة.",
     },
   };
 
@@ -132,6 +140,8 @@
     $("end-label").textContent = UI[lang].score;
     $("again").textContent = UI[lang].again;
     $("skip").textContent = UI[lang].skip;
+    $("before-label").textContent = UI[lang].before;
+    $("now-label").textContent = UI[lang].now;
     const list = $("cat-list");
     list.innerHTML = "";
     CATEGORIES.forEach((c, n) => {
@@ -192,9 +202,11 @@
   // Without the server (index.html opened by double-click) the request fails
   // quietly and the game simply carries on.
   const LED_COUNT = 3;
-  const ledRequest = (path) => fetch("/api/led/" + path, { method: "POST" }).catch(() => {});
+  const ledRequest = (path) =>
+    fetch("/api/led/" + path, { method: "POST" }).catch(() => {});
   // Answer 1 -> LED 0, answer 2 -> LED 1, answer 3 -> LED 2, answer 4 -> LED 0 again...
-  const setLed = (questionIndex, result) => ledRequest((questionIndex % LED_COUNT) + "/" + result);
+  const setLed = (questionIndex, result) =>
+    ledRequest((questionIndex % LED_COUNT) + "/" + result);
   const clearLeds = () => ledRequest("clear");
 
   function pick(btn) {
@@ -228,11 +240,32 @@
 
   // Ask the Pi's server to wait (up to 20 s) for an RFID card and save the score under it.
   // The server only answers once a card is tapped or the time is up.
+  // Switch the scan box to a state ("waiting", "saved" or "expired") with its title and text.
+  // The CSS uses data-state for the colours and to hide the progress bar.
+  function setScan(state, title, text) {
+    $("scan").dataset.state = state;
+    $("scan-title").textContent = title;
+    $("scan-text").textContent = text;
+    $("scan-compare").hidden = true;
+    $("skip").hidden = state !== "waiting";
+  }
+
+  // Restart the 20 s progress bar: jump back to empty without animation, then fill slowly.
+  function startScanTimer() {
+    const fill = $("scan-fill");
+    fill.classList.remove("scan-fill-run");
+    fill.style.transform = "scaleX(0)";
+    void fill.offsetWidth; // makes the browser apply the jump before the animation starts
+    fill.classList.add("scan-fill-run");
+    fill.style.transform = "scaleX(1)";
+  }
+
+  // Ask the Pi's server to wait (up to 20 s) for an RFID card and save the score under it.
+  // The server only answers once a card is tapped or the time is up.
   function waitForCard(t) {
     const thisWait = ++cardWait;
-    const msg = $("card-msg");
-    msg.textContent = UI[lang].tap;
-    $("skip").hidden = false;
+    setScan("waiting", UI[lang].tapTitle, UI[lang].tap);
+    startScanTimer();
     fetch("/api/card/save", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -241,27 +274,26 @@
       .then((reply) => reply.json())
       .then((result) => {
         if (thisWait !== cardWait) return; // visitor pressed Skip or Play again meanwhile
-        $("skip").hidden = true;
-        if (!result.saved) msg.textContent = UI[lang].noCard;
-        else if (result.attempt === 1) msg.textContent = UI[lang].saved;
-        else
-          msg.textContent =
-            UI[lang].before + ": " + result.first_score + "/" + t +
-            "   " + UI[lang].now + ": " + score + "/" + t;
+        if (!result.saved) setScan("expired", UI[lang].noCardTitle, UI[lang].noCard);
+        else if (result.attempt === 1) setScan("saved", UI[lang].savedTitle, UI[lang].saved);
+        else {
+          setScan("saved", UI[lang].progressTitle, "");
+          $("before-score").textContent = result.first_score + "/" + t;
+          $("now-score").textContent = score + "/" + t;
+          $("scan-compare").hidden = false;
+        }
       })
       .catch(() => {
-        // No server (index.html opened by double-click): just hide the card prompt.
+        // No server (index.html opened by double-click): no card saving possible.
         if (thisWait !== cardWait) return;
-        msg.textContent = "";
-        $("skip").hidden = true;
+        setScan("expired", UI[lang].noCardTitle, "");
       });
   }
 
-  // Skip: stop showing the card prompt. (The server may still be waiting, see app.py.)
+  // Skip: stop waiting for a card. (The server may still be waiting, see app.py.)
   $("skip").onclick = () => {
     cardWait++;
-    $("card-msg").textContent = "";
-    $("skip").hidden = true;
+    setScan("expired", UI[lang].noCardTitle, "");
   };
 
   document

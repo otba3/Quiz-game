@@ -32,13 +32,23 @@
     </section>
 
     <section id="end" class="screen">
-      <span class="eyebrow" id="end-label"></span>
-      <div id="score"></div>
-      <p class="lead" id="verdict"></p>
-      <p class="lead card-msg" id="card-msg"></p>
-      <div class="end-buttons">
-        <button class="btn" id="skip"></button>
+      <div class="end-main">
+        <span class="eyebrow" id="end-label"></span>
+        <div id="score"></div>
+        <p class="lead" id="verdict"></p>
         <button class="btn" id="again"></button>
+      </div>
+      <!-- RFID card box; data-state is waiting, saved or expired -->
+      <div class="scan" id="scan" data-state="waiting">
+        <div class="scan-icon"></div>
+        <h3 id="scan-title"></h3>
+        <p id="scan-text"></p>
+        <div class="scan-compare" id="scan-compare" hidden>
+          <div><small id="before-label"></small><span id="before-score"></span></div>
+          <div><small id="now-label"></small><span id="now-score"></span></div>
+        </div>
+        <div class="track scan-track"><div class="fill" id="scan-fill"></div></div>
+        <button class="btn" id="skip"></button>
       </div>
     </section>
   </main>
