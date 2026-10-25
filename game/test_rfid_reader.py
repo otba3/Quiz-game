@@ -12,7 +12,7 @@ import RPi.GPIO as GPIO
 from mfrc522 import MFRC522
 
 # RST is on GPIO 5, because the library default (GPIO 25) is used by an LED.
-RST_PIN = 24
+RST_PIN = 25
 
 GPIO.setmode(GPIO.BCM)  # set BCM first so the library uses the same numbering as app.py
 reader = MFRC522(pin_rst=RST_PIN)
