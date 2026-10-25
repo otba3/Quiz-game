@@ -1,7 +1,8 @@
 """Save visitors' quiz scores in a small SQLite database, linked to their RFID card UID.
 
-Every attempt is kept. The first attempt is the "before" score; any later
-attempt is compared with it to show what the visitor learned.
+Each category is tracked separately, with at most 2 attempts: the first is the
+"before" score, the second is compared with it to show what the visitor learned.
+A 3rd scan in the same category deletes the old 2 and starts again as attempt 1.
 The database is one file: data/visitor_scores.db (created automatically).
 Try it without the Pi or the reader:  python3 game/visitor_score_storage.py
 """
@@ -27,21 +28,31 @@ def create_table():
         """)
 
 
-def get_scores(card_uid):
-    """All saved scores for one card, oldest first, e.g. [5, 9]."""
+MAX_ATTEMPTS = 2  # before + after the exhibition
+
+
+def get_scores(card_uid, category):
+    """Saved scores for one card in one category, oldest first, e.g. [5, 9]."""
     with sqlite3.connect(DB_PATH) as db:
         rows = db.execute(
-            "SELECT score FROM scores WHERE card_uid = ? ORDER BY attempt",
-            (card_uid,),
+            "SELECT score FROM scores WHERE card_uid = ? AND category = ? ORDER BY attempt",
+            (card_uid, category),
         ).fetchall()
     return [row[0] for row in rows]  # each row is a tuple like (5,)
 
 
 def save_score(card_uid, category, score):
-    """Save one attempt and return its number (1 = first visit, 2 = second, ...)."""
-    attempt = len(get_scores(card_uid)) + 1
+    """Save one attempt and return its number: 1 = before, 2 = after."""
+    attempt = len(get_scores(card_uid, category)) + 1
     now = datetime.now().isoformat(timespec="seconds")  # e.g. "2026-10-25T14:03:12"
     with sqlite3.connect(DB_PATH) as db:
+        if attempt > MAX_ATTEMPTS:
+            # 3rd scan: forget this card's old attempts in this category and start again
+            db.execute(
+                "DELETE FROM scores WHERE card_uid = ? AND category = ?",
+                (card_uid, category),
+            )
+            attempt = 1
         db.execute(
             "INSERT INTO scores (card_uid, attempt, category, score, scanned_at) VALUES (?, ?, ?, ?, ?)",
             (card_uid, attempt, category, score, now),
@@ -50,11 +61,11 @@ def save_score(card_uid, category, score):
 
 
 if __name__ == "__main__":
-    # Demo with a made-up UID: run it twice and watch the attempt number go up.
+    # Demo with a made-up UID: run it 3 times and watch the attempt go 1, 2, then back to 1.
     create_table()
     fake_uid = 3528472013
     attempt = save_score(fake_uid, "title", 7)
-    scores = get_scores(fake_uid)
+    scores = get_scores(fake_uid, "title")
     if attempt == 1:
         print(f"First attempt saved: {scores[0]}/12")
     else:

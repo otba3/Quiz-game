@@ -50,8 +50,6 @@ if GPIO_AVAILABLE:
     for pin in ALL_PINS:
         GPIO.setup(pin, GPIO.OUT, initial=GPIO.LOW)
     reader = MFRC522(pin_rst=RFID_RST_PIN)
-    # DEBUG (remove later): 0x91/0x92/0x12/0xb2 = reader answers, 0x0 = no contact
-    print("RFID reader version:", hex(reader.Read_MFRC522(0x37)))
 
 create_table()  # make sure data/visitor_scores.db has its table
 
@@ -120,7 +118,6 @@ def wait_for_card(seconds):
     if not GPIO_AVAILABLE:
         time.sleep(2)  # laptop: pretend a card was tapped
         return FAKE_CARD_UID
-    print("Waiting for card... reader version:", hex(reader.Read_MFRC522(0x37)))  # DEBUG
     end_time = time.time() + seconds
     while time.time() < end_time:
         status, _ = reader.MFRC522_Request(reader.PICC_REQIDL)  # is a card near?
@@ -141,7 +138,7 @@ def save_card_score():
     if card_uid is None:
         return jsonify({"saved": False})  # nobody tapped in time
     attempt = save_score(card_uid, data["category"], data["score"])
-    first_score = get_scores(card_uid)[0]
+    first_score = get_scores(card_uid, data["category"])[0]  # this category only
     return jsonify({"saved": True, "attempt": attempt, "first_score": first_score})
 
 
