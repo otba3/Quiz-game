@@ -19,19 +19,33 @@
       score: "Your score",
       again: "Play again",
       v: ["Try again.", "Well played.", "Perfect score."],
+      tap: "Tap your card on the reader to save your score",
+      skip: "Skip",
+      saved: "Score saved! Come back after the exhibition and tap again.",
+      before: "Before",
+      now: "Now",
+      noCard: "No card tapped, score not saved.",
     },
     ar: {
       pick: "اختر فئة",
       score: "نتيجتك",
       again: "العب مرة أخرى",
       v: ["حاول مرة أخرى.", "أحسنت.", "نتيجة كاملة."],
+      tap: "ضع بطاقتك على القارئ لحفظ نتيجتك",
+      skip: "تخطي",
+      saved: "تم حفظ نتيجتك! عد بعد زيارة المعرض وضع بطاقتك مرة أخرى.",
+      before: "قبل",
+      now: "الآن",
+      noCard: "لم يتم وضع بطاقة، لم تُحفظ النتيجة.",
     },
   };
 
   let lang = "en",
+    category,
     questions,
     i,
-    score;
+    score,
+    cardWait = 0; // number of the current card wait; a reply from an older one is ignored
 
   // Pick the current language from an {en: ..., ar: ...} object; fall back to English.
   const tr = (obj) => obj[lang] || obj.en;
@@ -117,6 +131,7 @@
     $("cats-title").textContent = UI[lang].pick;
     $("end-label").textContent = UI[lang].score;
     $("again").textContent = UI[lang].again;
+    $("skip").textContent = UI[lang].skip;
     const list = $("cat-list");
     list.innerHTML = "";
     CATEGORIES.forEach((c, n) => {
@@ -131,6 +146,7 @@
 
   function start(key) {
     clearLeds(); // a new visitor starts with all LEDs off
+    category = key;
     questions = pickQuestions(key);
     i = 0;
     score = 0;
@@ -207,13 +223,53 @@
     $("verdict").textContent =
       UI[lang].v[score === t ? 2 : score >= t / 2 ? 1 : 0];
     show("end");
+    waitForCard(t);
   }
+
+  // Ask the Pi's server to wait (up to 20 s) for an RFID card and save the score under it.
+  // The server only answers once a card is tapped or the time is up.
+  function waitForCard(t) {
+    const thisWait = ++cardWait;
+    const msg = $("card-msg");
+    msg.textContent = UI[lang].tap;
+    $("skip").hidden = false;
+    fetch("/api/card/save", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ category: category, score: score }),
+    })
+      .then((reply) => reply.json())
+      .then((result) => {
+        if (thisWait !== cardWait) return; // visitor pressed Skip or Play again meanwhile
+        $("skip").hidden = true;
+        if (!result.saved) msg.textContent = UI[lang].noCard;
+        else if (result.attempt === 1) msg.textContent = UI[lang].saved;
+        else
+          msg.textContent =
+            UI[lang].before + ": " + result.first_score + "/" + t +
+            "   " + UI[lang].now + ": " + score + "/" + t;
+      })
+      .catch(() => {
+        // No server (index.html opened by double-click): just hide the card prompt.
+        if (thisWait !== cardWait) return;
+        msg.textContent = "";
+        $("skip").hidden = true;
+      });
+  }
+
+  // Skip: stop showing the card prompt. (The server may still be waiting, see app.py.)
+  $("skip").onclick = () => {
+    cardWait++;
+    $("card-msg").textContent = "";
+    $("skip").hidden = true;
+  };
 
   document
     .querySelectorAll("[data-lang]")
     .forEach((b) => (b.onclick = () => setLang(b.dataset.lang)));
   // Play again: back to the language screen, in the default left-to-right layout.
   $("again").onclick = () => {
+    cardWait++; // ignore the card reply if it arrives after leaving the score screen
     document.documentElement.lang = "en";
     document.documentElement.dir = "ltr";
     show("lang");

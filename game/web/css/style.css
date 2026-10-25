@@ -298,3 +298,12 @@ button {
 .btn:active {
   background: var(--yellow);
 }
+/* RFID card message under the score, and Skip + Play again side by side */
+.card-msg {
+  margin-top: var(--space-3);
+  color: var(--ink);
+}
+.end-buttons {
+  display: flex;
+  gap: var(--space-3);
+}

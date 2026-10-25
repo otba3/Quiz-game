@@ -6,13 +6,17 @@ A web page can't control the Pi's GPIO pins itself; this server does it for it.
 
 Start:  py game/app.py   then open http://localhost:5000
 """
-from flask import Flask, jsonify, send_from_directory
+import time
+from flask import Flask, jsonify, request, send_from_directory
 from pathlib import Path
+
+from visitor_score_storage import create_table, get_scores, save_score
 
 try:
     import RPi.GPIO as GPIO
+    from mfrc522 import MFRC522
     GPIO_AVAILABLE = True
-except ImportError:  # not on a Raspberry Pi (e.g. testing on a laptop): no LEDs
+except ImportError:  # not on a Raspberry Pi (e.g. testing on a laptop): no LEDs, no card reader
     GPIO_AVAILABLE = False
 
 
@@ -30,6 +34,12 @@ LEDS = [
 ]
 ALL_PINS = [pin for pair in LEDS for pin in pair]
 
+# RC522 card reader RST wire: GPIO 25 (pin 22).
+# Warning: LED 3 green also uses GPIO 25; move one of them (e.g. RST to GPIO 5, pin 29).
+RFID_RST_PIN = 25
+CARD_WAIT_SECONDS = 20  # how long the end screen waits for a card tap
+FAKE_CARD_UID = 1234567890  # used on a laptop without a reader, so the screens can be tested
+
 # static_folder + static_url_path="" means: game/web/css/style.css is served at /css/style.css
 app = Flask(__name__, static_folder=str(WEB_DIR), static_url_path="")
 
@@ -40,7 +50,9 @@ if GPIO_AVAILABLE:
     GPIO.setmode(GPIO.BCM)
     for pin in ALL_PINS:
         GPIO.setup(pin, GPIO.OUT, initial=GPIO.LOW)
+    reader = MFRC522(pin_rst=RFID_RST_PIN)
 
+create_table()  # make sure data/visitor_scores.db has its table
 
 def set_led(slot, result):
     """Light LED number `slot` (0, 1 or 2) green or red. It stays on."""
@@ -96,6 +108,39 @@ def control_led(slot, result):
 def clear_led_route():
     clear_leds()
     return jsonify({"success": True, "gpio_available": GPIO_AVAILABLE})
+
+
+# --------------------------
+# RFID CARD: SAVE SCORE
+# --------------------------
+
+def wait_for_card(seconds):
+    """Return the UID of the first card tapped within `seconds`, or None if no card came."""
+    if not GPIO_AVAILABLE:
+        time.sleep(2)  # laptop: pretend a card was tapped
+        return FAKE_CARD_UID
+    end_time = time.time() + seconds
+    while time.time() < end_time:
+        status, _ = reader.MFRC522_Request(reader.PICC_REQIDL)  # is a card near?
+        if status == reader.MI_OK:
+            status, uid = reader.MFRC522_Anticoll()  # read its UID
+            if status == reader.MI_OK:
+                return int.from_bytes(bytes(uid[:4]), "big")
+        time.sleep(0.1)
+    return None
+
+
+# The end screen sends {"category": "title", "score": 7}; we wait for a card,
+# then save the score under that card and reply with its first-ever score.
+@app.route("/api/card/save", methods=["POST"])
+def save_card_score():
+    data = request.get_json()
+    card_uid = wait_for_card(CARD_WAIT_SECONDS)
+    if card_uid is None:
+        return jsonify({"saved": False})  # nobody tapped in time
+    attempt = save_score(card_uid, data["category"], data["score"])
+    first_score = get_scores(card_uid)[0]
+    return jsonify({"saved": True, "attempt": attempt, "first_score": first_score})
 
 
 # --------------------------
