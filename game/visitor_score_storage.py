@@ -1,5 +1,6 @@
 """Save visitors' quiz scores in a small SQLite database, linked to their RFID card UID.
 
+
 Each category is tracked separately, with at most 2 attempts: the first is the
 "before" score, the second is compared with it to show what the visitor learned.
 A 3rd scan in the same category deletes the old 2 and starts again as attempt 1.
@@ -10,8 +11,11 @@ import sqlite3
 from datetime import datetime
 from pathlib import Path
 
+
 # data/ folder at the project root, next to the question CSVs.
 DB_PATH = Path(__file__).parent.parent / "data" / "visitor_scores.db"
+
+
 
 
 def create_table():
@@ -28,6 +32,8 @@ def create_table():
         """)
 
 
+
+
 MAX_ATTEMPTS = 2  # before + after the exhibition
 
 
@@ -39,6 +45,8 @@ def get_scores(card_uid, category):
             (card_uid, category),
         ).fetchall()
     return [row[0] for row in rows]  # each row is a tuple like (5,)
+
+
 
 
 def save_score(card_uid, category, score):
@@ -60,6 +68,8 @@ def save_score(card_uid, category, score):
     return attempt
 
 
+
+
 if __name__ == "__main__":
     # Demo with a made-up UID: run it 3 times and watch the attempt go 1, 2, then back to 1.
     create_table()
@@ -70,3 +80,6 @@ if __name__ == "__main__":
         print(f"First attempt saved: {scores[0]}/12")
     else:
         print(f"Before: {scores[0]}/12 -> Now: {scores[-1]}/12 (attempt {attempt})")
+
+
+
