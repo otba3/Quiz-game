@@ -1,27 +1,39 @@
-#!/usr/bin/python3
-
-from mfrc522 import SimpleMFRC522
+from mfrc522 import MFRC522
 import time
 
-reader = SimpleMFRC522()
+reader = MFRC522()
 
-print("RFID Test")
-print("Reader frequency: 13.56 MHz")
-print("Place a card/tag near the reader...")
+print("================================")
+print(" Phone NFC Detection Test")
+print(" RC522 Frequency: 13.56 MHz")
+print("================================")
+print()
+print("Turn NFC ON on your phone.")
+print("Hold the back of the phone near the RC522.")
 print("Press Ctrl+C to stop.\n")
 
 try:
     while True:
-        card_id, text = reader.read()
 
-        print("-------------------------")
-        print("Card detected!")
-        print("Card ID:", card_id)
-        print("Data:", text.strip())
-        print("-------------------------")
+        # Look for an ISO 14443A device
+        status, tag_type = reader.MFRC522_Request(reader.PICC_REQIDL)
 
-        # Prevent the same card from being instantly read repeatedly
-        time.sleep(1)
+        if status == reader.MI_OK:
+            print("NFC/RFID device detected!")
+
+            # Try to get UID
+            status, uid = reader.MFRC522_Anticoll()
+
+            if status == reader.MI_OK:
+                uid_string = "-".join(str(x) for x in uid)
+
+                print("UID:", uid_string)
+                print("Frequency: 13.56 MHz")
+                print("-----------------------------")
+
+                time.sleep(2)
+
+        time.sleep(0.1)
 
 except KeyboardInterrupt:
-    print("\nRFID test stopped.")
+    print("\nTest stopped.")
