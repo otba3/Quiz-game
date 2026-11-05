@@ -47,8 +47,24 @@
           <div><small id="before-label"></small><span id="before-score"></span></div>
           <div><small id="now-label"></small><span id="now-score"></span></div>
         </div>
+        <p class="points-earned" id="points-earned" hidden></p>
+        <button class="btn" id="check-points" hidden></button>
         <div class="track scan-track"><div class="fill" id="scan-fill"></div></div>
         <button class="btn" id="skip"></button>
+      </div>
+    </section>
+
+    <section id="points" class="screen">
+      <div class="points-page">
+        <span class="eyebrow" id="points-title"></span>
+        <div class="points-total" id="points-total"></div>
+        <p class="points-target" id="points-target"></p>
+        <div class="track points-track" role="progressbar" aria-valuemin="0" aria-valuemax="40">
+          <div class="fill" id="points-fill"></div>
+        </div>
+        <h2 class="points-history-title" id="history-title"></h2>
+        <ol class="points-history" id="points-history"></ol>
+        <button class="btn" id="points-back"></button>
       </div>
     </section>
   </main>

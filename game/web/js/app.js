@@ -29,6 +29,21 @@
       now: "Now",
       noCardTitle: "Not saved",
       noCard: "No card was tapped.",
+      earned: (points) => `You earned ${points} points.`,
+      pointsPending:
+        "Quiz saved. Your points will be added after your second quiz in this category today.",
+      thirdQuizPoints: (points) =>
+        `On your third quiz, you earned ${points} extra points (half your score, rounded down). No more points in this category until tomorrow.`,
+      dailyLimit:
+        "Quiz saved. You have reached today's point limit for this category. You can earn points again tomorrow.",
+      checkPoints: "Check Points",
+      pointsTitle: "Your Points",
+      historyTitle: "Points history",
+      pointsBack: "Back to results",
+      pointsNeeded: (balance) => `${balance} of 40 points. Keep going!`,
+      rewardReady: "40 points reached! Ask museum staff about your reward.",
+      earnedEntry: "Earned",
+      redeemedEntry: "Reward redeemed",
     },
     ar: {
       pick: "اختر فئة",
@@ -45,6 +60,21 @@
       now: "الآن",
       noCardTitle: "لم تُحفظ",
       noCard: "لم يتم وضع بطاقة.",
+      earned: (points) => `لقد حصلت على ${points} نقاط.`,
+      pointsPending:
+        "تم حفظ الاختبار. ستُضاف نقاطك بعد إكمال الاختبار الثاني في هذه الفئة اليوم.",
+      thirdQuizPoints: (points) =>
+        `حصلت على ${points} نقاط إضافية في الاختبار الثالث (نصف النتيجة بعد التقريب للأسفل). لا يمكن كسب المزيد في هذه الفئة حتى الغد.`,
+      dailyLimit:
+        "تم حفظ الاختبار. لقد وصلت إلى حد النقاط اليومي لهذه الفئة. يمكنك كسب النقاط مجددًا غدًا.",
+      checkPoints: "تحقق من النقاط",
+      pointsTitle: "نقاطك",
+      historyTitle: "سجل النقاط",
+      pointsBack: "العودة إلى النتيجة",
+      pointsNeeded: (balance) => `${balance} من 40 نقطة. واصل التقدم!`,
+      rewardReady: "وصلت إلى 40 نقطة! اسأل موظفي المتحف عن مكافأتك.",
+      earnedEntry: "نقاط مكتسبة",
+      redeemedEntry: "تم استبدال المكافأة",
     },
   };
 
@@ -53,6 +83,7 @@
     questions,
     i,
     score,
+    lastPointsResult,
     cardWait = 0; // number of the current card wait; a reply from an older one is ignored
 
   // Pick the current language from an {en: ..., ar: ...} object; fall back to English.
@@ -142,6 +173,10 @@
     $("skip").textContent = UI[lang].skip;
     $("before-label").textContent = UI[lang].before;
     $("now-label").textContent = UI[lang].now;
+    $("check-points").textContent = UI[lang].checkPoints;
+    $("points-title").textContent = UI[lang].pointsTitle;
+    $("history-title").textContent = UI[lang].historyTitle;
+    $("points-back").textContent = UI[lang].pointsBack;
     const list = $("cat-list");
     list.innerHTML = "";
     CATEGORIES.forEach((c, n) => {
@@ -247,7 +282,42 @@
     $("scan-title").textContent = title;
     $("scan-text").textContent = text;
     $("scan-compare").hidden = true;
+    $("points-earned").hidden = true;
+    $("check-points").hidden = true;
     $("skip").hidden = state !== "waiting";
+  }
+
+  function showPoints(result) {
+    const balance = result.points_balance;
+    $("points-total").textContent = balance;
+    $("points-target").textContent =
+      balance >= 40 ? UI[lang].rewardReady : UI[lang].pointsNeeded(balance);
+    $("points-fill").style.transform = "scaleX(" + Math.min(balance / 40, 1) + ")";
+    document.querySelector(".points-track").setAttribute(
+      "aria-valuenow",
+      Math.min(balance, 40),
+    );
+    const history = $("points-history");
+    history.innerHTML = "";
+    result.points_history.forEach((entry) => {
+      const item = document.createElement("li");
+      const categoryName =
+        CATEGORIES.find((item) => item.key === entry.category)?.name;
+      const detail = document.createElement("span");
+      detail.textContent =
+        (entry.kind === "redeemed" ? UI[lang].redeemedEntry : UI[lang].earnedEntry) +
+        " · " +
+        (categoryName ? tr(categoryName) : entry.category) +
+        " · " +
+        new Intl.DateTimeFormat(lang, { dateStyle: "medium" }).format(
+          new Date(entry.created_at),
+        );
+      const points = document.createElement("strong");
+      points.textContent = (entry.points > 0 ? "+" : "") + entry.points;
+      item.append(detail, points);
+      history.appendChild(item);
+    });
+    show("points");
   }
 
   // Restart the 20 s progress bar: jump back to empty without animation, then fill slowly.
@@ -271,16 +341,33 @@
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ category: category, score: score }),
     })
-      .then((reply) => reply.json())
+      .then((reply) => {
+        if (!reply.ok) throw new Error("Could not save quiz points.");
+        return reply.json();
+      })
       .then((result) => {
         if (thisWait !== cardWait) return; // visitor pressed Skip or Play again meanwhile
         if (!result.saved) setScan("expired", UI[lang].noCardTitle, UI[lang].noCard);
-        else if (result.attempt === 1) setScan("saved", UI[lang].savedTitle, UI[lang].saved);
         else {
-          setScan("saved", UI[lang].progressTitle, "");
+          lastPointsResult = result;
+          setScan("saved", UI[lang].savedTitle, "");
+          if (result.quizzes_today === 1) {
+            $("points-earned").textContent = UI[lang].pointsPending;
+          } else if (result.quizzes_today === 3) {
+            $("points-earned").textContent =
+              UI[lang].thirdQuizPoints(result.points_earned);
+          } else if (result.quizzes_today >= 4) {
+            $("points-earned").textContent = UI[lang].dailyLimit;
+          } else {
+            $("points-earned").textContent = UI[lang].earned(result.points_earned);
+          }
+          $("points-earned").hidden = false;
+          $("check-points").hidden = false;
+          if (result.quizzes_today > 1) {
           $("before-score").textContent = result.first_score + "/" + t;
           $("now-score").textContent = score + "/" + t;
           $("scan-compare").hidden = false;
+          }
         }
       })
       .catch(() => {
@@ -295,6 +382,8 @@
     cardWait++;
     setScan("expired", UI[lang].noCardTitle, "");
   };
+  $("check-points").onclick = () => showPoints(lastPointsResult);
+  $("points-back").onclick = () => show("end");
 
   document
     .querySelectorAll("[data-lang]")

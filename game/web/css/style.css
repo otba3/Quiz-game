@@ -396,3 +396,61 @@ button {
   color: var(--ink-soft);
   margin-bottom: var(--space-1);
 }
+
+.points-earned {
+  font-weight: 700;
+}
+.scan #check-points {
+  min-height: 56px;
+  margin-top: var(--space-2);
+  font-size: 20px;
+}
+#points {
+  padding: 32px var(--space-6);
+}
+.points-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  height: 100%;
+}
+.points-total {
+  font: 700 88px/1 var(--font-heading);
+  margin-top: var(--space-2);
+}
+.points-target {
+  font-size: 20px;
+  margin: var(--space-2) 0;
+}
+.points-track {
+  flex: none;
+  height: 16px;
+}
+.points-history-title {
+  font-size: 28px;
+  margin: var(--space-3) 0 var(--space-1);
+}
+.points-history {
+  min-height: 0;
+  overflow-y: auto;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.points-history li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-2) 0;
+  border-bottom: 1px solid var(--taupe);
+  font-size: 18px;
+}
+.points-history li strong {
+  flex: none;
+  font: 700 24px/1 var(--font-heading);
+}
+.points-page .btn {
+  flex: none;
+  margin-top: var(--space-3);
+}

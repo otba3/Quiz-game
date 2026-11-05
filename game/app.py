@@ -10,7 +10,12 @@ import time
 from flask import Flask, jsonify, request, send_from_directory
 from pathlib import Path
 
-from visitor_score_storage import create_table, get_scores, save_score
+from visitor_score_storage import (
+    create_table,
+    get_points_balance,
+    get_points_history,
+    save_score,
+)
 
 try:
     import RPi.GPIO as GPIO
@@ -129,17 +134,21 @@ def wait_for_card(seconds):
     return None
 
 
-# The end screen sends {"category": "title", "score": 7}; we wait for a card,
-# then save the score under that card and reply with its first-ever score.
+# The end screen sends {"category": "title", "score": 7}; a card tap saves
+# the quiz result and applies the daily point-award rule.
 @app.route("/api/card/save", methods=["POST"])
 def save_card_score():
     data = request.get_json()
     card_uid = wait_for_card(CARD_WAIT_SECONDS)
     if card_uid is None:
         return jsonify({"saved": False})  # nobody tapped in time
-    attempt = save_score(card_uid, data["category"], data["score"])
-    first_score = get_scores(card_uid, data["category"])[0]  # this category only
-    return jsonify({"saved": True, "attempt": attempt, "first_score": first_score})
+    result = save_score(card_uid, data["category"], data["score"])
+    return jsonify({
+        "saved": True,
+        **result,
+        "points_balance": get_points_balance(card_uid),
+        "points_history": get_points_history(card_uid),
+    })
 
 
 # --------------------------
