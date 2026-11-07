@@ -5,13 +5,12 @@
   const OUTPUT_DIR = "../../output/"; // question images live in output/images/
   const PER_GAME = 6; // questions per playthrough (fewer if the bank is smaller)
   const ORIGIN_PER_TYPE = 3; // Origin: 3 continent + 3 country questions
+  const FEEDBACK_TIME = 3000; // milliseconds to show the result before the next question
 
   // Category buttons: key in QUIZ_DATA.categories -> label on screen, per language.
   const CATEGORIES = [
-    { key: "title", name: { en: "Artwork Title", ar: "عنوان العمل الفني" } },
     { key: "year", name: { en: "Year of Creation", ar: "سنة الإنشاء" } },
     { key: "origin", name: { en: "Geographic Origin", ar: "الأصل الجغرافي" } },
-    { key: "medium", name: { en: "Medium", ar: "الخامة" } },
   ];
   const UI = {
     en: {
@@ -150,13 +149,38 @@
   // Capitalise only the first letter on screen (Arabic has no capitals, so it is unchanged).
   const display = (text) => text.charAt(0).toUpperCase() + text.slice(1);
 
-  // The question sentence in the current language, with {continent} filled in.
+  // The question sentence in the current language, with {continent} and {year} filled in.
   function questionText(q) {
     const texts = QUIZ_DATA.texts[lang] || QUIZ_DATA.texts.en;
     const sentence =
       texts[q.question_key] || QUIZ_DATA.texts.en[q.question_key];
-    return sentence.replace("{continent}", q.continent ? tr(q.continent) : "");
+    const year = q.question_values ? q.question_values.year : "";
+    return sentence
+      .replace("{continent}", q.continent ? tr(q.continent) : "")
+      .replace("{year}", year || "");
   }
+
+  // Two JSON shapes exist:
+  //   old (Origin): options = {en: [...], ar: [...]}, answer = {en, ar}, image = "..."
+  //   new (Year):   options = [...],                  answer = "...",    images = [...]
+  // These helpers turn both into the same form, so the rest of the code needs no ifs.
+
+  // A list of options, each as {en, ar} (ar is missing for the new shape: tr() falls back to English).
+  function optionsOf(q) {
+    if (Array.isArray(q.options))
+      return q.options.map((text) => ({ en: text }));
+    return q.options.en.map((text, n) => ({
+      en: text,
+      ar: q.options.ar && q.options.ar[n],
+    }));
+  }
+
+  // The correct answer as plain English text.
+  const answerOf = (q) =>
+    typeof q.answer === "string" ? q.answer : q.answer.en;
+
+  // The picture paths as a list (1 or 2 pictures).
+  const imagesOf = (q) => q.images || [q.image];
 
   // Language button: switch texts and reading direction, then show the categories.
   function setLang(code) {
@@ -203,6 +227,15 @@
     $("fill").style.transform = "scaleX(" + n / questions.length + ")";
   }
 
+  // An <img> for one picture path (relative to the output folder).
+  function picture(path) {
+    const img = new Image();
+    img.src = OUTPUT_DIR + path;
+    img.alt = "";
+    img.onerror = () => img.remove();
+    return img;
+  }
+
   function render() {
     const q = questions[i];
     // Questions 4, 7, 10... start a new group of 3: switch the LEDs off first.
@@ -210,24 +243,24 @@
     $("count").textContent = i + 1 + " / " + questions.length;
     setProgress(i);
     $("q-text").textContent = questionText(q);
-    const pic = $("pic"),
-      img = new Image();
-    img.src = OUTPUT_DIR + q.image;
-    img.alt = "";
-    img.onerror = () => img.remove();
+    // 2 pictures: the pictures ARE the answer buttons, so the big picture area is hidden.
+    const twoPictures = imagesOf(q).length === 2;
+    const pic = $("pic");
     pic.innerHTML = "";
-    pic.appendChild(img);
+    pic.hidden = twoPictures;
+    if (!twoPictures) pic.appendChild(picture(imagesOf(q)[0]));
     const box = $("answers");
-    box.className = "answers";
+    box.className = twoPictures ? "answers pictures" : "answers";
     box.innerHTML = "";
-    // Shuffle the positions 0-3, so the English and Arabic option at each position stay together.
-    shuffle([0, 1, 2, 3]).forEach((n) => {
+    // Shuffle whole options (not just texts), so English and Arabic stay together.
+    // Works for 4 options and for 2.
+    shuffle(optionsOf(q)).forEach((option) => {
       const b = document.createElement("button");
       b.className = "ans";
-      b.textContent = display(
-        tr({ en: q.options.en[n], ar: q.options.ar && q.options.ar[n] }),
-      );
-      b.dataset.answer = q.options.en[n]; // the exact English text, used to check the answer
+      if (twoPictures)
+        b.appendChild(picture("images/" + option.en)); // option = file name
+      else b.textContent = display(tr(option));
+      b.dataset.answer = option.en; // the exact English text, used to check the answer
       b.onclick = () => pick(b);
       box.appendChild(b);
     });
@@ -248,19 +281,41 @@
     const q = questions[i],
       box = $("answers");
     box.classList.add("locked");
-    const correct = btn.dataset.answer === q.answer.en;
+    const correct = btn.dataset.answer === answerOf(q);
     if (correct) score++;
     else btn.classList.add("wrong");
     setLed(i, correct ? "correct" : "wrong");
     // Always highlight the correct answer, so a wrong guess still shows it.
     [...box.children]
-      .find((b) => b.dataset.answer === q.answer.en)
+      .find((b) => b.dataset.answer === answerOf(q))
       .classList.add("correct");
+    showArtworkInfo(q, correct);
     setProgress(i + 1);
     setTimeout(() => {
       if (++i < questions.length) render();
       else finish();
-    }, 1200);
+    }, FEEDBACK_TIME);
+  }
+
+  // After answering: title and date on the picture. Right: only the correct artwork.
+  // Wrong: both. artworks[0] is always the correct one (see export_year_questions.py).
+  function showArtworkInfo(q, correct) {
+    if (!q.artworks) return; // Origin questions have no artwork info
+    const shown = correct ? [q.artworks[0]] : q.artworks;
+    shown.forEach((art) => {
+      const caption = document.createElement("div");
+      caption.className = "caption";
+      // tr() picks the visitor's language and falls back to English if the Arabic is empty
+      caption.textContent = tr(art.title) + ", " + tr(art.date);
+      // 2 pictures: the caption goes on the button with this artwork; 1 picture: on the big picture.
+      const holder =
+        imagesOf(q).length === 2
+          ? [...$("answers").children].find(
+              (b) => b.dataset.answer === art.file,
+            )
+          : $("pic");
+      holder.appendChild(caption);
+    });
   }
 
   function finish() {
@@ -292,20 +347,23 @@
     $("points-total").textContent = balance;
     $("points-target").textContent =
       balance >= 40 ? UI[lang].rewardReady : UI[lang].pointsNeeded(balance);
-    $("points-fill").style.transform = "scaleX(" + Math.min(balance / 40, 1) + ")";
-    document.querySelector(".points-track").setAttribute(
-      "aria-valuenow",
-      Math.min(balance, 40),
-    );
+    $("points-fill").style.transform =
+      "scaleX(" + Math.min(balance / 40, 1) + ")";
+    document
+      .querySelector(".points-track")
+      .setAttribute("aria-valuenow", Math.min(balance, 40));
     const history = $("points-history");
     history.innerHTML = "";
     result.points_history.forEach((entry) => {
       const item = document.createElement("li");
-      const categoryName =
-        CATEGORIES.find((item) => item.key === entry.category)?.name;
+      const categoryName = CATEGORIES.find(
+        (item) => item.key === entry.category,
+      )?.name;
       const detail = document.createElement("span");
       detail.textContent =
-        (entry.kind === "redeemed" ? UI[lang].redeemedEntry : UI[lang].earnedEntry) +
+        (entry.kind === "redeemed"
+          ? UI[lang].redeemedEntry
+          : UI[lang].earnedEntry) +
         " · " +
         (categoryName ? tr(categoryName) : entry.category) +
         " · " +
@@ -347,26 +405,30 @@
       })
       .then((result) => {
         if (thisWait !== cardWait) return; // visitor pressed Skip or Play again meanwhile
-        if (!result.saved) setScan("expired", UI[lang].noCardTitle, UI[lang].noCard);
+        if (!result.saved)
+          setScan("expired", UI[lang].noCardTitle, UI[lang].noCard);
         else {
           lastPointsResult = result;
           setScan("saved", UI[lang].savedTitle, "");
           if (result.quizzes_today === 1) {
             $("points-earned").textContent = UI[lang].pointsPending;
           } else if (result.quizzes_today === 3) {
-            $("points-earned").textContent =
-              UI[lang].thirdQuizPoints(result.points_earned);
+            $("points-earned").textContent = UI[lang].thirdQuizPoints(
+              result.points_earned,
+            );
           } else if (result.quizzes_today >= 4) {
             $("points-earned").textContent = UI[lang].dailyLimit;
           } else {
-            $("points-earned").textContent = UI[lang].earned(result.points_earned);
+            $("points-earned").textContent = UI[lang].earned(
+              result.points_earned,
+            );
           }
           $("points-earned").hidden = false;
           $("check-points").hidden = false;
           if (result.quizzes_today > 1) {
-          $("before-score").textContent = result.first_score + "/" + t;
-          $("now-score").textContent = score + "/" + t;
-          $("scan-compare").hidden = false;
+            $("before-score").textContent = result.first_score + "/" + t;
+            $("now-score").textContent = score + "/" + t;
+            $("scan-compare").hidden = false;
           }
         }
       })

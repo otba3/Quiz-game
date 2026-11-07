@@ -3,8 +3,8 @@
 Saves images to output/images/<accession number>.jpg, sized to fit 1024x600.
 Images already in output/images/ are not downloaded again.
 
-Usage:  py scripts/prepare_images.py title
-        py scripts/prepare_images.py year
+Usage:  py scripts/prepare_images.py origin
+(Year pictures are local files: use resize_images.py for those.)
 """
 import csv
 import io
@@ -18,9 +18,6 @@ from cma_api import download_file, fetch_artwork
 
 # What differs between categories: the CSV file and the name of its API column.
 CATEGORIES = {
-    "title": ("data/title_questions.csv", "TITLE API"),
-    "year": ("data/year_questions.csv", "YEAR API"),
-    "medium": ("data/medium_questions.csv", "TECHNIQUE API"),
     "origin": ("data/origin_questions.csv", "ORIGIN API"),
 }
 
