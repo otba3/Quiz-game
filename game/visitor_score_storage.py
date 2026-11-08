@@ -53,8 +53,6 @@ def create_table():
                 )
             """)
             db.execute("""
-            032
-            .
                 CREATE TABLE IF NOT EXISTS game_feedback (
                     id               INTEGER PRIMARY KEY AUTOINCREMENT,
                     category         TEXT NOT NULL,
