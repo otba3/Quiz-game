@@ -3,5 +3,9 @@
   "question.year": "في أي قرن أُنشئ هذا العمل الفني؟",
   "question.medium": "ما الخامة المستخدمة لإنشاء هذا العمل الفني؟",
   "question.continent": "من أي قارة يأتي هذا العمل الفني؟",
-  "question.country": "من أي دولة في {continent} يأتي هذا العمل الفني؟"
+  "question.country": "من أي دولة في {continent} يأتي هذا العمل الفني؟",
+  "question.year.which_year": "في أي سنة صُنع هذا العمل الفني؟",
+  "question.year.older": "أي العملين أقدم؟",
+  "question.year.in_year": "أي عمل صُنع في عام {year}؟",
+  "question.year.not_in_year": "أي عمل لم يُصنع في عام {year}؟"
 }

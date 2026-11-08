@@ -14,6 +14,7 @@ from visitor_score_storage import (
     create_table,
     get_points_balance,
     get_points_history,
+    save_game_feedback,
     save_score,
 )
 
@@ -138,7 +139,11 @@ def wait_for_card(seconds):
 # the quiz result and applies the daily point-award rule.
 @app.route("/api/card/save", methods=["POST"])
 def save_card_score():
-    data = request.get_json()
+    data = request.get_json(silent=True)
+    if not isinstance(data, dict) or data.get("category") not in ("year", "origin"):
+        return jsonify({"error": "Invalid category"}), 400
+    if type(data.get("score")) is not int or data["score"] < 0:
+        return jsonify({"error": "Invalid score"}), 400
     card_uid = wait_for_card(CARD_WAIT_SECONDS)
     if card_uid is None:
         return jsonify({"saved": False})  # nobody tapped in time
@@ -149,6 +154,39 @@ def save_card_score():
         "points_balance": get_points_balance(card_uid),
         "points_history": get_points_history(card_uid),
     })
+
+
+@app.route("/api/feedback", methods=["POST"])
+def save_feedback():
+    data = request.get_json(silent=True)
+    if not isinstance(data, dict):
+        return jsonify({"error": "Expected a JSON object"}), 400
+    category = data.get("category")
+    score = data.get("score")
+    question_count = data.get("question_count")
+    rating = data.get("rating")
+    language = data.get("language")
+    score_saved = data.get("score_saved")
+    duration_seconds = data.get("duration_seconds")
+    if category not in ("year", "origin"):
+        return jsonify({"error": "Invalid category"}), 400
+    if (type(score) is not int or type(question_count) is not int
+            or question_count < 1 or not 0 <= score <= question_count):
+        return jsonify({"error": "Invalid score or question count"}), 400
+    if type(rating) is not int or not 1 <= rating <= 5:
+        return jsonify({"error": "Rating must be between 1 and 5"}), 400
+    if language not in ("en", "ar"):
+        return jsonify({"error": "Invalid language"}), 400
+    if type(score_saved) is not bool:
+        return jsonify({"error": "score_saved must be a boolean"}), 400
+    if type(duration_seconds) is not int or duration_seconds < 0:
+        return jsonify({"error": "Invalid duration"}), 400
+
+    feedback = save_game_feedback(
+        category, score, question_count, rating, language,
+        score_saved, duration_seconds,
+    )
+    return jsonify({"saved": True, **feedback}), 201
 
 
 # --------------------------

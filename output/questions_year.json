@@ -2,389 +2,538 @@
   "category": "year",
   "questions": [
     {
-      "id": "year-79187",
-      "question_key": "question.year",
-      "image": "images/2016.199.jpg",
-      "options": {
-        "en": [
-          "17th century",
-          "19th century",
-          "18th century",
-          "20th century"
-        ],
-        "ar": [
-          "القرن السابع عشر",
-          "القرن التاسع عشر",
-          "القرن الثامن عشر",
-          "القرن العشرين"
-        ]
+      "id": "year-not_in_year-1",
+      "type": "not_in_year",
+      "question_key": "question.year.not_in_year",
+      "question_values": {
+        "year": "1955"
       },
-      "answer": {
-        "en": "19th century",
-        "ar": "القرن التاسع عشر"
-      },
-      "artwork_title": {
-        "en": "The Herd Exits",
-        "ar": "خروج القطيع"
-      },
-      "culture": {
-        "en": "France",
-        "ar": "فرنسا"
-      },
-      "context": {
-        "en": "Charles-Émile Jacque (French, 1813–1894), 1876",
-        "ar": "شارل إميل جاك (فرنسي، 1813–1894)، 1876"
-      }
+      "images": [
+        "images/MAT.2007.1.3256..2000x2000.jpg",
+        "images/2007.1.3300 .2000x2000.jpg"
+      ],
+      "options": [
+        "MAT.2007.1.3256..2000x2000.jpg",
+        "2007.1.3300 .2000x2000.jpg"
+      ],
+      "answer": "MAT.2007.1.3256..2000x2000.jpg",
+      "artworks": [
+        {
+          "file": "MAT.2007.1.3256..2000x2000.jpg",
+          "artist": {
+            "en": "Shakir Hassan al-Saïd (b.1925 Samawah -d. 2004 Baghdad)\n",
+            "ar": "شاكر حسن ال سعيد (1925 السماوة - 2004 بغداد)"
+          },
+          "title": {
+            "en": "One Thousand and One Nights\n",
+            "ar": "ألف ليلة وليلة"
+          },
+          "date": {
+            "en": "1955",
+            "ar": ""
+          }
+        },
+        {
+          "file": "2007.1.3300 .2000x2000.jpg",
+          "artist": {
+            "en": "Jewad Selim (b.1919 Ankara -d.1961 Baghdad)\n",
+            "ar": "جواد سليم (1919 أنقرة - 1961 بغداد)"
+          },
+          "title": {
+            "en": "Children's Games\n",
+            "ar": "ألعاب الأطفال"
+          },
+          "date": {
+            "en": "1953",
+            "ar": ""
+          }
+        }
+      ]
     },
     {
-      "id": "year-79574",
-      "question_key": "question.year",
-      "image": "images/2015.465.jpg",
-      "options": {
-        "en": [
-          "12th century",
-          "15th century",
-          "14th century",
-          "16th century"
-        ],
-        "ar": [
-          "القرن الثاني عشر",
-          "القرن الخامس عشر",
-          "القرن الرابع عشر",
-          "القرن السادس عشر"
-        ]
+      "id": "year-not_in_year-2",
+      "type": "not_in_year",
+      "question_key": "question.year.not_in_year",
+      "question_values": {
+        "year": "1968"
       },
-      "answer": {
-        "en": "15th century",
-        "ar": "القرن الخامس عشر"
-      },
-      "artwork_title": {
-        "en": "Fish Basket Kannon (Gyoran Kannon)",
-        "ar": "كانون سلة السمك (غيوران كانون)"
-      },
-      "culture": {
-        "en": "Japan, Muromachi period (1392–1573)",
-        "ar": "اليابان، فترة موروماتشي (1392–1573)"
-      },
-      "context": {
-        "en": "Bokkei Saiyo (Japanese, 1415–1473), 1400s",
-        "ar": "بوكي سايو (ياباني، 1415–1473)، القرن الخامس عشر"
-      }
+      "images": [
+        "images/MAT.2007.1.184.....2000x2000.jpg",
+        "images/2007.1.1616 WF.2000x2000.jpg"
+      ],
+      "options": [
+        "MAT.2007.1.184.....2000x2000.jpg",
+        "2007.1.1616 WF.2000x2000.jpg"
+      ],
+      "answer": "MAT.2007.1.184.....2000x2000.jpg",
+      "artworks": [
+        {
+          "file": "MAT.2007.1.184.....2000x2000.jpg",
+          "artist": {
+            "en": "Ismail Al Sheikhly (b.1924 - d.2002 Baghdad)\n",
+            "ar": "إسماعيل الشيخلي (1924 - 2002 بغداد)"
+          },
+          "title": {
+            "en": "Title Unknown\n",
+            "ar": "العنوان غير معروف"
+          },
+          "date": {
+            "en": "1966",
+            "ar": ""
+          }
+        },
+        {
+          "file": "2007.1.1616 WF.2000x2000.jpg",
+          "artist": {
+            "en": "Dia Al Azzawi (b.1939 Baghdad)\n",
+            "ar": "ضياء العزاوي (مواليد 1930 بغداد)"
+          },
+          "title": {
+            "en": "Memories\n",
+            "ar": "ذكريات"
+          },
+          "date": {
+            "en": "1968",
+            "ar": ""
+          }
+        }
+      ]
     },
     {
-      "id": "year-86119",
-      "question_key": "question.year",
-      "image": "images/2015.481.2.jpg",
-      "options": {
-        "en": [
-          "16th century",
-          "17th century",
-          "18th century",
-          "15th century"
-        ],
-        "ar": [
-          "القرن السادس عشر",
-          "القرن السابع عشر",
-          "القرن الثامن عشر",
-          "القرن الخامس عشر"
-        ]
+      "id": "year-not_in_year-3",
+      "type": "not_in_year",
+      "question_key": "question.year.not_in_year",
+      "question_values": {
+        "year": "1955"
       },
-      "answer": {
-        "en": "17th century",
-        "ar": "القرن السابع عشر"
-      },
-      "artwork_title": {
-        "en": "Summer and Winter Landscapes (one of a pair)",
-        "ar": "مناظر طبيعية للصيف والشتاء (واحدة من زوج)"
-      },
-      "culture": {
-        "en": "Japan, Edo period (1615–1868)",
-        "ar": "اليابان، فترة إيدو (1615–1868)"
-      },
-      "context": {
-        "en": "Kano Naonobu (Japanese, 1607–1650), 1600s",
-        "ar": "كانو ناونوبو (ياباني، 1607–1650)، القرن السابع عشر"
-      }
+      "images": [
+        "images/2007.1.1639a.2000x2000.jpg",
+        "images/2007.1.1650.2000x2000.jpg"
+      ],
+      "options": [
+        "2007.1.1639a.2000x2000.jpg",
+        "2007.1.1650.2000x2000.jpg"
+      ],
+      "answer": "2007.1.1639a.2000x2000.jpg",
+      "artworks": [
+        {
+          "file": "2007.1.1639a.2000x2000.jpg",
+          "artist": {
+            "en": "Jewad Selim (b.1919 Ankara -d.1961 Baghdad)\n",
+            "ar": "جواد سليم (1919 أنقرة - 1961 بغداد)"
+          },
+          "title": {
+            "en": "Baghdadiat\n",
+            "ar": "البغداديات"
+          },
+          "date": {
+            "en": "1956",
+            "ar": ""
+          }
+        },
+        {
+          "file": "2007.1.1650.2000x2000.jpg",
+          "artist": {
+            "en": "Shakir Hassan al-Saïd (b.1925 Samawah -d. 2004 Baghdad)\n",
+            "ar": "شاكر حسن ال سعيد (1925 السماوة - 2004 بغداد)"
+          },
+          "title": {
+            "en": "The Return to the Village\n",
+            "ar": "العودة إلى القرية"
+          },
+          "date": {
+            "en": "1955",
+            "ar": ""
+          }
+        }
+      ]
     },
     {
-      "id": "year-94605",
-      "question_key": "question.year",
-      "image": "images/1915.110.jpg",
-      "options": {
-        "en": [
-          "15th century",
-          "17th century",
-          "18th century",
-          "16th century"
-        ],
-        "ar": [
-          "القرن الخامس عشر",
-          "القرن السابع عشر",
-          "القرن الثامن عشر",
-          "القرن السادس عشر"
-        ]
-      },
-      "answer": {
-        "en": "16th century",
-        "ar": "القرن السادس عشر"
-      },
-      "artwork_title": {
-        "en": "Children at Play",
-        "ar": "أطفال يلعبون"
-      },
-      "culture": {
-        "en": "China, Ming dynasty (1368–1644)",
-        "ar": "الصين، أسرة مينغ (1368–1644)"
-      },
-      "context": {
-        "en": "Xia Kui (Chinese, active c. 1405–1445), 1508",
-        "ar": "شيا كوي (صيني، نشط حوالي 1405–1445)، 1508"
-      }
+      "id": "year-older-1",
+      "type": "older",
+      "question_key": "question.year.older",
+      "question_values": {},
+      "images": [
+        "images/MAT.2007.1.206.2000x2000.jpg",
+        "images/MAT.2014.9.9..2000x2000.jpg"
+      ],
+      "options": [
+        "MAT.2007.1.206.2000x2000.jpg",
+        "MAT.2014.9.9..2000x2000.jpg"
+      ],
+      "answer": "MAT.2007.1.206.2000x2000.jpg",
+      "artworks": [
+        {
+          "file": "MAT.2007.1.206.2000x2000.jpg",
+          "artist": {
+            "en": "Kadhim Haidar (b.1932 - d.1985 Baghdad)\n",
+            "ar": "كاظم حيدر (1932 - 1985 بغداد)"
+          },
+          "title": {
+            "en": "Martyr's Epic\n",
+            "ar": "ملحمة الشهيد"
+          },
+          "date": {
+            "en": "1965",
+            "ar": ""
+          }
+        },
+        {
+          "file": "MAT.2014.9.9..2000x2000.jpg",
+          "artist": {
+            "en": "Lorna Selim (b.1928 Sheffield - d.2021 Abergavenny)\n",
+            "ar": "لورنا سليم (1928 شيفيلد - 2021 أبرغافيني)"
+          },
+          "title": {
+            "en": "At Night\n",
+            "ar": "في الليل"
+          },
+          "date": {
+            "en": "1962",
+            "ar": ""
+          }
+        }
+      ]
     },
     {
-      "id": "year-91231",
-      "question_key": "question.year",
-      "image": "images/2020.105.jpg",
-      "options": {
-        "en": [
-          "19th century",
-          "17th century",
-          "20th century",
-          "18th century"
-        ],
-        "ar": [
-          "القرن التاسع عشر",
-          "القرن السابع عشر",
-          "القرن العشرين",
-          "القرن الثامن عشر"
-        ]
-      },
-      "answer": {
-        "en": "19th century",
-        "ar": "القرن التاسع عشر"
-      },
-      "artwork_title": {
-        "en": "Villas at Trouville",
-        "ar": "فيلات في تروفيل"
-      },
-      "culture": {
-        "en": "France, 19th century",
-        "ar": "فرنسا، القرن التاسع عشر"
-      },
-      "context": {
-        "en": "Gustave Caillebotte (French, 1848–1894), 1884",
-        "ar": "غوستاف كايبوت (فرنسي، 1848–1894)، 1884"
-      }
+      "id": "year-older-2",
+      "type": "older",
+      "question_key": "question.year.older",
+      "question_values": {},
+      "images": [
+        "images/MAT.2007.1.2428.2000x2000.jpg",
+        "images/MAT.2007.1 .2000x2000.jpg"
+      ],
+      "options": [
+        "MAT.2007.1.2428.2000x2000.jpg",
+        "MAT.2007.1 .2000x2000.jpg"
+      ],
+      "answer": "MAT.2007.1.2428.2000x2000.jpg",
+      "artworks": [
+        {
+          "file": "MAT.2007.1.2428.2000x2000.jpg",
+          "artist": {
+            "en": "Rafa Al Nasiri (b.1940 Tikrit - d.2013 Amman)\n",
+            "ar": "رافع الناصري (1940 تكريت - 2013 عمّان)"
+          },
+          "title": {
+            "en": "Untitled\n",
+            "ar": "بدون عنوان"
+          },
+          "date": {
+            "en": "1971",
+            "ar": ""
+          }
+        },
+        {
+          "file": "MAT.2007.1 .2000x2000.jpg",
+          "artist": {
+            "en": "Kadhim Haidar (b.1932 - d.1985 Baghdad)\n",
+            "ar": "كاظم حيدر (1932 - 1985 بغداد)"
+          },
+          "title": {
+            "en": "Al Shahid\n",
+            "ar": "الشهيد"
+          },
+          "date": {
+            "en": "1969",
+            "ar": ""
+          }
+        }
+      ]
     },
     {
-      "id": "year-95059",
-      "question_key": "question.year",
-      "image": "images/1915.597.jpg",
-      "options": {
-        "en": [
-          "15th century",
-          "17th century",
-          "16th century",
-          "18th century"
-        ],
-        "ar": [
-          "القرن الخامس عشر",
-          "القرن السابع عشر",
-          "القرن السادس عشر",
-          "القرن الثامن عشر"
-        ]
-      },
-      "answer": {
-        "en": "16th century",
-        "ar": "القرن السادس عشر"
-      },
-      "artwork_title": {
-        "en": "Bahram Gur and Azada, from a Shahnama (Book of Kings) of Firdausi (940–1019 or 1025)",
-        "ar": "بهرام غور وآزاده، من الشاهنامة (كتاب الملوك) للفردوسي"
-      },
-      "culture": {
-        "en": "Iran, Tabriz or Qazvin, Safavid period (1501-1722)",
-        "ar": "إيران، تبريز أو قزوين، العصر الصفوي (1501–1722)"
-      },
-      "context": {
-        "en": "Iran, Tabriz or Qazvin, Safavid period (1501-1722), 1500s",
-        "ar": "إيران، تبريز أو قزوين، العصر الصفوي (1501–1722)، القرن السادس عشر"
-      }
+      "id": "year-older-3",
+      "type": "older",
+      "question_key": "question.year.older",
+      "question_values": {},
+      "images": [
+        "images/MAT.2007.1.2832.....2000x2000.jpg",
+        "images/QM.2024.9208.2000x2000.jpg"
+      ],
+      "options": [
+        "MAT.2007.1.2832.....2000x2000.jpg",
+        "QM.2024.9208.2000x2000.jpg"
+      ],
+      "answer": "MAT.2007.1.2832.....2000x2000.jpg",
+      "artworks": [
+        {
+          "file": "MAT.2007.1.2832.....2000x2000.jpg",
+          "artist": {
+            "en": "Rasoul Alwan (b.1928 - d.1996 Baghdad) \n",
+            "ar": "رسول علوان (1928 - 1996 بغداد)"
+          },
+          "title": {
+            "en": "Games City in Berlin\n",
+            "ar": "مدينة الألعاب في برلين"
+          },
+          "date": {
+            "en": "1960",
+            "ar": ""
+          }
+        },
+        {
+          "file": "QM.2024.9208.2000x2000.jpg",
+          "artist": {
+            "en": "Shakir Hassan al-Saïd (b.1925 Samawah -d. 2004 Baghdad)\n",
+            "ar": "شاكر حسن ال سعيد (1925 السماوة - 2004 بغداد)"
+          },
+          "title": {
+            "en": "One Thousand and One Nights\n",
+            "ar": "ألف ليلة وليلة"
+          },
+          "date": {
+            "en": "1955",
+            "ar": ""
+          }
+        }
+      ]
     },
     {
-      "id": "year-95802",
-      "question_key": "question.year",
-      "image": "images/1916.1490.jpg",
-      "options": {
-        "en": [
-          "17th century",
-          "15th century",
-          "16th century",
-          "18th century"
-        ],
-        "ar": [
-          "القرن السابع عشر",
-          "القرن الخامس عشر",
-          "القرن السادس عشر",
-          "القرن الثامن عشر"
-        ]
-      },
-      "answer": {
-        "en": "18th century",
-        "ar": "القرن الثامن عشر"
-      },
-      "artwork_title": {
-        "en": "Banner Head in the Form of a Fleur-de-lys",
-        "ar": "رأس راية على شكل زهرة الزنبق"
-      },
-      "culture": {
-        "en": "France",
-        "ar": "فرنسا"
-      },
-      "context": {
-        "en": "France, 1700s",
-        "ar": "فرنسا، القرن الثامن عشر"
-      }
+      "id": "year-which_year-1",
+      "type": "which_year",
+      "question_key": "question.year.which_year",
+      "question_values": {},
+      "images": [
+        "images/MAT.2010.17.2..2000x2000.jpg"
+      ],
+      "options": [
+        "1967",
+        "1961",
+        "1964",
+        "1968"
+      ],
+      "answer": "1968",
+      "artworks": [
+        {
+          "file": "MAT.2010.17.2..2000x2000.jpg",
+          "artist": {
+            "en": "Saleh Al Jumaie (b.1939 Suwaira)\n",
+            "ar": "صالح الجميعي (مواليد 1939 الصويرة)"
+          },
+          "title": {
+            "en": "Title Unknown\n",
+            "ar": "العنوان غير معروف"
+          },
+          "date": {
+            "en": "1968",
+            "ar": ""
+          }
+        }
+      ]
     },
     {
-      "id": "year-98373",
-      "question_key": "question.year",
-      "image": "images/1918.109.jpg",
-      "options": {
-        "en": [
-          "19th century",
-          "18th century",
-          "15th century",
-          "20th century"
-        ],
-        "ar": [
-          "القرن التاسع عشر",
-          "القرن الثامن عشر",
-          "القرن الخامس عشر",
-          "القرن العشرين"
-        ]
-      },
-      "answer": {
-        "en": "20th century",
-        "ar": "القرن العشرين"
-      },
-      "artwork_title": {
-        "en": "The Great Chimney, Bradford",
-        "ar": "المدخنة الكبرى، برادفورد"
-      },
-      "culture": {
-        "en": "America, late 19th-early 20th Century",
-        "ar": "أمريكا، أواخر القرن التاسع عشر وأوائل القرن العشرين"
-      },
-      "context": {
-        "en": "Joseph Pennell (American, 1857–1926), 1909",
-        "ar": "جوزيف بينيل (أمريكي، 1857–1926)، 1909"
-      }
+      "id": "year-which_year-2",
+      "type": "which_year",
+      "question_key": "question.year.which_year",
+      "question_values": {},
+      "images": [
+        "images/MAT.2007.1.3311.2000x2000.jpg"
+      ],
+      "options": [
+        "1986",
+        "1991",
+        "1983",
+        "1987"
+      ],
+      "answer": "1986",
+      "artworks": [
+        {
+          "file": "MAT.2007.1.3311.2000x2000.jpg",
+          "artist": {
+            "en": "Madiha Umar (b.1908 Aleppo - d.2005 Amman)\n",
+            "ar": "مديحة عمر (1908 حلب - 2005 عمّان)"
+          },
+          "title": {
+            "en": "Untitled (The Letter Ein)\n(",
+            "ar": "الحرف ع)"
+          },
+          "date": {
+            "en": "1986",
+            "ar": ""
+          }
+        }
+      ]
     },
     {
-      "id": "year-98736",
-      "question_key": "question.year",
-      "image": "images/1918.423.jpg",
-      "options": {
-        "en": [
-          "12th century",
-          "15th century",
-          "14th century",
-          "13th century"
-        ],
-        "ar": [
-          "القرن الثاني عشر",
-          "القرن الخامس عشر",
-          "القرن الرابع عشر",
-          "القرن الثالث عشر"
-        ]
-      },
-      "answer": {
-        "en": "13th century",
-        "ar": "القرن الثالث عشر"
-      },
-      "artwork_title": {
-        "en": "Box and Cover with Inlaid Chrysanthemum Design",
-        "ar": "علبة وغطاء بزخرفة أقحوان مطعمة"
-      },
-      "culture": {
-        "en": "Korea, Goryeo dynasty (918–1392)",
-        "ar": "كوريا، سلالة غوريو (918–1392)"
-      },
-      "context": {
-        "en": "Korea, Goryeo dynasty (918–1392), 1200s",
-        "ar": "كوريا، سلالة غوريو (918–1392)، القرن الثالث عشر"
-      }
+      "id": "year-which_year-3",
+      "type": "which_year",
+      "question_key": "question.year.which_year",
+      "question_values": {},
+      "images": [
+        "images/2007.1.1652 .2000x2000.jpg"
+      ],
+      "options": [
+        "1991",
+        "1994",
+        "1998",
+        "1999"
+      ],
+      "answer": "1999",
+      "artworks": [
+        {
+          "file": "2007.1.1652 .2000x2000.jpg",
+          "artist": {
+            "en": "Shakir Hassan al-Saïd (b.1925 Samawah -d. 2004 Baghdad)\n",
+            "ar": "شاكر حسن ال سعيد (1925 السماوة - 2004 بغداد)"
+          },
+          "title": {
+            "en": "The Great Symbol\n",
+            "ar": "الرمز العظيم"
+          },
+          "date": {
+            "en": "1999",
+            "ar": ""
+          }
+        }
+      ]
     },
     {
-      "id": "year-100396",
-      "question_key": "question.year",
-      "image": "images/1919.876.jpg",
-      "options": {
-        "en": [
-          "17th century",
-          "18th century",
-          "20th century",
-          "19th century"
-        ],
-        "ar": [
-          "القرن السابع عشر",
-          "القرن الثامن عشر",
-          "القرن العشرين",
-          "القرن التاسع عشر"
-        ]
+      "id": "year-in_year-1",
+      "type": "in_year",
+      "question_key": "question.year.in_year",
+      "question_values": {
+        "year": "1990"
       },
-      "answer": {
-        "en": "20th century",
-        "ar": "القرن العشرين"
-      },
-      "artwork_title": {
-        "en": "The Ford",
-        "ar": "المعبر"
-      },
-      "culture": {
-        "en": "America, Ohio, Cleveland",
-        "ar": "أمريكا، أوهايو، كليفلاند"
-      },
-      "context": {
-        "en": "Henry Keller (American, born Germany, 1869–1949), 1919",
-        "ar": "هنري كيلر (أمريكي، ولد في ألمانيا، 1869–1949)، 1919"
-      }
+      "images": [
+        "images/MAT.2007.1.568.01.1000x1000 Faisal Laibi Sahi.jpg",
+        "images/2007.1.256 .2000x2000.jpg"
+      ],
+      "options": [
+        "MAT.2007.1.568.01.1000x1000 Faisal Laibi Sahi.jpg",
+        "2007.1.256 .2000x2000.jpg"
+      ],
+      "answer": "MAT.2007.1.568.01.1000x1000 Faisal Laibi Sahi.jpg",
+      "artworks": [
+        {
+          "file": "MAT.2007.1.568.01.1000x1000 Faisal Laibi Sahi.jpg",
+          "artist": {
+            "en": "Faisal Laibi Sahi (b.1947 Basra)\n",
+            "ar": "فيصل لعيبي صاحي (مواليد 1947 البصرة)"
+          },
+          "title": {
+            "en": "Al Baghdady (The Man From Baghdad)\n",
+            "ar": "الباغدادي (الرجل من بغداد)"
+          },
+          "date": {
+            "en": "1990",
+            "ar": ""
+          }
+        },
+        {
+          "file": "2007.1.256 .2000x2000.jpg",
+          "artist": {
+            "en": "Mohammed Muhriddin (b. Basrah 1938-d.2015 Amman)\n",
+            "ar": "محمد مهر الدين (البصرة 1938 – عمّان 2015)"
+          },
+          "title": {
+            "en": "Untitled\n",
+            "ar": "بدون عنوان"
+          },
+          "date": {
+            "en": "1989",
+            "ar": ""
+          }
+        }
+      ]
     },
     {
-      "id": "year-93393",
-      "question_key": "question.year",
-      "image": "images/1928.1856.jpg",
-      "options": {
-        "en": [
-          "18th century",
-          "17th century",
-          "20th century",
-          "19th century"
-        ],
-        "ar": [
-          "القرن الثامن عشر",
-          "القرن السابع عشر",
-          "القرن العشرين",
-          "القرن التاسع عشر"
-        ]
+      "id": "year-in_year-2",
+      "type": "in_year",
+      "question_key": "question.year.in_year",
+      "question_values": {
+        "year": "1989"
       },
-      "answer": {
-        "en": "20th century",
-        "ar": "القرن العشرين"
+      "images": [
+        "images/MAT.2011.13.13 copy.2000x2000.jpg",
+        "images/MAT.2007.1.346..2000x2000.jpg"
+      ],
+      "options": [
+        "MAT.2011.13.13 copy.2000x2000.jpg",
+        "MAT.2007.1.346..2000x2000.jpg"
+      ],
+      "answer": "MAT.2011.13.13 copy.2000x2000.jpg",
+      "artworks": [
+        {
+          "file": "MAT.2011.13.13 copy.2000x2000.jpg",
+          "artist": {
+            "en": "Ismail Fattah (b. 1934 Basrah - d.2004 Baghdad)\n",
+            "ar": "إسماعيل فتاح (1934 البصرة - 2004 بغداد)"
+          },
+          "title": {
+            "en": "Le Mariage, Hommage à Jawad\n",
+            "ar": "الزواج، تقدير لجواد"
+          },
+          "date": {
+            "en": "1989",
+            "ar": ""
+          }
+        },
+        {
+          "file": "MAT.2007.1.346..2000x2000.jpg",
+          "artist": {
+            "en": "Mahmoud Obaidi (b.1966 Baghdad)\n",
+            "ar": "محمود العبيدي (مواليد 1966 بغداد)"
+          },
+          "title": {
+            "en": "From the Cats Factory Series no. 1\n",
+            "ar": "من سلسلة ”مصنع القطط“، رقم 1"
+          },
+          "date": {
+            "en": "1994",
+            "ar": ""
+          }
+        }
+      ]
+    },
+    {
+      "id": "year-in_year-3",
+      "type": "in_year",
+      "question_key": "question.year.in_year",
+      "question_values": {
+        "year": "1976"
       },
-      "artwork_title": {
-        "en": "Francesca",
-        "ar": "فرانشيسكا"
-      },
-      "culture": {
-        "en": "United States, Ohio, Cleveland",
-        "ar": "الولايات المتحدة، أوهايو، كليفلاند"
-      },
-      "context": {
-        "en": "Louise B. Maloney (American, 1887–1973), 1927",
-        "ar": "لويز ب. مالوني (أمريكية، 1887–1973)، 1927"
-      }
+      "images": [
+        "images/2010.22.12.2000x2000.jpg",
+        "images/MAT.2007.1.135.2000x2000.jpg"
+      ],
+      "options": [
+        "2010.22.12.2000x2000.jpg",
+        "MAT.2007.1.135.2000x2000.jpg"
+      ],
+      "answer": "2010.22.12.2000x2000.jpg",
+      "artworks": [
+        {
+          "file": "2010.22.12.2000x2000.jpg",
+          "artist": {
+            "en": "Dia Al Azzawi (b.1939 Baghdad)\n",
+            "ar": "ضياء العزاوي (مواليد 1930 بغداد)"
+          },
+          "title": {
+            "en": "The Second Husband\n",
+            "ar": "الزوج الثاني"
+          },
+          "date": {
+            "en": "1969",
+            "ar": ""
+          }
+        },
+        {
+          "file": "MAT.2007.1.135.2000x2000.jpg",
+          "artist": {
+            "en": "Mohammed Muhriddin (b. Basrah 1938-d.2015 Amman)\n",
+            "ar": "محمد مهر الدين (البصرة 1938 – عمّان 2015)"
+          },
+          "title": {
+            "en": "Strange in This World\n",
+            "ar": "غريب في هذا العالم"
+          },
+          "date": {
+            "en": "1976",
+            "ar": ""
+          }
+        }
+      ]
     }
   ]
 }

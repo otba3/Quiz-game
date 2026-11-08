@@ -17,6 +17,7 @@
       pick: "Choose a category",
       score: "Your score",
       again: "Play again",
+      waitBeforeAgain: "Please wait...",
       v: ["Try again.", "Well played.", "Perfect score."],
       tapTitle: "Save your score",
       tap: "Tap your card on the reader",
@@ -43,11 +44,17 @@
       rewardReady: "40 points reached! Ask museum staff about your reward.",
       earnedEntry: "Earned",
       redeemedEntry: "Reward redeemed",
+      ratingTitle: "How would you rate your experience playing today?",
+      ratingLabels: ["Very poor", "Poor", "Okay", "Good", "Excellent"],
+      ratingSubmit: "Submit",
+      ratingSkip: "Not now",
+      ratingError: "We couldn't save your rating. Please try again.",
     },
     ar: {
       pick: "اختر فئة",
       score: "نتيجتك",
       again: "العب مرة أخرى",
+      waitBeforeAgain: "يرجى الانتظار...",
       v: ["حاول مرة أخرى.", "أحسنت.", "نتيجة كاملة."],
       tapTitle: "احفظ نتيجتك",
       tap: "ضع بطاقتك على القارئ",
@@ -74,6 +81,11 @@
       rewardReady: "وصلت إلى 40 نقطة! اسأل موظفي المتحف عن مكافأتك.",
       earnedEntry: "نقاط مكتسبة",
       redeemedEntry: "تم استبدال المكافأة",
+      ratingTitle: "كيف تقيّم تجربتك في اللعب اليوم؟",
+      ratingLabels: ["سيئة جدًا", "سيئة", "متوسطة", "جيدة", "ممتازة"],
+      ratingSubmit: "إرسال",
+      ratingSkip: "ليس الآن",
+      ratingError: "تعذر حفظ تقييمك. يُرجى المحاولة مرة أخرى.",
     },
   };
 
@@ -82,6 +94,9 @@
     questions,
     i,
     score,
+    gameStartedAt,
+    ratingScore = null,
+    startAfterRating = false,
     lastPointsResult,
     cardWait = 0; // number of the current card wait; a reply from an older one is ignored
 
@@ -194,6 +209,7 @@
     $("cats-title").textContent = UI[lang].pick;
     $("end-label").textContent = UI[lang].score;
     $("again").textContent = UI[lang].again;
+    $("again").disabled = false;
     $("skip").textContent = UI[lang].skip;
     $("before-label").textContent = UI[lang].before;
     $("now-label").textContent = UI[lang].now;
@@ -201,6 +217,11 @@
     $("points-title").textContent = UI[lang].pointsTitle;
     $("history-title").textContent = UI[lang].historyTitle;
     $("points-back").textContent = UI[lang].pointsBack;
+    $("rating-title").textContent = UI[lang].ratingTitle;
+    $("rating-submit").textContent = UI[lang].ratingSubmit;
+    $("rating-skip").textContent = UI[lang].ratingSkip;
+    $("rating-close").setAttribute("aria-label", UI[lang].ratingSkip);
+    renderRatingOptions();
     const list = $("cat-list");
     list.innerHTML = "";
     CATEGORIES.forEach((c, n) => {
@@ -219,6 +240,7 @@
     questions = pickQuestions(key);
     i = 0;
     score = 0;
+    gameStartedAt = Date.now();
     render();
     show("play");
   }
@@ -328,6 +350,84 @@
     waitForCard(t);
   }
 
+  const RATING_FACES = [
+    '<svg viewBox="0 0 56 56" aria-hidden="true" focusable="false"><circle cx="28" cy="28" r="22" fill="#ef4148" stroke="#222" stroke-width="4"/><circle cx="20" cy="23" r="2.5" fill="#222"/><circle cx="36" cy="23" r="2.5" fill="#222"/><path d="M17 39 Q28 28 39 39" fill="none" stroke="#222" stroke-width="3.5" stroke-linecap="round"/></svg>',
+    '<svg viewBox="0 0 56 56" aria-hidden="true" focusable="false"><circle cx="28" cy="28" r="22" fill="#efb08c" stroke="#222" stroke-width="4"/><circle cx="20" cy="23" r="2.5" fill="#222"/><circle cx="36" cy="23" r="2.5" fill="#222"/><path d="M19 38 Q28 33 37 38" fill="none" stroke="#222" stroke-width="3.5" stroke-linecap="round"/></svg>',
+    '<svg viewBox="0 0 56 56" aria-hidden="true" focusable="false"><circle cx="28" cy="28" r="22" fill="#f8efcf" stroke="#222" stroke-width="4"/><circle cx="20" cy="23" r="2.5" fill="#222"/><circle cx="36" cy="23" r="2.5" fill="#222"/><path d="M19 36 H37" fill="none" stroke="#222" stroke-width="3.5" stroke-linecap="round"/></svg>',
+    '<svg viewBox="0 0 56 56" aria-hidden="true" focusable="false"><circle cx="28" cy="28" r="22" fill="#f8d45b" stroke="#222" stroke-width="4"/><circle cx="20" cy="23" r="2.5" fill="#222"/><circle cx="36" cy="23" r="2.5" fill="#222"/><path d="M18 33 Q28 43 38 33" fill="none" stroke="#222" stroke-width="3.5" stroke-linecap="round"/></svg>',
+    '<svg viewBox="0 0 56 56" aria-hidden="true" focusable="false"><circle cx="28" cy="28" r="22" fill="#76c87d" stroke="#222" stroke-width="4"/><circle cx="20" cy="23" r="2.5" fill="#222"/><circle cx="36" cy="23" r="2.5" fill="#222"/><path d="M17 32 Q28 46 39 32 Z" fill="#222"/></svg>',
+  ];
+
+  function renderRatingOptions() {
+    const options = $("rating-options");
+    options.innerHTML = "";
+    UI[lang].ratingLabels.forEach((label, index) => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "rating-option";
+      button.innerHTML = RATING_FACES[index];
+      button.setAttribute("aria-label", label);
+      button.setAttribute("aria-pressed", "false");
+      button.onclick = () => {
+        ratingScore = index + 1;
+        [...options.children].forEach((option, optionIndex) =>
+          option.setAttribute("aria-pressed", String(optionIndex === index)),
+        );
+        $("rating-submit").disabled = false;
+        $("rating-status").textContent = "";
+      };
+      options.appendChild(button);
+    });
+  }
+
+  function showRating(scoreSaved) {
+    ratingScore = null;
+    $("rating-status").textContent = "";
+    $("rating-submit").disabled = true;
+    $("rating-submit").textContent = UI[lang].ratingSubmit;
+    $("rating-modal").hidden = false;
+    renderRatingOptions();
+    $("rating-options").firstElementChild.focus();
+    $("rating-modal").dataset.scoreSaved = String(scoreSaved);
+  }
+
+  function closeRating() {
+    $("rating-modal").hidden = true;
+    if (startAfterRating) {
+      startAfterRating = false;
+      document.documentElement.lang = "en";
+      document.documentElement.dir = "ltr";
+      show("lang");
+    }
+  }
+
+  async function submitRating() {
+    if (ratingScore === null) return;
+    const submit = $("rating-submit");
+    submit.disabled = true;
+    $("rating-status").textContent = "";
+    try {
+      const reply = await fetch("/api/feedback", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          category,
+          score,
+          question_count: questions.length,
+          rating: ratingScore,
+          language: lang,
+          score_saved: $("rating-modal").dataset.scoreSaved === "true",
+          duration_seconds: Math.max(0, Math.floor((Date.now() - gameStartedAt) / 1000)),
+        }),
+      });
+      if (!reply.ok) throw new Error("Could not save rating.");
+      closeRating();
+    } catch (error) {
+      $("rating-status").textContent = UI[lang].ratingError;
+      submit.disabled = false;
+    }
+  }
+
   // Ask the Pi's server to wait (up to 20 s) for an RFID card and save the score under it.
   // The server only answers once a card is tapped or the time is up.
   // Switch the scan box to a state ("waiting", "saved" or "expired") with its title and text.
@@ -405,9 +505,10 @@
       })
       .then((result) => {
         if (thisWait !== cardWait) return; // visitor pressed Skip or Play again meanwhile
-        if (!result.saved)
+        if (!result.saved) {
           setScan("expired", UI[lang].noCardTitle, UI[lang].noCard);
-        else {
+          showRating(false);
+        } else {
           lastPointsResult = result;
           setScan("saved", UI[lang].savedTitle, "");
           if (result.quizzes_today === 1) {
@@ -430,12 +531,14 @@
             $("now-score").textContent = score + "/" + t;
             $("scan-compare").hidden = false;
           }
+          showRating(true);
         }
       })
       .catch(() => {
         // No server (index.html opened by double-click): no card saving possible.
         if (thisWait !== cardWait) return;
         setScan("expired", UI[lang].noCardTitle, "");
+        showRating(false);
       });
   }
 
@@ -443,7 +546,11 @@
   $("skip").onclick = () => {
     cardWait++;
     setScan("expired", UI[lang].noCardTitle, "");
+    showRating(false);
   };
+  $("rating-submit").onclick = submitRating;
+  $("rating-skip").onclick = closeRating;
+  $("rating-close").onclick = closeRating;
   $("check-points").onclick = () => showPoints(lastPointsResult);
   $("points-back").onclick = () => show("end");
 
@@ -452,6 +559,12 @@
     .forEach((b) => (b.onclick = () => setLang(b.dataset.lang)));
   // Play again: back to the language screen, in the default left-to-right layout.
   $("again").onclick = () => {
+    if ($("scan").dataset.state === "waiting") {
+      startAfterRating = true;
+      $("again").disabled = true;
+      $("again").textContent = UI[lang].waitBeforeAgain;
+      return;
+    }
     cardWait++; // ignore the card reply if it arrives after leaving the score screen
     document.documentElement.lang = "en";
     document.documentElement.dir = "ltr";

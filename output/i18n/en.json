@@ -3,5 +3,9 @@
   "question.year": "Which century was this artwork created?",
   "question.medium": "What medium was used to create this artwork?",
   "question.continent": "Which continent does this artwork come from?",
-  "question.country": "Which country in {continent} is this artwork?"
+  "question.country": "Which country in {continent} is this artwork?",
+  "question.year.not_in_year": "Which one is not made on this year {year}?",
+  "question.year.older": "Which artwork is older?",
+  "question.year.which_year": "What year was this artwork made?",
+  "question.year.in_year": "Which artwork is made in the year {year}?"
 }

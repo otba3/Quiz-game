@@ -52,6 +52,37 @@ def create_table():
                     created_at   TEXT NOT NULL
                 )
             """)
+            db.execute("""
+                CREATE TABLE IF NOT EXISTS game_feedback (
+                    id               INTEGER PRIMARY KEY AUTOINCREMENT,
+                    category         TEXT NOT NULL,
+                    score            INTEGER NOT NULL,
+                    question_count   INTEGER NOT NULL,
+                    rating           INTEGER NOT NULL CHECK (rating BETWEEN 1 AND 5),
+                    language         TEXT NOT NULL,
+                    score_saved      INTEGER NOT NULL CHECK (score_saved IN (0, 1)),
+                    duration_seconds INTEGER NOT NULL,
+                    created_at       TEXT NOT NULL
+                )
+            """)
+
+
+def save_game_feedback(category, score, question_count, rating, language,
+                       score_saved, duration_seconds):
+    """Save an anonymous game rating and the context needed to interpret it."""
+    created_at = datetime.now().isoformat(timespec="seconds")
+    with closing(sqlite3.connect(DB_PATH)) as db:
+        with db:
+            cursor = db.execute(
+                """INSERT INTO game_feedback
+                   (category, score, question_count, rating, language,
+                    score_saved, duration_seconds, created_at)
+                   VALUES (?, ?, ?, ?, ?, ?, ?, ?)""",
+                (category, score, question_count, rating, language,
+                 int(score_saved), duration_seconds, created_at),
+            )
+            feedback_id = cursor.lastrowid
+    return {"id": feedback_id, "created_at": created_at}
 
 
 
