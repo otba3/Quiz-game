@@ -413,7 +413,6 @@
         body: JSON.stringify({
           category,
           score,
-          question_count: questions.length,
           rating: ratingScore,
           language: lang,
           score_saved: $("rating-modal").dataset.scoreSaved === "true",

@@ -163,16 +163,14 @@ def save_feedback():
         return jsonify({"error": "Expected a JSON object"}), 400
     category = data.get("category")
     score = data.get("score")
-    question_count = data.get("question_count")
     rating = data.get("rating")
     language = data.get("language")
     score_saved = data.get("score_saved")
     duration_seconds = data.get("duration_seconds")
     if category not in ("year", "origin"):
         return jsonify({"error": "Invalid category"}), 400
-    if (type(score) is not int or type(question_count) is not int
-            or question_count < 1 or not 0 <= score <= question_count):
-        return jsonify({"error": "Invalid score or question count"}), 400
+    if type(score) is not int or score < 0:
+        return jsonify({"error": "Invalid score"}), 400
     if type(rating) is not int or not 1 <= rating <= 5:
         return jsonify({"error": "Rating must be between 1 and 5"}), 400
     if language not in ("en", "ar"):
@@ -183,8 +181,7 @@ def save_feedback():
         return jsonify({"error": "Invalid duration"}), 400
 
     feedback = save_game_feedback(
-        category, score, question_count, rating, language,
-        score_saved, duration_seconds,
+        category, score, rating, language, score_saved, duration_seconds,
     )
     return jsonify({"saved": True, **feedback}), 201
 

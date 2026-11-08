@@ -53,11 +53,12 @@ def create_table():
                 )
             """)
             db.execute("""
+            032
+            .
                 CREATE TABLE IF NOT EXISTS game_feedback (
                     id               INTEGER PRIMARY KEY AUTOINCREMENT,
                     category         TEXT NOT NULL,
                     score            INTEGER NOT NULL,
-                    question_count   INTEGER NOT NULL,
                     rating           INTEGER NOT NULL CHECK (rating BETWEEN 1 AND 5),
                     language         TEXT NOT NULL,
                     score_saved      INTEGER NOT NULL CHECK (score_saved IN (0, 1)),
@@ -65,20 +66,48 @@ def create_table():
                     created_at       TEXT NOT NULL
                 )
             """)
+            columns = {
+                row[1] for row in db.execute("PRAGMA table_info(game_feedback)")
+            }
+            if "question_count" in columns:
+                db.execute("""
+                    CREATE TABLE game_feedback_new (
+                        id               INTEGER PRIMARY KEY AUTOINCREMENT,
+                        category         TEXT NOT NULL,
+                        score            INTEGER NOT NULL,
+                        rating           INTEGER NOT NULL CHECK (rating BETWEEN 1 AND 5),
+                        language         TEXT NOT NULL,
+                        score_saved      INTEGER NOT NULL CHECK (score_saved IN (0, 1)),
+                        duration_seconds INTEGER NOT NULL,
+                        created_at       TEXT NOT NULL
+                    )
+                """)
+                db.execute("""
+                    INSERT INTO game_feedback_new
+                    (id, category, score, rating, language, score_saved,
+                     duration_seconds, created_at)
+                    SELECT id, category, score, rating, language, score_saved,
+                           duration_seconds, created_at
+                    FROM game_feedback
+                """)
+                db.execute("DROP TABLE game_feedback")
+                db.execute(
+                    "ALTER TABLE game_feedback_new RENAME TO game_feedback"
+                )
 
 
-def save_game_feedback(category, score, question_count, rating, language,
-                       score_saved, duration_seconds):
+def save_game_feedback(category, score, rating, language, score_saved,
+                       duration_seconds):
     """Save an anonymous game rating and the context needed to interpret it."""
     created_at = datetime.now().isoformat(timespec="seconds")
     with closing(sqlite3.connect(DB_PATH)) as db:
         with db:
             cursor = db.execute(
                 """INSERT INTO game_feedback
-                   (category, score, question_count, rating, language,
-                    score_saved, duration_seconds, created_at)
-                   VALUES (?, ?, ?, ?, ?, ?, ?, ?)""",
-                (category, score, question_count, rating, language,
+                   (category, score, rating, language, score_saved,
+                    duration_seconds, created_at)
+                   VALUES (?, ?, ?, ?, ?, ?, ?)""",
+                (category, score, rating, language,
                  int(score_saved), duration_seconds, created_at),
             )
             feedback_id = cursor.lastrowid
