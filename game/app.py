@@ -6,14 +6,20 @@ A web page can't control the Pi's GPIO pins itself; this server does it for it.
 
 Start:  py game/app.py   then open http://localhost:5000
 """
+import os
+import secrets
 import time
-from flask import Flask, jsonify, request, send_from_directory
+from decimal import Decimal, InvalidOperation
 from pathlib import Path
+
+from flask import Flask, jsonify, request, send_from_directory
 
 from visitor_score_storage import (
     create_table,
+    create_purchase_point_claim,
     get_points_balance,
     get_points_history,
+    PurchaseReferenceAlreadyUsed,
     save_game_feedback,
     save_score,
 )
@@ -154,6 +160,63 @@ def save_card_score():
         "points_balance": get_points_balance(card_uid),
         "points_history": get_points_history(card_uid),
     })
+
+
+# --------------------------
+# PURCHASE POINTS: ONE-TIME QR CLAIMS
+# --------------------------
+
+def purchase_staff_error():
+    """Return an auth error for staff-only purchase-points operations, if any."""
+    staff_token = os.environ.get("PURCHASE_POINTS_STAFF_TOKEN")
+    if not staff_token:
+        return jsonify({"error": "Purchase points staff access is not configured"}), 503
+    supplied_token = request.headers.get("X-Staff-Token", "")
+    if not secrets.compare_digest(supplied_token, staff_token):
+        return jsonify({"error": "Staff authorization required"}), 401
+    return None
+
+
+def amount_to_minor_units(value):
+    """Convert a JSON QAR amount to exact dirhams without accepting fractions."""
+    if isinstance(value, bool) or not isinstance(value, (int, float, str)):
+        raise ValueError("amount_qar must be a positive amount with at most 2 decimals")
+    try:
+        amount = Decimal(str(value))
+    except InvalidOperation as error:
+        raise ValueError(
+            "amount_qar must be a positive amount with at most 2 decimals"
+        ) from error
+    minor_units = amount * 100
+    if (
+        not amount.is_finite()
+        or amount <= 0
+        or minor_units != minor_units.to_integral_value()
+        or minor_units > Decimal(2**63 - 1)
+    ):
+        raise ValueError("amount_qar must be a positive amount with at most 2 decimals")
+    return int(minor_units)
+
+
+@app.route("/api/purchase/earn", methods=["POST"])
+def earn_purchase_points_route():
+    auth_error = purchase_staff_error()
+    if auth_error:
+        return auth_error
+    data = request.get_json(silent=True)
+    if not isinstance(data, dict):
+        return jsonify({"error": "Expected a JSON object"}), 400
+    purchase_reference = data.get("purchase_reference")
+    if not isinstance(purchase_reference, str):
+        return jsonify({"error": "purchase_reference is required"}), 400
+    try:
+        amount_minor = amount_to_minor_units(data.get("amount_qar"))
+        result = create_purchase_point_claim(amount_minor, purchase_reference)
+    except PurchaseReferenceAlreadyUsed as error:
+        return jsonify({"error": str(error)}), 409
+    except ValueError as error:
+        return jsonify({"error": str(error)}), 400
+    return jsonify({"saved": True, **result}), 200
 
 
 @app.route("/api/feedback", methods=["POST"])

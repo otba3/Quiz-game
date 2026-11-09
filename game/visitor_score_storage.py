@@ -1,12 +1,12 @@
-"""Save visitors' quiz scores in a small SQLite database, linked to their RFID card UID.
+"""Store quiz scores and one-time purchase-point claims in SQLite.
 
-
-Points are awarded per card, category, and calendar day: the first quiz banks
-its score, the second awards both scores, and the third awards half its score.
-The fourth and later quizzes that day earn no points.
+Quiz points are awarded per RFID card, category, and calendar day. Purchase
+points are issued as pending claims, one point per complete QAR 10.
 The database is one file: data/visitor_scores.db (created automatically).
 Try it without the Pi or the reader:  python3 game/visitor_score_storage.py
 """
+import hashlib
+import secrets
 import sqlite3
 from contextlib import closing
 from datetime import datetime
@@ -15,12 +15,16 @@ from pathlib import Path
 
 # data/ folder at the project root, next to the question CSVs.
 DB_PATH = Path(__file__).parent.parent / "data" / "visitor_scores.db"
+PURCHASE_QR_PREFIX = "qm-points:"
+PURCHASE_CLAIM_PREFIX = "qm-claim:"
 
 
+class PurchaseReferenceAlreadyUsed(ValueError):
+    """Raised when a paid receipt has already been issued as a points claim."""
 
 
 def create_table():
-    """Create the score and points tables the first time; keep existing data."""
+    """Create the score, feedback, and purchase-claim tables; keep existing data."""
     with closing(sqlite3.connect(DB_PATH)) as db:
         with db:
             db.execute("""
@@ -64,6 +68,38 @@ def create_table():
                     created_at       TEXT NOT NULL
                 )
             """)
+            db.execute("""
+                CREATE TABLE IF NOT EXISTS purchase_points_accounts (
+                    id            INTEGER PRIMARY KEY AUTOINCREMENT,
+                    qr_token_hash TEXT NOT NULL UNIQUE,
+                    created_at    TEXT NOT NULL
+                )
+            """)
+            db.execute("""
+                CREATE TABLE IF NOT EXISTS purchase_points_transactions (
+                    id                INTEGER PRIMARY KEY AUTOINCREMENT,
+                    account_id        INTEGER NOT NULL
+                                      REFERENCES purchase_points_accounts(id),
+                    purchase_reference TEXT NOT NULL UNIQUE,
+                    amount_minor      INTEGER NOT NULL CHECK (amount_minor > 0),
+                    points            INTEGER NOT NULL CHECK (points >= 0),
+                    created_at        TEXT NOT NULL
+                )
+            """)
+            db.execute("""
+                CREATE TABLE IF NOT EXISTS purchase_point_claims (
+                    id                 INTEGER PRIMARY KEY AUTOINCREMENT,
+                    purchase_reference TEXT NOT NULL UNIQUE,
+                    claim_token_hash   TEXT UNIQUE,
+                    amount_minor       INTEGER NOT NULL CHECK (amount_minor > 0),
+                    points             INTEGER NOT NULL CHECK (points >= 0),
+                    status             TEXT NOT NULL
+                                       CHECK (status IN ('pending', 'claimed', 'not_eligible')),
+                    created_at         TEXT NOT NULL,
+                    claimed_at         TEXT,
+                    claimed_by         TEXT
+                )
+            """)
             columns = {
                 row[1] for row in db.execute("PRAGMA table_info(game_feedback)")
             }
@@ -92,6 +128,153 @@ def create_table():
                 db.execute(
                     "ALTER TABLE game_feedback_new RENAME TO game_feedback"
                 )
+
+
+def _purchase_qr_hash(qr_code):
+    """Validate a purchase-points QR payload and return its stored token hash."""
+    if not isinstance(qr_code, str) or not qr_code.startswith(PURCHASE_QR_PREFIX):
+        raise ValueError("Invalid purchase-points QR code")
+    token = qr_code[len(PURCHASE_QR_PREFIX):]
+    if not token:
+        raise ValueError("Invalid purchase-points QR code")
+    return hashlib.sha256(token.encode("utf-8")).hexdigest()
+
+
+def create_purchase_points_account():
+    """Create a QR-backed purchase-points account and return its QR payload."""
+    token = secrets.token_urlsafe(32)
+    qr_code = PURCHASE_QR_PREFIX + token
+    created_at = datetime.now().isoformat(timespec="seconds")
+    with closing(sqlite3.connect(DB_PATH)) as db:
+        with db:
+            db.execute(
+                """INSERT INTO purchase_points_accounts
+                   (qr_token_hash, created_at) VALUES (?, ?)""",
+                (hashlib.sha256(token.encode("utf-8")).hexdigest(), created_at),
+            )
+    return {"qr_code": qr_code, "created_at": created_at}
+
+
+def earn_purchase_points(qr_code, amount_minor, purchase_reference):
+    """Credit whole points for a paid amount in dirhams; retries are idempotent."""
+    if type(amount_minor) is not int or not 0 < amount_minor <= 2**63 - 1:
+        raise ValueError("Purchase amount must be positive whole dirhams")
+    if not isinstance(purchase_reference, str) or not purchase_reference.strip():
+        raise ValueError("Purchase reference is required")
+    if len(purchase_reference) > 128:
+        raise ValueError("Purchase reference is too long")
+
+    token_hash = _purchase_qr_hash(qr_code)
+    points = amount_minor // 1000
+    created_at = datetime.now().isoformat(timespec="seconds")
+    with closing(sqlite3.connect(DB_PATH)) as db:
+        with db:
+            db.execute("BEGIN IMMEDIATE")
+            account = db.execute(
+                """SELECT id FROM purchase_points_accounts
+                   WHERE qr_token_hash = ?""",
+                (token_hash,),
+            ).fetchone()
+            if account is None:
+                raise ValueError("Unknown purchase-points QR code")
+            account_id = account[0]
+            previous = db.execute(
+                """SELECT account_id, amount_minor, points, created_at
+                   FROM purchase_points_transactions
+                   WHERE purchase_reference = ?""",
+                (purchase_reference,),
+            ).fetchone()
+            if previous is not None:
+                if previous[0] != account_id or previous[1] != amount_minor:
+                    raise ValueError("Purchase reference was already used")
+                return {
+                    "points_earned": previous[2],
+                    "points_balance": _purchase_points_balance(db, account_id),
+                    "created_at": previous[3],
+                    "already_processed": True,
+                }
+
+            db.execute(
+                """INSERT INTO purchase_points_transactions
+                   (account_id, purchase_reference, amount_minor, points, created_at)
+                   VALUES (?, ?, ?, ?, ?)""",
+                (account_id, purchase_reference, amount_minor, points, created_at),
+            )
+            return {
+                "points_earned": points,
+                "points_balance": _purchase_points_balance(db, account_id),
+                "created_at": created_at,
+                "already_processed": False,
+            }
+
+
+def _purchase_points_balance(db, account_id):
+    return db.execute(
+        """SELECT COALESCE(SUM(points), 0)
+           FROM purchase_points_transactions WHERE account_id = ?""",
+        (account_id,),
+    ).fetchone()[0]
+
+
+def get_purchase_points_balance(qr_code):
+    """Return a QR account's purchase-points balance."""
+    token_hash = _purchase_qr_hash(qr_code)
+    with closing(sqlite3.connect(DB_PATH)) as db:
+        account = db.execute(
+            """SELECT id FROM purchase_points_accounts
+               WHERE qr_token_hash = ?""",
+            (token_hash,),
+        ).fetchone()
+        if account is None:
+            raise ValueError("Unknown purchase-points QR code")
+        return _purchase_points_balance(db, account[0])
+
+
+def create_purchase_point_claim(amount_minor, purchase_reference):
+    """Issue a one-time QR claim for the points earned on a paid purchase."""
+    if type(amount_minor) is not int or not 0 < amount_minor <= 2**63 - 1:
+        raise ValueError("Purchase amount must be positive whole dirhams")
+    if not isinstance(purchase_reference, str) or not purchase_reference.strip():
+        raise ValueError("Purchase reference is required")
+    if len(purchase_reference) > 128:
+        raise ValueError("Purchase reference is too long")
+
+    points = amount_minor // 1000
+    created_at = datetime.now().isoformat(timespec="seconds")
+    claim_code = (
+        PURCHASE_CLAIM_PREFIX + secrets.token_urlsafe(32) if points else None
+    )
+    token_hash = None
+    if claim_code:
+        token = claim_code[len(PURCHASE_CLAIM_PREFIX):]
+        token_hash = hashlib.sha256(token.encode("utf-8")).hexdigest()
+    status = "pending" if claim_code else "not_eligible"
+
+    with closing(sqlite3.connect(DB_PATH)) as db:
+        with db:
+            db.execute("BEGIN IMMEDIATE")
+            previous = db.execute(
+                """SELECT id FROM purchase_point_claims
+                   WHERE purchase_reference = ?""",
+                (purchase_reference,),
+            ).fetchone()
+            if previous is not None:
+                raise PurchaseReferenceAlreadyUsed(
+                    "Purchase reference has already been processed"
+                )
+            db.execute(
+                """INSERT INTO purchase_point_claims
+                   (purchase_reference, claim_token_hash, amount_minor, points,
+                    status, created_at)
+                   VALUES (?, ?, ?, ?, ?, ?)""",
+                (purchase_reference, token_hash, amount_minor, points, status, created_at),
+            )
+    return {
+        "claim_code": claim_code,
+        "points_earned": points,
+        "status": status,
+        "created_at": created_at,
+    }
 
 
 def save_game_feedback(category, score, rating, language, score_saved,
