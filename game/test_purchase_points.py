@@ -1,10 +1,14 @@
+import base64
 import importlib
 import sqlite3
 import tempfile
 import unittest
 from contextlib import closing
+from io import BytesIO
 from pathlib import Path
 from unittest.mock import patch
+
+from PIL import Image
 
 import visitor_score_storage as storage
 
@@ -72,6 +76,7 @@ class PurchasePointsTests(unittest.TestCase):
                 json={
                     "amount_qar": "39.99",
                     "purchase_reference": "receipt-004",
+                    "paid": True,
                 },
                 headers={"X-Staff-Token": "test-secret"},
             )
@@ -83,6 +88,33 @@ class PurchasePointsTests(unittest.TestCase):
         self.assertTrue(
             result["claim_code"].startswith(storage.PURCHASE_CLAIM_PREFIX)
         )
+        self.assertTrue(result["qr_image"].startswith("data:image/png;base64,"))
+        image_bytes = base64.b64decode(result["qr_image"].split(",", 1)[1])
+        with Image.open(BytesIO(image_bytes)) as qr_image:
+            self.assertEqual(qr_image.format, "PNG")
+            self.assertGreater(qr_image.width, 0)
+
+    def test_staff_api_does_not_issue_claim_when_purchase_is_not_paid(self):
+        with patch.dict("os.environ", {"PURCHASE_POINTS_STAFF_TOKEN": "test-secret"}):
+            response = self.client.post(
+                "/api/purchase/earn",
+                json={
+                    "amount_qar": "39.99",
+                    "purchase_reference": "receipt-unpaid",
+                    "paid": False,
+                },
+                headers={"X-Staff-Token": "test-secret"},
+            )
+
+        self.assertEqual(response.status_code, 400)
+        self.assertIn("Payment must be confirmed", response.get_json()["error"])
+        with closing(sqlite3.connect(storage.DB_PATH)) as db:
+            count = db.execute(
+                """SELECT COUNT(*) FROM purchase_point_claims
+                   WHERE purchase_reference = ?""",
+                ("receipt-unpaid",),
+            ).fetchone()[0]
+        self.assertEqual(count, 0)
 
     def test_staff_api_requires_configured_staff_token(self):
         with patch.dict("os.environ", {}, clear=True):
@@ -106,6 +138,7 @@ class PurchasePointsTests(unittest.TestCase):
                 json={
                     "amount_qar": "10.001",
                     "purchase_reference": "receipt-005",
+                    "paid": True,
                 },
                 headers={"X-Staff-Token": "test-secret"},
             )
@@ -113,8 +146,21 @@ class PurchasePointsTests(unittest.TestCase):
         self.assertEqual(response.status_code, 400)
         self.assertIn("amount_qar", response.get_json()["error"])
 
+    def test_cashier_page_is_served(self):
+        response = self.client.get("/cashier")
+
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b"Has the customer paid?", response.data)
+        self.assertIn(b"Staff access token", response.data)
+        self.assertIn(b'value="presentation-test"', response.data)
+        response.close()
+
     def test_staff_api_rejects_duplicate_purchase_reference(self):
-        payload = {"amount_qar": "20.00", "purchase_reference": "receipt-006"}
+        payload = {
+            "amount_qar": "20.00",
+            "purchase_reference": "receipt-006",
+            "paid": True,
+        }
         headers = {"X-Staff-Token": "test-secret"}
         with patch.dict("os.environ", {"PURCHASE_POINTS_STAFF_TOKEN": "test-secret"}):
             first = self.client.post("/api/purchase/earn", json=payload, headers=headers)

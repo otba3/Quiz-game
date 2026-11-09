@@ -6,6 +6,8 @@ A web page can't control the Pi's GPIO pins itself; this server does it for it.
 
 Start:  py game/app.py   then open http://localhost:5000
 """
+import base64
+from io import BytesIO
 import os
 import secrets
 import time
@@ -13,6 +15,7 @@ from decimal import Decimal, InvalidOperation
 from pathlib import Path
 
 from flask import Flask, jsonify, request, send_from_directory
+import qrcode
 
 from visitor_score_storage import (
     create_table,
@@ -89,6 +92,11 @@ def clear_leds():
 @app.route("/")
 def home():
     return send_from_directory(WEB_DIR, "index.html")
+
+
+@app.route("/cashier")
+def cashier():
+    return send_from_directory(WEB_DIR, "cashier.html")
 
 
 # --------------------------
@@ -206,6 +214,8 @@ def earn_purchase_points_route():
     data = request.get_json(silent=True)
     if not isinstance(data, dict):
         return jsonify({"error": "Expected a JSON object"}), 400
+    if data.get("paid") is not True:
+        return jsonify({"error": "Payment must be confirmed before issuing points"}), 400
     purchase_reference = data.get("purchase_reference")
     if not isinstance(purchase_reference, str):
         return jsonify({"error": "purchase_reference is required"}), 400
@@ -216,6 +226,14 @@ def earn_purchase_points_route():
         return jsonify({"error": str(error)}), 409
     except ValueError as error:
         return jsonify({"error": str(error)}), 400
+    if result["claim_code"]:
+        qr = qrcode.make(result["claim_code"])
+        image = BytesIO()
+        qr.save(image, format="PNG")
+        result["qr_image"] = (
+            "data:image/png;base64,"
+            + base64.b64encode(image.getvalue()).decode("ascii")
+        )
     return jsonify({"saved": True, **result}), 200
 
 
