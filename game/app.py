@@ -22,9 +22,11 @@ from visitor_score_storage import (
     create_purchase_point_claim,
     get_points_balance,
     get_points_history,
+    get_leaderboard,
     PurchaseReferenceAlreadyUsed,
     save_game_feedback,
     save_score,
+    visitor_label,
 )
 
 try:
@@ -39,6 +41,13 @@ GAME_DIR = Path(__file__).resolve().parent
 PROJECT_DIR = GAME_DIR.parent
 WEB_DIR = GAME_DIR / "web"          # the touchscreen game (your design)
 OUTPUT_DIR = PROJECT_DIR / "output"  # question bank + images
+LEADERBOARD_DEMO_MODE = os.environ.get(
+    "LEADERBOARD_DEMO_MODE", "true"
+).strip().lower() in ("1", "true", "yes", "on")
+DEMO_LEADERBOARD_SCORES = {
+    "daily": (11, 9, 7, 5, 3),
+    "monthly": (60, 50, 40, 30, 20),
+}
 
 # One (red, green) pair of GPIO pins per RGB LED.
 # Answer 1 lights LED 1, answer 2 LED 2, answer 3 LED 3, answer 4 LED 1 again...
@@ -149,8 +158,8 @@ def wait_for_card(seconds):
     return None
 
 
-# The end screen sends {"category": "title", "score": 7}; a card tap saves
-# the quiz result and applies the daily point-award rule.
+# The end screen sends the category, score, and IDs of correctly answered
+# questions; a card tap saves the result and daily leaderboard points.
 @app.route("/api/card/save", methods=["POST"])
 def save_card_score():
     data = request.get_json(silent=True)
@@ -158,15 +167,60 @@ def save_card_score():
         return jsonify({"error": "Invalid category"}), 400
     if type(data.get("score")) is not int or data["score"] < 0:
         return jsonify({"error": "Invalid score"}), 400
+    correct_question_ids = data.get("correct_question_ids")
+    if (
+        not isinstance(correct_question_ids, list)
+        or len(correct_question_ids) > 12
+        or len(correct_question_ids) != data["score"]
+        or any(
+            not isinstance(question_id, str)
+            or not question_id
+            or len(question_id) > 200
+            for question_id in correct_question_ids
+        )
+        or len(set(correct_question_ids)) != len(correct_question_ids)
+    ):
+        return jsonify({"error": "Invalid correct question IDs"}), 400
+
     card_uid = wait_for_card(CARD_WAIT_SECONDS)
     if card_uid is None:
         return jsonify({"saved": False})  # nobody tapped in time
-    result = save_score(card_uid, data["category"], data["score"])
+    result = save_score(
+        card_uid, data["category"], data["score"], correct_question_ids
+    )
     return jsonify({
         "saved": True,
         **result,
+        "visitor": visitor_label(card_uid),
         "points_balance": get_points_balance(card_uid),
         "points_history": get_points_history(card_uid),
+    })
+
+
+@app.route("/api/leaderboard")
+def leaderboard():
+    category = request.args.get("category")
+    period = request.args.get("period")
+    if category not in ("year", "origin"):
+        return jsonify({"error": "Invalid category"}), 400
+    if period not in ("daily", "monthly"):
+        return jsonify({"error": "Invalid leaderboard period"}), 400
+    entries = list(get_leaderboard(category, period))
+    if LEADERBOARD_DEMO_MODE:
+        entries.extend(
+            {
+                "player": f"Demo Visitor {number}",
+                "score": score,
+            }
+            for number, score in enumerate(
+                DEMO_LEADERBOARD_SCORES[period], start=1
+            )
+        )
+        entries.sort(key=lambda entry: (-entry["score"], entry["player"]))
+    return jsonify({
+        "category": category,
+        "period": period,
+        "entries": entries,
     })
 
 

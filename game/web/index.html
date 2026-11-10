@@ -21,7 +21,32 @@
 
     <section id="cats" class="screen">
       <h1 class="title" id="cats-title"></h1>
-      <div class="choices" id="cat-list"></div>
+      <div class="category-actions">
+        <div class="choices" id="cat-list"></div>
+        <button class="btn leaderboard-open" id="leaderboard-open"></button>
+      </div>
+    </section>
+
+    <section id="leaderboard" class="screen">
+      <h1 class="title" id="leaderboard-title"></h1>
+      <div class="leaderboard-categories" id="leaderboard-categories"></div>
+      <p class="leaderboard-status" id="leaderboard-status" role="status" aria-live="polite"></p>
+      <button class="btn leaderboard-retry" id="leaderboard-retry" hidden></button>
+      <div class="leaderboard-results" id="leaderboard-results">
+        <div class="leaderboard-podium" id="leaderboard-podium"></div>
+        <div class="leaderboard-table-wrap">
+          <div class="leaderboard-table-header" aria-hidden="true">
+            <span id="leaderboard-place-heading"></span>
+            <span id="leaderboard-user-heading"></span>
+            <span id="leaderboard-points-heading"></span>
+          </div>
+          <ol class="leaderboard-list" id="leaderboard-list"></ol>
+        </div>
+      </div>
+      <div class="leaderboard-footer">
+        <button class="btn" id="leaderboard-back"></button>
+        <div class="leaderboard-periods" id="leaderboard-periods"></div>
+      </div>
     </section>
 
     <section id="play" class="screen">

@@ -37,8 +37,19 @@ private, and only create claims after payment has been confirmed. The staff
 endpoint is intended for a trusted staff/POS client; keep the staff token out of
 public browser code. The current demo QR contains the claim code only; it does
 not yet open the colleague's website or credit a signed-in visitor account.
+
 The QR is generated locally by the app and is not sent to an external QR
 service. `presentation-test` is a public demo credential, not a production
 secret. Anyone who can reach the demo cashier can issue test claims; use it only
 on a trusted presentation network and replace the demo token with proper staff
 authentication before any real deployment.
+
+## Quiz leaderboards
+
+The quiz category screen includes daily and monthly leaderboards for both
+categories. Daily scores count each correctly answered question only once per
+RFID card and category, up to 12 points per day. Monthly scores add the saved
+scores from every quiz completed during the current calendar month. Leaderboard
+names are anonymous, stable visitor labels; no account connection is used.
+Five sample visitors are included for presentations by default. Set
+`LEADERBOARD_DEMO_MODE=false` to hide them.

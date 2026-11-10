@@ -15,6 +15,20 @@
   const UI = {
     en: {
       pick: "Choose a category",
+      leaderboard: "Leaderboard",
+      checkLeaderboard: "Check Leaderboard",
+      daily: "Today",
+      monthly: "This month",
+      leaderboardBack: "Back to categories",
+      leaderboardLoading: "Loading leaderboard...",
+      leaderboardEmpty: "No scores yet.",
+      leaderboardError: "Couldn't load the leaderboard. Please try again.",
+      leaderboardRetry: "Try again",
+      place: "Place",
+      visitor: "User",
+      leaderboardPoints: "Points",
+      dailyProgress: (score, added) =>
+        `Daily leaderboard: ${score}/12 (+${added} new question points).`,
       score: "Your score",
       again: "Play again",
       waitBeforeAgain: "Please wait...",
@@ -52,6 +66,20 @@
     },
     ar: {
       pick: "اختر فئة",
+      leaderboard: "لوحة المتصدرين",
+      checkLeaderboard: "تحقق من لوحة المتصدرين",
+      daily: "اليوم",
+      monthly: "هذا الشهر",
+      leaderboardBack: "العودة إلى الفئات",
+      leaderboardLoading: "جارٍ تحميل لوحة المتصدرين...",
+      leaderboardEmpty: "لا توجد نتائج بعد.",
+      leaderboardError: "تعذر تحميل لوحة المتصدرين. يُرجى المحاولة مرة أخرى.",
+      leaderboardRetry: "حاول مرة أخرى",
+      place: "المركز",
+      visitor: "المستخدم",
+      leaderboardPoints: "النقاط",
+      dailyProgress: (score, added) =>
+        `لوحة المتصدرين اليومية: ${score}/12 (+${added} نقاط لأسئلة جديدة).`,
       score: "نتيجتك",
       again: "العب مرة أخرى",
       waitBeforeAgain: "يرجى الانتظار...",
@@ -94,10 +122,14 @@
     questions,
     i,
     score,
+    correctQuestionIds,
     gameStartedAt,
     ratingScore = null,
     startAfterRating = false,
     lastPointsResult,
+    leaderboardCategory = "origin",
+    leaderboardPeriod = "daily",
+    leaderboardRequest = 0,
     cardWait = 0; // number of the current card wait; a reply from an older one is ignored
 
   // Pick the current language from an {en: ..., ar: ...} object; fall back to English.
@@ -207,6 +239,13 @@
 
   function showCategories() {
     $("cats-title").textContent = UI[lang].pick;
+    $("leaderboard-open").textContent = UI[lang].checkLeaderboard;
+    $("leaderboard-title").textContent = UI[lang].leaderboard;
+    $("leaderboard-back").textContent = UI[lang].leaderboardBack;
+    $("leaderboard-retry").textContent = UI[lang].leaderboardRetry;
+    $("leaderboard-place-heading").textContent = UI[lang].place;
+    $("leaderboard-user-heading").textContent = UI[lang].visitor;
+    $("leaderboard-points-heading").textContent = UI[lang].leaderboardPoints;
     $("end-label").textContent = UI[lang].score;
     $("again").textContent = UI[lang].again;
     $("again").disabled = false;
@@ -231,7 +270,141 @@
       b.onclick = () => start(c.key);
       list.appendChild(b);
     });
+    $("leaderboard-open").onclick = () => showLeaderboard();
     show("cats");
+  }
+
+  function showLeaderboard() {
+    leaderboardRequest++;
+    $("leaderboard-title").textContent = UI[lang].leaderboard;
+    $("leaderboard-back").textContent = UI[lang].leaderboardBack;
+    renderLeaderboardControls();
+    show("leaderboard");
+  }
+
+  function renderLeaderboardControls() {
+    const categories = $("leaderboard-categories");
+    categories.innerHTML = "";
+    CATEGORIES.forEach((item) => {
+      const button = document.createElement("button");
+      button.className = "leaderboard-tab";
+      button.textContent = tr(item.name);
+      button.setAttribute("aria-pressed", String(item.key === leaderboardCategory));
+      button.onclick = () => {
+        if (leaderboardCategory === item.key) return;
+        leaderboardCategory = item.key;
+        renderLeaderboardControls();
+      };
+      categories.appendChild(button);
+    });
+
+    const periods = $("leaderboard-periods");
+    periods.innerHTML = "";
+    ["daily", "monthly"].forEach((period) => {
+      const button = document.createElement("button");
+      button.className = "leaderboard-tab";
+      button.textContent = UI[lang][period];
+      button.setAttribute("aria-pressed", String(period === leaderboardPeriod));
+      button.onclick = () => {
+        if (leaderboardPeriod === period) return;
+        leaderboardPeriod = period;
+        renderLeaderboardControls();
+      };
+      periods.appendChild(button);
+    });
+    loadLeaderboard();
+  }
+
+  async function loadLeaderboard() {
+    const requestId = ++leaderboardRequest;
+    const status = $("leaderboard-status");
+    const results = $("leaderboard-results");
+    const list = $("leaderboard-list");
+    const podium = $("leaderboard-podium");
+    const retry = $("leaderboard-retry");
+    status.textContent = UI[lang].leaderboardLoading;
+    results.hidden = true;
+    retry.hidden = true;
+    list.innerHTML = "";
+    podium.innerHTML = "";
+    try {
+      const query = new URLSearchParams({
+        category: leaderboardCategory,
+        period: leaderboardPeriod,
+      });
+      const response = await fetch("/api/leaderboard?" + query);
+      if (!response.ok) throw new Error("Could not load leaderboard.");
+      const result = await response.json();
+      if (requestId !== leaderboardRequest) return;
+      results.hidden = result.entries.length === 0;
+      status.textContent = result.entries.length
+        ? ""
+        : UI[lang].leaderboardEmpty;
+      const medals = {
+        1: { symbol: "🥇", label: "Gold medal" },
+        2: { symbol: "🥈", label: "Silver medal" },
+        3: { symbol: "🥉", label: "Bronze medal" },
+      };
+      [2, 1, 3].forEach((rank) => {
+        const entry = result.entries[rank - 1];
+        const place = document.createElement("div");
+        place.className = "podium-place podium-place-" + rank;
+        if (!entry) {
+          place.classList.add("podium-place-empty");
+          podium.appendChild(place);
+          return;
+        }
+        const trophy = document.createElement("span");
+        trophy.className = "podium-trophy";
+        trophy.textContent = medals[rank].symbol;
+        trophy.setAttribute("aria-label", medals[rank].label);
+        const name = document.createElement("span");
+        name.className = "podium-user";
+        name.textContent = entry.player;
+        const block = document.createElement("div");
+        block.className = "podium-block";
+        block.textContent = rank;
+        place.append(trophy, name, block);
+        podium.appendChild(place);
+      });
+      result.entries.forEach((entry, index) => {
+        const row = document.createElement("li");
+        row.className = "leaderboard-row";
+        if (entry.player === sessionStorage.getItem("quizVisitor")) {
+          row.classList.add("leaderboard-current-user");
+          row.setAttribute("aria-current", "true");
+        }
+        const place = document.createElement("span");
+        place.className = "leaderboard-place";
+        const rankNumber = document.createElement("span");
+        rankNumber.textContent = index + 1;
+        place.appendChild(rankNumber);
+        if (index < 3) {
+          place.classList.add("leaderboard-rank-" + (index + 1));
+          const trophy = document.createElement("span");
+          trophy.className = "leaderboard-trophy";
+          trophy.textContent = medals[index + 1].symbol;
+          trophy.setAttribute("aria-label", medals[index + 1].label);
+          place.prepend(trophy);
+        }
+        const player = document.createElement("span");
+        player.className = "leaderboard-user";
+        player.textContent = entry.player;
+        const points = document.createElement("strong");
+        points.className = "leaderboard-score";
+        points.textContent = entry.score;
+        row.append(place, player, points);
+        list.appendChild(row);
+        if (row.classList.contains("leaderboard-current-user")) {
+          row.scrollIntoView({ block: "center", behavior: "smooth" });
+        }
+      });
+    } catch (error) {
+      if (requestId !== leaderboardRequest) return;
+      results.hidden = true;
+      status.textContent = UI[lang].leaderboardError;
+      retry.hidden = false;
+    }
   }
 
   function start(key) {
@@ -240,6 +413,7 @@
     questions = pickQuestions(key);
     i = 0;
     score = 0;
+    correctQuestionIds = [];
     gameStartedAt = Date.now();
     render();
     show("play");
@@ -304,7 +478,10 @@
       box = $("answers");
     box.classList.add("locked");
     const correct = btn.dataset.answer === answerOf(q);
-    if (correct) score++;
+    if (correct) {
+      score++;
+      correctQuestionIds.push(q.id);
+    }
     else btn.classList.add("wrong");
     setLed(i, correct ? "correct" : "wrong");
     // Always highlight the correct answer, so a wrong guess still shows it.
@@ -496,7 +673,11 @@
     fetch("/api/card/save", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ category: category, score: score }),
+      body: JSON.stringify({
+        category: category,
+        score: score,
+        correct_question_ids: correctQuestionIds,
+      }),
     })
       .then((reply) => {
         if (!reply.ok) throw new Error("Could not save quiz points.");
@@ -509,6 +690,9 @@
           showRating(false);
         } else {
           lastPointsResult = result;
+          if (result.visitor) {
+            sessionStorage.setItem("quizVisitor", result.visitor);
+          }
           setScan("saved", UI[lang].savedTitle, "");
           if (result.quizzes_today === 1) {
             $("points-earned").textContent = UI[lang].pointsPending;
@@ -523,6 +707,12 @@
               result.points_earned,
             );
           }
+          $("points-earned").textContent +=
+            "\n" +
+            UI[lang].dailyProgress(
+              result.leaderboard_score,
+              result.leaderboard_points_earned,
+            );
           $("points-earned").hidden = false;
           $("check-points").hidden = false;
           if (result.quizzes_today > 1) {
@@ -552,6 +742,8 @@
   $("rating-close").onclick = closeRating;
   $("check-points").onclick = () => showPoints(lastPointsResult);
   $("points-back").onclick = () => show("end");
+  $("leaderboard-back").onclick = () => show("cats");
+  $("leaderboard-retry").onclick = () => loadLeaderboard();
 
   document
     .querySelectorAll("[data-lang]")
