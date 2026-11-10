@@ -8,8 +8,8 @@
   --blue: #78aaf9;
   --orange: #f6c343;
   --yellow: #ffe40c;
-  --font-body: "IBM Plex Sans", "IBM Plex Sans Arabic", sans-serif;
-  --font-heading: "IBM Plex Sans Condensed", "IBM Plex Sans Arabic", sans-serif;
+  --font-body: "Lyon Text", sans-serif;
+  --font-heading: "Lyon Display", "Lyon Text", sans-serif;
   --radius-pill: 2rem;
 
   color-scheme: light;
