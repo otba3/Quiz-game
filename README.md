@@ -2,10 +2,11 @@
 
 ## Fonts
 
-The game uses the locally installed Lyon Text and Lyon Display desktop fonts
-for English, and Lyon Arabic Text for Arabic. Install the supplied desktop
-fonts on the kiosk; font files are intentionally not bundled with the web app.
-If a font is not installed, the browser uses its system sans-serif fallback.
+The game uses the locally installed ABC Diatype font for English and ABC
+Diatype Arabic for Arabic, including their regular and bold styles. Install
+these fonts on the kiosk; font files are intentionally not bundled with the
+web app. If a font is not installed, the browser uses its system sans-serif
+fallback.
 
 ## Account codes
 

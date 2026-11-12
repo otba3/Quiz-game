@@ -18,8 +18,8 @@
   --orange: #f6c343;
   --yellow: #ffe40c;
 
-  --font-body: "Lyon Text", sans-serif;
-  --font-heading: "Lyon Display", "Lyon Text", sans-serif;
+  --font-body: "ABC Diatype", sans-serif;
+  --font-heading: "ABC Diatype", sans-serif;
 
   --radius-pill: 2rem;
   --ease: cubic-bezier(0.25, 0.1, 0.25, 1);
@@ -37,8 +37,8 @@
 }
 
 :lang(ar) {
-  --font-body: "Lyon Arabic Text", "Lyon Text", sans-serif;
-  --font-heading: "Lyon Arabic Text", "Lyon Display", sans-serif;
+  --font-body: "ABC Diatype Arabic", "ABC Diatype", sans-serif;
+  --font-heading: "ABC Diatype Arabic", "ABC Diatype", sans-serif;
 }
 
 *,
