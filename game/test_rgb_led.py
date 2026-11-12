@@ -6,8 +6,12 @@ Run on the Raspberry Pi:  python3 game/test_rgb_led.py
 Stop early with Ctrl+C.
 """
 import time
+import unittest
 
-import RPi.GPIO as GPIO
+try:
+    import RPi.GPIO as GPIO
+except ImportError as exc:  # pragma: no cover - hardware-only script
+    raise unittest.SkipTest("RGB LED test requires Raspberry Pi GPIO support") from exc
 
 # One (red pin, green pin) pair per LED, same as LEDS in app.py.
 LEDS = [(27, 17), (22, 23), (24, 25)]

@@ -221,6 +221,23 @@ def save_feedback():
     return jsonify({"saved": True, **feedback}), 201
 
 
+# Retired endpoints from the old QR/cashier flow. Keep them explicit so they
+# return a clean 404 instead of Flask's generic 405 on unknown methods.
+@app.route("/cashier", methods=["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"])
+def retired_cashier_endpoint():
+    return jsonify({"error": "Not found"}), 404
+
+
+@app.route("/api/purchase/earn", methods=["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"])
+def retired_purchase_endpoint():
+    return jsonify({"error": "Not found"}), 404
+
+
+@app.route("/api/card/save", methods=["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"])
+def retired_rfid_endpoint():
+    return jsonify({"error": "Not found"}), 404
+
+
 # --------------------------
 # START SERVER
 # --------------------------

@@ -9,9 +9,15 @@ Run:
     /usr/bin/python3 game/test_rfid_reader.py
 """
 
+import unittest
+
+try:
+    import RPi.GPIO as GPIO
+    from mfrc522 import MFRC522
+except ImportError as exc:  # pragma: no cover - hardware-only script
+    raise unittest.SkipTest("RFID test requires Raspberry Pi GPIO support") from exc
+
 import tkinter as tk
-import RPi.GPIO as GPIO
-from mfrc522 import MFRC522
 
 
 # RC522 RST pin
