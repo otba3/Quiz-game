@@ -6,24 +6,17 @@ A web page can't control the Pi's GPIO pins itself; this server does it for it.
 
 Start:  py game/app.py   then open http://localhost:5000
 """
-import base64
-from io import BytesIO
 import os
-import secrets
-import time
-from decimal import Decimal, InvalidOperation
 from pathlib import Path
 
 from flask import Flask, jsonify, request, send_from_directory
-import qrcode
 
 from visitor_score_storage import (
     create_table,
-    create_purchase_point_claim,
+    get_or_create_account_identity,
     get_points_balance,
     get_points_history,
     get_leaderboard,
-    PurchaseReferenceAlreadyUsed,
     save_game_feedback,
     save_score,
     visitor_label,
@@ -31,9 +24,8 @@ from visitor_score_storage import (
 
 try:
     import RPi.GPIO as GPIO
-    from mfrc522 import MFRC522
     GPIO_AVAILABLE = True
-except ImportError:  # not on a Raspberry Pi (e.g. testing on a laptop): no LEDs, no card reader
+except ImportError:  # not on a Raspberry Pi (e.g. testing on a laptop): no LEDs
     GPIO_AVAILABLE = False
 
 
@@ -58,11 +50,6 @@ LEDS = [
 ]
 ALL_PINS = [pin for pair in LEDS for pin in pair]
 
-# RC522 card reader RST wire: GPIO 25 (pin 22). LED 3 green moved to GPIO 16 to free it.
-RFID_RST_PIN = 25
-CARD_WAIT_SECONDS = 20  # how long the end screen waits for a card tap
-FAKE_CARD_UID = 1234567890  # used on a laptop without a reader, so the screens can be tested
-
 # static_folder + static_url_path="" means: game/web/css/style.css is served at /css/style.css
 app = Flask(__name__, static_folder=str(WEB_DIR), static_url_path="")
 
@@ -73,7 +60,6 @@ if GPIO_AVAILABLE:
     GPIO.setmode(GPIO.BCM)
     for pin in ALL_PINS:
         GPIO.setup(pin, GPIO.OUT, initial=GPIO.LOW)
-    reader = MFRC522(pin_rst=RFID_RST_PIN)
 
 create_table()  # make sure data/visitor_scores.db has its table
 
@@ -101,11 +87,6 @@ def clear_leds():
 @app.route("/")
 def home():
     return send_from_directory(WEB_DIR, "index.html")
-
-
-@app.route("/cashier")
-def cashier():
-    return send_from_directory(WEB_DIR, "cashier.html")
 
 
 # --------------------------
@@ -139,32 +120,17 @@ def clear_led_route():
 
 
 # --------------------------
-# RFID CARD: SAVE SCORE
+# ACCOUNT CODE: SAVE SCORE
 # --------------------------
 
-def wait_for_card(seconds):
-    """Return the UID of the first card tapped within `seconds`, or None if no card came."""
-    if not GPIO_AVAILABLE:
-        time.sleep(2)  # laptop: pretend a card was tapped
-        return FAKE_CARD_UID
-    end_time = time.time() + seconds
-    while time.time() < end_time:
-        status, _ = reader.MFRC522_Request(reader.PICC_REQIDL)  # is a card near?
-        if status == reader.MI_OK:
-            status, uid = reader.MFRC522_Anticoll()  # read its UID
-            if status == reader.MI_OK:
-                return int.from_bytes(bytes(uid[:4]), "big")
-        time.sleep(0.1)
-    return None
-
-
-# The end screen sends the category, score, and IDs of correctly answered
-# questions; a card tap saves the result and daily leaderboard points.
-@app.route("/api/card/save", methods=["POST"])
-def save_card_score():
+@app.route("/api/account/save", methods=["POST"])
+def save_account_score():
     data = request.get_json(silent=True)
     if not isinstance(data, dict) or data.get("category") not in ("year", "origin"):
         return jsonify({"error": "Invalid category"}), 400
+    account_code = data.get("account_code")
+    if not isinstance(account_code, str):
+        return jsonify({"error": "Account code is required"}), 400
     if type(data.get("score")) is not int or data["score"] < 0:
         return jsonify({"error": "Invalid score"}), 400
     correct_question_ids = data.get("correct_question_ids")
@@ -182,18 +148,19 @@ def save_card_score():
     ):
         return jsonify({"error": "Invalid correct question IDs"}), 400
 
-    card_uid = wait_for_card(CARD_WAIT_SECONDS)
-    if card_uid is None:
-        return jsonify({"saved": False})  # nobody tapped in time
+    try:
+        account_identity = get_or_create_account_identity(account_code)
+    except ValueError as error:
+        return jsonify({"error": str(error)}), 400
     result = save_score(
-        card_uid, data["category"], data["score"], correct_question_ids
+        account_identity, data["category"], data["score"], correct_question_ids
     )
     return jsonify({
         "saved": True,
         **result,
-        "visitor": visitor_label(card_uid),
-        "points_balance": get_points_balance(card_uid),
-        "points_history": get_points_history(card_uid),
+        "visitor": visitor_label(account_identity),
+        "points_balance": get_points_balance(account_identity),
+        "points_history": get_points_history(account_identity),
     })
 
 
@@ -222,73 +189,6 @@ def leaderboard():
         "period": period,
         "entries": entries,
     })
-
-
-# --------------------------
-# PURCHASE POINTS: ONE-TIME QR CLAIMS
-# --------------------------
-
-def purchase_staff_error():
-    """Return an auth error for staff-only purchase-points operations, if any."""
-    staff_token = os.environ.get("PURCHASE_POINTS_STAFF_TOKEN")
-    if not staff_token:
-        return jsonify({"error": "Purchase points staff access is not configured"}), 503
-    supplied_token = request.headers.get("X-Staff-Token", "")
-    if not secrets.compare_digest(supplied_token, staff_token):
-        return jsonify({"error": "Staff authorization required"}), 401
-    return None
-
-
-def amount_to_minor_units(value):
-    """Convert a JSON QAR amount to exact dirhams without accepting fractions."""
-    if isinstance(value, bool) or not isinstance(value, (int, float, str)):
-        raise ValueError("amount_qar must be a positive amount with at most 2 decimals")
-    try:
-        amount = Decimal(str(value))
-    except InvalidOperation as error:
-        raise ValueError(
-            "amount_qar must be a positive amount with at most 2 decimals"
-        ) from error
-    minor_units = amount * 100
-    if (
-        not amount.is_finite()
-        or amount <= 0
-        or minor_units != minor_units.to_integral_value()
-        or minor_units > Decimal(2**63 - 1)
-    ):
-        raise ValueError("amount_qar must be a positive amount with at most 2 decimals")
-    return int(minor_units)
-
-
-@app.route("/api/purchase/earn", methods=["POST"])
-def earn_purchase_points_route():
-    auth_error = purchase_staff_error()
-    if auth_error:
-        return auth_error
-    data = request.get_json(silent=True)
-    if not isinstance(data, dict):
-        return jsonify({"error": "Expected a JSON object"}), 400
-    if data.get("paid") is not True:
-        return jsonify({"error": "Payment must be confirmed before issuing points"}), 400
-    purchase_reference = data.get("purchase_reference")
-    if not isinstance(purchase_reference, str):
-        return jsonify({"error": "purchase_reference is required"}), 400
-    try:
-        amount_minor = amount_to_minor_units(data.get("amount_qar"))
-        result = create_purchase_point_claim(amount_minor, purchase_reference)
-    except PurchaseReferenceAlreadyUsed as error:
-        return jsonify({"error": str(error)}), 409
-    except ValueError as error:
-        return jsonify({"error": str(error)}), 400
-    if result["claim_code"]:
-        qr = qrcode.make(result["claim_code"])
-        image = BytesIO()
-        qr.save(image, format="PNG")
-        result["qr_image"] = (
-            "data:image/png;base64,"
-            + base64.b64encode(image.getvalue()).decode("ascii")
-        )
-    return jsonify({"saved": True, **result}), 200
 
 
 @app.route("/api/feedback", methods=["POST"])

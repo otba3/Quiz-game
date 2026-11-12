@@ -29,20 +29,27 @@
       leaderboardPoints: "Points",
       dailyProgress: (score, added) =>
         `Daily leaderboard: ${score}/12 (+${added} new question points).`,
+      accountTitle: "Do you have an account code?",
+      accountPrompt: "Enter it to save your quiz score to your account.",
+      accountCodeLabel: "Account code",
+      accountSubmit: "Use code and continue",
+      accountGuest: "Continue as guest",
+      accountCountdown: (seconds) =>
+        `Guest mode starts in ${seconds} seconds.`,
+      accountRequired: "Enter your account code, or continue as a guest.",
+      accountTooLong: "The code must be 128 characters or fewer.",
       score: "Your score",
       again: "Play again",
-      waitBeforeAgain: "Please wait...",
       v: ["Try again.", "Well played.", "Perfect score."],
-      tapTitle: "Save your score",
-      tap: "Tap your card on the reader",
-      skip: "Skip",
+      savingTitle: "Saving your score...",
+      savingMessage: "Saving this score under your account code.",
       savedTitle: "Score saved!",
-      saved: "Come back after the exhibition and tap again.",
-      progressTitle: "Your progress",
+      saved: "Your score is saved on this Pi under your account code.",
+      guestTitle: "Playing as a guest",
+      guestMessage: "Your score is shown but will not be saved to an account.",
+      saveFailed: "We couldn't save your score. Please ask museum staff for help.",
       before: "Before",
       now: "Now",
-      noCardTitle: "Not saved",
-      noCard: "No card was tapped.",
       earned: (points) => `You earned ${points} points.`,
       pointsPending:
         "Quiz saved. Your points will be added after your second quiz in this category today.",
@@ -80,20 +87,27 @@
       leaderboardPoints: "النقاط",
       dailyProgress: (score, added) =>
         `لوحة المتصدرين اليومية: ${score}/12 (+${added} نقاط لأسئلة جديدة).`,
+      accountTitle: "هل لديك رمز حساب؟",
+      accountPrompt: "أدخله لحفظ نتيجة الاختبار في حسابك.",
+      accountCodeLabel: "رمز الحساب",
+      accountSubmit: "استخدم الرمز وتابع",
+      accountGuest: "المتابعة كزائر",
+      accountCountdown: (seconds) =>
+        `سيبدأ وضع الزائر خلال ${seconds} ثانية.`,
+      accountRequired: "أدخل رمز حسابك أو تابع كزائر.",
+      accountTooLong: "يجب ألا يتجاوز الرمز 128 حرفًا.",
       score: "نتيجتك",
       again: "العب مرة أخرى",
-      waitBeforeAgain: "يرجى الانتظار...",
       v: ["حاول مرة أخرى.", "أحسنت.", "نتيجة كاملة."],
-      tapTitle: "احفظ نتيجتك",
-      tap: "ضع بطاقتك على القارئ",
-      skip: "تخطي",
+      savingTitle: "جارٍ حفظ نتيجتك...",
+      savingMessage: "جارٍ حفظ النتيجة باستخدام رمز حسابك.",
       savedTitle: "تم حفظ نتيجتك!",
-      saved: "عد بعد زيارة المعرض وضع بطاقتك مرة أخرى.",
-      progressTitle: "تقدّمك",
+      saved: "تم حفظ نتيجتك على هذا الجهاز باستخدام رمز حسابك.",
+      guestTitle: "اللعب كزائر",
+      guestMessage: "ستظهر نتيجتك، ولكن لن يتم حفظها في حساب.",
+      saveFailed: "تعذر حفظ نتيجتك. يُرجى طلب المساعدة من موظفي المتحف.",
       before: "قبل",
       now: "الآن",
-      noCardTitle: "لم تُحفظ",
-      noCard: "لم يتم وضع بطاقة.",
       earned: (points) => `لقد حصلت على ${points} نقاط.`,
       pointsPending:
         "تم حفظ الاختبار. ستُضاف نقاطك بعد إكمال الاختبار الثاني في هذه الفئة اليوم.",
@@ -123,14 +137,16 @@
     i,
     score,
     correctQuestionIds,
+    accountCode = null,
+    accountTimer = null,
     gameStartedAt,
     ratingScore = null,
-    startAfterRating = false,
     lastPointsResult,
     leaderboardCategory = "origin",
     leaderboardPeriod = "daily",
-    leaderboardRequest = 0,
-    cardWait = 0; // number of the current card wait; a reply from an older one is ignored
+    leaderboardRequest = 0;
+
+  const ACCOUNT_CODE_TIMEOUT_SECONDS = 30;
 
   // Pick the current language from an {en: ..., ar: ...} object; fall back to English.
   const tr = (obj) => obj[lang] || obj.en;
@@ -229,12 +245,71 @@
   // The picture paths as a list (1 or 2 pictures).
   const imagesOf = (q) => q.images || [q.image];
 
-  // Language button: switch texts and reading direction, then show the categories.
+  function stopAccountTimer() {
+    if (accountTimer !== null) clearInterval(accountTimer);
+    accountTimer = null;
+  }
+
+  function continueAsGuest() {
+    stopAccountTimer();
+    accountCode = null;
+    sessionStorage.removeItem("quizVisitor");
+    showCategories();
+  }
+
+  function startAccountTimer() {
+    stopAccountTimer();
+    let remaining = ACCOUNT_CODE_TIMEOUT_SECONDS;
+    const tick = () => {
+      $("account-countdown").textContent = UI[lang].accountCountdown(remaining);
+      if (remaining === 0) {
+        continueAsGuest();
+        return;
+      }
+      remaining--;
+    };
+    tick();
+    accountTimer = setInterval(tick, 1000);
+  }
+
+  function showAccountPrompt() {
+    $("account-title").textContent = UI[lang].accountTitle;
+    $("account-prompt").textContent = UI[lang].accountPrompt;
+    $("account-code-label").textContent = UI[lang].accountCodeLabel;
+    $("account-submit").textContent = UI[lang].accountSubmit;
+    $("account-guest").textContent = UI[lang].accountGuest;
+    $("account-code-input").value = "";
+    $("account-error").textContent = "";
+    show("account");
+    startAccountTimer();
+    $("account-code-input").focus();
+  }
+
+  function submitAccountCode(event) {
+    event.preventDefault();
+    const code = $("account-code-input").value.trim();
+    if (!code) {
+      $("account-error").textContent = UI[lang].accountRequired;
+      $("account-code-input").focus();
+      return;
+    }
+    if (code.length > 128) {
+      $("account-error").textContent = UI[lang].accountTooLong;
+      $("account-code-input").focus();
+      return;
+    }
+    stopAccountTimer();
+    accountCode = code;
+    sessionStorage.removeItem("quizVisitor");
+    showCategories();
+  }
+
+  // Language button: switch texts and reading direction, then ask for an account code.
   function setLang(code) {
     lang = code;
     document.documentElement.lang = code;
     document.documentElement.dir = code === "ar" ? "rtl" : "ltr"; // Arabic reads right to left
-    showCategories();
+    showAccountPrompt();
   }
 
   function showCategories() {
@@ -249,7 +324,6 @@
     $("end-label").textContent = UI[lang].score;
     $("again").textContent = UI[lang].again;
     $("again").disabled = false;
-    $("skip").textContent = UI[lang].skip;
     $("before-label").textContent = UI[lang].before;
     $("now-label").textContent = UI[lang].now;
     $("check-points").textContent = UI[lang].checkPoints;
@@ -524,7 +598,12 @@
     $("verdict").textContent =
       UI[lang].v[score === t ? 2 : score >= t / 2 ? 1 : 0];
     show("end");
-    waitForCard(t);
+    if (accountCode) {
+      saveAccountScore();
+    } else {
+      setSaveStatus("guest", UI[lang].guestTitle, UI[lang].guestMessage);
+      showRating(false);
+    }
   }
 
   const RATING_FACES = [
@@ -570,12 +649,6 @@
 
   function closeRating() {
     $("rating-modal").hidden = true;
-    if (startAfterRating) {
-      startAfterRating = false;
-      document.documentElement.lang = "en";
-      document.documentElement.dir = "ltr";
-      show("lang");
-    }
   }
 
   async function submitRating() {
@@ -602,20 +675,6 @@
       $("rating-status").textContent = UI[lang].ratingError;
       submit.disabled = false;
     }
-  }
-
-  // Ask the Pi's server to wait (up to 20 s) for an RFID card and save the score under it.
-  // The server only answers once a card is tapped or the time is up.
-  // Switch the scan box to a state ("waiting", "saved" or "expired") with its title and text.
-  // The CSS uses data-state for the colours and to hide the progress bar.
-  function setScan(state, title, text) {
-    $("scan").dataset.state = state;
-    $("scan-title").textContent = title;
-    $("scan-text").textContent = text;
-    $("scan-compare").hidden = true;
-    $("points-earned").hidden = true;
-    $("check-points").hidden = true;
-    $("skip").hidden = state !== "waiting";
   }
 
   function showPoints(result) {
@@ -654,89 +713,77 @@
     show("points");
   }
 
-  // Restart the 20 s progress bar: jump back to empty without animation, then fill slowly.
-  function startScanTimer() {
-    const fill = $("scan-fill");
-    fill.classList.remove("scan-fill-run");
-    fill.style.transform = "scaleX(0)";
-    void fill.offsetWidth; // makes the browser apply the jump before the animation starts
-    fill.classList.add("scan-fill-run");
-    fill.style.transform = "scaleX(1)";
+  function setSaveStatus(state, title, message) {
+    $("save-panel").dataset.state = state;
+    $("save-title").textContent = title;
+    $("save-message").textContent = message;
+    $("score-compare").hidden = true;
+    $("points-earned").hidden = true;
+    $("check-points").hidden = true;
   }
 
-  // Ask the Pi's server to wait (up to 20 s) for an RFID card and save the score under it.
-  // The server only answers once a card is tapped or the time is up.
-  function waitForCard(t) {
-    const thisWait = ++cardWait;
-    setScan("waiting", UI[lang].tapTitle, UI[lang].tap);
-    startScanTimer();
-    fetch("/api/card/save", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        category: category,
-        score: score,
-        correct_question_ids: correctQuestionIds,
-      }),
-    })
-      .then((reply) => {
-        if (!reply.ok) throw new Error("Could not save quiz points.");
-        return reply.json();
-      })
-      .then((result) => {
-        if (thisWait !== cardWait) return; // visitor pressed Skip or Play again meanwhile
-        if (!result.saved) {
-          setScan("expired", UI[lang].noCardTitle, UI[lang].noCard);
-          showRating(false);
-        } else {
-          lastPointsResult = result;
-          if (result.visitor) {
-            sessionStorage.setItem("quizVisitor", result.visitor);
-          }
-          setScan("saved", UI[lang].savedTitle, "");
-          if (result.quizzes_today === 1) {
-            $("points-earned").textContent = UI[lang].pointsPending;
-          } else if (result.quizzes_today === 3) {
-            $("points-earned").textContent = UI[lang].thirdQuizPoints(
-              result.points_earned,
-            );
-          } else if (result.quizzes_today >= 4) {
-            $("points-earned").textContent = UI[lang].dailyLimit;
-          } else {
-            $("points-earned").textContent = UI[lang].earned(
-              result.points_earned,
-            );
-          }
-          $("points-earned").textContent +=
-            "\n" +
-            UI[lang].dailyProgress(
-              result.leaderboard_score,
-              result.leaderboard_points_earned,
-            );
-          $("points-earned").hidden = false;
-          $("check-points").hidden = false;
-          if (result.quizzes_today > 1) {
-            $("before-score").textContent = result.first_score + "/" + t;
-            $("now-score").textContent = score + "/" + t;
-            $("scan-compare").hidden = false;
-          }
-          showRating(true);
-        }
-      })
-      .catch(() => {
-        // No server (index.html opened by double-click): no card saving possible.
-        if (thisWait !== cardWait) return;
-        setScan("expired", UI[lang].noCardTitle, "");
-        showRating(false);
+  async function saveAccountScore() {
+    $("again").disabled = true;
+    setSaveStatus("waiting", UI[lang].savingTitle, UI[lang].savingMessage);
+    try {
+      const reply = await fetch("/api/account/save", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          account_code: accountCode,
+          category,
+          score,
+          correct_question_ids: correctQuestionIds,
+        }),
       });
+      const result = await reply.json();
+      if (!reply.ok) throw new Error(result.error || UI[lang].saveFailed);
+      if (!result.saved) throw new Error(UI[lang].saveFailed);
+
+      lastPointsResult = result;
+      sessionStorage.setItem("quizVisitor", result.visitor);
+      setSaveStatus("saved", UI[lang].savedTitle, UI[lang].saved);
+      if (result.quizzes_today === 1) {
+        $("points-earned").textContent = UI[lang].pointsPending;
+      } else if (result.quizzes_today === 3) {
+        $("points-earned").textContent = UI[lang].thirdQuizPoints(
+          result.points_earned,
+        );
+      } else if (result.quizzes_today >= 4) {
+        $("points-earned").textContent = UI[lang].dailyLimit;
+      } else {
+        $("points-earned").textContent = UI[lang].earned(
+          result.points_earned,
+        );
+      }
+      $("points-earned").textContent +=
+        "\n" +
+        UI[lang].dailyProgress(
+          result.leaderboard_score,
+          result.leaderboard_points_earned,
+        );
+      $("points-earned").hidden = false;
+      $("check-points").hidden = false;
+      if (result.quizzes_today > 1) {
+        $("before-score").textContent = result.first_score + "/" + questions.length;
+        $("now-score").textContent = score + "/" + questions.length;
+        $("score-compare").hidden = false;
+      }
+      showRating(true);
+    } catch (error) {
+      setSaveStatus(
+        "error",
+        UI[lang].saveFailed,
+        error instanceof Error ? error.message : UI[lang].saveFailed,
+      );
+      showRating(false);
+    } finally {
+      $("again").disabled = false;
+    }
   }
 
-  // Skip: stop waiting for a card. (The server may still be waiting, see app.py.)
-  $("skip").onclick = () => {
-    cardWait++;
-    setScan("expired", UI[lang].noCardTitle, "");
-    showRating(false);
-  };
+  $("account-form").addEventListener("submit", submitAccountCode);
+  $("account-guest").onclick = continueAsGuest;
   $("rating-submit").onclick = submitRating;
   $("rating-skip").onclick = closeRating;
   $("rating-close").onclick = closeRating;
@@ -748,15 +795,10 @@
   document
     .querySelectorAll("[data-lang]")
     .forEach((b) => (b.onclick = () => setLang(b.dataset.lang)));
-  // Play again: back to the language screen, in the default left-to-right layout.
+  // Play again: return to language selection and ask for an account code again.
   $("again").onclick = () => {
-    if ($("scan").dataset.state === "waiting") {
-      startAfterRating = true;
-      $("again").disabled = true;
-      $("again").textContent = UI[lang].waitBeforeAgain;
-      return;
-    }
-    cardWait++; // ignore the card reply if it arrives after leaving the score screen
+    accountCode = null;
+    stopAccountTimer();
     document.documentElement.lang = "en";
     document.documentElement.dir = "ltr";
     show("lang");

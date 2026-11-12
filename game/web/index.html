@@ -19,6 +19,23 @@
       </div>
     </section>
 
+    <section id="account" class="screen">
+      <div class="account-panel">
+        <h1 class="title" id="account-title"></h1>
+        <p id="account-prompt"></p>
+        <form id="account-form">
+          <label for="account-code-input" id="account-code-label"></label>
+          <input id="account-code-input" name="account-code" type="text"
+                 maxlength="128" autocomplete="off" autocapitalize="off"
+                 spellcheck="false">
+          <p id="account-error" role="status" aria-live="polite"></p>
+          <button class="btn" id="account-submit" type="submit"></button>
+        </form>
+        <p id="account-countdown" role="status" aria-live="polite"></p>
+        <button class="btn account-guest" id="account-guest" type="button"></button>
+      </div>
+    </section>
+
     <section id="cats" class="screen">
       <h1 class="title" id="cats-title"></h1>
       <div class="category-actions">
@@ -63,19 +80,15 @@
         <p class="lead" id="verdict"></p>
         <button class="btn" id="again"></button>
       </div>
-      <!-- RFID card box; data-state is waiting, saved or expired -->
-      <div class="scan" id="scan" data-state="waiting">
-        <div class="scan-icon"></div>
-        <h3 id="scan-title"></h3>
-        <p id="scan-text"></p>
-        <div class="scan-compare" id="scan-compare" hidden>
+      <div class="save-panel" id="save-panel" data-state="waiting">
+        <h3 id="save-title"></h3>
+        <p id="save-message" role="status" aria-live="polite"></p>
+        <div class="score-compare" id="score-compare" hidden>
           <div><small id="before-label"></small><span id="before-score"></span></div>
           <div><small id="now-label"></small><span id="now-score"></span></div>
         </div>
         <p class="points-earned" id="points-earned" hidden></p>
         <button class="btn" id="check-points" hidden></button>
-        <div class="track scan-track"><div class="fill" id="scan-fill"></div></div>
-        <button class="btn" id="skip"></button>
       </div>
     </section>
 
