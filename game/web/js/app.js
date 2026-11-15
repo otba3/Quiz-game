@@ -4,6 +4,7 @@
 
   const OUTPUT_DIR = "../../output/"; // question images live in output/images/
   const PER_GAME = 6; // questions per playthrough (fewer if the bank is smaller)
+  const DAILY_QUESTION_COUNT = PER_GAME * 2;
   const ORIGIN_PER_TYPE = 3; // Origin: 3 continent + 3 country questions
   const FEEDBACK_TIME = 3000; // milliseconds to show the result before the next question
   const HOME_ARTWORK_FILE = "2007.1.1639a.2000x2000.jpg";
@@ -71,18 +72,16 @@
       savingTitle: "Saving your score...",
       savingMessage: "Saving this score under your account code.",
       savedTitle: "Score saved!",
-      saved: "Your score is saved on this Pi under your account code.",
       guestMessage: "Score not saved.",
       saveFailed: "We couldn't save your score. Please ask museum staff for help.",
       before: "Before",
       now: "Now",
       earned: (points) => `You earned ${points} points.`,
-      pointsPending:
+      firstQuizPending:
         "Quiz saved. Your points will be added after your second quiz in this category today.",
-      thirdQuizPoints: (points) =>
-        `On your third quiz, you earned ${points} extra points (half your score, rounded down). No more points in this category until tomorrow.`,
-      dailyLimit:
-        "Quiz saved. You have reached today's point limit for this category. You can earn points again tomorrow.",
+      thirdQuizPending:
+        "Quiz saved. Your points will be added after your fourth quiz in this category today.",
+      dailyLimit: "No more points will be saved in this category until tomorrow.",
       checkPoints: "Check Points",
       pointsTitle: "Your Points",
       historyTitle: "Points history",
@@ -153,18 +152,16 @@
       savingTitle: "جارٍ حفظ نتيجتك...",
       savingMessage: "جارٍ حفظ النتيجة باستخدام رمز حسابك.",
       savedTitle: "تم حفظ نتيجتك!",
-      saved: "تم حفظ نتيجتك على هذا الجهاز باستخدام رمز حسابك.",
       guestMessage: "لم يتم حفظ النتيجة.",
       saveFailed: "تعذر حفظ نتيجتك. يُرجى طلب المساعدة من موظفي المتحف.",
       before: "قبل",
       now: "الآن",
       earned: (points) => `لقد حصلت على ${points} نقاط.`,
-      pointsPending:
+      firstQuizPending:
         "تم حفظ الاختبار. ستُضاف نقاطك بعد إكمال الاختبار الثاني في هذه الفئة اليوم.",
-      thirdQuizPoints: (points) =>
-        `حصلت على ${points} نقاط إضافية في الاختبار الثالث (نصف النتيجة بعد التقريب للأسفل). لا يمكن كسب المزيد في هذه الفئة حتى الغد.`,
-      dailyLimit:
-        "تم حفظ الاختبار. لقد وصلت إلى حد النقاط اليومي لهذه الفئة. يمكنك كسب النقاط مجددًا غدًا.",
+      thirdQuizPending:
+        "تم حفظ الاختبار. ستُضاف نقاطك بعد إكمال الاختبار الرابع في هذه الفئة اليوم.",
+      dailyLimit: "لن تُحفظ نقاط أخرى في هذه الفئة حتى الغد.",
       checkPoints: "تحقق من النقاط",
       pointsTitle: "نقاطك",
       historyTitle: "سجل النقاط",
@@ -976,7 +973,7 @@
             maximumFractionDigits: 1,
           }).format(dailyAverage) +
           "/" +
-          (questions ? questions.length : PER_GAME);
+          DAILY_QUESTION_COUNT;
     const lines = [
       dailyAverageError
         ? UI[lang].averageError
@@ -1046,11 +1043,9 @@
       console.error("The saved score response omitted today's average.");
     }
     if (result.quizzes_today === 1) {
-      $("points-earned").textContent = UI[lang].pointsPending;
+      $("points-earned").textContent = UI[lang].firstQuizPending;
     } else if (result.quizzes_today === 3) {
-      $("points-earned").textContent = UI[lang].thirdQuizPoints(
-        result.points_earned,
-      );
+      $("points-earned").textContent = UI[lang].thirdQuizPending;
     } else if (result.quizzes_today >= 4) {
       $("points-earned").textContent = UI[lang].dailyLimit;
     } else {
@@ -1086,7 +1081,7 @@
     if (saveState === "waiting") {
       setSaveStatus("waiting", UI[lang].savingTitle, UI[lang].savingMessage);
     } else if (saveState === "saved") {
-      setSaveStatus("saved", UI[lang].savedTitle, UI[lang].saved);
+      setSaveStatus("saved", UI[lang].savedTitle, "");
       if (lastPointsResult) updateSavedScoreDetails(lastPointsResult);
     } else if (saveState === "guest") {
       setSaveStatus("guest", "", UI[lang].guestMessage);
@@ -1219,6 +1214,7 @@
     $("save-panel").dataset.state = state;
     $("save-title").textContent = title;
     $("save-message").textContent = message;
+    $("save-message").hidden = state === "saved";
     $("score-compare").hidden = true;
     $("points-earned").hidden = true;
     $("daily-average").hidden = true;
@@ -1246,7 +1242,7 @@
 
       lastPointsResult = result;
       sessionStorage.setItem("quizVisitor", result.visitor);
-      setSaveStatus("saved", UI[lang].savedTitle, UI[lang].saved);
+      setSaveStatus("saved", UI[lang].savedTitle, "");
       updateSavedScoreDetails(result);
       showRating(true);
     } catch (error) {

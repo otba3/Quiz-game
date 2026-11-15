@@ -27,6 +27,11 @@ continue to use an anonymous visitor label. Display names are public on the
 leaderboard. Account codes are the only means of accessing an account, so
 restrict access to the kiosk and its database.
 
+Reward points are awarded in pairs per category: the first quiz waits for the
+second, which awards their combined score; the third waits for the fourth,
+which awards the average of those two scores rounded down. No further reward
+points are awarded in that category until the next day.
+
 Visitors have 30 seconds to enter a code or start account creation; they can
 also choose guest mode immediately. The timer pauses while creating an account.
 When it expires, the game continues as a guest. Guest scores are shown but not
@@ -63,5 +68,6 @@ account and category, up to 12 points per day. Monthly scores add the saved
 scores from every quiz completed during the current calendar month. Leaderboard
 names are anonymous, stable visitor labels. Five sample visitors are included
 for presentations by default. Set `LEADERBOARD_DEMO_MODE=false` to hide them.
-The result screen also shows today's average score across account-linked quiz
-attempts; guest scores are not included because they are not saved.
+The result screen also shows today's average across account-linked quiz
+attempts, scaled to 12 questions; guest scores are not included because they
+are not saved.

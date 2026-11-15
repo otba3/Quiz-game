@@ -287,7 +287,9 @@ def save_score(card_uid, category, score, correct_question_ids=()):
             elif quizzes_today == 2:
                 points_earned = today_scores[0][0] + score
             elif quizzes_today == 3:
-                points_earned = score // 2
+                points_earned = 0
+            elif quizzes_today == 4:
+                points_earned = (today_scores[2][0] + score) // 2
             else:
                 points_earned = 0
 
@@ -327,7 +329,7 @@ def save_score(card_uid, category, score, correct_question_ids=()):
                 (card_uid, category, session_date),
             ).fetchone()[0]
             average_score = db.execute(
-                """SELECT AVG(score) FROM quiz_sessions
+                """SELECT AVG(score) * 2 FROM quiz_sessions
                    WHERE session_date = ?""",
                 (session_date,),
             ).fetchone()[0]
@@ -347,7 +349,7 @@ def get_daily_average_score():
     today = datetime.now().date().isoformat()
     with closing(sqlite3.connect(DB_PATH)) as db:
         average_score, visitor_count = db.execute(
-            """SELECT AVG(score), COUNT(*) FROM quiz_sessions
+            """SELECT AVG(score) * 2, COUNT(*) FROM quiz_sessions
                WHERE session_date = ?""",
             (today,),
         ).fetchone()
