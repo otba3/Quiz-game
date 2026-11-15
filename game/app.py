@@ -15,6 +15,7 @@ from visitor_score_storage import (
     create_account,
     create_table,
     get_account_identity,
+    get_daily_average_score,
     get_points_balance,
     get_points_history,
     get_leaderboard,
@@ -226,6 +227,11 @@ def leaderboard():
         "period": period,
         "entries": entries,
     })
+
+
+@app.route("/api/average/today")
+def daily_average():
+    return jsonify(get_daily_average_score())
 
 
 @app.route("/api/feedback", methods=["POST"])

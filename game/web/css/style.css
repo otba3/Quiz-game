@@ -209,10 +209,10 @@ button {
   min-width: 260px;
   margin: 0;
   transform: translate(-50%, -50%);
-  background: rgba(232, 48, 130, 0.7);
+  background: rgba(249, 255, 30, 0.72);
 }
 .btn.home-play:active {
-  background: rgba(232, 48, 130, 0.82);
+  background: rgba(249, 255, 30, 0.86);
 }
 #account {
   justify-content: center;
@@ -401,6 +401,16 @@ button {
   margin: 0 auto;
   font-size: 24px;
   white-space: nowrap;
+}
+.category-exit {
+  position: absolute;
+  left: 24px;
+  bottom: 24px;
+  min-width: 160px;
+  min-height: 56px;
+  margin: 0;
+  padding: 0 var(--space-3);
+  font-size: 20px;
 }
 .choice {
   min-height: 200px;
@@ -603,6 +613,9 @@ button {
   background: var(--taupe);
   border-color: var(--taupe);
 }
+.save-panel[data-state="guest"] #save-title {
+  display: none;
+}
 .score-compare {
   display: flex;
   gap: var(--space-3);
@@ -620,6 +633,10 @@ button {
 }
 
 .points-earned {
+  font-weight: 700;
+  white-space: pre-line;
+}
+.daily-average {
   font-weight: 700;
   white-space: pre-line;
 }

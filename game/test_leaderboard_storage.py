@@ -78,6 +78,23 @@ class LeaderboardStorageTests(unittest.TestCase):
 
         self.assertEqual(entries, [{"player": "Nora", "score": 5}])
 
+    def test_daily_average_includes_all_account_quizzes_today(self):
+        first = storage.save_score(1001, "year", 2)
+        second = storage.save_score(1002, "origin", 5)
+
+        self.assertEqual(first["average_score"], 2.0)
+        self.assertEqual(second["average_score"], 3.5)
+        self.assertEqual(
+            storage.get_daily_average_score(),
+            {"average_score": 3.5, "visitor_count": 2},
+        )
+
+    def test_daily_average_is_empty_when_no_scores_exist(self):
+        self.assertEqual(
+            storage.get_daily_average_score(),
+            {"average_score": None, "visitor_count": 0},
+        )
+
     def test_scores_from_another_month_are_excluded(self):
         storage.save_score(1001, "year", 8)
         with patch.object(FixedDateTime, "now", return_value=datetime(2026, 10, 31)):

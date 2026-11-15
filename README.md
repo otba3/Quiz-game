@@ -32,6 +32,11 @@ also choose guest mode immediately. The timer pauses while creating an account.
 When it expires, the game continues as a guest. Guest scores are shown but not
 saved.
 
+After an account quiz, Play again returns to category selection; Exit logs out
+and returns to the landing page. Guests return to the landing page when they
+choose Play again. Any non-home screen returns to the landing page after two
+minutes without input.
+
 The local account API is:
 
 - `POST /api/account/create` with `{"display_name": "..."}` creates an account
@@ -58,3 +63,5 @@ account and category, up to 12 points per day. Monthly scores add the saved
 scores from every quiz completed during the current calendar month. Leaderboard
 names are anonymous, stable visitor labels. Five sample visitors are included
 for presentations by default. Set `LEADERBOARD_DEMO_MODE=false` to hide them.
+The result screen also shows today's average score across account-linked quiz
+attempts; guest scores are not included because they are not saved.

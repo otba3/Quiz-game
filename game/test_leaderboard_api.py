@@ -42,6 +42,14 @@ class LeaderboardApiTests(unittest.TestCase):
 
         self.assertEqual(response.get_json()["entries"], real_entries)
 
+    def test_daily_average_endpoint_returns_account_scores_only(self):
+        average = {"average_score": 3.5, "visitor_count": 2}
+        with patch.object(server, "get_daily_average_score", return_value=average):
+            response = self.client.get("/api/average/today")
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.get_json(), average)
+
     def test_saved_quiz_response_uses_the_supplied_account_code(self):
         account_identity = -7
         with (

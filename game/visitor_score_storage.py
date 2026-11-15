@@ -326,6 +326,11 @@ def save_score(card_uid, category, score, correct_question_ids=()):
                    WHERE card_uid = ? AND category = ? AND session_date = ?""",
                 (card_uid, category, session_date),
             ).fetchone()[0]
+            average_score = db.execute(
+                """SELECT AVG(score) FROM quiz_sessions
+                   WHERE session_date = ?""",
+                (session_date,),
+            ).fetchone()[0]
     return {
         "attempt": attempt,
         "first_score": first_score,
@@ -333,6 +338,22 @@ def save_score(card_uid, category, score, correct_question_ids=()):
         "quizzes_today": quizzes_today,
         "leaderboard_points_earned": leaderboard_points_earned,
         "leaderboard_score": leaderboard_score,
+        "average_score": average_score,
+    }
+
+
+def get_daily_average_score():
+    """Return today's average across account-linked quiz attempts."""
+    today = datetime.now().date().isoformat()
+    with closing(sqlite3.connect(DB_PATH)) as db:
+        average_score, visitor_count = db.execute(
+            """SELECT AVG(score), COUNT(*) FROM quiz_sessions
+               WHERE session_date = ?""",
+            (today,),
+        ).fetchone()
+    return {
+        "average_score": average_score,
+        "visitor_count": visitor_count,
     }
 
 

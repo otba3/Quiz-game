@@ -19,6 +19,7 @@
       play: "Play",
       homeArtworkAlt: "Artwork from the museum collection",
       pick: "Choose a category",
+      exit: "Exit",
       leaderboard: "Leaderboard",
       checkLeaderboard: "Check Leaderboard",
       daily: "Today",
@@ -31,8 +32,11 @@
       place: "Place",
       visitor: "User",
       leaderboardPoints: "Points",
-      dailyProgress: (score, added) =>
-        `Daily leaderboard: ${score}/12 (+${added} new question points).`,
+      dailyAverage: (average) =>
+        `Average score by visitors today is: ${average}.`,
+      averageChallenge: "Can you beat the average?",
+      averageEmpty: "No scores yet",
+      averageError: "Today's average couldn't be loaded.",
       accountTitle: "Save your scores and points",
       accountPrompt: "Choose how you would like to continue.",
       accountCodePrompt:
@@ -68,8 +72,7 @@
       savingMessage: "Saving this score under your account code.",
       savedTitle: "Score saved!",
       saved: "Your score is saved on this Pi under your account code.",
-      guestTitle: "Playing as a guest",
-      guestMessage: "Your score is shown but will not be saved to an account.",
+      guestMessage: "Score not saved.",
       saveFailed: "We couldn't save your score. Please ask museum staff for help.",
       before: "Before",
       now: "Now",
@@ -99,6 +102,7 @@
       play: "ابدأ",
       homeArtworkAlt: "عمل فني من مجموعة المتحف",
       pick: "اختر فئة",
+      exit: "خروج",
       leaderboard: "لوحة المتصدرين",
       checkLeaderboard: "تحقق من لوحة المتصدرين",
       daily: "اليوم",
@@ -111,8 +115,11 @@
       place: "المركز",
       visitor: "المستخدم",
       leaderboardPoints: "النقاط",
-      dailyProgress: (score, added) =>
-        `لوحة المتصدرين اليومية: ${score}/12 (+${added} نقاط لأسئلة جديدة).`,
+      dailyAverage: (average) =>
+        `متوسط نتيجة الزوار اليوم: ${average}.`,
+      averageChallenge: "هل يمكنك تجاوز المتوسط؟",
+      averageEmpty: "لا توجد نتائج بعد",
+      averageError: "تعذر تحميل متوسط اليوم.",
       accountTitle: "احفظ نتائجك ونقاطك",
       accountPrompt: "اختر طريقة المتابعة.",
       accountCodePrompt: "أدخل رمز حسابك أو أنشئ حسابًا جديدًا.",
@@ -147,8 +154,7 @@
       savingMessage: "جارٍ حفظ النتيجة باستخدام رمز حسابك.",
       savedTitle: "تم حفظ نتيجتك!",
       saved: "تم حفظ نتيجتك على هذا الجهاز باستخدام رمز حسابك.",
-      guestTitle: "اللعب كزائر",
-      guestMessage: "ستظهر نتيجتك، ولكن لن يتم حفظها في حساب.",
+      guestMessage: "لم يتم حفظ النتيجة.",
       saveFailed: "تعذر حفظ نتيجتك. يُرجى طلب المساعدة من موظفي المتحف.",
       before: "قبل",
       now: "الآن",
@@ -189,6 +195,9 @@
     leaderboardCategory = "origin",
     leaderboardPeriod = "daily",
     leaderboardRequest = 0,
+    idleTimer = null,
+    dailyAverage = null,
+    dailyAverageError = false,
     questionAnswered = false,
     selectedAnswer = null,
     accountErrorKey = null,
@@ -196,6 +205,7 @@
     saveErrorText = null;
 
   const ACCOUNT_CODE_TIMEOUT_SECONDS = 30;
+  const IDLE_TIMEOUT_MS = 120000;
 
   // Pick the current language from an {en: ..., ar: ...} object; fall back to English.
   const tr = (obj) => obj[lang] || obj.en;
@@ -212,6 +222,23 @@
     document
       .querySelectorAll(".screen")
       .forEach((s) => s.classList.toggle("active", s.id === id));
+    resetIdleTimer();
+  }
+
+  function resetIdleTimer() {
+    if (idleTimer !== null) clearTimeout(idleTimer);
+    idleTimer = null;
+    if (stage.dataset.screen === "home") return;
+    idleTimer = setTimeout(exitToHome, IDLE_TIMEOUT_MS);
+  }
+
+  function exitToHome() {
+    stopAccountTimer();
+    accountCode = null;
+    sessionStorage.removeItem("quizVisitor");
+    $("rating-modal").hidden = true;
+    clearLeds();
+    showHome();
   }
 
   function updateLanguageControl() {
@@ -637,6 +664,7 @@
 
   function showCategories() {
     $("cats-title").textContent = UI[lang].pick;
+    $("category-exit").textContent = UI[lang].exit;
     $("leaderboard-open").textContent = UI[lang].checkLeaderboard;
     $("leaderboard-title").textContent = UI[lang].leaderboard;
     $("leaderboard-back").textContent = UI[lang].leaderboardBack;
@@ -939,22 +967,84 @@
     });
   }
 
+  function renderDailyAverage(includeChallenge) {
+    const formattedAverage =
+      dailyAverage === null
+        ? UI[lang].averageEmpty
+        : new Intl.NumberFormat(lang, {
+            minimumFractionDigits: 1,
+            maximumFractionDigits: 1,
+          }).format(dailyAverage) +
+          "/" +
+          (questions ? questions.length : PER_GAME);
+    const lines = [
+      dailyAverageError
+        ? UI[lang].averageError
+        : UI[lang].dailyAverage(formattedAverage),
+    ];
+    if (includeChallenge && !dailyAverageError && dailyAverage !== null) {
+      lines.push(UI[lang].averageChallenge);
+    }
+    $("daily-average").textContent = lines.join("\n");
+    $("daily-average").hidden = false;
+  }
+
+  async function loadDailyAverage() {
+    try {
+      const response = await fetch("/api/average/today");
+      const result = await response.json();
+      if (!response.ok) {
+        throw new Error(result.error || UI[lang].averageError);
+      }
+      if (
+        result.average_score !== null &&
+        (typeof result.average_score !== "number" ||
+          !Number.isFinite(result.average_score))
+      ) {
+        throw new Error(UI[lang].averageError);
+      }
+      dailyAverage = result.average_score;
+      dailyAverageError = false;
+    } catch (error) {
+      console.error("Could not load today's average score.", error);
+      dailyAverageError = true;
+    }
+    if ($("save-panel").dataset.state === "guest") {
+      renderDailyAverage(false);
+    }
+  }
+
   function finish() {
     clearLeds(); // the score screen has no LEDs on
     const t = questions.length;
     $("score").innerHTML = score + "<small>/" + t + "</small>";
     $("verdict").textContent =
       UI[lang].v[score === t ? 2 : score >= t / 2 ? 1 : 0];
+    dailyAverage = null;
+    dailyAverageError = false;
     show("end");
     if (accountCode) {
       saveAccountScore();
     } else {
-      setSaveStatus("guest", UI[lang].guestTitle, UI[lang].guestMessage);
+      setSaveStatus("guest", "", UI[lang].guestMessage);
+      renderDailyAverage(false);
+      loadDailyAverage();
       showRating(false);
     }
   }
 
   function updateSavedScoreDetails(result) {
+    if (
+      typeof result.average_score === "number" &&
+      Number.isFinite(result.average_score)
+    ) {
+      dailyAverage = result.average_score;
+      dailyAverageError = false;
+    } else {
+      dailyAverage = null;
+      dailyAverageError = true;
+      console.error("The saved score response omitted today's average.");
+    }
     if (result.quizzes_today === 1) {
       $("points-earned").textContent = UI[lang].pointsPending;
     } else if (result.quizzes_today === 3) {
@@ -966,13 +1056,8 @@
     } else {
       $("points-earned").textContent = UI[lang].earned(result.points_earned);
     }
-    $("points-earned").textContent +=
-      "\n" +
-      UI[lang].dailyProgress(
-        result.leaderboard_score,
-        result.leaderboard_points_earned,
-      );
     $("points-earned").hidden = false;
+    renderDailyAverage(true);
     $("check-points").hidden = false;
     if (result.quizzes_today > 1) {
       $("before-score").textContent = result.first_score + "/" + questions.length;
@@ -1004,7 +1089,8 @@
       setSaveStatus("saved", UI[lang].savedTitle, UI[lang].saved);
       if (lastPointsResult) updateSavedScoreDetails(lastPointsResult);
     } else if (saveState === "guest") {
-      setSaveStatus("guest", UI[lang].guestTitle, UI[lang].guestMessage);
+      setSaveStatus("guest", "", UI[lang].guestMessage);
+      renderDailyAverage(false);
     } else if (saveState === "error") {
       setSaveStatus(
         "error",
@@ -1135,6 +1221,7 @@
     $("save-message").textContent = message;
     $("score-compare").hidden = true;
     $("points-earned").hidden = true;
+    $("daily-average").hidden = true;
     $("check-points").hidden = true;
   }
 
@@ -1184,6 +1271,7 @@
   $("account-created-continue").onclick = showCategories;
   $("account-back").onclick = returnToAccountChoice;
   $("account-guest").onclick = continueAsGuest;
+  $("category-exit").onclick = exitToHome;
   $("home-play").onclick = () => showAccountPrompt();
   $("rating-submit").onclick = submitRating;
   $("rating-skip").onclick = closeRating;
@@ -1196,13 +1284,20 @@
   document
     .querySelectorAll("[data-lang]")
     .forEach((b) => (b.onclick = () => setLang(b.dataset.lang)));
+  document.addEventListener("pointerdown", resetIdleTimer);
+  document.addEventListener("touchstart", resetIdleTimer);
+  document.addEventListener("keydown", resetIdleTimer);
+  document.addEventListener("input", resetIdleTimer);
+  document.addEventListener("change", resetIdleTimer);
   applyDocumentLanguage();
   showHome();
-  // Play again: return to the landing page with another artwork.
+  // Keep accounts signed in across games; guests return to the landing page.
   $("again").onclick = () => {
-    accountCode = null;
-    sessionStorage.removeItem("quizVisitor");
     stopAccountTimer();
-    showHome();
+    if (accountCode) {
+      showCategories();
+    } else {
+      exitToHome();
+    }
   };
 })();
