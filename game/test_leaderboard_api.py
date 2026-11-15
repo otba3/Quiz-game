@@ -1,7 +1,10 @@
+import tempfile
 import unittest
+from pathlib import Path
 from unittest.mock import patch
 
 import app as server
+import visitor_score_storage as storage
 
 
 class LeaderboardApiTests(unittest.TestCase):
@@ -43,7 +46,7 @@ class LeaderboardApiTests(unittest.TestCase):
         account_identity = -7
         with (
             patch.object(
-                server, "get_or_create_account_identity",
+                server, "get_account_identity",
                 return_value=account_identity,
             ),
             patch.object(server, "save_score", return_value={"attempt": 1}),
@@ -68,7 +71,7 @@ class LeaderboardApiTests(unittest.TestCase):
     def test_account_score_rejects_empty_account_code(self):
         with patch.object(
             server,
-            "get_or_create_account_identity",
+            "get_account_identity",
             side_effect=ValueError("Account code cannot be empty"),
         ) as get_identity:
             response = self.client.post(
@@ -83,6 +86,82 @@ class LeaderboardApiTests(unittest.TestCase):
 
         self.assertEqual(response.status_code, 400)
         get_identity.assert_called_once_with("  ")
+
+    def test_account_creation_returns_the_generated_code_and_display_name(self):
+        with (
+            patch.object(
+                server,
+                "create_account",
+                return_value=(-7, "AB234C", "Sam"),
+            ),
+            patch.object(server, "visitor_label", return_value="Sam"),
+        ):
+            response = self.client.post(
+                "/api/account/create", json={"display_name": "Sam"}
+            )
+
+        self.assertEqual(response.status_code, 201)
+        self.assertEqual(
+            response.get_json(),
+            {
+                "created": True,
+                "account_code": "AB234C",
+                "display_name": "Sam",
+                "visitor": "Sam",
+            },
+        )
+
+    def test_account_login_does_not_create_unknown_codes(self):
+        with patch.object(
+            server,
+            "get_account_identity",
+            side_effect=ValueError("Account code was not found"),
+        ):
+            response = self.client.post(
+                "/api/account/login", json={"account_code": "ABC234"}
+            )
+
+        self.assertEqual(response.status_code, 404)
+        self.assertEqual(response.get_json(), {"error": "Account code was not found"})
+
+    def test_created_account_code_connects_scores_and_leaderboard_name(self):
+        temp_dir = tempfile.TemporaryDirectory()
+        self.addCleanup(temp_dir.cleanup)
+        database = Path(temp_dir.name) / "accounts.db"
+        with (
+            patch.object(storage, "DB_PATH", database),
+            patch.object(server, "LEADERBOARD_DEMO_MODE", False),
+        ):
+            storage.create_table()
+            created = self.client.post(
+                "/api/account/create", json={"display_name": "Nora"}
+            )
+            account_code = created.get_json()["account_code"]
+            login = self.client.post(
+                "/api/account/login",
+                json={"account_code": account_code.lower()},
+            )
+            saved = self.client.post(
+                "/api/account/save",
+                json={
+                    "account_code": account_code,
+                    "category": "year",
+                    "score": 1,
+                    "correct_question_ids": ["year-question"],
+                },
+            )
+            leaderboard = self.client.get(
+                "/api/leaderboard?category=year&period=monthly"
+            )
+
+        self.assertEqual(created.status_code, 201)
+        self.assertEqual(login.status_code, 200)
+        self.assertEqual(saved.status_code, 200)
+        self.assertEqual(saved.get_json()["points_balance"], 0)
+        self.assertEqual(
+            leaderboard.get_json()["entries"],
+            [{"player": "Nora", "score": 1}],
+        )
 
     def test_qr_cashier_page_and_purchase_endpoint_are_removed(self):
         cashier_response = self.client.get("/cashier")

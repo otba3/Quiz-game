@@ -28,9 +28,23 @@
           <input id="account-code-input" name="account-code" type="text"
                  maxlength="128" autocomplete="off" autocapitalize="off"
                  spellcheck="false">
-          <p id="account-error" role="status" aria-live="polite"></p>
           <button class="btn" id="account-submit" type="submit"></button>
         </form>
+        <button class="btn" id="account-create-open" type="button"></button>
+        <form id="account-create-form" hidden>
+          <label for="account-name-input" id="account-name-label"></label>
+          <input id="account-name-input" name="display-name" type="text"
+                 maxlength="40" autocomplete="name">
+          <button class="btn" id="account-create-submit" type="submit"></button>
+          <button class="btn account-create-back" id="account-create-back" type="button"></button>
+        </form>
+        <div id="account-created" hidden>
+          <p id="account-created-message"></p>
+          <strong id="account-created-code" dir="ltr"></strong>
+          <p id="account-created-reminder"></p>
+          <button class="btn" id="account-created-continue" type="button"></button>
+        </div>
+        <p id="account-error" role="status" aria-live="polite"></p>
         <p id="account-countdown" role="status" aria-live="polite"></p>
         <button class="btn account-guest" id="account-guest" type="button"></button>
       </div>

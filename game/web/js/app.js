@@ -29,10 +29,26 @@
       leaderboardPoints: "Points",
       dailyProgress: (score, added) =>
         `Daily leaderboard: ${score}/12 (+${added} new question points).`,
-      accountTitle: "Do you have an account code?",
-      accountPrompt: "Enter it to save your quiz score to your account.",
+      accountTitle: "Save your scores and points",
+      accountPrompt:
+        "Enter your six-character account code, create an account, or continue as a guest.",
       accountCodeLabel: "Account code",
-      accountSubmit: "Use code and continue",
+      accountSubmit: "Use code",
+      accountCreateOpen: "Create a new account",
+      accountNameLabel: "Display name",
+      accountCreateSubmit: "Create account",
+      accountCreateBack: "Back to account code",
+      accountCreatedMessage: "Your account code is:",
+      accountCreatedReminder:
+        "Write it down. You will need this code to use your account again.",
+      accountCreatedContinue: "Continue",
+      accountNameRequired: "Enter a display name.",
+      accountNameTooLong: "The display name must be 40 characters or fewer.",
+      accountNameInvalid: "Use a name without line breaks or control characters.",
+      accountServiceError:
+        "Account service error. Ask staff to restart the kiosk.",
+      accountCodeNotFound: "We couldn't find that account code.",
+      accountRequestError: "We couldn't connect to the account service. Try again.",
       accountGuest: "Continue as guest",
       accountCountdown: (seconds) =>
         `Guest mode starts in ${seconds} seconds.`,
@@ -87,10 +103,26 @@
       leaderboardPoints: "النقاط",
       dailyProgress: (score, added) =>
         `لوحة المتصدرين اليومية: ${score}/12 (+${added} نقاط لأسئلة جديدة).`,
-      accountTitle: "هل لديك رمز حساب؟",
-      accountPrompt: "أدخله لحفظ نتيجة الاختبار في حسابك.",
+      accountTitle: "احفظ نتائجك ونقاطك",
+      accountPrompt:
+        "أدخل رمز حسابك المكوّن من ستة أحرف وأرقام، أو أنشئ حسابًا، أو تابع كزائر.",
       accountCodeLabel: "رمز الحساب",
-      accountSubmit: "استخدم الرمز وتابع",
+      accountSubmit: "استخدم الرمز",
+      accountCreateOpen: "إنشاء حساب جديد",
+      accountNameLabel: "الاسم المعروض",
+      accountCreateSubmit: "إنشاء حساب",
+      accountCreateBack: "العودة إلى رمز الحساب",
+      accountCreatedMessage: "رمز حسابك هو:",
+      accountCreatedReminder:
+        "اكتب الرمز واحتفظ به. ستحتاج إليه لاستخدام حسابك مرة أخرى.",
+      accountCreatedContinue: "متابعة",
+      accountNameRequired: "أدخل اسمًا معروضًا.",
+      accountNameTooLong: "يجب ألا يتجاوز الاسم المعروض 40 حرفًا.",
+      accountNameInvalid: "استخدم اسمًا بلا أسطر جديدة أو محارف تحكم.",
+      accountServiceError:
+        "حدث خطأ في خدمة الحسابات. اطلب من الموظفين إعادة تشغيل الجهاز.",
+      accountCodeNotFound: "لم نعثر على حساب بهذا الرمز.",
+      accountRequestError: "تعذر الاتصال بخدمة الحسابات. حاول مرة أخرى.",
       accountGuest: "المتابعة كزائر",
       accountCountdown: (seconds) =>
         `سيبدأ وضع الزائر خلال ${seconds} ثانية.`,
@@ -273,19 +305,54 @@
   }
 
   function showAccountPrompt() {
+    sessionStorage.removeItem("quizVisitor");
     $("account-title").textContent = UI[lang].accountTitle;
     $("account-prompt").textContent = UI[lang].accountPrompt;
     $("account-code-label").textContent = UI[lang].accountCodeLabel;
     $("account-submit").textContent = UI[lang].accountSubmit;
+    $("account-create-open").textContent = UI[lang].accountCreateOpen;
+    $("account-name-label").textContent = UI[lang].accountNameLabel;
+    $("account-create-submit").textContent = UI[lang].accountCreateSubmit;
+    $("account-create-back").textContent = UI[lang].accountCreateBack;
+    $("account-created-message").textContent = UI[lang].accountCreatedMessage;
+    $("account-created-reminder").textContent = UI[lang].accountCreatedReminder;
+    $("account-created-continue").textContent =
+      UI[lang].accountCreatedContinue;
     $("account-guest").textContent = UI[lang].accountGuest;
     $("account-code-input").value = "";
+    $("account-name-input").value = "";
     $("account-error").textContent = "";
+    $("account-form").hidden = false;
+    $("account-create-form").hidden = true;
+    $("account-create-open").hidden = false;
+    $("account-created").hidden = true;
+    $("account-countdown").hidden = false;
+    $("account-guest").hidden = false;
     show("account");
     startAccountTimer();
     $("account-code-input").focus();
   }
 
-  function submitAccountCode(event) {
+  function showCreateAccountForm() {
+    stopAccountTimer();
+    $("account-error").textContent = "";
+    $("account-form").hidden = true;
+    $("account-create-open").hidden = true;
+    $("account-create-form").hidden = false;
+    $("account-name-input").focus();
+  }
+
+  function returnToAccountCode() {
+    $("account-create-form").hidden = true;
+    $("account-form").hidden = false;
+    $("account-create-open").hidden = false;
+    $("account-name-input").value = "";
+    $("account-error").textContent = "";
+    startAccountTimer();
+    $("account-code-input").focus();
+  }
+
+  async function submitAccountCode(event) {
     event.preventDefault();
     const code = $("account-code-input").value.trim();
     if (!code) {
@@ -299,9 +366,126 @@
       return;
     }
     stopAccountTimer();
-    accountCode = code;
-    sessionStorage.removeItem("quizVisitor");
-    showCategories();
+    $("account-submit").disabled = true;
+    $("account-create-open").disabled = true;
+    $("account-guest").disabled = true;
+    try {
+      const response = await fetch("/api/account/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ account_code: code }),
+      });
+      const result = await response.json();
+      if (!response.ok) {
+        throw new Error(
+          response.status === 404
+            ? UI[lang].accountCodeNotFound
+            : UI[lang].accountRequestError,
+        );
+      }
+      accountCode = code;
+      sessionStorage.setItem("quizVisitor", result.visitor);
+      showCategories();
+    } catch (error) {
+      $("account-error").textContent =
+        error instanceof Error ? error.message : UI[lang].accountRequestError;
+      startAccountTimer();
+    } finally {
+      $("account-submit").disabled = false;
+      $("account-create-open").disabled = false;
+      $("account-guest").disabled = false;
+    }
+  }
+
+  async function submitNewAccount(event) {
+    event.preventDefault();
+    const displayName = $("account-name-input").value.trim();
+    if (!displayName) {
+      $("account-error").textContent = UI[lang].accountNameRequired;
+      $("account-name-input").focus();
+      return;
+    }
+    if (displayName.length > 40) {
+      $("account-error").textContent = UI[lang].accountNameTooLong;
+      $("account-name-input").focus();
+      return;
+    }
+
+    $("account-error").textContent = "";
+    $("account-create-submit").disabled = true;
+    $("account-create-back").disabled = true;
+    $("account-guest").disabled = true;
+    stopAccountTimer();
+    try {
+      const response = await fetch("/api/account/create", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ display_name: displayName }),
+      });
+      const contentType = response.headers.get("content-type") || "";
+      if (!contentType.includes("application/json")) {
+        throw new Error(UI[lang].accountServiceError);
+      }
+      let result;
+      try {
+        result = await response.json();
+      } catch (error) {
+        if (error instanceof SyntaxError) {
+          throw new Error(UI[lang].accountServiceError);
+        }
+        throw error;
+      }
+      if (!result || typeof result !== "object") {
+        throw new Error(UI[lang].accountServiceError);
+      }
+      if (!response.ok) {
+        const reason = typeof result.error === "string" ? result.error : "";
+        if (/control characters/i.test(reason)) {
+          throw new Error(UI[lang].accountNameInvalid);
+        }
+        if (/empty|required/i.test(reason)) {
+          throw new Error(UI[lang].accountNameRequired);
+        }
+        if (/40 characters/i.test(reason)) {
+          throw new Error(UI[lang].accountNameTooLong);
+        }
+        throw new Error(
+          response.status === 400
+            ? UI[lang].accountNameInvalid
+            : UI[lang].accountServiceError,
+        );
+      }
+      if (!/^[A-Z0-9]{6}$/.test(result.account_code || "")) {
+        throw new Error(UI[lang].accountServiceError);
+      }
+      accountCode = result.account_code;
+      sessionStorage.setItem("quizVisitor", result.visitor);
+      $("account-created-code").textContent = result.account_code;
+      $("account-form").hidden = true;
+      $("account-create-form").hidden = true;
+      $("account-create-open").hidden = true;
+      $("account-created").hidden = false;
+      $("account-error").textContent = "";
+      $("account-countdown").hidden = true;
+      $("account-guest").hidden = true;
+      $("account-created-continue").focus();
+    } catch (error) {
+      const knownErrors = [
+        UI[lang].accountNameRequired,
+        UI[lang].accountNameTooLong,
+        UI[lang].accountNameInvalid,
+        UI[lang].accountServiceError,
+      ];
+      $("account-error").textContent =
+        error instanceof Error && knownErrors.includes(error.message)
+          ? error.message
+          : UI[lang].accountServiceError;
+      startAccountTimer();
+    } finally {
+      $("account-create-submit").disabled = false;
+      $("account-create-back").disabled = false;
+      $("account-guest").disabled = false;
+    }
   }
 
   // Language button: switch texts and reading direction, then ask for an account code.
@@ -783,6 +967,10 @@
   }
 
   $("account-form").addEventListener("submit", submitAccountCode);
+  $("account-create-open").onclick = showCreateAccountForm;
+  $("account-create-form").addEventListener("submit", submitNewAccount);
+  $("account-create-back").onclick = returnToAccountCode;
+  $("account-created-continue").onclick = showCategories;
   $("account-guest").onclick = continueAsGuest;
   $("rating-submit").onclick = submitRating;
   $("rating-skip").onclick = closeRating;
@@ -798,6 +986,7 @@
   // Play again: return to language selection and ask for an account code again.
   $("again").onclick = () => {
     accountCode = null;
+    sessionStorage.removeItem("quizVisitor");
     stopAccountTimer();
     document.documentElement.lang = "en";
     document.documentElement.dir = "ltr";

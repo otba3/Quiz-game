@@ -12,8 +12,9 @@ from pathlib import Path
 from flask import Flask, jsonify, request, send_from_directory
 
 from visitor_score_storage import (
+    create_account,
     create_table,
-    get_or_create_account_identity,
+    get_account_identity,
     get_points_balance,
     get_points_history,
     get_leaderboard,
@@ -123,6 +124,41 @@ def clear_led_route():
 # ACCOUNT CODE: SAVE SCORE
 # --------------------------
 
+@app.route("/api/account/create", methods=["POST"])
+def create_account_route():
+    data = request.get_json(silent=True)
+    if not isinstance(data, dict):
+        return jsonify({"error": "Expected a JSON object"}), 400
+    try:
+        account_identity, account_code, display_name = create_account(
+            data.get("display_name")
+        )
+    except ValueError as error:
+        return jsonify({"error": str(error)}), 400
+    return jsonify({
+        "created": True,
+        "account_code": account_code,
+        "display_name": display_name,
+        "visitor": visitor_label(account_identity),
+    }), 201
+
+
+@app.route("/api/account/login", methods=["POST"])
+def login_account():
+    data = request.get_json(silent=True)
+    if not isinstance(data, dict) or not isinstance(data.get("account_code"), str):
+        return jsonify({"error": "Account code is required"}), 400
+    try:
+        account_identity = get_account_identity(data["account_code"])
+    except ValueError as error:
+        status = 404 if str(error) == "Account code was not found" else 400
+        return jsonify({"error": str(error)}), status
+    return jsonify({
+        "valid": True,
+        "visitor": visitor_label(account_identity),
+    })
+
+
 @app.route("/api/account/save", methods=["POST"])
 def save_account_score():
     data = request.get_json(silent=True)
@@ -149,9 +185,10 @@ def save_account_score():
         return jsonify({"error": "Invalid correct question IDs"}), 400
 
     try:
-        account_identity = get_or_create_account_identity(account_code)
+        account_identity = get_account_identity(account_code)
     except ValueError as error:
-        return jsonify({"error": str(error)}), 400
+        status = 404 if str(error) == "Account code was not found" else 400
+        return jsonify({"error": str(error)}), status
     result = save_score(
         account_identity, data["category"], data["score"], correct_question_ids
     )

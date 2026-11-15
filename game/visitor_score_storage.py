@@ -5,6 +5,7 @@ The database is one file: data/visitor_scores.db (created automatically).
 Try it without the Pi:  python3 game/visitor_score_storage.py
 """
 import hashlib
+import secrets
 import sqlite3
 from contextlib import closing
 from datetime import datetime
@@ -13,6 +14,9 @@ from pathlib import Path
 
 # data/ folder at the project root, next to the question CSVs.
 DB_PATH = Path(__file__).parent.parent / "data" / "visitor_scores.db"
+ACCOUNT_CODE_ALPHABET = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"
+ACCOUNT_CODE_LENGTH = 6
+MAX_DISPLAY_NAME_LENGTH = 40
 
 
 def create_table():
@@ -23,9 +27,18 @@ def create_table():
                 CREATE TABLE IF NOT EXISTS quiz_accounts (
                     id           INTEGER PRIMARY KEY AUTOINCREMENT,
                     account_code TEXT NOT NULL UNIQUE,
+                    display_name TEXT NOT NULL DEFAULT '',
                     created_at   TEXT NOT NULL
                 )
             """)
+            account_columns = {
+                row[1] for row in db.execute("PRAGMA table_info(quiz_accounts)")
+            }
+            if "display_name" not in account_columns:
+                db.execute(
+                    "ALTER TABLE quiz_accounts "
+                    "ADD COLUMN display_name TEXT NOT NULL DEFAULT ''"
+                )
             db.execute("""
                 CREATE TABLE IF NOT EXISTS scores (
                     card_uid   INTEGER,
@@ -107,8 +120,47 @@ def create_table():
                 )
 
 
-def get_or_create_account_identity(account_code):
-    """Map a code to a stable negative ID, separate from positive RFID IDs."""
+def create_account(display_name):
+    """Create a named account with a unique, six-character entry code."""
+    if not isinstance(display_name, str):
+        raise ValueError("Display name is required")
+    display_name = display_name.strip()
+    if not display_name:
+        raise ValueError("Display name cannot be empty")
+    if len(display_name) > MAX_DISPLAY_NAME_LENGTH:
+        raise ValueError(
+            f"Display name cannot exceed {MAX_DISPLAY_NAME_LENGTH} characters"
+        )
+    if any(ord(character) < 32 or ord(character) == 127 for character in display_name):
+        raise ValueError("Display name cannot contain control characters")
+
+    created_at = datetime.now().isoformat(timespec="seconds")
+    with closing(sqlite3.connect(DB_PATH)) as db:
+        with db:
+            db.execute("BEGIN IMMEDIATE")
+            for _ in range(100):
+                account_code = "".join(
+                    secrets.choice(ACCOUNT_CODE_ALPHABET)
+                    for _ in range(ACCOUNT_CODE_LENGTH)
+                )
+                exists = db.execute(
+                    "SELECT 1 FROM quiz_accounts WHERE upper(account_code) = ?",
+                    (account_code,),
+                ).fetchone()
+                if exists:
+                    continue
+                cursor = db.execute(
+                    """INSERT INTO quiz_accounts
+                       (account_code, display_name, created_at)
+                       VALUES (?, ?, ?)""",
+                    (account_code, display_name, created_at),
+                )
+                return -cursor.lastrowid, account_code, display_name
+    raise RuntimeError("Could not generate a unique account code")
+
+
+def get_account_identity(account_code):
+    """Look up an existing account code without creating an account."""
     if not isinstance(account_code, str):
         raise ValueError("Account code is required")
     account_code = account_code.strip()
@@ -117,24 +169,33 @@ def get_or_create_account_identity(account_code):
     if len(account_code) > 128:
         raise ValueError("Account code cannot exceed 128 characters")
 
-    created_at = datetime.now().isoformat(timespec="seconds")
     with closing(sqlite3.connect(DB_PATH)) as db:
-        with db:
-            db.execute("BEGIN IMMEDIATE")
-            row = db.execute(
-                "SELECT id FROM quiz_accounts WHERE account_code = ?",
-                (account_code,),
-            ).fetchone()
-            if row is None:
-                cursor = db.execute(
-                    """INSERT INTO quiz_accounts (account_code, created_at)
-                       VALUES (?, ?)""",
-                    (account_code, created_at),
-                )
-                account_id = cursor.lastrowid
-            else:
-                account_id = row[0]
-    return -account_id
+        row = db.execute(
+            """SELECT id FROM quiz_accounts
+               WHERE account_code = ? OR
+                     (length(account_code) = ? AND upper(account_code) = ?)
+               ORDER BY CASE WHEN account_code = ? THEN 0 ELSE 1 END
+               LIMIT 1""",
+            (
+                account_code,
+                ACCOUNT_CODE_LENGTH,
+                account_code.upper(),
+                account_code,
+            ),
+        ).fetchone()
+    if row is None:
+        raise ValueError("Account code was not found")
+    return -row[0]
+
+
+def get_account_display_name(account_identity):
+    """Return a stored display name for a local account identity."""
+    with closing(sqlite3.connect(DB_PATH)) as db:
+        row = db.execute(
+            "SELECT display_name FROM quiz_accounts WHERE id = ?",
+            (-account_identity,),
+        ).fetchone()
+    return row[0] if row else ""
 
 
 def save_game_feedback(category, score, rating, language, score_saved,
@@ -311,7 +372,11 @@ def get_leaderboard(category, period):
 
 
 def visitor_label(card_uid):
-    """Return a stable public label without exposing the RFID card UID."""
+    """Return an account name or stable anonymous label without exposing its ID."""
+    if card_uid < 0:
+        display_name = get_account_display_name(card_uid)
+        if display_name:
+            return display_name
     return "Visitor " + hashlib.sha256(
         str(card_uid).encode("utf-8")
     ).hexdigest()[:8].upper()

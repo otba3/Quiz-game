@@ -10,17 +10,36 @@ fallback.
 
 ## Account codes
 
-After choosing a language, visitors can enter an account code before starting
-the quiz. They have 30 seconds; they can also choose guest mode immediately.
-When the timer expires, the game continues as a guest. Guest scores are shown
-but not saved.
+Visitors can enter an existing account code or create an account before
+starting the quiz. New accounts require a display name (up to 40 characters)
+and receive a randomly generated six-character uppercase code using letters
+and digits. The code is shown after account creation; visitors should write it
+down because it is needed to use that account again. There is no password,
+account recovery, or external account service.
 
-Scores for entered codes are stored locally on the Pi in
-`data/visitor_scores.db`. The Pi accepts any non-empty code up to 128 characters
-and uses it as a local account identifier; it does not check or synchronize
-with an external account service. Leading and trailing spaces are trimmed.
-Keep access to the Pi and its database restricted if account codes identify
-visitors.
+Scores, quiz sessions, daily question points, and point transactions are all
+linked to the account's stable internal ID in the local SQLite database at
+`data/visitor_scores.db`. The account code is used to look up that ID; it is
+not duplicated into score or points records. Existing account codes and their
+saved results remain usable after the schema upgrade. New account display
+names appear on daily and monthly leaderboards; older accounts without a name
+continue to use an anonymous visitor label. Display names are public on the
+leaderboard. Account codes are the only means of accessing an account, so
+restrict access to the kiosk and its database.
+
+Visitors have 30 seconds to enter a code or start account creation; they can
+also choose guest mode immediately. The timer pauses while creating an account.
+When it expires, the game continues as a guest. Guest scores are shown but not
+saved.
+
+The local account API is:
+
+- `POST /api/account/create` with `{"display_name": "..."}` creates an account
+  and returns its code once.
+- `POST /api/account/login` with `{"account_code": "......"}` checks an
+  existing account code without creating an account.
+- `POST /api/account/save` links quiz scores and points to the looked-up
+  account.
 
 Install dependencies and start the app:
 

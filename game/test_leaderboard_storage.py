@@ -70,6 +70,14 @@ class LeaderboardStorageTests(unittest.TestCase):
             )
         )
 
+    def test_account_display_names_are_used_on_the_leaderboard(self):
+        identity, _, _ = storage.create_account("Nora")
+        storage.save_score(identity, "year", 5)
+
+        entries = storage.get_leaderboard("year", "monthly")
+
+        self.assertEqual(entries, [{"player": "Nora", "score": 5}])
+
     def test_scores_from_another_month_are_excluded(self):
         storage.save_score(1001, "year", 8)
         with patch.object(FixedDateTime, "now", return_value=datetime(2026, 10, 31)):
