@@ -57,6 +57,7 @@
       accountNameRequired: "Enter a display name.",
       accountNameTooLong: "The display name must be 40 characters or fewer.",
       accountNameInvalid: "Use a name without line breaks or control characters.",
+      accountNameTaken: "That name is already in use. Please choose another.",
       accountServiceError:
         "Account service error. Ask staff to restart the kiosk.",
       accountCodeNotFound: "We couldn't find that account code.",
@@ -137,6 +138,7 @@
       accountNameRequired: "أدخل اسمًا معروضًا.",
       accountNameTooLong: "يجب ألا يتجاوز الاسم المعروض 40 حرفًا.",
       accountNameInvalid: "استخدم اسمًا بلا أسطر جديدة أو محارف تحكم.",
+      accountNameTaken: "هذا الاسم مستخدم بالفعل. يُرجى اختيار اسم آخر.",
       accountServiceError:
         "حدث خطأ في خدمة الحسابات. اطلب من الموظفين إعادة تشغيل الجهاز.",
       accountCodeNotFound: "لم نعثر على حساب بهذا الرمز.",
@@ -383,6 +385,7 @@
     "accountNameRequired",
     "accountNameTooLong",
     "accountNameInvalid",
+    "accountNameTaken",
     "accountServiceError",
   ];
 
@@ -595,6 +598,9 @@
         }
         if (/40 characters/i.test(reason)) {
           throw new Error(UI[lang].accountNameTooLong);
+        }
+        if (/already in use/i.test(reason)) {
+          throw new Error(UI[lang].accountNameTaken);
         }
         throw new Error(
           response.status === 400

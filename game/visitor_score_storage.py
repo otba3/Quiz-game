@@ -7,6 +7,7 @@ Try it without the Pi:  python3 game/visitor_score_storage.py
 import hashlib
 import secrets
 import sqlite3
+import unicodedata
 from contextlib import closing
 from datetime import datetime
 from pathlib import Path
@@ -135,9 +136,19 @@ def create_account(display_name):
         raise ValueError("Display name cannot contain control characters")
 
     created_at = datetime.now().isoformat(timespec="seconds")
+    normalized_name = unicodedata.normalize("NFKC", display_name).casefold()
     with closing(sqlite3.connect(DB_PATH)) as db:
         with db:
             db.execute("BEGIN IMMEDIATE")
+            existing_names = db.execute(
+                "SELECT display_name FROM quiz_accounts"
+            ).fetchall()
+            if any(
+                unicodedata.normalize("NFKC", existing_name or "").casefold()
+                == normalized_name
+                for (existing_name,) in existing_names
+            ):
+                raise ValueError("Display name is already in use")
             for _ in range(100):
                 account_code = "".join(
                     secrets.choice(ACCOUNT_CODE_ALPHABET)

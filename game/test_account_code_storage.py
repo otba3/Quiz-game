@@ -45,6 +45,18 @@ class AccountCodeStorageTests(unittest.TestCase):
 
         self.assertNotEqual(first, second)
 
+    def test_display_names_are_unique_case_insensitively_after_trimming(self):
+        storage.create_account("Sam")
+
+        with self.assertRaisesRegex(ValueError, "already in use"):
+            storage.create_account("  sam  ")
+
+        with closing(sqlite3.connect(self.database)) as db:
+            count = db.execute(
+                "SELECT COUNT(*) FROM quiz_accounts"
+            ).fetchone()[0]
+        self.assertEqual(count, 1)
+
     def test_unknown_codes_do_not_create_accounts(self):
         with self.assertRaisesRegex(ValueError, "was not found"):
             storage.get_account_identity("ABC234")

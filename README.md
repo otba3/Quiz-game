@@ -24,7 +24,8 @@ not duplicated into score or points records. Existing account codes and their
 saved results remain usable after the schema upgrade. New account display
 names appear on daily and monthly leaderboards; older accounts without a name
 continue to use an anonymous visitor label. Display names are public on the
-leaderboard. Account codes are the only means of accessing an account, so
+leaderboard and must be unique, ignoring case and surrounding whitespace.
+Account codes are the only means of accessing an account, so
 restrict access to the kiosk and its database.
 
 Reward points are awarded in pairs per category: the first quiz waits for the
