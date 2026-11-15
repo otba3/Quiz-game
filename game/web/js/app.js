@@ -443,6 +443,7 @@
     $("account-name-input").value = "";
     clearAccountError();
     $("account-choice").hidden = false;
+    $("account-guest").hidden = false;
     $("account-form").hidden = true;
     $("account-create-form").hidden = true;
     $("account-create-open").hidden = true;
@@ -620,7 +621,6 @@
       $("account-created").hidden = false;
       clearAccountError();
       $("account-countdown").hidden = true;
-      $("account-guest").hidden = true;
       $("account-back").hidden = true;
       $("account-created-continue").focus();
     } catch (error) {
