@@ -124,6 +124,33 @@ button {
   height: auto;
 }
 
+#language-control {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 144px;
+  height: 44px;
+  padding: 4px 10px;
+  border: 2px solid var(--ink);
+  border-radius: var(--radius-pill);
+  background: var(--paper);
+  direction: ltr;
+}
+#language-control button {
+  min-height: 32px;
+  padding: 0;
+  font-size: 16px;
+  white-space: nowrap;
+}
+#language-control button[aria-pressed="true"] {
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
 
 /* Hide logo while answering questions */
 #stage[data-screen="play"] .logo-clearspace {
@@ -162,8 +189,30 @@ button {
   margin-top: auto;
   margin-bottom: auto;
 }
-#lang .choices {
-  grid-template-columns: 1fr 1fr;
+#home {
+  align-items: center;
+  justify-content: center;
+  padding: 92px var(--space-6) 112px;
+}
+.home-art {
+  position: absolute;
+  inset: 92px var(--space-6) 112px;
+  width: calc(100% - 128px);
+  height: calc(100% - 204px);
+  object-fit: contain;
+}
+.home-play {
+  position: absolute;
+  z-index: 1;
+  left: 50%;
+  top: 50%;
+  min-width: 260px;
+  margin: 0;
+  transform: translate(-50%, -50%);
+  background: rgba(232, 48, 130, 0.72);
+}
+.home-play.btn:active {
+  background: rgba(232, 48, 130, 0.88);
 }
 #account {
   justify-content: center;
@@ -189,6 +238,20 @@ button {
   font-size: 18px;
   line-height: 1.3;
   margin: 0;
+}
+.account-choice {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-3);
+  width: 100%;
+}
+.account-choice[hidden] {
+  display: none;
+}
+.account-choice .choice {
+  min-height: 112px;
+  font-size: 32px;
 }
 #account-form {
   grid-column: 1;
@@ -291,13 +354,16 @@ button {
   margin: 0;
   color: #a00000;
 }
+#account-error[hidden] {
+  display: none;
+}
 #account-countdown {
   grid-column: 1 / -1;
   margin: 0;
   font-weight: 700;
   text-align: center;
 }
-.account-guest {
+#account-back {
   grid-column: 1 / -1;
   justify-self: center;
   width: 320px;
@@ -382,7 +448,7 @@ button {
   transform-origin: right center;
 }
 #play {
-  padding-top: var(--space-4);
+  padding-top: 88px;
   padding-bottom: var(--space-3); /* less empty space at the bottom = bigger image */
 }
 #q-text {
@@ -680,12 +746,16 @@ button {
   visibility: hidden;
 }
 .podium-trophy {
+  display: block;
+  width: 44px;
+  height: 48px;
+  object-fit: contain;
+  flex: none;
   min-height: 48px;
-  font-size: 42px;
-  line-height: 1.2;
 }
 .podium-place-1 .podium-trophy {
-  font-size: 52px;
+  width: 52px;
+  height: 52px;
 }
 .podium-user {
   width: 100%;
@@ -797,15 +867,18 @@ button {
   text-align: center;
 }
 .leaderboard-place .leaderboard-trophy {
+  display: block;
   flex: none;
-  font-size: 24px;
-  line-height: 1;
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
 }
 .leaderboard-place.leaderboard-rank-1 {
   color: #8a6200;
 }
 .leaderboard-place.leaderboard-rank-1 .leaderboard-trophy {
-  font-size: 26px;
+  width: 26px;
+  height: 26px;
   filter: drop-shadow(0 2px 2px rgba(110, 75, 0, 0.45));
 }
 .leaderboard-user {

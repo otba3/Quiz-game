@@ -6,6 +6,13 @@
   const PER_GAME = 6; // questions per playthrough (fewer if the bank is smaller)
   const ORIGIN_PER_TYPE = 3; // Origin: 3 continent + 3 country questions
   const FEEDBACK_TIME = 3000; // milliseconds to show the result before the next question
+  const HOME_ARTWORK_FILES = [
+    ...new Set(
+      QUIZ_DATA.categories.year.flatMap((question) =>
+        (question.artworks || []).map((artwork) => artwork.file),
+      ),
+    ),
+  ];
 
   // Category buttons: key in QUIZ_DATA.categories -> label on screen, per language.
   const CATEGORIES = [
@@ -14,6 +21,9 @@
   ];
   const UI = {
     en: {
+      languageLabel: "Language",
+      play: "Play",
+      homeArtworkAlt: "Artwork from the museum collection",
       pick: "Choose a category",
       leaderboard: "Leaderboard",
       checkLeaderboard: "Check Leaderboard",
@@ -30,8 +40,11 @@
       dailyProgress: (score, added) =>
         `Daily leaderboard: ${score}/12 (+${added} new question points).`,
       accountTitle: "Save your scores and points",
-      accountPrompt:
-        "Enter your six-character account code, create an account, or continue as a guest.",
+      accountPrompt: "Choose how you would like to continue.",
+      accountCodePrompt:
+        "Enter your account code or create a new account.",
+      accountSignIn: "Sign In / Sign Up",
+      accountBack: "Back",
       accountCodeLabel: "Account code",
       accountSubmit: "Use code",
       accountCreateOpen: "Create a new account",
@@ -49,7 +62,7 @@
         "Account service error. Ask staff to restart the kiosk.",
       accountCodeNotFound: "We couldn't find that account code.",
       accountRequestError: "We couldn't connect to the account service. Try again.",
-      accountGuest: "Continue as guest",
+      accountGuest: "Continue as Guest",
       accountCountdown: (seconds) =>
         `Guest mode starts in ${seconds} seconds.`,
       accountRequired: "Enter your account code, or continue as a guest.",
@@ -88,6 +101,9 @@
       ratingError: "We couldn't save your rating. Please try again.",
     },
     ar: {
+      languageLabel: "اللغة",
+      play: "ابدأ",
+      homeArtworkAlt: "عمل فني من مجموعة المتحف",
       pick: "اختر فئة",
       leaderboard: "لوحة المتصدرين",
       checkLeaderboard: "تحقق من لوحة المتصدرين",
@@ -104,8 +120,10 @@
       dailyProgress: (score, added) =>
         `لوحة المتصدرين اليومية: ${score}/12 (+${added} نقاط لأسئلة جديدة).`,
       accountTitle: "احفظ نتائجك ونقاطك",
-      accountPrompt:
-        "أدخل رمز حسابك المكوّن من ستة أحرف وأرقام، أو أنشئ حسابًا، أو تابع كزائر.",
+      accountPrompt: "اختر طريقة المتابعة.",
+      accountCodePrompt: "أدخل رمز حسابك أو أنشئ حسابًا جديدًا.",
+      accountSignIn: "تسجيل الدخول / إنشاء حساب",
+      accountBack: "رجوع",
       accountCodeLabel: "رمز الحساب",
       accountSubmit: "استخدم الرمز",
       accountCreateOpen: "إنشاء حساب جديد",
@@ -163,7 +181,7 @@
     },
   };
 
-  let lang = "en",
+  let lang = sessionStorage.getItem("quizLanguage") === "ar" ? "ar" : "en",
     category,
     questions,
     i,
@@ -176,7 +194,13 @@
     lastPointsResult,
     leaderboardCategory = "origin",
     leaderboardPeriod = "daily",
-    leaderboardRequest = 0;
+    leaderboardRequest = 0,
+    homeArtworkFile = null,
+    questionAnswered = false,
+    selectedAnswer = null,
+    accountErrorKey = null,
+    accountSecondsRemaining = 0,
+    saveErrorText = null;
 
   const ACCOUNT_CODE_TIMEOUT_SECONDS = 30;
 
@@ -195,6 +219,45 @@
     document
       .querySelectorAll(".screen")
       .forEach((s) => s.classList.toggle("active", s.id === id));
+  }
+
+  function updateLanguageControl() {
+    $("language-control").setAttribute("aria-label", UI[lang].languageLabel);
+    document.querySelectorAll("[data-lang]").forEach((button) => {
+      button.textContent = button.dataset.lang === "en" ? "English" : "عربي";
+      button.setAttribute(
+        "aria-pressed",
+        String(button.dataset.lang === lang),
+      );
+    });
+  }
+
+  function applyDocumentLanguage() {
+    document.documentElement.lang = lang;
+    document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+    updateLanguageControl();
+  }
+
+  function updateHomeLanguage() {
+    $("home-play").textContent = UI[lang].play;
+    $("home-art").alt = UI[lang].homeArtworkAlt;
+  }
+
+  function showHome(randomize = true) {
+    updateHomeLanguage();
+    if (randomize || !homeArtworkFile) {
+      const choices = HOME_ARTWORK_FILES.filter(
+        (file) => file !== homeArtworkFile,
+      );
+      homeArtworkFile =
+        choices[Math.floor(Math.random() * choices.length)] ||
+        HOME_ARTWORK_FILES[0];
+    }
+    if (homeArtworkFile) {
+      $("home-art").src =
+        OUTPUT_DIR + "images/" + encodeURIComponent(homeArtworkFile);
+    }
+    show("home");
   }
 
   // Returns a shuffled COPY of a list (Fisher-Yates shuffle), so the data is never changed.
@@ -291,23 +354,59 @@
 
   function startAccountTimer() {
     stopAccountTimer();
-    let remaining = ACCOUNT_CODE_TIMEOUT_SECONDS;
+    accountSecondsRemaining = ACCOUNT_CODE_TIMEOUT_SECONDS;
     const tick = () => {
-      $("account-countdown").textContent = UI[lang].accountCountdown(remaining);
-      if (remaining === 0) {
+      $("account-countdown").textContent =
+        UI[lang].accountCountdown(accountSecondsRemaining);
+      if (accountSecondsRemaining === 0) {
         continueAsGuest();
         return;
       }
-      remaining--;
+      accountSecondsRemaining--;
     };
     tick();
     accountTimer = setInterval(tick, 1000);
   }
 
-  function showAccountPrompt() {
-    sessionStorage.removeItem("quizVisitor");
+  const ACCOUNT_ERROR_KEYS = [
+    "accountRequired",
+    "accountTooLong",
+    "accountCodeNotFound",
+    "accountRequestError",
+    "accountNameRequired",
+    "accountNameTooLong",
+    "accountNameInvalid",
+    "accountServiceError",
+  ];
+
+  function clearAccountError() {
+    accountErrorKey = null;
+    $("account-error").textContent = "";
+    $("account-error").hidden = true;
+  }
+
+  function setAccountError(key) {
+    accountErrorKey = key;
+    $("account-error").textContent = UI[lang][key];
+    $("account-error").hidden = false;
+  }
+
+  function setAccountErrorFrom(error, fallbackKey) {
+    const key = ACCOUNT_ERROR_KEYS.find(
+      (candidate) =>
+        error instanceof Error && error.message === UI[lang][candidate],
+    );
+    setAccountError(key || fallbackKey);
+  }
+
+  function updateAccountLanguage() {
     $("account-title").textContent = UI[lang].accountTitle;
-    $("account-prompt").textContent = UI[lang].accountPrompt;
+    $("account-prompt").textContent = $("account-choice").hidden
+      ? UI[lang].accountCodePrompt
+      : UI[lang].accountPrompt;
+    $("account-signin").textContent = UI[lang].accountSignIn;
+    $("account-guest").textContent = UI[lang].accountGuest;
+    $("account-back").textContent = UI[lang].accountBack;
     $("account-code-label").textContent = UI[lang].accountCodeLabel;
     $("account-submit").textContent = UI[lang].accountSubmit;
     $("account-create-open").textContent = UI[lang].accountCreateOpen;
@@ -315,30 +414,72 @@
     $("account-create-submit").textContent = UI[lang].accountCreateSubmit;
     $("account-create-back").textContent = UI[lang].accountCreateBack;
     $("account-created-message").textContent = UI[lang].accountCreatedMessage;
-    $("account-created-reminder").textContent = UI[lang].accountCreatedReminder;
+    $("account-created-reminder").textContent =
+      UI[lang].accountCreatedReminder;
     $("account-created-continue").textContent =
       UI[lang].accountCreatedContinue;
-    $("account-guest").textContent = UI[lang].accountGuest;
+    if (accountErrorKey) {
+      $("account-error").textContent = UI[lang][accountErrorKey];
+    }
+    if (accountTimer !== null && !$("account-countdown").hidden) {
+      $("account-countdown").textContent =
+        UI[lang].accountCountdown(accountSecondsRemaining);
+    }
+  }
+
+  function showAccountPrompt() {
+    sessionStorage.removeItem("quizVisitor");
     $("account-code-input").value = "";
     $("account-name-input").value = "";
-    $("account-error").textContent = "";
-    $("account-form").hidden = false;
+    clearAccountError();
+    $("account-choice").hidden = false;
+    $("account-form").hidden = true;
     $("account-create-form").hidden = true;
-    $("account-create-open").hidden = false;
+    $("account-create-open").hidden = true;
     $("account-created").hidden = true;
     $("account-countdown").hidden = false;
-    $("account-guest").hidden = false;
+    $("account-back").hidden = true;
+    updateAccountLanguage();
     show("account");
     startAccountTimer();
+    $("account-signin").focus();
+  }
+
+  function showAccountOptions() {
+    stopAccountTimer();
+    $("account-prompt").textContent = UI[lang].accountCodePrompt;
+    $("account-choice").hidden = true;
+    $("account-form").hidden = false;
+    $("account-create-open").hidden = false;
+    $("account-create-form").hidden = true;
+    $("account-created").hidden = true;
+    clearAccountError();
+    $("account-countdown").hidden = true;
+    $("account-back").hidden = false;
     $("account-code-input").focus();
+  }
+
+  function returnToAccountChoice() {
+    $("account-choice").hidden = false;
+    $("account-form").hidden = true;
+    $("account-create-open").hidden = true;
+    $("account-create-form").hidden = true;
+    $("account-created").hidden = true;
+    clearAccountError();
+    $("account-countdown").hidden = false;
+    $("account-back").hidden = true;
+    $("account-prompt").textContent = UI[lang].accountPrompt;
+    startAccountTimer();
+    $("account-signin").focus();
   }
 
   function showCreateAccountForm() {
     stopAccountTimer();
-    $("account-error").textContent = "";
+    clearAccountError();
     $("account-form").hidden = true;
     $("account-create-open").hidden = true;
     $("account-create-form").hidden = false;
+    $("account-back").hidden = true;
     $("account-name-input").focus();
   }
 
@@ -346,9 +487,9 @@
     $("account-create-form").hidden = true;
     $("account-form").hidden = false;
     $("account-create-open").hidden = false;
+    $("account-back").hidden = false;
     $("account-name-input").value = "";
-    $("account-error").textContent = "";
-    startAccountTimer();
+    clearAccountError();
     $("account-code-input").focus();
   }
 
@@ -356,16 +497,17 @@
     event.preventDefault();
     const code = $("account-code-input").value.trim();
     if (!code) {
-      $("account-error").textContent = UI[lang].accountRequired;
+      setAccountError("accountRequired");
       $("account-code-input").focus();
       return;
     }
     if (code.length > 128) {
-      $("account-error").textContent = UI[lang].accountTooLong;
+      setAccountError("accountTooLong");
       $("account-code-input").focus();
       return;
     }
     stopAccountTimer();
+    clearAccountError();
     $("account-submit").disabled = true;
     $("account-create-open").disabled = true;
     $("account-guest").disabled = true;
@@ -387,9 +529,7 @@
       sessionStorage.setItem("quizVisitor", result.visitor);
       showCategories();
     } catch (error) {
-      $("account-error").textContent =
-        error instanceof Error ? error.message : UI[lang].accountRequestError;
-      startAccountTimer();
+      setAccountErrorFrom(error, "accountRequestError");
     } finally {
       $("account-submit").disabled = false;
       $("account-create-open").disabled = false;
@@ -401,17 +541,17 @@
     event.preventDefault();
     const displayName = $("account-name-input").value.trim();
     if (!displayName) {
-      $("account-error").textContent = UI[lang].accountNameRequired;
+      setAccountError("accountNameRequired");
       $("account-name-input").focus();
       return;
     }
     if (displayName.length > 40) {
-      $("account-error").textContent = UI[lang].accountNameTooLong;
+      setAccountError("accountNameTooLong");
       $("account-name-input").focus();
       return;
     }
 
-    $("account-error").textContent = "";
+    clearAccountError();
     $("account-create-submit").disabled = true;
     $("account-create-back").disabled = true;
     $("account-guest").disabled = true;
@@ -465,22 +605,13 @@
       $("account-create-form").hidden = true;
       $("account-create-open").hidden = true;
       $("account-created").hidden = false;
-      $("account-error").textContent = "";
+      clearAccountError();
       $("account-countdown").hidden = true;
       $("account-guest").hidden = true;
+      $("account-back").hidden = true;
       $("account-created-continue").focus();
     } catch (error) {
-      const knownErrors = [
-        UI[lang].accountNameRequired,
-        UI[lang].accountNameTooLong,
-        UI[lang].accountNameInvalid,
-        UI[lang].accountServiceError,
-      ];
-      $("account-error").textContent =
-        error instanceof Error && knownErrors.includes(error.message)
-          ? error.message
-          : UI[lang].accountServiceError;
-      startAccountTimer();
+      setAccountErrorFrom(error, "accountServiceError");
     } finally {
       $("account-create-submit").disabled = false;
       $("account-create-back").disabled = false;
@@ -488,12 +619,37 @@
     }
   }
 
-  // Language button: switch texts and reading direction, then ask for an account code.
+  // Language buttons update the visible screen without changing the visitor's place.
   function setLang(code) {
+    if (code !== "en" && code !== "ar") return;
+    if (lang === code) return;
     lang = code;
-    document.documentElement.lang = code;
-    document.documentElement.dir = code === "ar" ? "rtl" : "ltr"; // Arabic reads right to left
-    showAccountPrompt();
+    sessionStorage.setItem("quizLanguage", lang);
+    applyDocumentLanguage();
+
+    switch (stage.dataset.screen) {
+      case "home":
+        updateHomeLanguage();
+        break;
+      case "account":
+        updateAccountLanguage();
+        break;
+      case "cats":
+        showCategories();
+        break;
+      case "leaderboard":
+        showLeaderboard();
+        break;
+      case "play":
+        render(true);
+        break;
+      case "end":
+        updateEndLanguage();
+        break;
+      case "points":
+        showPoints(lastPointsResult);
+        break;
+    }
   }
 
   function showCategories() {
@@ -599,9 +755,9 @@
         ? ""
         : UI[lang].leaderboardEmpty;
       const medals = {
-        1: { symbol: "🥇", label: "Gold medal" },
-        2: { symbol: "🥈", label: "Silver medal" },
-        3: { symbol: "🥉", label: "Bronze medal" },
+        1: { image: "assets/medals/gold.svg", label: "Gold medal" },
+        2: { image: "assets/medals/silver.svg", label: "Silver medal" },
+        3: { image: "assets/medals/bronze.svg", label: "Bronze medal" },
       };
       [2, 1, 3].forEach((rank) => {
         const entry = result.entries[rank - 1];
@@ -612,10 +768,10 @@
           podium.appendChild(place);
           return;
         }
-        const trophy = document.createElement("span");
+        const trophy = document.createElement("img");
         trophy.className = "podium-trophy";
-        trophy.textContent = medals[rank].symbol;
-        trophy.setAttribute("aria-label", medals[rank].label);
+        trophy.src = medals[rank].image;
+        trophy.alt = medals[rank].label;
         const name = document.createElement("span");
         name.className = "podium-user";
         name.textContent = entry.player;
@@ -639,10 +795,10 @@
         place.appendChild(rankNumber);
         if (index < 3) {
           place.classList.add("leaderboard-rank-" + (index + 1));
-          const trophy = document.createElement("span");
+          const trophy = document.createElement("img");
           trophy.className = "leaderboard-trophy";
-          trophy.textContent = medals[index + 1].symbol;
-          trophy.setAttribute("aria-label", medals[index + 1].label);
+          trophy.src = medals[index + 1].image;
+          trophy.alt = medals[index + 1].label;
           place.prepend(trophy);
         }
         const player = document.createElement("span");
@@ -672,6 +828,8 @@
     i = 0;
     score = 0;
     correctQuestionIds = [];
+    questionAnswered = false;
+    selectedAnswer = null;
     gameStartedAt = Date.now();
     render();
     show("play");
@@ -690,10 +848,10 @@
     return img;
   }
 
-  function render() {
+  function render(preserveLeds = false) {
     const q = questions[i];
     // Questions 4, 7, 10... start a new group of 3: switch the LEDs off first.
-    if (i > 0 && i % LED_COUNT === 0) clearLeds();
+    if (!preserveLeds && i > 0 && i % LED_COUNT === 0) clearLeds();
     $("count").textContent = i + 1 + " / " + questions.length;
     setProgress(i);
     $("q-text").textContent = questionText(q);
@@ -718,6 +876,21 @@
       b.onclick = () => pick(b);
       box.appendChild(b);
     });
+    if (questionAnswered) {
+      box.classList.add("locked");
+      const correctAnswer = answerOf(q);
+      const selectedButton = [...box.children].find(
+        (button) => button.dataset.answer === selectedAnswer,
+      );
+      if (selectedAnswer !== correctAnswer) {
+        selectedButton.classList.add("wrong");
+      }
+      [...box.children]
+        .find((button) => button.dataset.answer === correctAnswer)
+        .classList.add("correct");
+      showArtworkInfo(q, selectedAnswer === correctAnswer);
+      setProgress(i + 1);
+    }
   }
 
   // Ask the Pi's server (game/app.py) to switch the LEDs.
@@ -732,6 +905,9 @@
   const clearLeds = () => ledRequest("clear");
 
   function pick(btn) {
+    if (questionAnswered) return;
+    questionAnswered = true;
+    selectedAnswer = btn.dataset.answer;
     const q = questions[i],
       box = $("answers");
     box.classList.add("locked");
@@ -749,8 +925,13 @@
     showArtworkInfo(q, correct);
     setProgress(i + 1);
     setTimeout(() => {
-      if (++i < questions.length) render();
-      else finish();
+      if (++i < questions.length) {
+        questionAnswered = false;
+        selectedAnswer = null;
+        render();
+      } else {
+        finish();
+      }
     }, FEEDBACK_TIME);
   }
 
@@ -790,6 +971,71 @@
     }
   }
 
+  function updateSavedScoreDetails(result) {
+    if (result.quizzes_today === 1) {
+      $("points-earned").textContent = UI[lang].pointsPending;
+    } else if (result.quizzes_today === 3) {
+      $("points-earned").textContent = UI[lang].thirdQuizPoints(
+        result.points_earned,
+      );
+    } else if (result.quizzes_today >= 4) {
+      $("points-earned").textContent = UI[lang].dailyLimit;
+    } else {
+      $("points-earned").textContent = UI[lang].earned(result.points_earned);
+    }
+    $("points-earned").textContent +=
+      "\n" +
+      UI[lang].dailyProgress(
+        result.leaderboard_score,
+        result.leaderboard_points_earned,
+      );
+    $("points-earned").hidden = false;
+    $("check-points").hidden = false;
+    if (result.quizzes_today > 1) {
+      $("before-score").textContent = result.first_score + "/" + questions.length;
+      $("now-score").textContent = score + "/" + questions.length;
+      $("score-compare").hidden = false;
+    }
+  }
+
+  function updateEndLanguage() {
+    $("end-label").textContent = UI[lang].score;
+    $("again").textContent = UI[lang].again;
+    $("before-label").textContent = UI[lang].before;
+    $("now-label").textContent = UI[lang].now;
+    $("check-points").textContent = UI[lang].checkPoints;
+    $("rating-title").textContent = UI[lang].ratingTitle;
+    $("rating-submit").textContent = UI[lang].ratingSubmit;
+    $("rating-skip").textContent = UI[lang].ratingSkip;
+    $("rating-close").setAttribute("aria-label", UI[lang].ratingSkip);
+    $("score").innerHTML =
+      score + "<small>/" + (questions ? questions.length : 0) + "</small>";
+    $("verdict").textContent = UI[lang].v[
+      score === questions.length ? 2 : score >= questions.length / 2 ? 1 : 0
+    ];
+
+    const saveState = $("save-panel").dataset.state;
+    if (saveState === "waiting") {
+      setSaveStatus("waiting", UI[lang].savingTitle, UI[lang].savingMessage);
+    } else if (saveState === "saved") {
+      setSaveStatus("saved", UI[lang].savedTitle, UI[lang].saved);
+      if (lastPointsResult) updateSavedScoreDetails(lastPointsResult);
+    } else if (saveState === "guest") {
+      setSaveStatus("guest", UI[lang].guestTitle, UI[lang].guestMessage);
+    } else if (saveState === "error") {
+      setSaveStatus(
+        "error",
+        UI[lang].saveFailed,
+        saveErrorText || UI[lang].saveFailed,
+      );
+    }
+
+    const ratingHasError = Boolean($("rating-status").textContent);
+    $("rating-status").textContent = ratingHasError ? UI[lang].ratingError : "";
+    renderRatingOptions();
+    $("rating-submit").disabled = ratingScore === null;
+  }
+
   const RATING_FACES = [
     '<svg viewBox="0 0 56 56" aria-hidden="true" focusable="false"><circle cx="28" cy="28" r="22" fill="#ef4148" stroke="#222" stroke-width="4"/><circle cx="20" cy="23" r="2.5" fill="#222"/><circle cx="36" cy="23" r="2.5" fill="#222"/><path d="M17 39 Q28 28 39 39" fill="none" stroke="#222" stroke-width="3.5" stroke-linecap="round"/></svg>',
     '<svg viewBox="0 0 56 56" aria-hidden="true" focusable="false"><circle cx="28" cy="28" r="22" fill="#efb08c" stroke="#222" stroke-width="4"/><circle cx="20" cy="23" r="2.5" fill="#222"/><circle cx="36" cy="23" r="2.5" fill="#222"/><path d="M19 38 Q28 33 37 38" fill="none" stroke="#222" stroke-width="3.5" stroke-linecap="round"/></svg>',
@@ -807,7 +1053,10 @@
       button.className = "rating-option";
       button.innerHTML = RATING_FACES[index];
       button.setAttribute("aria-label", label);
-      button.setAttribute("aria-pressed", "false");
+      button.setAttribute(
+        "aria-pressed",
+        String(ratingScore === index + 1),
+      );
       button.onclick = () => {
         ratingScore = index + 1;
         [...options.children].forEach((option, optionIndex) =>
@@ -908,6 +1157,7 @@
 
   async function saveAccountScore() {
     $("again").disabled = true;
+    saveErrorText = null;
     setSaveStatus("waiting", UI[lang].savingTitle, UI[lang].savingMessage);
     try {
       const reply = await fetch("/api/account/save", {
@@ -927,38 +1177,15 @@
       lastPointsResult = result;
       sessionStorage.setItem("quizVisitor", result.visitor);
       setSaveStatus("saved", UI[lang].savedTitle, UI[lang].saved);
-      if (result.quizzes_today === 1) {
-        $("points-earned").textContent = UI[lang].pointsPending;
-      } else if (result.quizzes_today === 3) {
-        $("points-earned").textContent = UI[lang].thirdQuizPoints(
-          result.points_earned,
-        );
-      } else if (result.quizzes_today >= 4) {
-        $("points-earned").textContent = UI[lang].dailyLimit;
-      } else {
-        $("points-earned").textContent = UI[lang].earned(
-          result.points_earned,
-        );
-      }
-      $("points-earned").textContent +=
-        "\n" +
-        UI[lang].dailyProgress(
-          result.leaderboard_score,
-          result.leaderboard_points_earned,
-        );
-      $("points-earned").hidden = false;
-      $("check-points").hidden = false;
-      if (result.quizzes_today > 1) {
-        $("before-score").textContent = result.first_score + "/" + questions.length;
-        $("now-score").textContent = score + "/" + questions.length;
-        $("score-compare").hidden = false;
-      }
+      updateSavedScoreDetails(result);
       showRating(true);
     } catch (error) {
+      saveErrorText =
+        error instanceof Error ? error.message : UI[lang].saveFailed;
       setSaveStatus(
         "error",
         UI[lang].saveFailed,
-        error instanceof Error ? error.message : UI[lang].saveFailed,
+        saveErrorText,
       );
       showRating(false);
     } finally {
@@ -967,11 +1194,14 @@
   }
 
   $("account-form").addEventListener("submit", submitAccountCode);
+  $("account-signin").onclick = showAccountOptions;
   $("account-create-open").onclick = showCreateAccountForm;
   $("account-create-form").addEventListener("submit", submitNewAccount);
   $("account-create-back").onclick = returnToAccountCode;
   $("account-created-continue").onclick = showCategories;
+  $("account-back").onclick = returnToAccountChoice;
   $("account-guest").onclick = continueAsGuest;
+  $("home-play").onclick = () => showAccountPrompt();
   $("rating-submit").onclick = submitRating;
   $("rating-skip").onclick = closeRating;
   $("rating-close").onclick = closeRating;
@@ -983,13 +1213,13 @@
   document
     .querySelectorAll("[data-lang]")
     .forEach((b) => (b.onclick = () => setLang(b.dataset.lang)));
-  // Play again: return to language selection and ask for an account code again.
+  applyDocumentLanguage();
+  showHome();
+  // Play again: return to the landing page with another artwork.
   $("again").onclick = () => {
     accountCode = null;
     sessionStorage.removeItem("quizVisitor");
     stopAccountTimer();
-    document.documentElement.lang = "en";
-    document.documentElement.dir = "ltr";
-    show("lang");
+    showHome();
   };
 })();
