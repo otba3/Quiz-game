@@ -6,7 +6,7 @@
   const PER_GAME = 6; // questions per playthrough (fewer if the bank is smaller)
   const ORIGIN_PER_TYPE = 3; // Origin: 3 continent + 3 country questions
   const FEEDBACK_TIME = 3000; // milliseconds to show the result before the next question
-  const HOME_ARTWORK_FILE = "MAT.2007.1.2832.....2000x2000.jpg";
+  const HOME_ARTWORK_FILE = "2007.1.1639a.2000x2000.jpg";
 
   // Category buttons: key in QUIZ_DATA.categories -> label on screen, per language.
   const CATEGORIES = [

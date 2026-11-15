@@ -201,7 +201,7 @@ button {
   height: 100%;
   object-fit: cover;
 }
-.home-play {
+.btn.home-play {
   position: absolute;
   z-index: 1;
   left: 50%;
@@ -209,10 +209,10 @@ button {
   min-width: 260px;
   margin: 0;
   transform: translate(-50%, -50%);
-  background: rgba(232, 48, 130, 0.72);
+  background: rgba(232, 48, 130, 0.7);
 }
-.home-play.btn:active {
-  background: rgba(232, 48, 130, 0.88);
+.btn.home-play:active {
+  background: rgba(232, 48, 130, 0.82);
 }
 #account {
   justify-content: center;
