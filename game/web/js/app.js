@@ -6,13 +6,7 @@
   const PER_GAME = 6; // questions per playthrough (fewer if the bank is smaller)
   const ORIGIN_PER_TYPE = 3; // Origin: 3 continent + 3 country questions
   const FEEDBACK_TIME = 3000; // milliseconds to show the result before the next question
-  const HOME_ARTWORK_FILES = [
-    ...new Set(
-      QUIZ_DATA.categories.year.flatMap((question) =>
-        (question.artworks || []).map((artwork) => artwork.file),
-      ),
-    ),
-  ];
+  const HOME_ARTWORK_FILE = "MAT.2007.1.2832.....2000x2000.jpg";
 
   // Category buttons: key in QUIZ_DATA.categories -> label on screen, per language.
   const CATEGORIES = [
@@ -195,7 +189,6 @@
     leaderboardCategory = "origin",
     leaderboardPeriod = "daily",
     leaderboardRequest = 0,
-    homeArtworkFile = null,
     questionAnswered = false,
     selectedAnswer = null,
     accountErrorKey = null,
@@ -243,20 +236,10 @@
     $("home-art").alt = UI[lang].homeArtworkAlt;
   }
 
-  function showHome(randomize = true) {
+  function showHome() {
     updateHomeLanguage();
-    if (randomize || !homeArtworkFile) {
-      const choices = HOME_ARTWORK_FILES.filter(
-        (file) => file !== homeArtworkFile,
-      );
-      homeArtworkFile =
-        choices[Math.floor(Math.random() * choices.length)] ||
-        HOME_ARTWORK_FILES[0];
-    }
-    if (homeArtworkFile) {
-      $("home-art").src =
-        OUTPUT_DIR + "images/" + encodeURIComponent(homeArtworkFile);
-    }
+    $("home-art").src =
+      OUTPUT_DIR + "images/" + encodeURIComponent(HOME_ARTWORK_FILE);
     show("home");
   }
 
