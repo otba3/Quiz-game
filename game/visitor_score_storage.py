@@ -19,21 +19,13 @@ DB_PATH = Path(__file__).parent.parent / "data" / "visitor_scores.db"
 ACCOUNT_CODE_ALPHABET = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"
 ACCOUNT_CODE_LENGTH = 6
 MAX_DISPLAY_NAME_LENGTH = 40
-ADMIN_ACCOUNT_CODE = os.environ.get("ADMIN_ACCOUNT_CODE", "adm1n1").strip().upper()
-ADMIN_DISPLAY_NAME = os.environ.get("ADMIN_DISPLAY_NAME", "Admin").strip() or "Admin"
-
-if (
-    len(ADMIN_ACCOUNT_CODE) != ACCOUNT_CODE_LENGTH
-    or not ADMIN_ACCOUNT_CODE.isascii()
-    or not ADMIN_ACCOUNT_CODE.isalnum()
-):
-    raise ValueError("ADMIN_ACCOUNT_CODE must contain exactly six letters or digits")
 
 
 def create_table():
     """Create the account, score, and feedback tables; keep existing data."""
     with closing(sqlite3.connect(DB_PATH)) as db:
         with db:
+            db.execute("BEGIN IMMEDIATE")
             db.execute("""
                 CREATE TABLE IF NOT EXISTS quiz_accounts (
                     id           INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -50,13 +42,41 @@ def create_table():
                     "ALTER TABLE quiz_accounts "
                     "ADD COLUMN display_name TEXT NOT NULL DEFAULT ''"
                 )
+            db.execute("""
+                CREATE TABLE IF NOT EXISTS admin_account (
+                    id           INTEGER PRIMARY KEY CHECK (id = 1),
+                    account_code TEXT NOT NULL,
+                    display_name TEXT NOT NULL
+                )
+            """)
+            current_admin = db.execute(
+                "SELECT account_code, display_name FROM admin_account WHERE id = 1"
+            ).fetchone()
+            default_code, default_name = current_admin or ("adm1n1", "Admin")
+            code = os.environ.get("ADMIN_ACCOUNT_CODE", default_code).strip().upper()
+            name = os.environ.get("ADMIN_DISPLAY_NAME", default_name).strip() or "Admin"
+            if (
+                len(code) != ACCOUNT_CODE_LENGTH
+                or not code.isascii()
+                or not code.isalnum()
+            ):
+                raise ValueError(
+                    "ADMIN_ACCOUNT_CODE must contain exactly six letters or digits"
+                )
             if db.execute(
                 "SELECT 1 FROM quiz_accounts WHERE upper(account_code) = ?",
-                (ADMIN_ACCOUNT_CODE,),
+                (code,),
             ).fetchone():
                 raise ValueError(
                     "ADMIN_ACCOUNT_CODE conflicts with an existing visitor account"
                 )
+            db.execute("""
+                INSERT INTO admin_account (id, account_code, display_name)
+                VALUES (1, ?, ?)
+                ON CONFLICT(id) DO UPDATE SET
+                    account_code = excluded.account_code,
+                    display_name = excluded.display_name
+            """, (code, name))
             db.execute("""
                 CREATE TABLE IF NOT EXISTS scores (
                     card_uid   INTEGER,
@@ -168,6 +188,17 @@ def create_table():
                 )
 
 
+def get_admin_account():
+    """Return the locally stored admin code and display name."""
+    with closing(sqlite3.connect(DB_PATH)) as db:
+        row = db.execute(
+            "SELECT account_code, display_name FROM admin_account WHERE id = 1"
+        ).fetchone()
+    if row is None:
+        raise RuntimeError("Admin account has not been initialized")
+    return row
+
+
 def create_account(display_name):
     """Create a named account with a unique, six-character entry code."""
     if not isinstance(display_name, str):
@@ -196,12 +227,17 @@ def create_account(display_name):
                 for (existing_name,) in existing_names
             ):
                 raise ValueError("Display name is already in use")
+            admin_code = db.execute(
+                "SELECT account_code FROM admin_account WHERE id = 1"
+            ).fetchone()
+            if admin_code is None:
+                raise RuntimeError("Admin account has not been initialized")
             for _ in range(100):
                 account_code = "".join(
                     secrets.choice(ACCOUNT_CODE_ALPHABET)
                     for _ in range(ACCOUNT_CODE_LENGTH)
                 )
-                if account_code == ADMIN_ACCOUNT_CODE:
+                if account_code == admin_code[0]:
                     continue
                 exists = db.execute(
                     "SELECT 1 FROM quiz_accounts WHERE upper(account_code) = ?",

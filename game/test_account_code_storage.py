@@ -67,10 +67,37 @@ class AccountCodeStorageTests(unittest.TestCase):
 
     def test_existing_visitor_code_cannot_be_used_as_admin_code(self):
         _, code, _ = storage.create_account("Visitor")
-        with patch.object(storage, "ADMIN_ACCOUNT_CODE", code):
+        with patch.dict("os.environ", {"ADMIN_ACCOUNT_CODE": code}):
             with self.assertRaisesRegex(ValueError, "conflicts"):
                 storage.create_table()
         self.assertLess(storage.get_account_identity(code), 0)
+
+    def test_admin_settings_persist_after_restart_and_can_be_changed(self):
+        with patch.dict("os.environ", {
+            "ADMIN_ACCOUNT_CODE": "XY12ZZ",
+            "ADMIN_DISPLAY_NAME": "Museum Admin",
+        }):
+            storage.create_table()
+        with patch.dict("os.environ", {}, clear=True):
+            storage.create_table()
+            self.assertEqual(storage.get_admin_account(), ("XY12ZZ", "Museum Admin"))
+        with patch.dict("os.environ", {"ADMIN_DISPLAY_NAME": "New Name"}, clear=True):
+            storage.create_table()
+        self.assertEqual(storage.get_admin_account(), ("XY12ZZ", "New Name"))
+
+    def test_admin_settings_reject_invalid_updates_without_losing_saved_account(self):
+        original = storage.get_admin_account()
+        with patch.dict("os.environ", {"ADMIN_ACCOUNT_CODE": "bad!"}, clear=True):
+            with self.assertRaisesRegex(ValueError, "six letters or digits"):
+                storage.create_table()
+        self.assertEqual(storage.get_admin_account(), original)
+
+    def test_new_visitor_codes_cannot_match_saved_admin_code(self):
+        with patch.dict("os.environ", {"ADMIN_ACCOUNT_CODE": "AB234C"}, clear=True):
+            storage.create_table()
+        with patch.object(storage.secrets, "choice", side_effect=list("AB234CD234EF")):
+            _, code, _ = storage.create_account("Visitor")
+        self.assertEqual(code, "D234EF")
 
     def test_display_name_must_be_nonempty_and_at_most_40_characters(self):
         for invalid_name in ("", "  ", "x" * 41):

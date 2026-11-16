@@ -133,10 +133,8 @@ class LeaderboardApiTests(unittest.TestCase):
         self.assertEqual(response.get_json(), {"error": "Account code was not found"})
 
     def test_admin_code_logs_in_with_admin_role_without_creating_a_visitor(self):
-        with (
-            patch.object(server, "ADMIN_ACCOUNT_CODE", "ADMIN1"),
-            patch.object(server, "ADMIN_DISPLAY_NAME", "Museum Admin"),
-        ):
+        with patch.object(server, "get_admin_account",
+                          return_value=("ADMIN1", "Museum Admin")):
             response = self.client.post(
                 "/api/account/login", json={"account_code": "admin1"}
             )
@@ -162,7 +160,7 @@ class LeaderboardApiTests(unittest.TestCase):
             "average_feedback_rating": 4.2,
         }
         with (
-            patch.object(server, "ADMIN_ACCOUNT_CODE", "ADMIN1"),
+            patch.object(server, "get_admin_account", return_value=("ADMIN1", "Admin")),
             patch.object(server, "get_dashboard_statistics", return_value=statistics),
         ):
             denied = self.client.get("/api/admin/dashboard")
@@ -181,7 +179,7 @@ class LeaderboardApiTests(unittest.TestCase):
             ("/api/admin/feedback-ratings", "get_feedback_rating_counts", "ratings",
              [{"rating": 1, "count": 0}]),
         ]
-        with patch.object(server, "ADMIN_ACCOUNT_CODE", "ADMIN1"):
+        with patch.object(server, "get_admin_account", return_value=("ADMIN1", "Admin")):
             for path, function, key, values in cases:
                 with self.subTest(path=path):
                     with patch.object(server, function, return_value=values) as query:
@@ -199,6 +197,33 @@ class LeaderboardApiTests(unittest.TestCase):
                         self.assertEqual(response.status_code, 200)
                         self.assertEqual(response.get_json(), {key: values})
                         query.assert_called_once_with()
+
+    def test_persisted_admin_remains_authorized_after_restart_without_environment(self):
+        temp_dir = tempfile.TemporaryDirectory()
+        self.addCleanup(temp_dir.cleanup)
+        with patch.object(storage, "DB_PATH", Path(temp_dir.name) / "accounts.db"):
+            with patch.dict("os.environ", {
+                "ADMIN_ACCOUNT_CODE": "XY12ZZ",
+                "ADMIN_DISPLAY_NAME": "Museum Admin",
+            }, clear=True):
+                storage.create_table()
+            with patch.dict("os.environ", {}, clear=True):
+                storage.create_table()
+            response = self.client.post(
+                "/api/account/login", json={"account_code": "xy12zz"}
+            )
+            dashboard = self.client.get(
+                "/api/admin/dashboard", headers={"X-Admin-Code": "xy12zz"}
+            )
+            old_code = self.client.get(
+                "/api/admin/dashboard", headers={"X-Admin-Code": "adm1n1"}
+            )
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.get_json()["visitor"], "Museum Admin")
+        self.assertEqual(response.get_json()["role"], "admin")
+        self.assertEqual(dashboard.status_code, 200)
+        self.assertEqual(old_code.status_code, 403)
 
     def test_completed_play_endpoint_records_one_quiz(self):
         play = {"id": 3, "created_at": "2026-11-15T10:00:00"}

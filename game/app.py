@@ -13,11 +13,10 @@ from pathlib import Path
 from flask import Flask, jsonify, request, send_from_directory
 
 from visitor_score_storage import (
-    ADMIN_ACCOUNT_CODE,
-    ADMIN_DISPLAY_NAME,
     create_account,
     create_table,
     get_account_identity,
+    get_admin_account,
     get_dashboard_statistics,
     get_daily_average_score,
     get_feedback_rating_counts,
@@ -157,13 +156,14 @@ def login_account():
     if not isinstance(data, dict) or not isinstance(data.get("account_code"), str):
         return jsonify({"error": "Account code is required"}), 400
     account_code = data["account_code"].strip()
+    admin_code, admin_name = get_admin_account()
     if account_code.isascii() and hmac.compare_digest(
-        account_code.upper(), ADMIN_ACCOUNT_CODE
+        account_code.upper(), admin_code
     ):
         return jsonify({
             "valid": True,
             "role": "admin",
-            "visitor": ADMIN_DISPLAY_NAME,
+            "visitor": admin_name,
         })
     try:
         account_identity = get_account_identity(account_code)
@@ -270,8 +270,9 @@ def visitor_statistics():
 
 def has_admin_access():
     supplied_code = request.headers.get("X-Admin-Code", "").strip().upper()
+    admin_code, _ = get_admin_account()
     return supplied_code.isascii() and hmac.compare_digest(
-        supplied_code, ADMIN_ACCOUNT_CODE
+        supplied_code, admin_code
     )
 
 

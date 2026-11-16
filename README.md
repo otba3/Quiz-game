@@ -30,34 +30,31 @@ restrict access to the kiosk and its database.
 
 ## Admin dashboard and visitor statistics
 
-The admin signs in with the reserved code `adm1n1` by default. Only that code
-reveals the Dashboard button, and the dashboard API checks the admin code on
-every request. The admin code is not a visitor account and cannot be generated
-for a regular account. Change the default on the Pi before using the kiosk:
+The admin signs in with the reserved code `adm1n1` by default. Only the admin
+code reveals the Dashboard button, and the dashboard API checks it on every
+request. The admin account is stored separately from visitor accounts in the
+local `data/visitor_scores.db`; its code cannot be generated for a visitor.
+To set or change the code and display name, start the app once with:
 
 ```bash
 ADMIN_ACCOUNT_CODE=ZXCV12 ADMIN_DISPLAY_NAME="Museum Manager" python3 game/app.py
 ```
 
-Use a six-character ASCII letter/digit code. The values above apply to that
-process only. To keep them across restarts when the kiosk runs as a systemd
-service, edit the service override (replace `quiz-game` with the actual
-service name):
+Use a six-character ASCII letter/digit code that is not already used by a
+visitor. The values are saved in the database on startup. After stopping the
+app, start it normally without the variables; the saved admin account remains:
 
 ```bash
-sudo systemctl edit quiz-game
+python3 game/app.py
 ```
 
-```ini
-Environment="ADMIN_ACCOUNT_CODE=ZXCV12"
-Environment="ADMIN_DISPLAY_NAME=Museum Manager"
-```
-
-Choose a code not already used by a visitor account; the application refuses
-to start if the codes conflict, protecting the existing account.
-Then run `sudo systemctl daemon-reload` and
-`sudo systemctl restart quiz-game`. Keep the custom code private; changing it
-does not affect visitor accounts or scores.
+To change it later, run the first command again with the new values. If an
+automatic startup service still sets either variable, its configured value
+will overwrite the corresponding saved value at each startup; update or remove
+those settings before changing the account. The application refuses to start
+if the code conflicts with a visitor account and leaves the saved data intact.
+The code is stored in the local database, so restrict access to that file and
+keep backups of it; changing the admin account does not erase visitor scores.
 
 All visitors see the compact statistics line in this order:
 `feedback / completed quizzes / completed quizzes today / average score out of
