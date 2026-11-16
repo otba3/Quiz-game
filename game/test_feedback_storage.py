@@ -92,6 +92,56 @@ class GameFeedbackStorageTests(unittest.TestCase):
         self.assertEqual(statistics["players_since_beginning"], 2)
         self.assertEqual(statistics["average_score"], 4)
 
+    def test_score_comparisons_pair_first_two_by_account_category_and_day(self):
+        first, _, _ = storage.create_account("First")
+        second, _, _ = storage.create_account("Second")
+        with closing(sqlite3.connect(self.database)) as db:
+            with db:
+                db.executemany(
+                    """INSERT INTO quiz_sessions
+                       (card_uid, category, score, session_date, created_at)
+                       VALUES (?, ?, ?, ?, ?)""",
+                    [
+                        (first, "year", 1, "2026-01-01", "2026-01-01T11:01:00"),
+                        (first, "year", 4, "2026-01-01", "2026-01-01T13:00:00"),
+                        (first, "year", 6, "2026-01-01", "2026-01-01T14:00:00"),
+                        (first, "origin", 3, "2026-01-01", "2026-01-01T15:00:00"),
+                        (first, "year", 5, "2026-01-02", "2026-01-02T10:00:00"),
+                        (second, "year", 2, "2026-01-01", "2026-01-01T16:00:00"),
+                        (123, "year", 6, "2026-01-01", "2026-01-01T17:00:00"),
+                    ],
+                )
+
+        entries = storage.get_score_comparisons()
+
+        self.assertEqual(len(entries), 4)
+        paired = next(entry for entry in entries if entry["first_score"] == 1)
+        self.assertEqual(paired, {
+            "category": "year",
+            "session_date": "2026-01-01",
+            "first_score": 1,
+            "second_score": 4,
+            "first_time": "2026-01-01T11:01:00",
+            "second_time": "2026-01-01T13:00:00",
+        })
+        self.assertEqual(
+            {entry["first_score"] for entry in entries if entry["second_score"] is None},
+            {2, 3, 5},
+        )
+
+    def test_feedback_rating_counts_include_unrated_options_and_guest_feedback(self):
+        storage.save_game_feedback("year", 4, 5, "en", False, 60)
+        storage.save_game_feedback("origin", 2, 5, "ar", True, 90)
+        storage.save_game_feedback("year", 1, 2, "en", False, 30)
+
+        self.assertEqual(storage.get_feedback_rating_counts(), [
+            {"rating": 1, "count": 0},
+            {"rating": 2, "count": 1},
+            {"rating": 3, "count": 0},
+            {"rating": 4, "count": 0},
+            {"rating": 5, "count": 2},
+        ])
+
     def test_removes_question_count_from_existing_table(self):
         with closing(sqlite3.connect(self.database)) as db:
             with db:

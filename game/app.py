@@ -20,9 +20,11 @@ from visitor_score_storage import (
     get_account_identity,
     get_dashboard_statistics,
     get_daily_average_score,
+    get_feedback_rating_counts,
     get_points_balance,
     get_points_history,
     get_leaderboard,
+    get_score_comparisons,
     record_visitor_play,
     save_game_feedback,
     save_score,
@@ -266,14 +268,32 @@ def visitor_statistics():
     return jsonify(get_dashboard_statistics())
 
 
+def has_admin_access():
+    supplied_code = request.headers.get("X-Admin-Code", "").strip().upper()
+    return supplied_code.isascii() and hmac.compare_digest(
+        supplied_code, ADMIN_ACCOUNT_CODE
+    )
+
+
 @app.route("/api/admin/dashboard")
 def admin_dashboard():
-    supplied_code = request.headers.get("X-Admin-Code", "").strip().upper()
-    if not supplied_code.isascii() or not hmac.compare_digest(
-        supplied_code, ADMIN_ACCOUNT_CODE
-    ):
+    if not has_admin_access():
         return jsonify({"error": "Admin access required"}), 403
     return jsonify(get_dashboard_statistics())
+
+
+@app.route("/api/admin/score-comparisons")
+def admin_score_comparisons():
+    if not has_admin_access():
+        return jsonify({"error": "Admin access required"}), 403
+    return jsonify({"entries": get_score_comparisons()})
+
+
+@app.route("/api/admin/feedback-ratings")
+def admin_feedback_ratings():
+    if not has_admin_access():
+        return jsonify({"error": "Admin access required"}), 403
+    return jsonify({"ratings": get_feedback_rating_counts()})
 
 
 @app.route("/api/feedback", methods=["POST"])

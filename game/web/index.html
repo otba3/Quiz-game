@@ -74,14 +74,36 @@
         <div><span id="stat-feedback-label"></span><strong id="stat-feedback"></strong></div>
         <div><span id="stat-players-label"></span><strong id="stat-players"></strong></div>
         <div><span id="stat-today-label"></span><strong id="stat-today"></strong></div>
-        <div><span id="stat-score-label"></span><strong id="stat-score"></strong></div>
-        <div><span id="stat-rating-label"></span><strong id="stat-rating"></strong></div>
+        <button class="dashboard-stat-detail" id="score-detail-open" type="button">
+          <span id="stat-score-label"></span><strong id="stat-score"></strong>
+          <small class="dashboard-detail-hint"></small>
+        </button>
+        <button class="dashboard-stat-detail" id="rating-detail-open" type="button">
+          <span id="stat-rating-label"></span><strong id="stat-rating"></strong>
+          <small class="dashboard-detail-hint"></small>
+        </button>
       </div>
       <div class="dashboard-actions">
         <button class="btn" id="dashboard-back" type="button"></button>
         <button class="btn" id="dashboard-exit" type="button"></button>
       </div>
       <p class="dashboard-status" id="dashboard-status" role="status" aria-live="polite"></p>
+    </section>
+
+    <section id="dashboard-detail" class="screen">
+      <h1 class="title" id="dashboard-detail-title"></h1>
+      <p class="dashboard-detail-description" id="dashboard-detail-description"></p>
+      <p id="dashboard-detail-status" role="status" aria-live="polite"></p>
+      <div class="dashboard-detail-table-wrap" id="dashboard-detail-table-wrap" hidden>
+        <table class="dashboard-detail-table">
+          <thead id="dashboard-detail-head"></thead>
+          <tbody id="dashboard-detail-body"></tbody>
+        </table>
+      </div>
+      <div class="dashboard-detail-actions">
+        <button class="btn" id="dashboard-detail-back" type="button"></button>
+        <button class="btn" id="dashboard-detail-retry" type="button" hidden></button>
+      </div>
     </section>
 
     <section id="leaderboard" class="screen">

@@ -318,6 +318,44 @@ def get_dashboard_statistics():
     }
 
 
+def get_score_comparisons():
+    """Return anonymous first and second account attempts per category and day."""
+    with closing(sqlite3.connect(DB_PATH)) as db:
+        db.row_factory = sqlite3.Row
+        rows = db.execute("""
+            WITH ranked AS (
+                SELECT s.category, s.session_date, s.score, s.created_at,
+                       ROW_NUMBER() OVER (
+                           PARTITION BY s.card_uid, s.category, s.session_date
+                           ORDER BY s.id
+                       ) AS attempt, s.card_uid
+                FROM quiz_sessions s
+                JOIN quiz_accounts a ON a.id = -s.card_uid
+            )
+            SELECT category, session_date,
+                   MAX(CASE WHEN attempt = 1 THEN score END) AS first_score,
+                   MAX(CASE WHEN attempt = 2 THEN score END) AS second_score,
+                   MAX(CASE WHEN attempt = 1 THEN created_at END) AS first_time,
+                   MAX(CASE WHEN attempt = 2 THEN created_at END) AS second_time
+            FROM ranked
+            WHERE attempt <= 2
+            GROUP BY card_uid, category, session_date
+            ORDER BY session_date DESC, first_time DESC, category
+        """).fetchall()
+    return [dict(row) for row in rows]
+
+
+def get_feedback_rating_counts():
+    """Return the count for every rating, including ratings with no responses."""
+    with closing(sqlite3.connect(DB_PATH)) as db:
+        rows = db.execute(
+            "SELECT rating, COUNT(*) FROM game_feedback GROUP BY rating"
+        ).fetchall()
+    counts = dict(rows)
+    return [{"rating": rating, "count": counts.get(rating, 0)}
+            for rating in range(1, 6)]
+
+
 
 
 MAX_ATTEMPTS = 2  # before + after the exhibition

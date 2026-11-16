@@ -174,6 +174,32 @@ class LeaderboardApiTests(unittest.TestCase):
         self.assertEqual(allowed.status_code, 200)
         self.assertEqual(allowed.get_json(), statistics)
 
+    def test_dashboard_detail_endpoints_require_admin_and_return_only_details(self):
+        cases = [
+            ("/api/admin/score-comparisons", "get_score_comparisons", "entries",
+             [{"first_score": 1, "second_score": 4}]),
+            ("/api/admin/feedback-ratings", "get_feedback_rating_counts", "ratings",
+             [{"rating": 1, "count": 0}]),
+        ]
+        with patch.object(server, "ADMIN_ACCOUNT_CODE", "ADMIN1"):
+            for path, function, key, values in cases:
+                with self.subTest(path=path):
+                    with patch.object(server, function, return_value=values) as query:
+                        self.assertEqual(self.client.get(path).status_code, 403)
+                        self.assertEqual(
+                            self.client.get(
+                                path, headers={"X-Admin-Code": "visitor"}
+                            ).status_code,
+                            403,
+                        )
+                        query.assert_not_called()
+                        response = self.client.get(
+                            path, headers={"X-Admin-Code": "admin1"}
+                        )
+                        self.assertEqual(response.status_code, 200)
+                        self.assertEqual(response.get_json(), {key: values})
+                        query.assert_called_once_with()
+
     def test_completed_play_endpoint_records_one_quiz(self):
         play = {"id": 3, "created_at": "2026-11-15T10:00:00"}
         with patch.object(server, "record_visitor_play", return_value=play) as record:

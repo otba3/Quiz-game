@@ -72,6 +72,15 @@ with the dashboard update. Historical scores above 6 are counted as plays but
 excluded from the `/6` average because their question count is unknown. Past
 guest games without records cannot be recovered.
 
+On the admin dashboard, select **Average score** to see anonymous account
+comparisons. Each row groups the first two quizzes for one account, category,
+and local date; a dash means a second quiz has not been completed. The change
+is the second score minus the first. Later attempts are not included in that
+row, and guest plays cannot be paired because they have no account identity.
+Select **Average feedback rating** to see how many submitted ratings fall into
+each value from 1 to 5, including guest feedback. Both detail pages require the
+admin code and include all available history.
+
 Reward points are awarded in pairs per category: the first quiz waits for the
 second, which awards their combined score; the third waits for the fourth,
 which awards the average of those two scores rounded down. No further reward

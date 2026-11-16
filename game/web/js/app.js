@@ -34,6 +34,25 @@
       statsError: "Couldn't load the dashboard statistics.",
       statsFooterLabel:
         "Feedback / Players / Today / Average score / Average rating",
+      detailsOpen: "View details",
+      scoreDetailsTitle: "Score comparisons",
+      scoreDetailsDescription:
+        "First two account quizzes per category and day. Guest games cannot be paired.",
+      feedbackDetailsTitle: "Feedback ratings",
+      feedbackDetailsDescription: "Number of submitted ratings for each score.",
+      detailsLoading: "Loading details...",
+      detailsError: "Couldn't load these details. Please try again.",
+      scoreDetailsEmpty: "No account quizzes have been recorded yet.",
+      detailsRetry: "Try again",
+      detailCategory: "Category",
+      detailDate: "Date",
+      detailFirst: "First try",
+      detailSecond: "Second try",
+      detailDifference: "Change",
+      detailFirstTime: "First time",
+      detailSecondTime: "Second time",
+      detailRating: "Rating",
+      detailResponses: "Responses",
       leaderboard: "Leaderboard",
       checkLeaderboard: "Check Leaderboard",
       daily: "Today",
@@ -129,6 +148,25 @@
       statsError: "تعذر تحميل إحصاءات لوحة البيانات.",
       statsFooterLabel:
         "التقييمات / مرات اللعب / اليوم / متوسط النتيجة / متوسط التقييم",
+      detailsOpen: "عرض التفاصيل",
+      scoreDetailsTitle: "مقارنة النتائج",
+      scoreDetailsDescription:
+        "أول اختبارين لكل حساب وفئة ويوم. لا يمكن ربط اختبارات الزوار.",
+      feedbackDetailsTitle: "تقييمات التجربة",
+      feedbackDetailsDescription: "عدد التقييمات المرسلة لكل درجة.",
+      detailsLoading: "جارٍ تحميل التفاصيل...",
+      detailsError: "تعذر تحميل التفاصيل. يُرجى المحاولة مرة أخرى.",
+      scoreDetailsEmpty: "لم تُسجل اختبارات للحسابات بعد.",
+      detailsRetry: "حاول مرة أخرى",
+      detailCategory: "الفئة",
+      detailDate: "التاريخ",
+      detailFirst: "المحاولة الأولى",
+      detailSecond: "المحاولة الثانية",
+      detailDifference: "الفرق",
+      detailFirstTime: "وقت الأولى",
+      detailSecondTime: "وقت الثانية",
+      detailRating: "التقييم",
+      detailResponses: "عدد التقييمات",
       leaderboard: "لوحة المتصدرين",
       checkLeaderboard: "تحقق من لوحة المتصدرين",
       daily: "اليوم",
@@ -223,6 +261,8 @@
     leaderboardCategory = "origin",
     leaderboardPeriod = "daily",
     leaderboardRequest = 0,
+    dashboardDetailKind = null,
+    dashboardDetailRequest = 0,
     idleTimer = null,
     dailyAverage = null,
     dailyAverageError = false,
@@ -711,6 +751,9 @@
       case "dashboard":
         showAdminDashboard();
         break;
+      case "dashboard-detail":
+        showDashboardDetail(dashboardDetailKind);
+        break;
     }
   }
 
@@ -813,6 +856,9 @@
     $("stat-today-label").textContent = UI[lang].statsToday;
     $("stat-score-label").textContent = UI[lang].statsScore;
     $("stat-rating-label").textContent = UI[lang].statsRating;
+    document.querySelectorAll(".dashboard-detail-hint").forEach((hint) => {
+      hint.textContent = UI[lang].detailsOpen;
+    });
     $("dashboard-status").textContent = UI[lang].statsLoading;
     show("dashboard");
     try {
@@ -826,6 +872,100 @@
     } catch (error) {
       console.error("Could not load admin dashboard statistics.", error);
       $("dashboard-status").textContent = UI[lang].statsError;
+    }
+  }
+
+  async function showDashboardDetail(kind) {
+    if (!isAdmin || !adminCode) {
+      showCategories();
+      return;
+    }
+    dashboardDetailKind = kind;
+    const requestId = ++dashboardDetailRequest;
+    const isScore = kind === "score";
+    $("dashboard-detail-title").textContent = isScore
+      ? UI[lang].scoreDetailsTitle
+      : UI[lang].feedbackDetailsTitle;
+    $("dashboard-detail-description").textContent = isScore
+      ? UI[lang].scoreDetailsDescription
+      : UI[lang].feedbackDetailsDescription;
+    $("dashboard-detail-back").textContent = UI[lang].dashboardBack;
+    $("dashboard-detail-retry").textContent = UI[lang].detailsRetry;
+    $("dashboard-detail-retry").hidden = true;
+    $("dashboard-detail-status").textContent = UI[lang].detailsLoading;
+    $("dashboard-detail-table-wrap").hidden = true;
+    show("dashboard-detail");
+
+    try {
+      const endpoint = isScore ? "score-comparisons" : "feedback-ratings";
+      const response = await fetch("/api/admin/" + endpoint, {
+        headers: { "X-Admin-Code": adminCode },
+      });
+      const result = await response.json();
+      if (!response.ok) throw new Error(result.error || UI[lang].detailsError);
+      if (requestId !== dashboardDetailRequest ||
+          stage.dataset.screen !== "dashboard-detail" || !isAdmin) return;
+      const rows = isScore ? result.entries : result.ratings;
+      if (!Array.isArray(rows)) throw new Error("Invalid dashboard details.");
+      if (isScore && rows.length === 0) {
+        $("dashboard-detail-status").textContent = UI[lang].scoreDetailsEmpty;
+        return;
+      }
+      const headings = isScore
+        ? ["detailCategory", "detailDate", "detailFirst", "detailSecond",
+           "detailDifference", "detailFirstTime", "detailSecondTime"]
+        : ["detailRating", "detailResponses"];
+      const headerRow = document.createElement("tr");
+      headings.forEach((key) => {
+        const heading = document.createElement("th");
+        heading.scope = "col";
+        heading.textContent = UI[lang][key];
+        headerRow.appendChild(heading);
+      });
+      $("dashboard-detail-head").replaceChildren(headerRow);
+      const body = $("dashboard-detail-body");
+      body.replaceChildren();
+      const timeFormat = new Intl.DateTimeFormat(lang, {
+        hour: "numeric",
+        minute: "2-digit",
+      });
+      const dateFormat = new Intl.DateTimeFormat(lang, { dateStyle: "medium" });
+      rows.forEach((entry) => {
+        let cells;
+        if (isScore) {
+          const category = CATEGORIES.find((item) => item.key === entry.category);
+          const difference = entry.second_score === null
+            ? "—"
+            : (entry.second_score > entry.first_score ? "+" : "") +
+              (entry.second_score - entry.first_score);
+          cells = [
+            category ? tr(category.name) : entry.category,
+            dateFormat.format(new Date(entry.session_date + "T00:00:00")),
+            entry.first_score,
+            entry.second_score === null ? "—" : entry.second_score,
+            difference,
+            timeFormat.format(new Date(entry.first_time)),
+            entry.second_time ? timeFormat.format(new Date(entry.second_time)) : "—",
+          ];
+        } else {
+          cells = [entry.rating, entry.count];
+        }
+        const row = document.createElement("tr");
+        cells.forEach((value) => {
+          const cell = document.createElement("td");
+          cell.textContent = value;
+          row.appendChild(cell);
+        });
+        body.appendChild(row);
+      });
+      $("dashboard-detail-status").textContent = "";
+      $("dashboard-detail-table-wrap").hidden = false;
+    } catch (error) {
+      if (requestId !== dashboardDetailRequest ||
+          stage.dataset.screen !== "dashboard-detail" || !isAdmin) return;
+      console.error("Could not load dashboard details.", error);
+      $("dashboard-detail-status").textContent = UI[lang].detailsError;
+      $("dashboard-detail-retry").hidden = false;
     }
   }
 
@@ -1424,6 +1564,11 @@
   $("dashboard-open").onclick = showAdminDashboard;
   $("dashboard-back").onclick = showCategories;
   $("dashboard-exit").onclick = exitToHome;
+  $("score-detail-open").onclick = () => showDashboardDetail("score");
+  $("rating-detail-open").onclick = () => showDashboardDetail("rating");
+  $("dashboard-detail-back").onclick = showAdminDashboard;
+  $("dashboard-detail-retry").onclick = () =>
+    showDashboardDetail(dashboardDetailKind);
   $("home-play").onclick = () => showAccountPrompt();
   $("rating-submit").onclick = submitRating;
   $("rating-skip").onclick = closeRating;
