@@ -511,8 +511,8 @@ def save_score(card_uid, category, score, correct_question_ids=()):
                 (card_uid, category, session_date),
             ).fetchone()[0]
             average_score = db.execute(
-                """SELECT AVG(score) * 2 FROM quiz_sessions
-                   WHERE session_date = ?""",
+                """SELECT AVG(score) FROM quiz_sessions
+                   WHERE session_date = ? AND score BETWEEN 0 AND 6""",
                 (session_date,),
             ).fetchone()[0]
     return {
@@ -527,12 +527,12 @@ def save_score(card_uid, category, score, correct_question_ids=()):
 
 
 def get_daily_average_score():
-    """Return today's average across account-linked quiz attempts."""
+    """Return today's average for account-linked quiz scores out of six."""
     today = datetime.now().date().isoformat()
     with closing(sqlite3.connect(DB_PATH)) as db:
         average_score, visitor_count = db.execute(
-            """SELECT AVG(score) * 2, COUNT(*) FROM quiz_sessions
-               WHERE session_date = ?""",
+            """SELECT AVG(score), COUNT(*) FROM quiz_sessions
+               WHERE session_date = ? AND score BETWEEN 0 AND 6""",
             (today,),
         ).fetchone()
     return {

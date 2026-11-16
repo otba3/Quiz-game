@@ -4,7 +4,6 @@
 
   const OUTPUT_DIR = "../../output/"; // question images live in output/images/
   const PER_GAME = 6; // questions per playthrough (fewer if the bank is smaller)
-  const DAILY_QUESTION_COUNT = PER_GAME * 2;
   const ORIGIN_PER_TYPE = 3; // Origin: 3 continent + 3 country questions
   const FEEDBACK_TIME = 3000; // milliseconds to show the result before the next question
   const HOME_ARTWORK_FILE = "2007.1.1639a.2000x2000.jpg";
@@ -1246,7 +1245,7 @@
             maximumFractionDigits: 1,
           }).format(dailyAverage) +
           "/" +
-          DAILY_QUESTION_COUNT;
+          PER_GAME;
     const lines = [
       dailyAverageError
         ? UI[lang].averageError

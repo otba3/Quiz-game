@@ -123,5 +123,5 @@ scores from every quiz completed during the current calendar month. Leaderboard
 names are anonymous, stable visitor labels. Five sample visitors are included
 for presentations by default. Set `LEADERBOARD_DEMO_MODE=false` to hide them.
 The result screen also shows today's average across account-linked quiz
-attempts, scaled to 12 questions; guest scores are not included because they
-are not saved.
+attempts, out of 6; guest scores are not included. Historical scores above 6
+are excluded because their question count is unknown.

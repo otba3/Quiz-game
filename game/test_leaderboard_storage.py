@@ -82,11 +82,21 @@ class LeaderboardStorageTests(unittest.TestCase):
         first = storage.save_score(1001, "year", 2)
         second = storage.save_score(1002, "origin", 5)
 
-        self.assertEqual(first["average_score"], 4.0)
-        self.assertEqual(second["average_score"], 7.0)
+        self.assertEqual(first["average_score"], 2.0)
+        self.assertEqual(second["average_score"], 3.5)
         self.assertEqual(
             storage.get_daily_average_score(),
-            {"average_score": 7.0, "visitor_count": 2},
+            {"average_score": 3.5, "visitor_count": 2},
+        )
+
+    def test_daily_average_excludes_scores_above_six(self):
+        storage.save_score(1001, "year", 8)
+        result = storage.save_score(1002, "origin", 6)
+
+        self.assertEqual(result["average_score"], 6)
+        self.assertEqual(
+            storage.get_daily_average_score(),
+            {"average_score": 6, "visitor_count": 1},
         )
 
     def test_points_are_awarded_for_quizzes_one_two_and_three_four_as_pairs(self):
