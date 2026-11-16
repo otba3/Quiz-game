@@ -28,6 +28,50 @@ leaderboard and must be unique, ignoring case and surrounding whitespace.
 Account codes are the only means of accessing an account, so
 restrict access to the kiosk and its database.
 
+## Admin dashboard and visitor statistics
+
+The admin signs in with the reserved code `adm1n1` by default. Only that code
+reveals the Dashboard button, and the dashboard API checks the admin code on
+every request. The admin code is not a visitor account and cannot be generated
+for a regular account. Change the default on the Pi before using the kiosk:
+
+```bash
+ADMIN_ACCOUNT_CODE=ZXCV12 ADMIN_DISPLAY_NAME="Museum Manager" python3 game/app.py
+```
+
+Use a six-character ASCII letter/digit code. The values above apply to that
+process only. To keep them across restarts when the kiosk runs as a systemd
+service, edit the service override (replace `quiz-game` with the actual
+service name):
+
+```bash
+sudo systemctl edit quiz-game
+```
+
+```ini
+Environment="ADMIN_ACCOUNT_CODE=ZXCV12"
+Environment="ADMIN_DISPLAY_NAME=Museum Manager"
+```
+
+Choose a code not already used by a visitor account; the application refuses
+to start if the codes conflict, protecting the existing account.
+Then run `sudo systemctl daemon-reload` and
+`sudo systemctl restart quiz-game`. Keep the custom code private; changing it
+does not affect visitor accounts or scores.
+
+All visitors see the compact statistics line in this order:
+`feedback / completed quizzes / completed quizzes today / average score out of
+6 / average feedback rating out of 5`. The dashboard displays the same metrics
+with labels. “Players” counts completed quiz sessions (including guest games),
+not unique people, since guests are anonymous. Average scores use completed
+quizzes; the feedback average uses submitted 1–5 ratings. These records are
+stored locally in `data/visitor_scores.db`. Anonymous guest scores are recorded
+only for these statistics; guests do not receive saved account scores or points.
+Existing account quiz sessions are included automatically when the app starts
+with the dashboard update. Historical scores above 6 are counted as plays but
+excluded from the `/6` average because their question count is unknown. Past
+guest games without records cannot be recovered.
+
 Reward points are awarded in pairs per category: the first quiz waits for the
 second, which awards their combined score; the third waits for the fourth,
 which awards the average of those two scores rounded down. No further reward
@@ -48,9 +92,12 @@ The local account API is:
 - `POST /api/account/create` with `{"display_name": "..."}` creates an account
   and returns its code once.
 - `POST /api/account/login` with `{"account_code": "......"}` checks an
-  existing account code without creating an account.
+  existing account code without creating an account; the reserved admin code
+  signs in with the admin role.
 - `POST /api/account/save` links quiz scores and points to the looked-up
   account.
+- `GET /api/admin/dashboard` returns dashboard statistics only when called
+  with the configured code in the `X-Admin-Code` header.
 
 Install dependencies and start the app:
 

@@ -65,6 +65,13 @@ class AccountCodeStorageTests(unittest.TestCase):
             count = db.execute("SELECT COUNT(*) FROM quiz_accounts").fetchone()[0]
         self.assertEqual(count, 0)
 
+    def test_existing_visitor_code_cannot_be_used_as_admin_code(self):
+        _, code, _ = storage.create_account("Visitor")
+        with patch.object(storage, "ADMIN_ACCOUNT_CODE", code):
+            with self.assertRaisesRegex(ValueError, "conflicts"):
+                storage.create_table()
+        self.assertLess(storage.get_account_identity(code), 0)
+
     def test_display_name_must_be_nonempty_and_at_most_40_characters(self):
         for invalid_name in ("", "  ", "x" * 41):
             with self.subTest(name=invalid_name):

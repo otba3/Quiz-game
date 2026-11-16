@@ -37,6 +37,61 @@ class GameFeedbackStorageTests(unittest.TestCase):
         self.assertEqual(row[6], result["created_at"])
         self.assertTrue(result["created_at"])
 
+    def test_dashboard_statistics_include_guest_and_account_quiz_completions(self):
+        storage.record_visitor_play("year", 4)
+        storage.record_visitor_play("origin", 2)
+        storage.save_game_feedback("year", 4, 3, "en", False, 60)
+        storage.save_game_feedback("origin", 2, 5, "ar", True, 90)
+
+        statistics = storage.get_dashboard_statistics()
+
+        self.assertEqual(statistics, {
+            "total_feedback": 2,
+            "players_since_beginning": 2,
+            "players_today": 2,
+            "average_score": 3.0,
+            "average_feedback_rating": 4.0,
+        })
+
+    def test_completed_play_rejects_invalid_category_and_score(self):
+        with self.assertRaises(ValueError):
+            storage.record_visitor_play("unknown", 2)
+        with self.assertRaises(ValueError):
+            storage.record_visitor_play("year", 7)
+
+    def test_existing_account_quiz_sessions_are_migrated_once(self):
+        with closing(sqlite3.connect(self.database)) as db:
+            with db:
+                db.execute(
+                    """INSERT INTO quiz_sessions
+                       (card_uid, category, score, session_date, created_at)
+                       VALUES (-1, 'year', 5, '2026-01-01', '2026-01-01T10:00:00')"""
+                )
+
+        storage.create_table()
+        storage.create_table()
+
+        self.assertEqual(
+            storage.get_dashboard_statistics()["players_since_beginning"], 1
+        )
+
+    def test_account_score_saves_are_counted_once_as_completed_quizzes(self):
+        storage.save_score(-1, "year", 3, ["one", "two", "three"])
+        storage.create_table()
+
+        self.assertEqual(
+            storage.get_dashboard_statistics()["players_since_beginning"], 1
+        )
+
+    def test_historical_scores_over_six_do_not_inflate_six_point_average(self):
+        storage.save_score(-1, "year", 10)
+        storage.record_visitor_play("year", 4)
+
+        statistics = storage.get_dashboard_statistics()
+
+        self.assertEqual(statistics["players_since_beginning"], 2)
+        self.assertEqual(statistics["average_score"], 4)
+
     def test_removes_question_count_from_existing_table(self):
         with closing(sqlite3.connect(self.database)) as db:
             with db:

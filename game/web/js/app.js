@@ -21,6 +21,19 @@
       homeArtworkAlt: "Artwork from the museum collection",
       pick: "Choose a category",
       exit: "Exit",
+      dashboardTitle: "Visitor dashboard",
+      dashboardOpen: "Dashboard",
+      dashboardBack: "Back",
+      dashboardExit: "Log out",
+      statsFeedback: "Total feedback",
+      statsPlayers: "Players since beginning",
+      statsToday: "Players today",
+      statsScore: "Average score (/6)",
+      statsRating: "Average feedback rating (/5)",
+      statsLoading: "Loading dashboard...",
+      statsError: "Couldn't load the dashboard statistics.",
+      statsFooterLabel:
+        "Feedback / Players / Today / Average score / Average rating",
       leaderboard: "Leaderboard",
       checkLeaderboard: "Check Leaderboard",
       daily: "Today",
@@ -103,6 +116,19 @@
       homeArtworkAlt: "عمل فني من مجموعة المتحف",
       pick: "اختر فئة",
       exit: "خروج",
+      dashboardTitle: "لوحة بيانات الزوار",
+      dashboardOpen: "لوحة البيانات",
+      dashboardBack: "رجوع",
+      dashboardExit: "تسجيل الخروج",
+      statsFeedback: "إجمالي التقييمات",
+      statsPlayers: "إجمالي مرات اللعب",
+      statsToday: "مرات اللعب اليوم",
+      statsScore: "متوسط النتيجة (/6)",
+      statsRating: "متوسط تقييم التجربة (/5)",
+      statsLoading: "جارٍ تحميل لوحة البيانات...",
+      statsError: "تعذر تحميل إحصاءات لوحة البيانات.",
+      statsFooterLabel:
+        "التقييمات / مرات اللعب / اليوم / متوسط النتيجة / متوسط التقييم",
       leaderboard: "لوحة المتصدرين",
       checkLeaderboard: "تحقق من لوحة المتصدرين",
       daily: "اليوم",
@@ -187,6 +213,9 @@
     score,
     correctQuestionIds,
     accountCode = null,
+    adminCode = null,
+    adminName = "",
+    isAdmin = false,
     accountTimer = null,
     gameStartedAt,
     ratingScore = null,
@@ -234,7 +263,11 @@
   function exitToHome() {
     stopAccountTimer();
     accountCode = null;
+    adminCode = null;
+    adminName = "";
+    isAdmin = false;
     sessionStorage.removeItem("quizVisitor");
+    $("visitor-stats").hidden = true;
     $("rating-modal").hidden = true;
     clearLeds();
     showHome();
@@ -255,6 +288,8 @@
     document.documentElement.lang = lang;
     document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
     updateLanguageControl();
+    $("visitor-stats").setAttribute("aria-label", UI[lang].statsFooterLabel);
+    $("visitor-stats").title = UI[lang].statsFooterLabel;
   }
 
   function updateHomeLanguage() {
@@ -357,6 +392,9 @@
   function continueAsGuest() {
     stopAccountTimer();
     accountCode = null;
+    adminCode = null;
+    adminName = "";
+    isAdmin = false;
     sessionStorage.removeItem("quizVisitor");
     showCategories();
   }
@@ -438,6 +476,11 @@
   }
 
   function showAccountPrompt() {
+    accountCode = null;
+    adminCode = null;
+    adminName = "";
+    isAdmin = false;
+    $("visitor-stats").hidden = true;
     sessionStorage.removeItem("quizVisitor");
     $("account-code-input").value = "";
     $("account-name-input").value = "";
@@ -536,7 +579,10 @@
             : UI[lang].accountRequestError,
         );
       }
-      accountCode = code;
+      isAdmin = result.role === "admin";
+      adminCode = isAdmin ? code : null;
+      adminName = isAdmin ? result.visitor : "";
+      accountCode = isAdmin ? null : code;
       sessionStorage.setItem("quizVisitor", result.visitor);
       showCategories();
     } catch (error) {
@@ -662,12 +708,22 @@
       case "points":
         showPoints(lastPointsResult);
         break;
+      case "dashboard":
+        showAdminDashboard();
+        break;
     }
   }
 
   function showCategories() {
-    $("cats-title").textContent = UI[lang].pick;
+    $("cats-title").textContent = isAdmin
+      ? UI[lang].dashboardTitle
+      : UI[lang].pick;
     $("category-exit").textContent = UI[lang].exit;
+    $("dashboard-open").textContent = UI[lang].dashboardOpen;
+    $("dashboard-open").hidden = !isAdmin;
+    $("cat-list").hidden = isAdmin;
+    $("leaderboard-open").hidden = isAdmin;
+    $("visitor-stats").hidden = isAdmin;
     $("leaderboard-open").textContent = UI[lang].checkLeaderboard;
     $("leaderboard-title").textContent = UI[lang].leaderboard;
     $("leaderboard-back").textContent = UI[lang].leaderboardBack;
@@ -691,15 +747,86 @@
     renderRatingOptions();
     const list = $("cat-list");
     list.innerHTML = "";
-    CATEGORIES.forEach((c, n) => {
-      const b = document.createElement("button");
-      b.className = "choice c" + n;
-      b.textContent = tr(c.name);
-      b.onclick = () => start(c.key);
-      list.appendChild(b);
-    });
+    if (!isAdmin) {
+      CATEGORIES.forEach((c, n) => {
+        const b = document.createElement("button");
+        b.className = "choice c" + n;
+        b.textContent = tr(c.name);
+        b.onclick = () => start(c.key);
+        list.appendChild(b);
+      });
+      $("visitor-stats").hidden = false;
+      loadVisitorStatistics();
+    }
     $("leaderboard-open").onclick = () => showLeaderboard();
     show("cats");
+  }
+
+  function formatStatistic(value) {
+    return value === null || value === undefined
+      ? "—"
+      : new Intl.NumberFormat(lang, { maximumFractionDigits: 1 }).format(value);
+  }
+
+  function renderStatistics(statistics) {
+    const values = [
+      statistics.total_feedback,
+      statistics.players_since_beginning,
+      statistics.players_today,
+      statistics.average_score,
+      statistics.average_feedback_rating,
+    ].map(formatStatistic);
+    $("visitor-stats").textContent = values.join("/");
+    $("visitor-stats").setAttribute("aria-label", UI[lang].statsFooterLabel);
+    $("visitor-stats").title = UI[lang].statsFooterLabel;
+    $("stat-feedback").textContent = values[0];
+    $("stat-players").textContent = values[1];
+    $("stat-today").textContent = values[2];
+    $("stat-score").textContent = values[3];
+    $("stat-rating").textContent = values[4];
+  }
+
+  async function loadVisitorStatistics() {
+    try {
+      const response = await fetch("/api/statistics");
+      const statistics = await response.json();
+      if (!response.ok) throw new Error(statistics.error || UI[lang].statsError);
+      renderStatistics(statistics);
+    } catch (error) {
+      console.error("Could not load visitor statistics.", error);
+      $("visitor-stats").textContent = "—/—/—/—/—";
+      $("visitor-stats").setAttribute("aria-label", UI[lang].statsError);
+    }
+  }
+
+  async function showAdminDashboard() {
+    if (!isAdmin || !adminCode) {
+      showCategories();
+      return;
+    }
+    $("dashboard-title").textContent = UI[lang].dashboardTitle;
+    $("dashboard-admin-name").textContent = adminName;
+    $("dashboard-back").textContent = UI[lang].dashboardBack;
+    $("dashboard-exit").textContent = UI[lang].dashboardExit;
+    $("stat-feedback-label").textContent = UI[lang].statsFeedback;
+    $("stat-players-label").textContent = UI[lang].statsPlayers;
+    $("stat-today-label").textContent = UI[lang].statsToday;
+    $("stat-score-label").textContent = UI[lang].statsScore;
+    $("stat-rating-label").textContent = UI[lang].statsRating;
+    $("dashboard-status").textContent = UI[lang].statsLoading;
+    show("dashboard");
+    try {
+      const response = await fetch("/api/admin/dashboard", {
+        headers: { "X-Admin-Code": adminCode },
+      });
+      const statistics = await response.json();
+      if (!response.ok) throw new Error(statistics.error || UI[lang].statsError);
+      renderStatistics(statistics);
+      $("dashboard-status").textContent = "";
+    } catch (error) {
+      console.error("Could not load admin dashboard statistics.", error);
+      $("dashboard-status").textContent = UI[lang].statsError;
+    }
   }
 
   function showLeaderboard() {
@@ -1019,6 +1146,7 @@
 
   function finish() {
     clearLeds(); // the score screen has no LEDs on
+    if (!accountCode) recordCompletedPlay();
     const t = questions.length;
     $("score").innerHTML = score + "<small>/" + t + "</small>";
     $("verdict").textContent =
@@ -1033,6 +1161,23 @@
       renderDailyAverage(false);
       loadDailyAverage();
       showRating(false);
+    }
+  }
+
+  async function recordCompletedPlay() {
+    try {
+      const response = await fetch("/api/play-session", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ category, score }),
+      });
+      const result = await response.json();
+      if (!response.ok || !result.saved) {
+        throw new Error(result.error || "Could not record completed quiz.");
+      }
+      if (!$("visitor-stats").hidden) loadVisitorStatistics();
+    } catch (error) {
+      console.error("Could not record completed quiz.", error);
     }
   }
 
@@ -1174,6 +1319,7 @@
       });
       if (!reply.ok) throw new Error("Could not save rating.");
       closeRating();
+      loadVisitorStatistics();
     } catch (error) {
       $("rating-status").textContent = UI[lang].ratingError;
       submit.disabled = false;
@@ -1250,6 +1396,7 @@
       sessionStorage.setItem("quizVisitor", result.visitor);
       setSaveStatus("saved", UI[lang].savedTitle, "");
       updateSavedScoreDetails(result);
+      loadVisitorStatistics();
       showRating(true);
     } catch (error) {
       saveErrorText =
@@ -1274,6 +1421,9 @@
   $("account-back").onclick = returnToAccountChoice;
   $("account-guest").onclick = continueAsGuest;
   $("category-exit").onclick = exitToHome;
+  $("dashboard-open").onclick = showAdminDashboard;
+  $("dashboard-back").onclick = showCategories;
+  $("dashboard-exit").onclick = exitToHome;
   $("home-play").onclick = () => showAccountPrompt();
   $("rating-submit").onclick = submitRating;
   $("rating-skip").onclick = closeRating;

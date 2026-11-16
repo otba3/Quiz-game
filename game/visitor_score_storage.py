@@ -5,6 +5,7 @@ The database is one file: data/visitor_scores.db (created automatically).
 Try it without the Pi:  python3 game/visitor_score_storage.py
 """
 import hashlib
+import os
 import secrets
 import sqlite3
 import unicodedata
@@ -18,6 +19,15 @@ DB_PATH = Path(__file__).parent.parent / "data" / "visitor_scores.db"
 ACCOUNT_CODE_ALPHABET = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"
 ACCOUNT_CODE_LENGTH = 6
 MAX_DISPLAY_NAME_LENGTH = 40
+ADMIN_ACCOUNT_CODE = os.environ.get("ADMIN_ACCOUNT_CODE", "adm1n1").strip().upper()
+ADMIN_DISPLAY_NAME = os.environ.get("ADMIN_DISPLAY_NAME", "Admin").strip() or "Admin"
+
+if (
+    len(ADMIN_ACCOUNT_CODE) != ACCOUNT_CODE_LENGTH
+    or not ADMIN_ACCOUNT_CODE.isascii()
+    or not ADMIN_ACCOUNT_CODE.isalnum()
+):
+    raise ValueError("ADMIN_ACCOUNT_CODE must contain exactly six letters or digits")
 
 
 def create_table():
@@ -39,6 +49,13 @@ def create_table():
                 db.execute(
                     "ALTER TABLE quiz_accounts "
                     "ADD COLUMN display_name TEXT NOT NULL DEFAULT ''"
+                )
+            if db.execute(
+                "SELECT 1 FROM quiz_accounts WHERE upper(account_code) = ?",
+                (ADMIN_ACCOUNT_CODE,),
+            ).fetchone():
+                raise ValueError(
+                    "ADMIN_ACCOUNT_CODE conflicts with an existing visitor account"
                 )
             db.execute("""
                 CREATE TABLE IF NOT EXISTS scores (
@@ -90,6 +107,36 @@ def create_table():
                     duration_seconds INTEGER NOT NULL,
                     created_at       TEXT NOT NULL
                 )
+            """)
+            db.execute("""
+                CREATE TABLE IF NOT EXISTS visitor_play_sessions (
+                    id                INTEGER PRIMARY KEY AUTOINCREMENT,
+                    category          TEXT NOT NULL,
+                    score             INTEGER NOT NULL,
+                    created_at        TEXT NOT NULL,
+                    legacy_session_id INTEGER UNIQUE
+                )
+            """)
+            play_session_columns = {
+                row[1] for row in db.execute(
+                    "PRAGMA table_info(visitor_play_sessions)"
+                )
+            }
+            if "legacy_session_id" not in play_session_columns:
+                db.execute(
+                    "ALTER TABLE visitor_play_sessions "
+                    "ADD COLUMN legacy_session_id INTEGER"
+                )
+            db.execute("""
+                CREATE UNIQUE INDEX IF NOT EXISTS
+                    visitor_play_legacy_session_id
+                ON visitor_play_sessions (legacy_session_id)
+            """)
+            db.execute("""
+                INSERT OR IGNORE INTO visitor_play_sessions
+                    (category, score, created_at, legacy_session_id)
+                SELECT category, score, created_at, id
+                FROM quiz_sessions
             """)
             columns = {
                 row[1] for row in db.execute("PRAGMA table_info(game_feedback)")
@@ -154,6 +201,8 @@ def create_account(display_name):
                     secrets.choice(ACCOUNT_CODE_ALPHABET)
                     for _ in range(ACCOUNT_CODE_LENGTH)
                 )
+                if account_code == ADMIN_ACCOUNT_CODE:
+                    continue
                 exists = db.execute(
                     "SELECT 1 FROM quiz_accounts WHERE upper(account_code) = ?",
                     (account_code,),
@@ -225,6 +274,48 @@ def save_game_feedback(category, score, rating, language, score_saved,
             )
             feedback_id = cursor.lastrowid
     return {"id": feedback_id, "created_at": created_at}
+
+
+def record_visitor_play(category, score):
+    """Record one completed quiz, including guest games, for kiosk statistics."""
+    if category not in ("year", "origin"):
+        raise ValueError("Invalid category")
+    if type(score) is not int or not 0 <= score <= 6:
+        raise ValueError("Score must be between 0 and 6")
+    created_at = datetime.now().isoformat(timespec="seconds")
+    with closing(sqlite3.connect(DB_PATH)) as db:
+        with db:
+            cursor = db.execute(
+                """INSERT INTO visitor_play_sessions
+                   (category, score, created_at) VALUES (?, ?, ?)""",
+                (category, score, created_at),
+            )
+    return {"id": cursor.lastrowid, "created_at": created_at}
+
+
+def get_dashboard_statistics():
+    """Return totals for completed quizzes, feedback, and their averages."""
+    today = datetime.now().date().isoformat()
+    with closing(sqlite3.connect(DB_PATH)) as db:
+        feedback_count, average_rating = db.execute(
+            """SELECT COUNT(*), AVG(rating) FROM game_feedback"""
+        ).fetchone()
+        player_count, players_today, average_score = db.execute(
+            """SELECT COUNT(*),
+                      SUM(CASE WHEN substr(created_at, 1, 10) = ? THEN 1 ELSE 0 END),
+                      AVG(CASE WHEN score BETWEEN 0 AND 6 THEN score END)
+               FROM visitor_play_sessions""",
+            (today,),
+        ).fetchone()
+    return {
+        "total_feedback": feedback_count,
+        "players_since_beginning": player_count,
+        "players_today": players_today or 0,
+        "average_score": round(average_score, 1) if average_score is not None else None,
+        "average_feedback_rating": (
+            round(average_rating, 1) if average_rating is not None else None
+        ),
+    }
 
 
 
@@ -304,11 +395,17 @@ def save_score(card_uid, category, score, correct_question_ids=()):
             else:
                 points_earned = 0
 
-            db.execute(
+            session_cursor = db.execute(
                 """INSERT INTO quiz_sessions
                    (card_uid, category, score, session_date, created_at)
                    VALUES (?, ?, ?, ?, ?)""",
                 (card_uid, category, score, session_date, now),
+            )
+            db.execute(
+                """INSERT INTO visitor_play_sessions
+                   (category, score, created_at, legacy_session_id)
+                   VALUES (?, ?, ?, ?)""",
+                (category, score, now, session_cursor.lastrowid),
             )
 
             previous_scores = db.execute(

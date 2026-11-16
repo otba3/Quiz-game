@@ -132,6 +132,59 @@ class LeaderboardApiTests(unittest.TestCase):
         self.assertEqual(response.status_code, 404)
         self.assertEqual(response.get_json(), {"error": "Account code was not found"})
 
+    def test_admin_code_logs_in_with_admin_role_without_creating_a_visitor(self):
+        with (
+            patch.object(server, "ADMIN_ACCOUNT_CODE", "ADMIN1"),
+            patch.object(server, "ADMIN_DISPLAY_NAME", "Museum Admin"),
+        ):
+            response = self.client.post(
+                "/api/account/login", json={"account_code": "admin1"}
+            )
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(
+            response.get_json(),
+            {"valid": True, "role": "admin", "visitor": "Museum Admin"},
+        )
+
+    def test_non_ascii_account_code_does_not_cause_a_server_error(self):
+        response = self.client.post(
+            "/api/account/login", json={"account_code": "اختبار"}
+        )
+        self.assertEqual(response.status_code, 404)
+
+    def test_admin_dashboard_requires_the_configured_admin_code(self):
+        statistics = {
+            "total_feedback": 5,
+            "players_since_beginning": 12,
+            "players_today": 2,
+            "average_score": 4.5,
+            "average_feedback_rating": 4.2,
+        }
+        with (
+            patch.object(server, "ADMIN_ACCOUNT_CODE", "ADMIN1"),
+            patch.object(server, "get_dashboard_statistics", return_value=statistics),
+        ):
+            denied = self.client.get("/api/admin/dashboard")
+            allowed = self.client.get(
+                "/api/admin/dashboard", headers={"X-Admin-Code": "admin1"}
+            )
+
+        self.assertEqual(denied.status_code, 403)
+        self.assertEqual(allowed.status_code, 200)
+        self.assertEqual(allowed.get_json(), statistics)
+
+    def test_completed_play_endpoint_records_one_quiz(self):
+        play = {"id": 3, "created_at": "2026-11-15T10:00:00"}
+        with patch.object(server, "record_visitor_play", return_value=play) as record:
+            response = self.client.post(
+                "/api/play-session", json={"category": "year", "score": 4}
+            )
+
+        self.assertEqual(response.status_code, 201)
+        self.assertEqual(response.get_json(), {"saved": True, **play})
+        record.assert_called_once_with("year", 4)
+
     def test_created_account_code_connects_scores_and_leaderboard_name(self):
         temp_dir = tempfile.TemporaryDirectory()
         self.addCleanup(temp_dir.cleanup)

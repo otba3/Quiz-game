@@ -394,13 +394,20 @@ button {
   min-height: 112px;
   font-size: 32px;
 }
-.leaderboard-open {
+.leaderboard-open,
+.dashboard-open {
   box-sizing: border-box;
   width: 320px;
   min-height: 56px;
   margin: 0 auto;
   font-size: 24px;
   white-space: nowrap;
+}
+.dashboard-open[hidden] {
+  display: none;
+}
+.dashboard-open {
+  background: var(--yellow-bright);
 }
 .category-exit {
   position: absolute;
@@ -411,6 +418,81 @@ button {
   margin: 0;
   padding: 0 var(--space-3);
   font-size: 20px;
+}
+#dashboard {
+  padding: 88px var(--space-6) var(--space-5);
+}
+#dashboard .title {
+  font-size: 44px;
+  margin: 0;
+}
+.dashboard-admin-name {
+  margin: 0 0 var(--space-3);
+  color: var(--ink-soft);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.dashboard-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-3);
+}
+.dashboard-stats > div {
+  min-height: 112px;
+  padding: var(--space-3);
+  border: 2px solid var(--ink);
+  border-radius: var(--space-3);
+  background: var(--color-white);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.dashboard-stats span {
+  font-size: 18px;
+  line-height: 1.2;
+}
+.dashboard-stats strong {
+  font-size: 36px;
+  line-height: 1;
+}
+.dashboard-actions {
+  display: flex;
+  gap: var(--space-3);
+}
+.dashboard-actions .btn {
+  min-height: 56px;
+  margin-top: var(--space-3);
+  font-size: 20px;
+}
+#dashboard-back {
+  background: var(--blue);
+}
+#dashboard-exit {
+  background: var(--orange);
+}
+.dashboard-status {
+  position: absolute;
+  right: var(--space-6);
+  bottom: var(--space-4);
+  margin: 0;
+  color: #a00000;
+}
+#visitor-stats:not([hidden]) {
+  position: absolute;
+  right: 16px;
+  bottom: 12px;
+  z-index: 3;
+  max-width: 62%;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  background: rgba(243, 242, 235, 0.88);
+  color: var(--ink-soft);
+  font-size: 13px;
+  line-height: 1.2;
+  direction: ltr;
+  text-align: right;
+  white-space: nowrap;
 }
 .choice {
   min-height: 200px;

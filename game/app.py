@@ -6,19 +6,24 @@ A web page can't control the Pi's GPIO pins itself; this server does it for it.
 
 Start:  py game/app.py   then open http://localhost:5000
 """
+import hmac
 import os
 from pathlib import Path
 
 from flask import Flask, jsonify, request, send_from_directory
 
 from visitor_score_storage import (
+    ADMIN_ACCOUNT_CODE,
+    ADMIN_DISPLAY_NAME,
     create_account,
     create_table,
     get_account_identity,
+    get_dashboard_statistics,
     get_daily_average_score,
     get_points_balance,
     get_points_history,
     get_leaderboard,
+    record_visitor_play,
     save_game_feedback,
     save_score,
     visitor_label,
@@ -149,13 +154,23 @@ def login_account():
     data = request.get_json(silent=True)
     if not isinstance(data, dict) or not isinstance(data.get("account_code"), str):
         return jsonify({"error": "Account code is required"}), 400
+    account_code = data["account_code"].strip()
+    if account_code.isascii() and hmac.compare_digest(
+        account_code.upper(), ADMIN_ACCOUNT_CODE
+    ):
+        return jsonify({
+            "valid": True,
+            "role": "admin",
+            "visitor": ADMIN_DISPLAY_NAME,
+        })
     try:
-        account_identity = get_account_identity(data["account_code"])
+        account_identity = get_account_identity(account_code)
     except ValueError as error:
         status = 404 if str(error) == "Account code was not found" else 400
         return jsonify({"error": str(error)}), status
     return jsonify({
         "valid": True,
+        "role": "visitor",
         "visitor": visitor_label(account_identity),
     })
 
@@ -232,6 +247,33 @@ def leaderboard():
 @app.route("/api/average/today")
 def daily_average():
     return jsonify(get_daily_average_score())
+
+
+@app.route("/api/play-session", methods=["POST"])
+def record_play_session():
+    data = request.get_json(silent=True)
+    if not isinstance(data, dict):
+        return jsonify({"error": "Expected a JSON object"}), 400
+    try:
+        play = record_visitor_play(data.get("category"), data.get("score"))
+    except ValueError as error:
+        return jsonify({"error": str(error)}), 400
+    return jsonify({"saved": True, **play}), 201
+
+
+@app.route("/api/statistics")
+def visitor_statistics():
+    return jsonify(get_dashboard_statistics())
+
+
+@app.route("/api/admin/dashboard")
+def admin_dashboard():
+    supplied_code = request.headers.get("X-Admin-Code", "").strip().upper()
+    if not supplied_code.isascii() or not hmac.compare_digest(
+        supplied_code, ADMIN_ACCOUNT_CODE
+    ):
+        return jsonify({"error": "Admin access required"}), 403
+    return jsonify(get_dashboard_statistics())
 
 
 @app.route("/api/feedback", methods=["POST"])
