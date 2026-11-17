@@ -68,8 +68,16 @@ def split_languages(text):
     first_arabic = re.search(r"[؀-ۿ]", text)
     if not first_arabic:
         return {"en": text, "ar": ""}  # no Arabic: the game falls back to English
-    english = text[:first_arabic.start()].strip(" /-|–,")  # remove the separator
+    english = text[:first_arabic.start()].strip(" /-|–,\t\r\n")
     arabic = text[first_arabic.start():].strip()
+    if (
+        english.endswith("(")
+        and arabic.endswith(")")
+        and english.count("(") > english.count(")")
+        and arabic.count(")") > arabic.count("(")
+    ):
+        english = english[:-1].rstrip()
+        arabic = arabic[:-1].rstrip()
     return {"en": english, "ar": arabic}
 
 

@@ -1213,7 +1213,7 @@
   // After answering: title and date on the picture. Right: only the correct artwork.
   // Wrong: both. artworks[0] is always the correct one (see export_year_questions.py).
   function showArtworkInfo(q, correct) {
-    if (!q.artworks) return; // Origin questions have no artwork info
+    if (!q.artworks) return; // Context questions have no artwork info
     const shown = correct ? [q.artworks[0]] : q.artworks;
     shown.forEach((art) => {
       const caption = document.createElement("div");

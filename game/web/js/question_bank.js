@@ -48,11 +48,11 @@ const QUIZ_DATA = {
      {
       "file": "MAT.2007.1.3256..2000x2000.jpg",
       "artist": {
-       "en": "Shakir Hassan al-Saïd (b.1925 Samawah -d. 2004 Baghdad)\n",
+       "en": "Shakir Hassan al-Saïd (b.1925 Samawah -d. 2004 Baghdad)",
        "ar": "شاكر حسن ال سعيد (1925 السماوة - 2004 بغداد)"
       },
       "title": {
-       "en": "One Thousand and One Nights\n",
+       "en": "One Thousand and One Nights",
        "ar": "ألف ليلة وليلة"
       },
       "date": {
@@ -63,11 +63,11 @@ const QUIZ_DATA = {
      {
       "file": "2007.1.3300 .2000x2000.jpg",
       "artist": {
-       "en": "Jewad Selim (b.1919 Ankara -d.1961 Baghdad)\n",
+       "en": "Jewad Selim (b.1919 Ankara -d.1961 Baghdad)",
        "ar": "جواد سليم (1919 أنقرة - 1961 بغداد)"
       },
       "title": {
-       "en": "Children's Games\n",
+       "en": "Children's Games",
        "ar": "ألعاب الأطفال"
       },
       "date": {
@@ -97,11 +97,11 @@ const QUIZ_DATA = {
      {
       "file": "MAT.2007.1.184.....2000x2000.jpg",
       "artist": {
-       "en": "Ismail Al Sheikhly (b.1924 - d.2002 Baghdad)\n",
+       "en": "Ismail Al Sheikhly (b.1924 - d.2002 Baghdad)",
        "ar": "إسماعيل الشيخلي (1924 - 2002 بغداد)"
       },
       "title": {
-       "en": "Title Unknown\n",
+       "en": "Title Unknown",
        "ar": "العنوان غير معروف"
       },
       "date": {
@@ -112,11 +112,11 @@ const QUIZ_DATA = {
      {
       "file": "2007.1.1616 WF.2000x2000.jpg",
       "artist": {
-       "en": "Dia Al Azzawi (b.1939 Baghdad)\n",
+       "en": "Dia Al Azzawi (b.1939 Baghdad)",
        "ar": "ضياء العزاوي (مواليد 1930 بغداد)"
       },
       "title": {
-       "en": "Memories\n",
+       "en": "Memories",
        "ar": "ذكريات"
       },
       "date": {
@@ -146,11 +146,11 @@ const QUIZ_DATA = {
      {
       "file": "2007.1.1639a.2000x2000.jpg",
       "artist": {
-       "en": "Jewad Selim (b.1919 Ankara -d.1961 Baghdad)\n",
+       "en": "Jewad Selim (b.1919 Ankara -d.1961 Baghdad)",
        "ar": "جواد سليم (1919 أنقرة - 1961 بغداد)"
       },
       "title": {
-       "en": "Baghdadiat\n",
+       "en": "Baghdadiat",
        "ar": "البغداديات"
       },
       "date": {
@@ -161,11 +161,11 @@ const QUIZ_DATA = {
      {
       "file": "2007.1.1650.2000x2000.jpg",
       "artist": {
-       "en": "Shakir Hassan al-Saïd (b.1925 Samawah -d. 2004 Baghdad)\n",
+       "en": "Shakir Hassan al-Saïd (b.1925 Samawah -d. 2004 Baghdad)",
        "ar": "شاكر حسن ال سعيد (1925 السماوة - 2004 بغداد)"
       },
       "title": {
-       "en": "The Return to the Village\n",
+       "en": "The Return to the Village",
        "ar": "العودة إلى القرية"
       },
       "date": {
@@ -193,11 +193,11 @@ const QUIZ_DATA = {
      {
       "file": "MAT.2007.1.206.2000x2000.jpg",
       "artist": {
-       "en": "Kadhim Haidar (b.1932 - d.1985 Baghdad)\n",
+       "en": "Kadhim Haidar (b.1932 - d.1985 Baghdad)",
        "ar": "كاظم حيدر (1932 - 1985 بغداد)"
       },
       "title": {
-       "en": "Martyr's Epic\n",
+       "en": "Martyr's Epic",
        "ar": "ملحمة الشهيد"
       },
       "date": {
@@ -208,11 +208,11 @@ const QUIZ_DATA = {
      {
       "file": "MAT.2014.9.9..2000x2000.jpg",
       "artist": {
-       "en": "Lorna Selim (b.1928 Sheffield - d.2021 Abergavenny)\n",
+       "en": "Lorna Selim (b.1928 Sheffield - d.2021 Abergavenny)",
        "ar": "لورنا سليم (1928 شيفيلد - 2021 أبرغافيني)"
       },
       "title": {
-       "en": "At Night\n",
+       "en": "At Night",
        "ar": "في الليل"
       },
       "date": {
@@ -240,11 +240,11 @@ const QUIZ_DATA = {
      {
       "file": "MAT.2007.1.2428.2000x2000.jpg",
       "artist": {
-       "en": "Rafa Al Nasiri (b.1940 Tikrit - d.2013 Amman)\n",
+       "en": "Rafa Al Nasiri (b.1940 Tikrit - d.2013 Amman)",
        "ar": "رافع الناصري (1940 تكريت - 2013 عمّان)"
       },
       "title": {
-       "en": "Untitled\n",
+       "en": "Untitled",
        "ar": "بدون عنوان"
       },
       "date": {
@@ -255,11 +255,11 @@ const QUIZ_DATA = {
      {
       "file": "MAT.2007.1 .2000x2000.jpg",
       "artist": {
-       "en": "Kadhim Haidar (b.1932 - d.1985 Baghdad)\n",
+       "en": "Kadhim Haidar (b.1932 - d.1985 Baghdad)",
        "ar": "كاظم حيدر (1932 - 1985 بغداد)"
       },
       "title": {
-       "en": "Al Shahid\n",
+       "en": "Al Shahid",
        "ar": "الشهيد"
       },
       "date": {
@@ -287,11 +287,11 @@ const QUIZ_DATA = {
      {
       "file": "MAT.2007.1.2832.....2000x2000.jpg",
       "artist": {
-       "en": "Rasoul Alwan (b.1928 - d.1996 Baghdad) \n",
+       "en": "Rasoul Alwan (b.1928 - d.1996 Baghdad)",
        "ar": "رسول علوان (1928 - 1996 بغداد)"
       },
       "title": {
-       "en": "Games City in Berlin\n",
+       "en": "Games City in Berlin",
        "ar": "مدينة الألعاب في برلين"
       },
       "date": {
@@ -302,11 +302,11 @@ const QUIZ_DATA = {
      {
       "file": "QM.2024.9208.2000x2000.jpg",
       "artist": {
-       "en": "Shakir Hassan al-Saïd (b.1925 Samawah -d. 2004 Baghdad)\n",
+       "en": "Shakir Hassan al-Saïd (b.1925 Samawah -d. 2004 Baghdad)",
        "ar": "شاكر حسن ال سعيد (1925 السماوة - 2004 بغداد)"
       },
       "title": {
-       "en": "One Thousand and One Nights\n",
+       "en": "One Thousand and One Nights",
        "ar": "ألف ليلة وليلة"
       },
       "date": {
@@ -335,11 +335,11 @@ const QUIZ_DATA = {
      {
       "file": "MAT.2010.17.2..2000x2000.jpg",
       "artist": {
-       "en": "Saleh Al Jumaie (b.1939 Suwaira)\n",
+       "en": "Saleh Al Jumaie (b.1939 Suwaira)",
        "ar": "صالح الجميعي (مواليد 1939 الصويرة)"
       },
       "title": {
-       "en": "Title Unknown\n",
+       "en": "Title Unknown",
        "ar": "العنوان غير معروف"
       },
       "date": {
@@ -368,12 +368,12 @@ const QUIZ_DATA = {
      {
       "file": "MAT.2007.1.3311.2000x2000.jpg",
       "artist": {
-       "en": "Madiha Umar (b.1908 Aleppo - d.2005 Amman)\n",
+       "en": "Madiha Umar (b.1908 Aleppo - d.2005 Amman)",
        "ar": "مديحة عمر (1908 حلب - 2005 عمّان)"
       },
       "title": {
-       "en": "Untitled (The Letter Ein)\n(",
-       "ar": "الحرف ع)"
+       "en": "Untitled (The Letter Ein)",
+       "ar": "الحرف ع"
       },
       "date": {
        "en": "1986",
@@ -401,11 +401,11 @@ const QUIZ_DATA = {
      {
       "file": "2007.1.1652 .2000x2000.jpg",
       "artist": {
-       "en": "Shakir Hassan al-Saïd (b.1925 Samawah -d. 2004 Baghdad)\n",
+       "en": "Shakir Hassan al-Saïd (b.1925 Samawah -d. 2004 Baghdad)",
        "ar": "شاكر حسن ال سعيد (1925 السماوة - 2004 بغداد)"
       },
       "title": {
-       "en": "The Great Symbol\n",
+       "en": "The Great Symbol",
        "ar": "الرمز العظيم"
       },
       "date": {
@@ -435,11 +435,11 @@ const QUIZ_DATA = {
      {
       "file": "MAT.2007.1.568.01.1000x1000 Faisal Laibi Sahi.jpg",
       "artist": {
-       "en": "Faisal Laibi Sahi (b.1947 Basra)\n",
+       "en": "Faisal Laibi Sahi (b.1947 Basra)",
        "ar": "فيصل لعيبي صاحي (مواليد 1947 البصرة)"
       },
       "title": {
-       "en": "Al Baghdady (The Man From Baghdad)\n",
+       "en": "Al Baghdady (The Man From Baghdad)",
        "ar": "الباغدادي (الرجل من بغداد)"
       },
       "date": {
@@ -450,11 +450,11 @@ const QUIZ_DATA = {
      {
       "file": "2007.1.256 .2000x2000.jpg",
       "artist": {
-       "en": "Mohammed Muhriddin (b. Basrah 1938-d.2015 Amman)\n",
+       "en": "Mohammed Muhriddin (b. Basrah 1938-d.2015 Amman)",
        "ar": "محمد مهر الدين (البصرة 1938 – عمّان 2015)"
       },
       "title": {
-       "en": "Untitled\n",
+       "en": "Untitled",
        "ar": "بدون عنوان"
       },
       "date": {
@@ -484,11 +484,11 @@ const QUIZ_DATA = {
      {
       "file": "MAT.2011.13.13 copy.2000x2000.jpg",
       "artist": {
-       "en": "Ismail Fattah (b. 1934 Basrah - d.2004 Baghdad)\n",
+       "en": "Ismail Fattah (b. 1934 Basrah - d.2004 Baghdad)",
        "ar": "إسماعيل فتاح (1934 البصرة - 2004 بغداد)"
       },
       "title": {
-       "en": "Le Mariage, Hommage à Jawad\n",
+       "en": "Le Mariage, Hommage à Jawad",
        "ar": "الزواج، تقدير لجواد"
       },
       "date": {
@@ -499,11 +499,11 @@ const QUIZ_DATA = {
      {
       "file": "MAT.2007.1.346..2000x2000.jpg",
       "artist": {
-       "en": "Mahmoud Obaidi (b.1966 Baghdad)\n",
+       "en": "Mahmoud Obaidi (b.1966 Baghdad)",
        "ar": "محمود العبيدي (مواليد 1966 بغداد)"
       },
       "title": {
-       "en": "From the Cats Factory Series no. 1\n",
+       "en": "From the Cats Factory Series no. 1",
        "ar": "من سلسلة ”مصنع القطط“، رقم 1"
       },
       "date": {
@@ -533,11 +533,11 @@ const QUIZ_DATA = {
      {
       "file": "2010.22.12.2000x2000.jpg",
       "artist": {
-       "en": "Dia Al Azzawi (b.1939 Baghdad)\n",
+       "en": "Dia Al Azzawi (b.1939 Baghdad)",
        "ar": "ضياء العزاوي (مواليد 1930 بغداد)"
       },
       "title": {
-       "en": "The Second Husband\n",
+       "en": "The Second Husband",
        "ar": "الزوج الثاني"
       },
       "date": {
@@ -548,11 +548,11 @@ const QUIZ_DATA = {
      {
       "file": "MAT.2007.1.135.2000x2000.jpg",
       "artist": {
-       "en": "Mohammed Muhriddin (b. Basrah 1938-d.2015 Amman)\n",
+       "en": "Mohammed Muhriddin (b. Basrah 1938-d.2015 Amman)",
        "ar": "محمد مهر الدين (البصرة 1938 – عمّان 2015)"
       },
       "title": {
-       "en": "Strange in This World\n",
+       "en": "Strange in This World",
        "ar": "غريب في هذا العالم"
       },
       "date": {
