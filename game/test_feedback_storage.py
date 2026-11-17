@@ -22,7 +22,7 @@ class GameFeedbackStorageTests(unittest.TestCase):
 
     def test_saves_rating_with_game_context_and_timestamp(self):
         result = storage.save_game_feedback(
-            "origin", 4, 5, "ar", False, 93,
+            "context", 4, 5, "ar", False, 93,
         )
 
         with closing(sqlite3.connect(self.database)) as db:
@@ -33,15 +33,15 @@ class GameFeedbackStorageTests(unittest.TestCase):
                 (result["id"],),
             ).fetchone()
 
-        self.assertEqual(row[:6], ("origin", 4, 5, "ar", 0, 93))
+        self.assertEqual(row[:6], ("context", 4, 5, "ar", 0, 93))
         self.assertEqual(row[6], result["created_at"])
         self.assertTrue(result["created_at"])
 
     def test_dashboard_statistics_include_guest_and_account_quiz_completions(self):
         storage.record_visitor_play("year", 4)
-        storage.record_visitor_play("origin", 2)
+        storage.record_visitor_play("context", 2)
         storage.save_game_feedback("year", 4, 3, "en", False, 60)
-        storage.save_game_feedback("origin", 2, 5, "ar", True, 90)
+        storage.save_game_feedback("context", 2, 5, "ar", True, 90)
 
         statistics = storage.get_dashboard_statistics()
 
@@ -56,6 +56,8 @@ class GameFeedbackStorageTests(unittest.TestCase):
     def test_completed_play_rejects_invalid_category_and_score(self):
         with self.assertRaises(ValueError):
             storage.record_visitor_play("unknown", 2)
+        with self.assertRaises(ValueError):
+            storage.record_visitor_play("origin", 2)
         with self.assertRaises(ValueError):
             storage.record_visitor_play("year", 7)
 
@@ -105,7 +107,7 @@ class GameFeedbackStorageTests(unittest.TestCase):
                         (first, "year", 1, "2026-01-01", "2026-01-01T11:01:00"),
                         (first, "year", 4, "2026-01-01", "2026-01-01T13:00:00"),
                         (first, "year", 6, "2026-01-01", "2026-01-01T14:00:00"),
-                        (first, "origin", 3, "2026-01-01", "2026-01-01T15:00:00"),
+                        (first, "context", 3, "2026-01-01", "2026-01-01T15:00:00"),
                         (first, "year", 5, "2026-01-02", "2026-01-02T10:00:00"),
                         (second, "year", 2, "2026-01-01", "2026-01-01T16:00:00"),
                         (123, "year", 6, "2026-01-01", "2026-01-01T17:00:00"),
@@ -131,7 +133,7 @@ class GameFeedbackStorageTests(unittest.TestCase):
 
     def test_feedback_rating_counts_include_unrated_options_and_guest_feedback(self):
         storage.save_game_feedback("year", 4, 5, "en", False, 60)
-        storage.save_game_feedback("origin", 2, 5, "ar", True, 90)
+        storage.save_game_feedback("context", 2, 5, "ar", True, 90)
         storage.save_game_feedback("year", 1, 2, "en", False, 30)
 
         self.assertEqual(storage.get_feedback_rating_counts(), [

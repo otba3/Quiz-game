@@ -65,9 +65,9 @@ class LeaderboardApiTests(unittest.TestCase):
                 "/api/account/save",
                 json={
                     "account_code": "VISITOR-123",
-                    "category": "year",
+                    "category": "context",
                     "score": 1,
-                    "correct_question_ids": ["year-question"],
+                    "correct_question_ids": ["context-question"],
                 },
             )
 
@@ -75,6 +75,47 @@ class LeaderboardApiTests(unittest.TestCase):
         self.assertEqual(
             response.get_json()["visitor"], server.visitor_label(account_identity)
         )
+
+    def test_context_replaces_origin_in_leaderboard_and_feedback_apis(self):
+        feedback = {"id": 1, "created_at": "2026-11-17T10:00:00"}
+        with (
+            patch.object(server, "get_leaderboard", return_value=[]),
+            patch.object(server, "save_game_feedback", return_value=feedback) as save,
+        ):
+            context_leaderboard = self.client.get(
+                "/api/leaderboard?category=context&period=daily"
+            )
+            origin_leaderboard = self.client.get(
+                "/api/leaderboard?category=origin&period=daily"
+            )
+            context_feedback = self.client.post(
+                "/api/feedback",
+                json={
+                    "category": "context",
+                    "score": 4,
+                    "rating": 5,
+                    "language": "en",
+                    "score_saved": False,
+                    "duration_seconds": 60,
+                },
+            )
+            origin_feedback = self.client.post(
+                "/api/feedback",
+                json={
+                    "category": "origin",
+                    "score": 4,
+                    "rating": 5,
+                    "language": "en",
+                    "score_saved": False,
+                    "duration_seconds": 60,
+                },
+            )
+
+        self.assertEqual(context_leaderboard.status_code, 200)
+        self.assertEqual(origin_leaderboard.status_code, 400)
+        self.assertEqual(context_feedback.status_code, 201)
+        self.assertEqual(origin_feedback.status_code, 400)
+        save.assert_called_once_with("context", 4, 5, "en", False, 60)
 
     def test_account_score_rejects_empty_account_code(self):
         with patch.object(
@@ -274,6 +315,64 @@ class LeaderboardApiTests(unittest.TestCase):
             leaderboard.get_json()["entries"],
             [{"player": "Nora", "score": 1}],
         )
+
+    def test_context_scores_show_on_leaderboards_and_admin_dashboard(self):
+        temp_dir = tempfile.TemporaryDirectory()
+        self.addCleanup(temp_dir.cleanup)
+        database = Path(temp_dir.name) / "context.db"
+        with (
+            patch.object(storage, "DB_PATH", database),
+            patch.object(server, "LEADERBOARD_DEMO_MODE", False),
+        ):
+            storage.create_table()
+            identity, account_code, _ = storage.create_account("Nora")
+            storage.save_score(identity, "origin", 2, ["origin-old"])
+            for score, question_ids in [
+                (1, ["context-1"]),
+                (2, ["context-1", "context-2"]),
+            ]:
+                response = self.client.post(
+                    "/api/account/save",
+                    json={
+                        "account_code": account_code,
+                        "category": "context",
+                        "score": score,
+                        "correct_question_ids": question_ids,
+                    },
+                )
+                self.assertEqual(response.status_code, 200)
+
+            feedback = self.client.post(
+                "/api/feedback",
+                json={
+                    "category": "context",
+                    "score": 2,
+                    "rating": 5,
+                    "language": "en",
+                    "score_saved": True,
+                    "duration_seconds": 60,
+                },
+            )
+            daily = self.client.get("/api/leaderboard?category=context&period=daily")
+            monthly = self.client.get("/api/leaderboard?category=context&period=monthly")
+            admin_code, _ = storage.get_admin_account()
+            headers = {"X-Admin-Code": admin_code}
+            dashboard = self.client.get("/api/admin/dashboard", headers=headers)
+            comparisons = self.client.get(
+                "/api/admin/score-comparisons", headers=headers
+            )
+
+        self.assertEqual(feedback.status_code, 201)
+        self.assertEqual(daily.get_json()["entries"], [{"player": "Nora", "score": 2}])
+        self.assertEqual(monthly.get_json()["entries"], [{"player": "Nora", "score": 3}])
+        self.assertEqual(dashboard.get_json()["players_since_beginning"], 3)
+        self.assertEqual(dashboard.get_json()["total_feedback"], 1)
+        entries = {entry["category"]: entry for entry in comparisons.get_json()["entries"]}
+        self.assertEqual(set(entries), {"origin", "context"})
+        self.assertEqual(entries["context"]["first_score"], 1)
+        self.assertEqual(entries["context"]["second_score"], 2)
+        self.assertEqual(entries["origin"]["first_score"], 2)
+        self.assertIsNone(entries["origin"]["second_score"])
 
     def test_qr_cashier_page_and_purchase_endpoint_are_removed(self):
         cashier_response = self.client.get("/cashier")

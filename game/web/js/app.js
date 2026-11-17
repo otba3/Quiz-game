@@ -4,15 +4,17 @@
 
   const OUTPUT_DIR = "../../output/"; // question images live in output/images/
   const PER_GAME = 6; // questions per playthrough (fewer if the bank is smaller)
-  const ORIGIN_PER_TYPE = 3; // Origin: 3 continent + 3 country questions
   const FEEDBACK_TIME = 3000; // milliseconds to show the result before the next question
   const HOME_ARTWORK_FILE = "2007.1.1639a.2000x2000.jpg";
 
   // Category buttons: key in QUIZ_DATA.categories -> label on screen, per language.
   const CATEGORIES = [
     { key: "year", name: { en: "Year of Creation", ar: "سنة الإنشاء" } },
-    { key: "origin", name: { en: "Geographic Origin", ar: "الأصل الجغرافي" } },
+    { key: "context", name: { en: "Context", ar: "السياق" } },
   ];
+  const HISTORICAL_CATEGORIES = {
+    origin: { en: "Geographic Origin", ar: "الأصل الجغرافي" },
+  };
   const UI = {
     en: {
       languageLabel: "Language",
@@ -257,7 +259,7 @@
     gameStartedAt,
     ratingScore = null,
     lastPointsResult,
-    leaderboardCategory = "origin",
+    leaderboardCategory = "context",
     leaderboardPeriod = "daily",
     leaderboardRequest = 0,
     dashboardDetailKind = null,
@@ -276,6 +278,12 @@
 
   // Pick the current language from an {en: ..., ar: ...} object; fall back to English.
   const tr = (obj) => obj[lang] || obj.en;
+
+  function categoryLabel(key) {
+    const category = CATEGORIES.find((item) => item.key === key);
+    const name = category ? category.name : HISTORICAL_CATEGORIES[key];
+    return name ? tr(name) : key;
+  }
 
   function fit() {
     const s = Math.min(innerWidth / 1024, innerHeight / 600);
@@ -375,15 +383,6 @@
   // Choose this game's questions.
   function pickQuestions(key) {
     const all = QUIZ_DATA.categories[key];
-    if (key === "origin") {
-      const ofType = (type) =>
-        draw(
-          "origin-" + type,
-          all.filter((q) => q.type === type),
-          ORIGIN_PER_TYPE,
-        );
-      return shuffle(ofType("continent").concat(ofType("country")));
-    }
     return draw(key, all, PER_GAME);
   }
 
@@ -401,10 +400,7 @@
       .replace("{year}", year || "");
   }
 
-  // Two JSON shapes exist:
-  //   old (Origin): options = {en: [...], ar: [...]}, answer = {en, ar}, image = "..."
-  //   new (Year):   options = [...],                  answer = "...",    images = [...]
-  // These helpers turn both into the same form, so the rest of the code needs no ifs.
+  // These helpers also support the older bilingual question-bank shape.
 
   // A list of options, each as {en, ar} (ar is missing for the new shape: tr() falls back to English).
   function optionsOf(q) {
@@ -932,13 +928,12 @@
       rows.forEach((entry) => {
         let cells;
         if (isScore) {
-          const category = CATEGORIES.find((item) => item.key === entry.category);
           const difference = entry.second_score === null
             ? "—"
             : (entry.second_score > entry.first_score ? "+" : "") +
               (entry.second_score - entry.first_score);
           cells = [
-            category ? tr(category.name) : entry.category,
+            categoryLabel(entry.category),
             dateFormat.format(new Date(entry.session_date + "T00:00:00")),
             entry.first_score,
             entry.second_score === null ? "—" : entry.second_score,
@@ -1479,16 +1474,13 @@
     history.innerHTML = "";
     result.points_history.forEach((entry) => {
       const item = document.createElement("li");
-      const categoryName = CATEGORIES.find(
-        (item) => item.key === entry.category,
-      )?.name;
       const detail = document.createElement("span");
       detail.textContent =
         (entry.kind === "redeemed"
           ? UI[lang].redeemedEntry
           : UI[lang].earnedEntry) +
         " · " +
-        (categoryName ? tr(categoryName) : entry.category) +
+        categoryLabel(entry.category) +
         " · " +
         new Intl.DateTimeFormat(lang, { dateStyle: "medium" }).format(
           new Date(entry.created_at),

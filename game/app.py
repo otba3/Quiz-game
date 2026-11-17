@@ -180,7 +180,7 @@ def login_account():
 @app.route("/api/account/save", methods=["POST"])
 def save_account_score():
     data = request.get_json(silent=True)
-    if not isinstance(data, dict) or data.get("category") not in ("year", "origin"):
+    if not isinstance(data, dict) or data.get("category") not in ("year", "context"):
         return jsonify({"error": "Invalid category"}), 400
     account_code = data.get("account_code")
     if not isinstance(account_code, str):
@@ -223,7 +223,7 @@ def save_account_score():
 def leaderboard():
     category = request.args.get("category")
     period = request.args.get("period")
-    if category not in ("year", "origin"):
+    if category not in ("year", "context"):
         return jsonify({"error": "Invalid category"}), 400
     if period not in ("daily", "monthly"):
         return jsonify({"error": "Invalid leaderboard period"}), 400
@@ -308,7 +308,7 @@ def save_feedback():
     language = data.get("language")
     score_saved = data.get("score_saved")
     duration_seconds = data.get("duration_seconds")
-    if category not in ("year", "origin"):
+    if category not in ("year", "context"):
         return jsonify({"error": "Invalid category"}), 400
     if type(score) is not int or score < 0:
         return jsonify({"error": "Invalid score"}), 400

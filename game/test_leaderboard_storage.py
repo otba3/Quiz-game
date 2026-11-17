@@ -44,11 +44,11 @@ class LeaderboardStorageTests(unittest.TestCase):
         first_questions = [f"q-{number}" for number in range(1, 7)]
         next_questions = [f"q-{number}" for number in range(7, 13)]
         overflow_questions = ["q-13", "q-14"]
-        storage.save_score(1001, "origin", 6, first_questions)
-        storage.save_score(1001, "origin", 6, next_questions)
+        storage.save_score(1001, "context", 6, first_questions)
+        storage.save_score(1001, "context", 6, next_questions)
 
         overflow = storage.save_score(
-            1001, "origin", 2, overflow_questions
+            1001, "context", 2, overflow_questions
         )
 
         self.assertEqual(overflow["leaderboard_points_earned"], 0)
@@ -58,7 +58,7 @@ class LeaderboardStorageTests(unittest.TestCase):
         storage.save_score(1001, "year", 4)
         storage.save_score(1001, "year", 5)
         storage.save_score(1002, "year", 7)
-        storage.save_score(1001, "origin", 11)
+        storage.save_score(1001, "context", 11)
 
         entries = storage.get_leaderboard("year", "monthly")
 
@@ -80,7 +80,7 @@ class LeaderboardStorageTests(unittest.TestCase):
 
     def test_daily_average_includes_all_account_quizzes_today(self):
         first = storage.save_score(1001, "year", 2)
-        second = storage.save_score(1002, "origin", 5)
+        second = storage.save_score(1002, "context", 5)
 
         self.assertEqual(first["average_score"], 2.0)
         self.assertEqual(second["average_score"], 3.5)
@@ -91,7 +91,7 @@ class LeaderboardStorageTests(unittest.TestCase):
 
     def test_daily_average_excludes_scores_above_six(self):
         storage.save_score(1001, "year", 8)
-        result = storage.save_score(1002, "origin", 6)
+        result = storage.save_score(1002, "context", 6)
 
         self.assertEqual(result["average_score"], 6)
         self.assertEqual(
@@ -134,9 +134,9 @@ class LeaderboardStorageTests(unittest.TestCase):
 
     def test_leaderboard_returns_all_visitors_for_scrollable_rankings(self):
         for card_uid in range(1001, 1014):
-            storage.save_score(card_uid, "origin", 5)
+            storage.save_score(card_uid, "context", 5)
 
-        entries = storage.get_leaderboard("origin", "monthly")
+        entries = storage.get_leaderboard("context", "monthly")
 
         self.assertEqual(len(entries), 13)
 

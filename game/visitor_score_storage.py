@@ -314,7 +314,7 @@ def save_game_feedback(category, score, rating, language, score_saved,
 
 def record_visitor_play(category, score):
     """Record one completed quiz, including guest games, for kiosk statistics."""
-    if category not in ("year", "origin"):
+    if category not in ("year", "context"):
         raise ValueError("Invalid category")
     if type(score) is not int or not 0 <= score <= 6:
         raise ValueError("Score must be between 0 and 6")

@@ -10,7 +10,8 @@ const QUIZ_DATA = {
    "question.year.not_in_year": "Which one is not made on this year {year}?",
    "question.year.older": "Which artwork is older?",
    "question.year.which_year": "What year was this artwork made?",
-   "question.year.in_year": "Which artwork is made in the year {year}?"
+   "question.year.in_year": "Which artwork is made in the year {year}?",
+   "question.context": "What is the context of this artwork?"
   },
   "ar": {
    "question.title": "ما عنوان هذا العمل الفني؟",
@@ -21,7 +22,8 @@ const QUIZ_DATA = {
    "question.year.which_year": "في أي سنة صُنع هذا العمل الفني؟",
    "question.year.older": "أي العملين أقدم؟",
    "question.year.in_year": "أي عمل صُنع في عام {year}؟",
-   "question.year.not_in_year": "أي عمل لم يُصنع في عام {year}؟"
+   "question.year.not_in_year": "أي عمل لم يُصنع في عام {year}؟",
+   "question.context": "ما سياق هذا العمل الفني؟"
   }
  },
  "categories": {
@@ -561,1158 +563,150 @@ const QUIZ_DATA = {
     ]
    }
   ],
-  "origin": [
+  "context": [
    {
-    "id": "origin-78718",
-    "type": "continent",
-    "question_key": "question.continent",
-    "image": "images/2016.87.jpg",
-    "options": {
-     "en": [
-      "Asia",
-      "North America",
-      "Europe",
-      "Africa"
-     ],
-     "ar": [
-      "آسيا",
-      "أمريكا الشمالية",
-      "أوروبا",
-      "أفريقيا"
-     ]
-    },
-    "answer": {
-     "en": "Asia",
-     "ar": "آسيا"
-    },
-    "context": {
-     "en": "Yoshida Hiroshi (Japanese, 1876–1950), after 1940",
-     "ar": "يوشيدا هيروشي (ياباني، 1876–1950)، بعد عام 1940"
-    }
+    "id": "context-1",
+    "question_key": "question.context",
+    "image": "images/2007.1.280.2000x2000.jpg",
+    "options": [
+     "Agricultural Workers",
+     "Fishermen",
+     "Religious Procession",
+     "Market Gathering"
+    ],
+    "answer": "Fishermen"
    },
    {
-    "id": "origin-79081",
-    "type": "continent",
-    "question_key": "question.continent",
-    "image": "images/2016.139.jpg",
-    "options": {
-     "en": [
-      "Asia",
-      "North America",
-      "Europe",
-      "Africa"
-     ],
-     "ar": [
-      "آسيا",
-      "أمريكا الشمالية",
-      "أوروبا",
-      "أفريقيا"
-     ]
-    },
-    "answer": {
-     "en": "Europe",
-     "ar": "أوروبا"
-    },
-    "context": {
-     "en": "Félix Bracquemond (French, 1833–1914), 1867",
-     "ar": "فيليكس براكيموند (فرنسي، 1833–1914)، 1867"
-    }
+    "id": "context-2",
+    "question_key": "question.context",
+    "image": "images/MAT.2007.1.2832.....2000x2000.jpg",
+    "options": [
+     "City Transportation",
+     "Rural Village",
+     "Riverside Neighborhood",
+     "Game Land"
+    ],
+    "answer": "Game Land"
    },
    {
-    "id": "origin-93174",
-    "type": "continent",
-    "question_key": "question.continent",
-    "image": "images/2018.288.jpg",
-    "options": {
-     "en": [
-      "Asia",
-      "North America",
-      "Europe",
-      "Africa"
-     ],
-     "ar": [
-      "آسيا",
-      "أمريكا الشمالية",
-      "أوروبا",
-      "أفريقيا"
-     ]
-    },
-    "answer": {
-     "en": "North America",
-     "ar": "أمريكا الشمالية"
-    },
-    "context": {
-     "en": "Tiffany Glass & Decorating Company (America, New York, 1892–1902), c. 1896–1902",
-     "ar": "شركة تيفاني للزجاج والديكور (أمريكا، نيويورك، 1892–1902)، حوالي 1896–1902"
-    }
+    "id": "context-3",
+    "question_key": "question.context",
+    "image": "images/2007.1.211.2000x2000.jpg",
+    "options": [
+     "Café Drinking",
+     "Family Gathering",
+     "Market Scene",
+     "Community Meeting"
+    ],
+    "answer": "Café Drinking"
    },
    {
-    "id": "origin-93946",
-    "type": "continent",
-    "question_key": "question.continent",
-    "image": "images/1914.535.jpg",
-    "options": {
-     "en": [
-      "Asia",
-      "North America",
-      "Europe",
-      "Africa"
-     ],
-     "ar": [
-      "آسيا",
-      "أمريكا الشمالية",
-      "أوروبا",
-      "أفريقيا"
-     ]
-    },
-    "answer": {
-     "en": "Asia",
-     "ar": "آسيا"
-    },
-    "context": {
-     "en": "China, Qing dynasty (1644–1911), Qianlong reign (1736–95), 1736–95",
-     "ar": "الصين، أسرة تشينغ (1644–1911)، عهد تشيان لونغ (1736–1795)، 1736–1795"
-    }
+    "id": "context-4",
+    "question_key": "question.context",
+    "image": "images/MAT.2014.9.9..2000x2000.jpg",
+    "options": [
+     "Urban Gathering",
+     "Ritual Gathering",
+     "Night Time",
+     "Outdoor Procession"
+    ],
+    "answer": "Night Time"
    },
    {
-    "id": "origin-94871",
-    "type": "continent",
-    "question_key": "question.continent",
-    "image": "images/1915.431.jpg",
-    "options": {
-     "en": [
-      "Asia",
-      "North America",
-      "Europe",
-      "Africa"
-     ],
-     "ar": [
-      "آسيا",
-      "أمريكا الشمالية",
-      "أوروبا",
-      "أفريقيا"
-     ]
-    },
-    "answer": {
-     "en": "North America",
-     "ar": "أمريكا الشمالية"
-    },
-    "context": {
-     "en": "Otto H. Bacher (American, 1856–1909), c. 1870–1909",
-     "ar": "أوتو هـ. باخر (أمريكي، 1856–1909)، حوالي 1870–1909"
-    }
+    "id": "context-5",
+    "question_key": "question.context",
+    "image": "images/QM.2024.9125.02.2000x2000.jpg",
+    "options": [
+     "Hunting Scene",
+     "Animal Procession",
+     "Chase Time",
+     "Mythical Battle"
+    ],
+    "answer": "Hunting Scene"
    },
    {
-    "id": "origin-94882",
-    "type": "continent",
-    "question_key": "question.continent",
-    "image": "images/1915.442.jpg",
-    "options": {
-     "en": [
-      "Asia",
-      "North America",
-      "Europe",
-      "Africa"
-     ],
-     "ar": [
-      "آسيا",
-      "أمريكا الشمالية",
-      "أوروبا",
-      "أفريقيا"
-     ]
-    },
-    "answer": {
-     "en": "Africa",
-     "ar": "أفريقيا"
-    },
-    "context": {
-     "en": "Africa, Central Africa, Democratic Republic of the Congo or Angola, Chokwe-style maker, late 1800s",
-     "ar": "أفريقيا، وسط أفريقيا، جمهورية الكونغو الديمقراطية أو أنغولا، صانع بأسلوب تشوكوي، أواخر القرن التاسع عشر"
-    }
+    "id": "context-6",
+    "question_key": "question.context",
+    "image": "images/MAT.2007.1.206.2000x2000.jpg",
+    "options": [
+     "Nighttime Herd",
+     "Animal Gathering",
+     "Martyr's Epic",
+     "Animal's Farm"
+    ],
+    "answer": "Martyr's Epic"
    },
    {
-    "id": "origin-95513",
-    "type": "continent",
-    "question_key": "question.continent",
-    "image": "images/1916.1247.jpg",
-    "options": {
-     "en": [
-      "Asia",
-      "North America",
-      "Europe",
-      "Africa"
-     ],
-     "ar": [
-      "آسيا",
-      "أمريكا الشمالية",
-      "أوروبا",
-      "أفريقيا"
-     ]
-    },
-    "answer": {
-     "en": "Africa",
-     "ar": "أفريقيا"
-    },
-    "context": {
-     "en": "Africa, North Africa, Morocco, Chefchaouen, Moroccan embroiderer, 1800s",
-     "ar": "أفريقيا، شمال أفريقيا، المغرب، شفشاون، مطرّز مغربي، القرن التاسع عشر"
-    }
+    "id": "context-7",
+    "question_key": "question.context",
+    "image": "images/2007.1.1650.2000x2000.jpg",
+    "options": [
+     "Walking Scene",
+     "Abstract Animals",
+     "Colorful Village",
+     "Geometric Landscape"
+    ],
+    "answer": "Walking Scene"
    },
    {
-    "id": "origin-96076",
-    "type": "continent",
-    "question_key": "question.continent",
-    "image": "images/1916.1816.jpg",
-    "options": {
-     "en": [
-      "Asia",
-      "North America",
-      "Europe",
-      "Africa"
-     ],
-     "ar": [
-      "آسيا",
-      "أمريكا الشمالية",
-      "أوروبا",
-      "أفريقيا"
-     ]
-    },
-    "answer": {
-     "en": "Europe",
-     "ar": "أوروبا"
-    },
-    "context": {
-     "en": "North Italy, Brescia (?), 16th century, c. 1575",
-     "ar": "شمال إيطاليا، بريشيا (؟)، القرن السادس عشر، حوالي 1575"
-    }
+    "id": "context-8",
+    "question_key": "question.context",
+    "image": "images/MAT.2010.26.2....2000x2000.jpg",
+    "options": [
+     "Unfold Papers",
+     "Repeated Figures",
+     "Burned Tiles",
+     "Secret Squares"
+    ],
+    "answer": "Secret Squares"
    },
    {
-    "id": "origin-96302",
-    "type": "country",
-    "question_key": "question.country",
-    "image": "images/1916.2010.jpg",
-    "options": {
-     "en": [
-      "Spain",
-      "France",
-      "Germany",
-      "Italy"
-     ],
-     "ar": [
-      "إسبانيا",
-      "فرنسا",
-      "ألمانيا",
-      "إيطاليا"
-     ]
-    },
-    "answer": {
-     "en": "Italy",
-     "ar": "إيطاليا"
-    },
-    "context": {
-     "en": "Italy, Roman, 27 BCE–14 CE",
-     "ar": "إيطاليا، روماني، 27 ق.م.–14 م"
-    },
-    "continent": {
-     "en": "Europe",
-     "ar": "أوروبا"
-    }
+    "id": "context-9",
+    "question_key": "question.context",
+    "image": "images/MAT.2007.1.178.2000x2000.jpg",
+    "options": [
+     "Forest Landscape",
+     "Village on Hill",
+     "Runaway Animals",
+     "Horses and Bulls"
+    ],
+    "answer": "Horses and Bulls"
    },
    {
-    "id": "origin-96548",
-    "type": "country",
-    "question_key": "question.country",
-    "image": "images/1916.302.jpg",
-    "options": {
-     "en": [
-      "Netherlands",
-      "Italy",
-      "England",
-      "France"
-     ],
-     "ar": [
-      "هولندا",
-      "إيطاليا",
-      "إنجلترا",
-      "فرنسا"
-     ]
-    },
-    "answer": {
-     "en": "England",
-     "ar": "إنجلترا"
-    },
-    "context": {
-     "en": "South Staffordshire Factory (British), c. 1770",
-     "ar": "مصنع جنوب ستافوردشاير (بريطاني)، حوالي 1770"
-    },
-    "continent": {
-     "en": "Europe",
-     "ar": "أوروبا"
-    }
+    "id": "context-10",
+    "question_key": "question.context",
+    "image": "images/2007.2.160.2000x2000.jpg",
+    "options": [
+     "Mythical Creature",
+     "Animal Form",
+     "Man in Dress",
+     "Fire Powers"
+    ],
+    "answer": "Mythical Creature"
    },
    {
-    "id": "origin-86510",
-    "type": "country",
-    "question_key": "question.country",
-    "image": "images/2015.586.jpg",
-    "options": {
-     "en": [
-      "France",
-      "Germany",
-      "England",
-      "Italy"
-     ],
-     "ar": [
-      "فرنسا",
-      "ألمانيا",
-      "إنجلترا",
-      "إيطاليا"
-     ]
-    },
-    "answer": {
-     "en": "France",
-     "ar": "فرنسا"
-    },
-    "context": {
-     "en": "Camille Roqueplan (French, 1803–1855), 1831",
-     "ar": "كاميل روكبلان (فرنسي، 1803–1855)، 1831"
-    },
-    "continent": {
-     "en": "Europe",
-     "ar": "أوروبا"
-    }
+    "id": "context-11",
+    "question_key": "question.context",
+    "image": "images/MAT.2007.1.194.....2000x2000.jpg",
+    "options": [
+     "Women Playing",
+     "Women Birds",
+     "Traditional Dance",
+     "Shape Test"
+    ],
+    "answer": "Traditional Dance"
    },
    {
-    "id": "origin-95265",
-    "type": "country",
-    "question_key": "question.country",
-    "image": "images/1916.1038.jpg",
-    "options": {
-     "en": [
-      "England",
-      "Netherlands",
-      "France",
-      "Spain"
-     ],
-     "ar": [
-      "إنجلترا",
-      "هولندا",
-      "فرنسا",
-      "إسبانيا"
-     ]
-    },
-    "answer": {
-     "en": "France",
-     "ar": "فرنسا"
-    },
-    "context": {
-     "en": "Henri Fantin-Latour (French, 1836–1904), 1886",
-     "ar": "هنري فانتان لاتور (فرنسي، 1836–1904)، 1886"
-    },
-    "continent": {
-     "en": "Europe",
-     "ar": "أوروبا"
-    }
-   },
-   {
-    "id": "origin-95286",
-    "type": "country",
-    "question_key": "question.country",
-    "image": "images/1916.1055.jpg",
-    "options": {
-     "en": [
-      "Germany",
-      "France",
-      "Italy",
-      "Netherlands"
-     ],
-     "ar": [
-      "ألمانيا",
-      "فرنسا",
-      "إيطاليا",
-      "هولندا"
-     ]
-    },
-    "answer": {
-     "en": "Netherlands",
-     "ar": "هولندا"
-    },
-    "context": {
-     "en": "Jan Anthonisz. van Ravesteyn (Dutch, c. 1570–1657), 1620s",
-     "ar": "يان أنتونيس فان رافستاين (هولندي، حوالي 1570–1657)، عشرينيات القرن السابع عشر"
-    },
-    "continent": {
-     "en": "Europe",
-     "ar": "أوروبا"
-    }
-   },
-   {
-    "id": "origin-95323",
-    "type": "country",
-    "question_key": "question.country",
-    "image": "images/1916.1091.a.jpg",
-    "options": {
-     "en": [
-      "Switzerland",
-      "Germany",
-      "France",
-      "England"
-     ],
-     "ar": [
-      "سويسرا",
-      "ألمانيا",
-      "فرنسا",
-      "إنجلترا"
-     ]
-    },
-    "answer": {
-     "en": "Germany",
-     "ar": "ألمانيا"
-    },
-    "context": {
-     "en": "Germany, Landshut, mid-16th century, mid-1500s",
-     "ar": "ألمانيا، لاندسهوت، منتصف القرن السادس عشر"
-    },
-    "continent": {
-     "en": "Europe",
-     "ar": "أوروبا"
-    }
-   },
-   {
-    "id": "origin-95774",
-    "type": "country",
-    "question_key": "question.country",
-    "image": "images/1916.1465.jpg",
-    "options": {
-     "en": [
-      "Spain",
-      "Greece",
-      "Italy",
-      "France"
-     ],
-     "ar": [
-      "إسبانيا",
-      "اليونان",
-      "إيطاليا",
-      "فرنسا"
-     ]
-    },
-    "answer": {
-     "en": "Spain",
-     "ar": "إسبانيا"
-    },
-    "context": {
-     "en": "Spain, 1700s–1800s",
-     "ar": "إسبانيا، القرنان الثامن عشر والتاسع عشر"
-    },
-    "continent": {
-     "en": "Europe",
-     "ar": "أوروبا"
-    }
-   },
-   {
-    "id": "origin-95875",
-    "type": "country",
-    "question_key": "question.country",
-    "image": "images/1916.1554.jpg",
-    "options": {
-     "en": [
-      "Germany",
-      "France",
-      "Switzerland",
-      "Netherlands"
-     ],
-     "ar": [
-      "ألمانيا",
-      "فرنسا",
-      "سويسرا",
-      "هولندا"
-     ]
-    },
-    "answer": {
-     "en": "Switzerland",
-     "ar": "سويسرا"
-    },
-    "context": {
-     "en": "Switzerland, 1600s",
-     "ar": "سويسرا، القرن السابع عشر"
-    },
-    "continent": {
-     "en": "Europe",
-     "ar": "أوروبا"
-    }
-   },
-   {
-    "id": "origin-79598",
-    "type": "country",
-    "question_key": "question.country",
-    "image": "images/2015.489.jpg",
-    "options": {
-     "en": [
-      "Korea",
-      "China",
-      "India",
-      "Japan"
-     ],
-     "ar": [
-      "كوريا",
-      "الصين",
-      "الهند",
-      "اليابان"
-     ]
-    },
-    "answer": {
-     "en": "Japan",
-     "ar": "اليابان"
-    },
-    "context": {
-     "en": "Japan, Muromachi period (1392–1573) to Momoyama period (1573–1615), c. 1500–1615",
-     "ar": "اليابان، من فترة موروماتشي (1392–1573) إلى فترة موموياما (1573–1615)، حوالي 1500–1615"
-    },
-    "continent": {
-     "en": "Asia",
-     "ar": "آسيا"
-    }
-   },
-   {
-    "id": "origin-79932",
-    "type": "country",
-    "question_key": "question.country",
-    "image": "images/2015.516.jpg",
-    "options": {
-     "en": [
-      "China",
-      "Japan",
-      "Korea",
-      "India"
-     ],
-     "ar": [
-      "الصين",
-      "اليابان",
-      "كوريا",
-      "الهند"
-     ]
-    },
-    "answer": {
-     "en": "Korea",
-     "ar": "كوريا"
-    },
-    "context": {
-     "en": "Yi Bul-hae (Korean, active 1500s), 1600s",
-     "ar": "يي بول هاي (كوري، نشط في القرن السادس عشر)، القرن السابع عشر"
-    },
-    "continent": {
-     "en": "Asia",
-     "ar": "آسيا"
-    }
-   },
-   {
-    "id": "origin-95041",
-    "type": "country",
-    "question_key": "question.country",
-    "image": "images/1915.584.jpg",
-    "options": {
-     "en": [
-      "Turkey",
-      "India",
-      "China",
-      "Iran"
-     ],
-     "ar": [
-      "تركيا",
-      "الهند",
-      "الصين",
-      "إيران"
-     ]
-    },
-    "answer": {
-     "en": "Iran",
-     "ar": "إيران"
-    },
-    "context": {
-     "en": "Iran, Kashan, Seljuq period of Iran (1037–1194), 1170–1220",
-     "ar": "إيران، كاشان، العصر السلجوقي في إيران (1037–1194)، 1170–1220"
-    },
-    "continent": {
-     "en": "Asia",
-     "ar": "آسيا"
-    }
-   },
-   {
-    "id": "origin-95094",
-    "type": "country",
-    "question_key": "question.country",
-    "image": "images/1915.629.jpg",
-    "options": {
-     "en": [
-      "Japan",
-      "China",
-      "Korea",
-      "Indonesia"
-     ],
-     "ar": [
-      "اليابان",
-      "الصين",
-      "كوريا",
-      "إندونيسيا"
-     ]
-    },
-    "answer": {
-     "en": "China",
-     "ar": "الصين"
-    },
-    "context": {
-     "en": "China, Shang dynasty (c. 1600–c. 1046 BCE), c. 1800–1400 BCE",
-     "ar": "الصين، أسرة شانغ (حوالي 1600–حوالي 1046 ق.م.)، حوالي 1800–1400 ق.م."
-    },
-    "continent": {
-     "en": "Asia",
-     "ar": "آسيا"
-    }
-   },
-   {
-    "id": "origin-95133",
-    "type": "country",
-    "question_key": "question.country",
-    "image": "images/1915.651.d.jpg",
-    "options": {
-     "en": [
-      "Iran",
-      "India",
-      "Turkey",
-      "Uzbekistan"
-     ],
-     "ar": [
-      "إيران",
-      "الهند",
-      "تركيا",
-      "أوزبكستان"
-     ]
-    },
-    "answer": {
-     "en": "Turkey",
-     "ar": "تركيا"
-    },
-    "context": {
-     "en": "Turkey (Iznik), Ottoman Period, 1600s",
-     "ar": "تركيا (إزنيق)، العهد العثماني، القرن السابع عشر"
-    },
-    "continent": {
-     "en": "Asia",
-     "ar": "آسيا"
-    }
-   },
-   {
-    "id": "origin-95474",
-    "type": "country",
-    "question_key": "question.country",
-    "image": "images/1916.1211.jpg",
-    "options": {
-     "en": [
-      "Indonesia",
-      "China",
-      "Japan",
-      "India"
-     ],
-     "ar": [
-      "إندونيسيا",
-      "الصين",
-      "اليابان",
-      "الهند"
-     ]
-    },
-    "answer": {
-     "en": "India",
-     "ar": "الهند"
-    },
-    "context": {
-     "en": "India, early 1900s",
-     "ar": "الهند، أوائل القرن العشرين"
-    },
-    "continent": {
-     "en": "Asia",
-     "ar": "آسيا"
-    }
-   },
-   {
-    "id": "origin-95554",
-    "type": "country",
-    "question_key": "question.country",
-    "image": "images/1916.1277.jpg",
-    "options": {
-     "en": [
-      "Turkey",
-      "Iran",
-      "Uzbekistan",
-      "China"
-     ],
-     "ar": [
-      "تركيا",
-      "إيران",
-      "أوزبكستان",
-      "الصين"
-     ]
-    },
-    "answer": {
-     "en": "Uzbekistan",
-     "ar": "أوزبكستان"
-    },
-    "context": {
-     "en": "Uzbekistan, Bukhara, 19th century, 19th century",
-     "ar": "أوزبكستان، بخارى، القرن التاسع عشر"
-    },
-    "continent": {
-     "en": "Asia",
-     "ar": "آسيا"
-    }
-   },
-   {
-    "id": "origin-97306",
-    "type": "country",
-    "question_key": "question.country",
-    "image": "images/1916.938.jpg",
-    "options": {
-     "en": [
-      "Japan",
-      "Korea",
-      "China",
-      "Philippines"
-     ],
-     "ar": [
-      "اليابان",
-      "كوريا",
-      "الصين",
-      "الفلبين"
-     ]
-    },
-    "answer": {
-     "en": "Japan",
-     "ar": "اليابان"
-    },
-    "context": {
-     "en": "Utagawa Hiroshige II (Japanese, 1826–1869), 1839–1864",
-     "ar": "أوتاغاوا هيروشيغه الثاني (ياباني، 1826–1869)، 1839–1864"
-    },
-    "continent": {
-     "en": "Asia",
-     "ar": "آسيا"
-    }
-   },
-   {
-    "id": "origin-97637",
-    "type": "country",
-    "question_key": "question.country",
-    "image": "images/1917.28.jpg",
-    "options": {
-     "en": [
-      "Philippines",
-      "India",
-      "China",
-      "Indonesia"
-     ],
-     "ar": [
-      "الفلبين",
-      "الهند",
-      "الصين",
-      "إندونيسيا"
-     ]
-    },
-    "answer": {
-     "en": "Indonesia",
-     "ar": "إندونيسيا"
-    },
-    "context": {
-     "en": "Indonesia, Central Java, 19th century, 1800s",
-     "ar": "إندونيسيا، جاوة الوسطى، القرن التاسع عشر"
-    },
-    "continent": {
-     "en": "Asia",
-     "ar": "آسيا"
-    }
-   },
-   {
-    "id": "origin-98146",
-    "type": "country",
-    "question_key": "question.country",
-    "image": "images/1917.770.jpg",
-    "options": {
-     "en": [
-      "China",
-      "Indonesia",
-      "Philippines",
-      "Japan"
-     ],
-     "ar": [
-      "الصين",
-      "إندونيسيا",
-      "الفلبين",
-      "اليابان"
-     ]
-    },
-    "answer": {
-     "en": "Philippines",
-     "ar": "الفلبين"
-    },
-    "context": {
-     "en": "Philippines, early 1900s",
-     "ar": "الفلبين، أوائل القرن العشرين"
-    },
-    "continent": {
-     "en": "Asia",
-     "ar": "آسيا"
-    }
-   },
-   {
-    "id": "origin-98278",
-    "type": "country",
-    "question_key": "question.country",
-    "image": "images/1917.953.jpg",
-    "options": {
-     "en": [
-      "Korea",
-      "China",
-      "Japan",
-      "India"
-     ],
-     "ar": [
-      "كوريا",
-      "الصين",
-      "اليابان",
-      "الهند"
-     ]
-    },
-    "answer": {
-     "en": "China",
-     "ar": "الصين"
-    },
-    "context": {
-     "en": "China, Eastern Han dynasty (25–220 CE), 1–200 CE",
-     "ar": "الصين، أسرة هان الشرقية (25–220 م)، 1–200 م"
-    },
-    "continent": {
-     "en": "Asia",
-     "ar": "آسيا"
-    }
-   },
-   {
-    "id": "origin-94000",
-    "type": "country",
-    "question_key": "question.country",
-    "image": "images/1914.572.jpg",
-    "options": {
-     "en": [
-      "Morocco",
-      "Sudan",
-      "Egypt",
-      "Tunisia"
-     ],
-     "ar": [
-      "المغرب",
-      "السودان",
-      "مصر",
-      "تونس"
-     ]
-    },
-    "answer": {
-     "en": "Egypt",
-     "ar": "مصر"
-    },
-    "context": {
-     "en": "Egypt, Late period (715–332 BCE), Dynasty 26 or later, 664–525 BCE",
-     "ar": "مصر، العصر المتأخر (715–332 ق.م.)، الأسرة السادسة والعشرون أو ما بعدها، 664–525 ق.م."
-    },
-    "continent": {
-     "en": "Africa",
-     "ar": "أفريقيا"
-    }
-   },
-   {
-    "id": "origin-146945",
-    "type": "country",
-    "question_key": "question.country",
-    "image": "images/1972.343.jpg",
-    "options": {
-     "en": [
-      "Ghana",
-      "Côte d'Ivoire",
-      "Congo",
-      "Uganda"
-     ],
-     "ar": [
-      "غانا",
-      "ساحل العاج",
-      "الكونغو",
-      "أوغندا"
-     ]
-    },
-    "answer": {
-     "en": "Côte d'Ivoire",
-     "ar": "ساحل العاج"
-    },
-    "context": {
-     "en": "Africa, West Africa, Côte d'Ivoire, possibly Bondoukou region, unknown maker, late 1800s–early 1900s",
-     "ar": "أفريقيا، غرب أفريقيا، ساحل العاج، ربما منطقة بوندوكو، صانع غير معروف، أواخر القرن التاسع عشر إلى أوائل القرن العشرين"
-    },
-    "continent": {
-     "en": "Africa",
-     "ar": "أفريقيا"
-    }
-   },
-   {
-    "id": "origin-110841",
-    "type": "country",
-    "question_key": "question.country",
-    "image": "images/1929.363.jpg",
-    "options": {
-     "en": [
-      "Egypt",
-      "Morocco",
-      "Algeria",
-      "Sudan"
-     ],
-     "ar": [
-      "مصر",
-      "المغرب",
-      "الجزائر",
-      "السودان"
-     ]
-    },
-    "answer": {
-     "en": "Sudan",
-     "ar": "السودان"
-    },
-    "context": {
-     "en": "Africa, Sudan, reportedly Darfur, unknown maker, 1900s",
-     "ar": "أفريقيا، السودان، يُقال من دارفور، صانع غير معروف، القرن العشرين"
-    },
-    "continent": {
-     "en": "Africa",
-     "ar": "أفريقيا"
-    }
-   },
-   {
-    "id": "origin-110792",
-    "type": "country",
-    "question_key": "question.country",
-    "image": "images/1929.322.jpg",
-    "options": {
-     "en": [
-      "Nigeria",
-      "Congo",
-      "Uganda",
-      "Ghana"
-     ],
-     "ar": [
-      "نيجيريا",
-      "الكونغو",
-      "أوغندا",
-      "غانا"
-     ]
-    },
-    "answer": {
-     "en": "Uganda",
-     "ar": "أوغندا"
-    },
-    "context": {
-     "en": "East Africa, Uganda, 20th century, 1900s",
-     "ar": "شرق أفريقيا، أوغندا، القرن العشرين"
-    },
-    "continent": {
-     "en": "Africa",
-     "ar": "أفريقيا"
-    }
-   },
-   {
-    "id": "origin-114172",
-    "type": "country",
-    "question_key": "question.country",
-    "image": "images/1933.422.jpg",
-    "options": {
-     "en": [
-      "Morocco",
-      "Algeria",
-      "Egypt",
-      "Tunisia"
-     ],
-     "ar": [
-      "المغرب",
-      "الجزائر",
-      "مصر",
-      "تونس"
-     ]
-    },
-    "answer": {
-     "en": "Morocco",
-     "ar": "المغرب"
-    },
-    "context": {
-     "en": "Africa, North Africa, Morocco, Fes, Moroccan embroiderer, 1800s",
-     "ar": "أفريقيا، شمال أفريقيا، المغرب، فاس، مطرّز مغربي، القرن التاسع عشر"
-    },
-    "continent": {
-     "en": "Africa",
-     "ar": "أفريقيا"
-    }
-   },
-   {
-    "id": "origin-136918",
-    "type": "country",
-    "question_key": "question.country",
-    "image": "images/1961.399.jpg",
-    "options": {
-     "en": [
-      "Nigeria",
-      "Sudan",
-      "Ghana",
-      "Uganda"
-     ],
-     "ar": [
-      "نيجيريا",
-      "السودان",
-      "غانا",
-      "أوغندا"
-     ]
-    },
-    "answer": {
-     "en": "Ghana",
-     "ar": "غانا"
-    },
-    "context": {
-     "en": "Africa, West Africa, Ghana, Asante goldsmith, 1800s",
-     "ar": "أفريقيا، غرب أفريقيا، غانا، صائغ ذهب من الأشانتي، القرن التاسع عشر"
-    },
-    "continent": {
-     "en": "Africa",
-     "ar": "أفريقيا"
-    }
-   },
-   {
-    "id": "origin-111368",
-    "type": "country",
-    "question_key": "question.country",
-    "image": "images/1929.87.jpg",
-    "options": {
-     "en": [
-      "Egypt",
-      "Tunisia",
-      "Morocco",
-      "Sudan"
-     ],
-     "ar": [
-      "مصر",
-      "تونس",
-      "المغرب",
-      "السودان"
-     ]
-    },
-    "answer": {
-     "en": "Egypt",
-     "ar": "مصر"
-    },
-    "context": {
-     "en": "Africa, North Africa, Egypt, Mamluk Sultanate (1250–1517), Egyptian weaver, probably 1500s",
-     "ar": "أفريقيا، شمال أفريقيا، مصر، سلطنة المماليك (1250–1517)، نسّاج مصري، ربما القرن السادس عشر"
-    },
-    "continent": {
-     "en": "Africa",
-     "ar": "أفريقيا"
-    }
-   },
-   {
-    "id": "origin-130742",
-    "type": "country",
-    "question_key": "question.country",
-    "image": "images/1953.456.jpg",
-    "options": {
-     "en": [
-      "Congo",
-      "Ghana",
-      "Nigeria",
-      "Liberia"
-     ],
-     "ar": [
-      "الكونغو",
-      "غانا",
-      "نيجيريا",
-      "ليبيريا"
-     ]
-    },
-    "answer": {
-     "en": "Liberia",
-     "ar": "ليبيريا"
-    },
-    "context": {
-     "en": "Africa, West Africa, Liberia, Dan-style maker, c. 1900s?",
-     "ar": "أفريقيا، غرب أفريقيا، ليبيريا، صانع بأسلوب دان، حوالي القرن العشرين؟"
-    },
-    "continent": {
-     "en": "Africa",
-     "ar": "أفريقيا"
-    }
-   },
-   {
-    "id": "origin-95501",
-    "type": "country",
-    "question_key": "question.country",
-    "image": "images/1916.1236.jpg",
-    "options": {
-     "en": [
-      "Morocco",
-      "Tunisia",
-      "Algeria",
-      "Egypt"
-     ],
-     "ar": [
-      "المغرب",
-      "تونس",
-      "الجزائر",
-      "مصر"
-     ]
-    },
-    "answer": {
-     "en": "Morocco",
-     "ar": "المغرب"
-    },
-    "context": {
-     "en": "Africa, North Africa, Morocco, Moroccan embroiderer, 1600s–1700s",
-     "ar": "أفريقيا، شمال أفريقيا، المغرب، مطرّز مغربي، القرنان السابع عشر والثامن عشر"
-    },
-    "continent": {
-     "en": "Africa",
-     "ar": "أفريقيا"
-    }
-   },
-   {
-    "id": "origin-95487",
-    "type": "country",
-    "question_key": "question.country",
-    "image": "images/1916.1223.jpg",
-    "options": {
-     "en": [
-      "Sudan",
-      "Algeria",
-      "Egypt",
-      "Tunisia"
-     ],
-     "ar": [
-      "السودان",
-      "الجزائر",
-      "مصر",
-      "تونس"
-     ]
-    },
-    "answer": {
-     "en": "Tunisia",
-     "ar": "تونس"
-    },
-    "context": {
-     "en": "Africa, North Africa, Tunisia, Tunisian embroiderer, early 1900s",
-     "ar": "أفريقيا، شمال أفريقيا، تونس، مطرّز تونسي، أوائل القرن العشرين"
-    },
-    "continent": {
-     "en": "Africa",
-     "ar": "أفريقيا"
-    }
+    "id": "context-12",
+    "question_key": "question.context",
+    "image": "images/MAT.2007.1.3031.2000x2000.jpg",
+    "options": [
+     "Village Street",
+     "City Buildings",
+     "Houses",
+     "Festival"
+    ],
+    "answer": "Houses"
    }
   ]
  }

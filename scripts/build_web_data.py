@@ -11,7 +11,7 @@ from pathlib import Path
 
 OUTPUT_DIR = Path("output")
 WEB_DATA = Path("game/web/js/question_bank.js")
-CATEGORIES = ["year", "origin"]
+CATEGORIES = ["year", "context"]
 
 LANGUAGES = ["en", "ar"]  # one output/i18n/<language>.json file each
 

@@ -114,6 +114,35 @@ python -m pip install -r requirements.txt
 python3 game/app.py
 ```
 
+## Context questions and image resizing
+
+The Context category is sourced from `data/context_questions.csv`; its artwork
+files must be present in `data/PICTURESArtRecall` with the filenames listed in
+that CSV. From the project root on the Raspberry Pi, install dependencies and
+prepare the images:
+
+```bash
+python3 -m pip install -r requirements.txt
+python3 scripts/resize_images.py
+```
+
+The script saves resized JPEG copies to `output/images/` and leaves the source
+files untouched. Context images are re-created each run at up to 1024×600;
+other images are at most 512×600 and existing copies are skipped. The game must
+be able to read `output/images/` on the Pi; this folder is not tracked by Git.
+
+After changing Context questions or filenames, rebuild the question bank:
+
+```bash
+python3 scripts/export_context_questions.py
+python3 scripts/build_web_data.py
+```
+
+Context answers and choices use consistent title case. The exporter checks
+that every answer is an option and every referenced image has been prepared.
+On Windows, run the same scripts from the project root with
+`.venv\Scripts\python.exe` instead of `python3`.
+
 ## Quiz leaderboards
 
 The quiz category screen includes daily and monthly leaderboards for both
@@ -122,6 +151,9 @@ account and category, up to 12 points per day. Monthly scores add the saved
 scores from every quiz completed during the current calendar month. Leaderboard
 names are anonymous, stable visitor labels. Five sample visitors are included
 for presentations by default. Set `LEADERBOARD_DEMO_MODE=false` to hide them.
+Context scores appear in its own leaderboard and dashboard comparisons.
+Earlier Geographic Origin records remain in the dashboard and points history
+as Geographic Origin; they are not counted as Context scores.
 The result screen also shows today's average across account-linked quiz
 attempts, out of 6; guest scores are not included. Historical scores above 6
 are excluded because their question count is unknown.
