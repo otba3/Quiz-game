@@ -631,10 +631,10 @@ const QUIZ_DATA = {
     "options": [
      "Nighttime Herd",
      "Animal Gathering",
-     "Martyr's Epic",
+     "Martyrdom",
      "Animal's Farm"
     ],
-    "answer": "Martyr's Epic"
+    "answer": "Martyrdom"
    },
    {
     "id": "context-7",
