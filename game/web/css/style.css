@@ -343,6 +343,10 @@ button {
 #account-created-reminder {
   margin: 0;
 }
+#account-created-reminder {
+  color: #a00000;
+  font-weight: 700;
+}
 #account-created-code {
   border: 2px dashed var(--ink);
   border-radius: var(--radius-pill);
