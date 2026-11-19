@@ -227,7 +227,8 @@ button {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   align-content: start;
-  gap: var(--space-2);
+  align-items: center;
+  gap: var(--space-2) var(--space-4);
   width: 100%;
   margin: auto;
 }
@@ -370,9 +371,11 @@ button {
   text-align: center;
 }
 #account-back {
-  grid-column: 1 / -1;
-  justify-self: center;
-  width: 320px;
+  position: absolute;
+  left: var(--space-6);
+  bottom: var(--space-3);
+  width: 260px;
+  min-height: 56px;
   background: #000000;
   color: #FFFFFF;
 }
