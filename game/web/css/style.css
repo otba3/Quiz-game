@@ -259,6 +259,7 @@ button {
 }
 #account-form {
   grid-column: 2;
+  grid-row: 1;
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
@@ -300,9 +301,11 @@ button {
 }
 #account-create-open {
   grid-column: 1;
+  grid-row: 1 / 3;
   width: 100%;
-  min-height: 72px;
+  min-height: auto;
   background: var(--button-secondary);
+  align-self: stretch;
 }
 #account-create-form {
   grid-column: 1 / -1;
