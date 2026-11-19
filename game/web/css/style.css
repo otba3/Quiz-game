@@ -354,6 +354,8 @@ button {
   min-height: 56px;
   align-self: center;
   width: 320px;
+  background: var(--button-primary);
+  color: #000000;
 }
 #account-error {
   grid-column: 1 / -1;
@@ -427,6 +429,7 @@ button {
   margin: 0;
   transform: translate(-50%, -50%);
   background: var(--button-primary);
+  color: #000000;
 }
 .category-exit {
   position: absolute;
@@ -571,6 +574,10 @@ button {
 }
 #dashboard-detail-retry[hidden] {
   display: none;
+}
+#dashboard-detail-retry {
+  background: var(--button-primary);
+  color: #000000;
 }
 #visitor-stats:not([hidden]) {
   position: absolute;
@@ -749,7 +756,8 @@ button {
   font: 700 24px var(--font-heading);
 }
 .btn:active {
-  background: var(--yellow);
+  background: var(--button-secondary);
+  color: #000000;
 }
 
 #end.active {
@@ -863,6 +871,10 @@ button {
   margin-top: var(--space-2);
   font-size: 20px;
 }
+#check-points {
+  background: var(--button-secondary);
+  color: #000000;
+}
 #points {
   padding: 32px var(--space-6);
 }
@@ -903,6 +915,10 @@ button {
 .points-page .btn {
   flex: none;
   margin-top: var(--space-3);
+}
+#points-back {
+  background: var(--button-secondary);
+  color: #000000;
 }
 
 #leaderboard {
@@ -1157,6 +1173,8 @@ button {
   margin: 0 0 var(--space-2);
   padding: 0 var(--space-3);
   font-size: 16px;
+  background: var(--button-primary);
+  color: #000000;
 }
 #leaderboard .leaderboard-retry[hidden] {
   display: none;
@@ -1242,6 +1260,10 @@ button {
   margin-top: var(--space-2);
   padding: 0 var(--space-4);
   font-size: 20px;
+}
+#rating-submit {
+  background: var(--button-primary);
+  color: #000000;
 }
 .rating-actions .btn:disabled {
   opacity: 0.5;
