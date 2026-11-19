@@ -116,6 +116,16 @@ class LeaderboardStorageTests(unittest.TestCase):
             ],
             [0, 6, 0, 3, 0],
         )
+        self.assertEqual(
+            [
+                first["comparison_before_score"],
+                second["comparison_before_score"],
+                third["comparison_before_score"],
+                fourth["comparison_before_score"],
+                fifth["comparison_before_score"],
+            ],
+            [None, 2, None, 5, None],
+        )
 
     def test_daily_average_is_empty_when_no_scores_exist(self):
         self.assertEqual(

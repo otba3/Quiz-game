@@ -114,16 +114,14 @@
       now: "Now",
       earned: (points) => `You earned ${points} points.`,
       firstQuizPending:
-        "Quiz saved. Your points will be added after your second quiz in this category today.",
+        "Explore the exhibition and retake the quiz to save your points.",
       thirdQuizPending:
         "Quiz saved. Your points will be added after your fourth quiz in this category today.",
       dailyLimit: "No more points will be saved in this category until tomorrow.",
       checkPoints: "Check History",
       pointsTitle: "Your Points",
-      historyTitle: "Points history",
+      historyTitle: "Score history",
       pointsBack: "Back to results",
-      earnedEntry: "Earned",
-      redeemedEntry: "Reward redeemed",
       ratingTitle: "How would you rate your experience playing today?",
       ratingLabels: ["Very poor", "Poor", "Okay", "Good", "Excellent"],
       ratingSubmit: "Submit",
@@ -227,16 +225,14 @@
       now: "الآن",
       earned: (points) => `لقد حصلت على ${points} نقاط.`,
       firstQuizPending:
-        "تم حفظ الاختبار. ستُضاف نقاطك بعد إكمال الاختبار الثاني في هذه الفئة اليوم.",
+        "استكشف المعرض وأعد الاختبار لحفظ نقاطك.",
       thirdQuizPending:
         "تم حفظ الاختبار. ستُضاف نقاطك بعد إكمال الاختبار الرابع في هذه الفئة اليوم.",
       dailyLimit: "لن تُحفظ نقاط أخرى في هذه الفئة حتى الغد.",
       checkPoints: "تحقق من السجل",
       pointsTitle: "نقاطك",
-      historyTitle: "سجل النقاط",
+      historyTitle: "سجل النتائج",
       pointsBack: "العودة إلى النتيجة",
-      earnedEntry: "نقاط مكتسبة",
-      redeemedEntry: "تم استبدال المكافأة",
       ratingTitle: "كيف تقيّم تجربتك في اللعب اليوم؟",
       ratingLabels: ["سيئة جدًا", "سيئة", "متوسطة", "جيدة", "ممتازة"],
       ratingSubmit: "إرسال",
@@ -1346,8 +1342,16 @@
     $("points-earned").hidden = false;
     renderDailyAverage(true);
     $("check-points").hidden = false;
-    if (result.quizzes_today > 1) {
-      $("before-score").textContent = result.first_score + "/" + questions.length;
+    if (result.quizzes_today > 1 && result.quizzes_today % 2 === 0) {
+      if (
+        typeof result.comparison_before_score !== "number" ||
+        !Number.isFinite(result.comparison_before_score)
+      ) {
+        console.error("The saved score response omitted the comparison score.");
+        return;
+      }
+      $("before-score").textContent =
+        result.comparison_before_score + "/" + questions.length;
       $("now-score").textContent = score + "/" + questions.length;
       $("score-compare").hidden = false;
     }
@@ -1476,10 +1480,6 @@
       const item = document.createElement("li");
       const detail = document.createElement("span");
       detail.textContent =
-        (entry.kind === "redeemed"
-          ? UI[lang].redeemedEntry
-          : UI[lang].earnedEntry) +
-        " · " +
         categoryLabel(entry.category) +
         " · " +
         new Intl.DateTimeFormat(lang, { dateStyle: "medium" }).format(

@@ -505,6 +505,9 @@ def save_score(card_uid, category, score, correct_question_ids=()):
                     (card_uid, points_earned, category, now),
                 )
             first_score = today_scores[0][0] if today_scores else score
+            comparison_before_score = (
+                today_scores[-1][0] if quizzes_today % 2 == 0 else None
+            )
             leaderboard_score = db.execute(
                 """SELECT COUNT(*) FROM daily_question_scores
                    WHERE card_uid = ? AND category = ? AND session_date = ?""",
@@ -518,6 +521,7 @@ def save_score(card_uid, category, score, correct_question_ids=()):
     return {
         "attempt": attempt,
         "first_score": first_score,
+        "comparison_before_score": comparison_before_score,
         "points_earned": points_earned,
         "quizzes_today": quizzes_today,
         "leaderboard_points_earned": leaderboard_points_earned,
