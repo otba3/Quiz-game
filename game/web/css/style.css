@@ -409,8 +409,8 @@ button {
   white-space: nowrap;
 }
 .leaderboard-open {
-  background: #FFFFFF;
-  color: #000000;
+  background: #FFFFFF !important;
+  color: #000000 !important;
 }
 .dashboard-open[hidden] {
   display: none;
@@ -432,8 +432,8 @@ button {
   margin: 0;
   padding: 0 var(--space-2);
   font: 700 20px var(--font-heading);
-  background: #000000;
-  color: #FFFFFF;
+  background: #000000 !important;
+  color: #FFFFFF !important;
 }
 #dashboard {
   padding: 88px var(--space-6) var(--space-5);
