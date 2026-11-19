@@ -211,12 +211,12 @@ button {
   min-width: 260px;
   margin: 0;
   transform: translate(-50%, -50%);
-  background: #000000;
-  color: #FFFFFF;
+  background: #FFFFFF !important;
+  color: #000000 !important;
 }
 .btn.home-play:active {
-  background: #000000;
-  color: #FFFFFF;
+  background: #FFFFFF !important;
+  color: #000000 !important;
 }
 #account {
   justify-content: center;
@@ -765,7 +765,7 @@ button {
   margin-top: 0;
 }
 #again {
-  background: #FFFFFF !important;
+  background: #72ED67 !important;
   color: #000000 !important;
 }
 .end-account {
