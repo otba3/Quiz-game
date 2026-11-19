@@ -408,6 +408,10 @@ button {
   font-size: 24px;
   white-space: nowrap;
 }
+.leaderboard-open {
+  background: #FFFFFF;
+  color: #000000;
+}
 .dashboard-open[hidden] {
   display: none;
 }
@@ -423,11 +427,11 @@ button {
   position: absolute;
   left: 24px;
   bottom: 24px;
-  min-width: 160px;
+  width: 260px;
   min-height: 56px;
   margin: 0;
-  padding: 0 var(--space-3);
-  font-size: 20px;
+  padding: 0 var(--space-2);
+  font: 700 20px var(--font-heading);
   background: #000000;
   color: #FFFFFF;
 }
