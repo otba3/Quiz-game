@@ -764,6 +764,10 @@ button {
   align-self: stretch;
   margin-top: 0;
 }
+#again {
+  background: #FFFFFF !important;
+  color: #000000 !important;
+}
 .end-account {
   display: flex;
   align-items: stretch;
