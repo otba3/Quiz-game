@@ -431,6 +431,8 @@ button {
   min-height: 56px;
   margin: 0;
   padding: 0 var(--space-2);
+  border: 2px solid var(--ink);
+  border-radius: var(--radius-pill);
   font: 700 20px var(--font-heading);
   background: #000000 !important;
   color: #FFFFFF !important;
@@ -1115,6 +1117,7 @@ button {
   margin: 0;
   padding: 0 var(--space-2);
   font: 700 20px var(--font-heading);
+  border: 2px solid var(--ink);
 }
 #leaderboard-back {
   background: #000000;
