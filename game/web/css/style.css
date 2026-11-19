@@ -17,6 +17,8 @@
   --blue: #78aaf9;
   --orange: #f6c343;
   --yellow: #ffe40c;
+  --button-primary: #72ED67;
+  --button-secondary: #65BD60;
 
   --font-body: "ABC Diatype", sans-serif;
   --font-heading: "ABC Diatype", sans-serif;
@@ -209,10 +211,12 @@ button {
   min-width: 260px;
   margin: 0;
   transform: translate(-50%, -50%);
-  background: rgba(249, 255, 30, 0.72);
+  background: #000000;
+  color: #FFFFFF;
 }
 .btn.home-play:active {
-  background: rgba(249, 255, 30, 0.86);
+  background: #000000;
+  color: #FFFFFF;
 }
 #account {
   justify-content: center;
@@ -288,17 +292,17 @@ button {
   font-size: 22px;
 }
 #account-submit {
-  background: var(--blue);
+  background: var(--button-primary);
 }
 #account-create-submit {
   min-height: 56px;
-  background: var(--blue);
+  background: var(--button-primary);
 }
 #account-create-open {
   grid-column: 2;
   width: 100%;
   min-height: 72px;
-  background: var(--orange);
+  background: var(--button-secondary);
 }
 #account-create-form {
   grid-column: 1 / -1;
@@ -318,7 +322,7 @@ button {
 }
 #account-create-back {
   min-height: 56px;
-  background: var(--orange);
+  background: var(--button-secondary);
 }
 #account-create-form[hidden],
 #account-created[hidden] {
@@ -367,7 +371,8 @@ button {
   grid-column: 1 / -1;
   justify-self: center;
   width: 320px;
-  background: var(--yellow-bright);
+  background: #000000;
+  color: #FFFFFF;
 }
 #cats .choices {
   grid-template-columns: 1fr 1fr;
@@ -423,6 +428,8 @@ button {
   margin: 0;
   padding: 0 var(--space-3);
   font-size: 20px;
+  background: #000000;
+  color: #FFFFFF;
 }
 #dashboard {
   padding: 88px var(--space-6) var(--space-5);
@@ -456,7 +463,7 @@ button {
 }
 .dashboard-stats > button {
   text-align: start;
-  background: var(--blue);
+  background: var(--button-primary);
 }
 .dashboard-stats > button:focus-visible {
   outline: 3px solid var(--magenta);
@@ -484,10 +491,10 @@ button {
   font-size: 20px;
 }
 #dashboard-back {
-  background: var(--blue);
+  background: var(--button-primary);
 }
 #dashboard-exit {
-  background: var(--orange);
+  background: var(--button-secondary);
 }
 .dashboard-status {
   position: absolute;
@@ -575,10 +582,10 @@ button {
   opacity: 0.8;
 }
 .c0 {
-  background: var(--blue);
+  background: var(--button-primary);
 }
 .c1 {
-  background: var(--orange);
+  background: var(--button-secondary);
 }
 .c2 {
   background: var(--yellow);
@@ -780,7 +787,7 @@ button {
   border: 2px solid var(--ink);
   border-radius: var(--radius-pill);
   padding: var(--space-4);
-  background: var(--blue);
+  background: var(--button-primary);
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
@@ -905,7 +912,7 @@ button {
   background: var(--yellow-bright);
 }
 #leaderboard-categories .leaderboard-tab[aria-pressed="true"] {
-  background: var(--color-magenta);
+  background: var(--button-primary);
 }
 .leaderboard-status {
   min-height: 24px;
@@ -1105,6 +1112,10 @@ button {
   padding: 0 var(--space-2);
   font: 700 20px var(--font-heading);
 }
+#leaderboard-back {
+  background: #000000;
+  color: #FFFFFF;
+}
 .leaderboard-periods {
   display: flex;
   gap: var(--space-2);
@@ -1115,6 +1126,9 @@ button {
   min-height: 56px;
   padding: 0 20px;
   font: 700 20px var(--font-heading);
+}
+.leaderboard-periods .leaderboard-tab[aria-pressed="true"] {
+  background: var(--button-secondary);
 }
 #leaderboard .leaderboard-retry {
   min-height: 40px;
