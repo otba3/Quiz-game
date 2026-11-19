@@ -71,7 +71,7 @@
       averageChallenge: "Can you beat the average?",
       averageEmpty: "No scores yet",
       averageError: "Today's average couldn't be loaded.",
-      accountTitle: "Save your scores and points",
+      accountTitle: "Sign up to save your score",
       accountPrompt: "Choose how you would like to continue.",
       accountCodePrompt:
         "Enter your account code or create a new account.",
@@ -185,7 +185,7 @@
       averageChallenge: "هل يمكنك تجاوز المتوسط؟",
       averageEmpty: "لا توجد نتائج بعد",
       averageError: "تعذر تحميل متوسط اليوم.",
-      accountTitle: "احفظ نتائجك ونقاطك",
+      accountTitle: "سجل للحفاظ على نتائجك",
       accountPrompt: "اختر طريقة المتابعة.",
       accountCodePrompt: "أدخل رمز حسابك أو أنشئ حسابًا جديدًا.",
       accountSignIn: "تسجيل الدخول / إنشاء حساب",
