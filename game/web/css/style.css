@@ -425,8 +425,8 @@ button {
 }
 .category-exit {
   position: absolute;
-  left: 24px;
-  bottom: 24px;
+  left: var(--space-6);
+  bottom: var(--space-3);
   width: 260px !important;
   min-height: 56px !important;
   max-height: 56px !important;
