@@ -426,7 +426,7 @@ button {
   left: 50%;
   margin: 0;
   transform: translate(-50%, -50%);
-  background: var(--yellow-bright);
+  background: var(--button-primary);
 }
 .category-exit {
   position: absolute;
@@ -509,6 +509,9 @@ button {
 }
 #dashboard-exit {
   background: var(--button-secondary);
+}
+#dashboard-detail-back {
+  background: var(--button-primary);
 }
 .dashboard-status {
   position: absolute;
