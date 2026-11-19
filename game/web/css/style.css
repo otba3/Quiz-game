@@ -427,15 +427,18 @@ button {
   position: absolute;
   left: 24px;
   bottom: 24px;
-  width: 260px;
-  min-height: 56px;
-  margin: 0;
-  padding: 0 var(--space-2);
-  border: 2px solid var(--ink);
-  border-radius: var(--radius-pill);
-  font: 700 20px var(--font-heading);
+  width: 260px !important;
+  min-height: 56px !important;
+  max-height: 56px !important;
+  margin: 0 !important;
+  padding: 0 var(--space-2) !important;
+  border: 2px solid var(--ink) !important;
+  border-radius: var(--radius-pill) !important;
+  font: 700 20px var(--font-heading) !important;
   background: #000000 !important;
   color: #FFFFFF !important;
+  align-self: auto !important;
+  margin-top: 0 !important;
 }
 #dashboard {
   padding: 88px var(--space-6) var(--space-5);
