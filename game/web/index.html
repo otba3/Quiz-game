@@ -140,7 +140,13 @@
         <span class="eyebrow" id="end-label"></span>
         <div id="score"></div>
         <p class="lead" id="verdict"></p>
-        <button class="btn" id="again"></button>
+        <div class="end-actions">
+          <button class="btn" id="again"></button>
+          <div class="end-account" id="end-account" hidden>
+            <span><small id="end-user-label"></small><strong id="end-user"></strong></span>
+            <span><small id="end-code-label"></small><strong id="end-code" dir="ltr"></strong></span>
+          </div>
+        </div>
       </div>
       <div class="save-panel" id="save-panel" data-state="waiting">
         <h3 id="save-title"></h3>
@@ -159,10 +165,6 @@
       <div class="points-page">
         <span class="eyebrow" id="points-title"></span>
         <div class="points-total" id="points-total"></div>
-        <p class="points-target" id="points-target"></p>
-        <div class="track points-track" role="progressbar" aria-valuemin="0" aria-valuemax="40">
-          <div class="fill" id="points-fill"></div>
-        </div>
         <h2 class="points-history-title" id="history-title"></h2>
         <ol class="points-history" id="points-history"></ol>
         <button class="btn" id="points-back"></button>

@@ -738,6 +738,44 @@ button {
   display: flex;
   flex-direction: column;
 }
+.end-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+}
+.end-actions .btn {
+  align-self: stretch;
+  margin-top: 0;
+}
+.end-account {
+  display: flex;
+  align-items: stretch;
+  gap: var(--space-3);
+  min-width: 0;
+}
+.end-account[hidden] {
+  display: none;
+}
+.end-account > span {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 120px;
+  padding: var(--space-2) var(--space-3);
+  border: 2px solid var(--ink);
+  border-radius: var(--radius-pill);
+}
+.end-account small {
+  color: var(--ink-soft);
+  font-size: 14px;
+}
+.end-account strong {
+  overflow: hidden;
+  font-size: 22px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 .save-panel {
   border: 2px solid var(--ink);
   border-radius: var(--radius-pill);
@@ -809,14 +847,6 @@ button {
 .points-total {
   font: 700 88px/1 var(--font-heading);
   margin-top: var(--space-2);
-}
-.points-target {
-  font-size: 20px;
-  margin: var(--space-2) 0;
-}
-.points-track {
-  flex: none;
-  height: 16px;
 }
 .points-history-title {
   font-size: 28px;

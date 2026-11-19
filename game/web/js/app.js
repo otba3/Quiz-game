@@ -103,10 +103,12 @@
       score: "Your score",
       again: "Play again",
       v: ["Try again.", "Well played.", "Perfect score."],
+      user: "User",
+      code: "Code",
       savingTitle: "Saving your score...",
       savingMessage: "Saving this score under your account code.",
       savedTitle: "Score saved!",
-      guestMessage: "Score not saved.",
+      guestMessage: "Score not saved. If you want to save your score, sign up.",
       saveFailed: "We couldn't save your score. Please ask museum staff for help.",
       before: "Before",
       now: "Now",
@@ -116,12 +118,10 @@
       thirdQuizPending:
         "Quiz saved. Your points will be added after your fourth quiz in this category today.",
       dailyLimit: "No more points will be saved in this category until tomorrow.",
-      checkPoints: "Check Points",
+      checkPoints: "Check History",
       pointsTitle: "Your Points",
       historyTitle: "Points history",
       pointsBack: "Back to results",
-      pointsNeeded: (balance) => `${balance} of 40 points. Keep going!`,
-      rewardReady: "40 points reached! Ask museum staff about your reward.",
       earnedEntry: "Earned",
       redeemedEntry: "Reward redeemed",
       ratingTitle: "How would you rate your experience playing today?",
@@ -216,10 +216,12 @@
       score: "نتيجتك",
       again: "العب مرة أخرى",
       v: ["حاول مرة أخرى.", "أحسنت.", "نتيجة كاملة."],
+      user: "المستخدم",
+      code: "الرمز",
       savingTitle: "جارٍ حفظ نتيجتك...",
       savingMessage: "جارٍ حفظ النتيجة باستخدام رمز حسابك.",
       savedTitle: "تم حفظ نتيجتك!",
-      guestMessage: "لم يتم حفظ النتيجة.",
+      guestMessage: "لم يتم حفظ النتيجة. إذا أردت حفظ نتيجتك، أنشئ حسابًا.",
       saveFailed: "تعذر حفظ نتيجتك. يُرجى طلب المساعدة من موظفي المتحف.",
       before: "قبل",
       now: "الآن",
@@ -229,12 +231,10 @@
       thirdQuizPending:
         "تم حفظ الاختبار. ستُضاف نقاطك بعد إكمال الاختبار الرابع في هذه الفئة اليوم.",
       dailyLimit: "لن تُحفظ نقاط أخرى في هذه الفئة حتى الغد.",
-      checkPoints: "تحقق من النقاط",
+      checkPoints: "تحقق من السجل",
       pointsTitle: "نقاطك",
       historyTitle: "سجل النقاط",
       pointsBack: "العودة إلى النتيجة",
-      pointsNeeded: (balance) => `${balance} من 40 نقطة. واصل التقدم!`,
-      rewardReady: "وصلت إلى 40 نقطة! اسأل موظفي المتحف عن مكافأتك.",
       earnedEntry: "نقاط مكتسبة",
       redeemedEntry: "تم استبدال المكافأة",
       ratingTitle: "كيف تقيّم تجربتك في اللعب اليوم؟",
@@ -252,6 +252,7 @@
     score,
     correctQuestionIds,
     accountCode = null,
+    accountDisplayName = "",
     adminCode = null,
     adminName = "",
     isAdmin = false,
@@ -310,6 +311,7 @@
   function exitToHome() {
     stopAccountTimer();
     accountCode = null;
+    accountDisplayName = "";
     adminCode = null;
     adminName = "";
     isAdmin = false;
@@ -427,6 +429,7 @@
   function continueAsGuest() {
     stopAccountTimer();
     accountCode = null;
+    accountDisplayName = "";
     adminCode = null;
     adminName = "";
     isAdmin = false;
@@ -512,6 +515,7 @@
 
   function showAccountPrompt() {
     accountCode = null;
+    accountDisplayName = "";
     adminCode = null;
     adminName = "";
     isAdmin = false;
@@ -618,6 +622,7 @@
       adminCode = isAdmin ? code : null;
       adminName = isAdmin ? result.visitor : "";
       accountCode = isAdmin ? null : code;
+      accountDisplayName = isAdmin ? "" : result.visitor;
       sessionStorage.setItem("quizVisitor", result.visitor);
       showCategories();
     } catch (error) {
@@ -694,6 +699,7 @@
         throw new Error(UI[lang].accountServiceError);
       }
       accountCode = result.account_code;
+      accountDisplayName = result.display_name;
       sessionStorage.setItem("quizVisitor", result.visitor);
       $("account-created-code").textContent = result.account_code;
       $("account-form").hidden = true;
@@ -1287,6 +1293,7 @@
       UI[lang].v[score === t ? 2 : score >= t / 2 ? 1 : 0];
     dailyAverage = null;
     dailyAverageError = false;
+    renderEndAccount();
     show("end");
     if (accountCode) {
       saveAccountScore();
@@ -1349,6 +1356,7 @@
   function updateEndLanguage() {
     $("end-label").textContent = UI[lang].score;
     $("again").textContent = UI[lang].again;
+    renderEndAccount();
     $("before-label").textContent = UI[lang].before;
     $("now-label").textContent = UI[lang].now;
     $("check-points").textContent = UI[lang].checkPoints;
@@ -1461,15 +1469,7 @@
   }
 
   function showPoints(result) {
-    const balance = result.points_balance;
-    $("points-total").textContent = balance;
-    $("points-target").textContent =
-      balance >= 40 ? UI[lang].rewardReady : UI[lang].pointsNeeded(balance);
-    $("points-fill").style.transform =
-      "scaleX(" + Math.min(balance / 40, 1) + ")";
-    document
-      .querySelector(".points-track")
-      .setAttribute("aria-valuenow", Math.min(balance, 40));
+    $("points-total").textContent = result.points_balance;
     const history = $("points-history");
     history.innerHTML = "";
     result.points_history.forEach((entry) => {
@@ -1491,6 +1491,14 @@
       history.appendChild(item);
     });
     show("points");
+  }
+
+  function renderEndAccount() {
+    $("end-user-label").textContent = UI[lang].user;
+    $("end-code-label").textContent = UI[lang].code;
+    $("end-account").hidden = !accountCode;
+    $("end-user").textContent = accountDisplayName;
+    $("end-code").textContent = accountCode || "";
   }
 
   function setSaveStatus(state, title, message) {
